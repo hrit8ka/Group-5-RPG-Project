@@ -84,7 +84,7 @@ public class Player extends Character {
             x += speed;
         }
         spriteCounter++;
-        if (spriteCounter > 14) {
+        if (spriteCounter > 10) {
             if (spriteNumber == 1) {
                 spriteNumber = 2;
             } else if (spriteNumber == 2) {
