@@ -38,21 +38,20 @@ public class Player extends Character {
             //up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
             //up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_p_2.png"));
             //down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
-            //down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down-2.png"));
+            //down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png"));
             //left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
             //left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
             //right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
             //right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
 
-            File f1 = new File("C:\\Users\\User\\Desktop\\RPG\\src\\player\\boy_up_1.png");
-            File f2 = new File("C:\\Users\\User\\Desktop\\RPG\\src\\player\\boy_up_2.png");
-            File f3 = new File("C:\\Users\\User\\Desktop\\RPG\\src\\player\\boy_down_1.png");
-            File f4 = new File("C:\\Users\\User\\Desktop\\RPG\\src\\player\\boy_down_2.png");
-            File f5 = new File("C:\\Users\\User\\Desktop\\RPG\\src\\player\\boy_left_1.png");
-            File f6 = new File("C:\\Users\\User\\Desktop\\RPG\\src\\player\\boy_left_2.png");
-            File f7 = new File("C:\\Users\\User\\Desktop\\RPG\\src\\player\\boy_right_1.png");
-            File f8 = new File("C:\\Users\\User\\Desktop\\RPG\\src\\player\\boy_right_2.png");
-
+            File f1 = new File("./src/player/boy_up_1.png");
+            File f2 = new File("./src/player/boy_up_2.png");
+            File f3 = new File("./src/player/boy_down_1.png");
+            File f4 = new File("./src/player/boy_down_2.png");
+            File f5 = new File("./src/player/boy_left_1.png");
+            File f6 = new File("./src/player/boy_left_2.png");
+            File f7 = new File("./src/player/boy_right_1.png");
+            File f8 = new File("./src/player/boy_right_2.png");
             up1=ImageIO.read(f1);
             up2=ImageIO.read(f2);
             down1=ImageIO.read(f3);
