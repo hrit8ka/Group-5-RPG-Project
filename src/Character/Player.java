@@ -1,4 +1,104 @@
-/*package Character;
+//Using GIF
+package Character;
+
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import Main.GamePanel;
+import Main.KeyHandler;
+
+public class Player extends Character {
+
+    GamePanel gp;
+    KeyHandler keyH;
+
+    private BufferedImage upImage;    // Image for up movement
+    private BufferedImage downImage;  // Image for down movement
+    private BufferedImage leftImage;  // Image for left movement
+    private BufferedImage rightImage; // Image for right movement
+
+    public Player(GamePanel gp, KeyHandler keyH) {
+        this.gp = gp;
+        this.keyH = keyH;
+
+        setDefaultValues();
+        getPlayerImages(); // get the images of the player
+    }
+
+    public void setDefaultValues() {
+        x = 100;
+        y = 100;
+        speed = 4;
+        direction = "down";
+    }
+
+    public void getPlayerImages() {
+        try {
+            // Load images for up movement
+            upImage = ImageIO.read(new File("./src/player/up.gif"));
+
+            // Load images for down movement
+            downImage = ImageIO.read(new File("./src/player/down.gif"));
+
+            // Load images for left movement
+            leftImage = ImageIO.read(new File("./src/player/left.gif"));
+
+            // Load images for right movement
+            rightImage = ImageIO.read(new File("./src/player/right.gif"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update() {
+        if (keyH.upPressed) {
+            direction = "up";
+            y -= speed;
+        }
+        if (keyH.downPressed) {
+            direction = "down";
+            y += speed;
+        }
+        if (keyH.leftPressed) {
+            direction = "left";
+            x -= speed;
+        }
+        if (keyH.rightPressed) {
+            direction = "right";
+            x += speed;
+        }
+    }
+
+    public void draw(Graphics2D g2) {
+        BufferedImage image = null;
+
+        switch (direction) {
+            case "up":
+                image = upImage;
+                break;
+            case "down":
+                image = downImage;
+                break;
+            case "left":
+                image = leftImage;
+                break;
+            case "right":
+                image = rightImage;
+                break;
+        }
+
+        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+    }
+}
+
+
+/* Uing PNG
+package Character;
 
 //import java.awt.Color;
 import java.awt.Graphics2D;
@@ -138,101 +238,3 @@ public class Player extends Character {
     }
 
 }*/
-
-//Using GIF
-package Character;
-
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import Main.GamePanel;
-import Main.KeyHandler;
-
-public class Player extends Character {
-
-    GamePanel gp;
-    KeyHandler keyH;
-
-    private BufferedImage upImage;    // Image for up movement
-    private BufferedImage downImage;  // Image for down movement
-    private BufferedImage leftImage;  // Image for left movement
-    private BufferedImage rightImage; // Image for right movement
-
-    public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
-        this.keyH = keyH;
-
-        setDefaultValues();
-        getPlayerImages(); // get the images of the player
-    }
-
-    public void setDefaultValues() {
-        x = 100;
-        y = 100;
-        speed = 4;
-        direction = "down";
-    }
-
-    public void getPlayerImages() {
-        try {
-            // Load images for up movement
-            upImage = ImageIO.read(new File("./src/player/up.gif"));
-
-            // Load images for down movement
-            downImage = ImageIO.read(new File("./src/player/down.gif"));
-
-            // Load images for left movement
-            leftImage = ImageIO.read(new File("./src/player/left.gif"));
-
-            // Load images for right movement
-            rightImage = ImageIO.read(new File("./src/player/right.gif"));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void update() {
-        if (keyH.upPressed) {
-            direction = "up";
-            y -= speed;
-        }
-        if (keyH.downPressed) {
-            direction = "down";
-            y += speed;
-        }
-        if (keyH.leftPressed) {
-            direction = "left";
-            x -= speed;
-        }
-        if (keyH.rightPressed) {
-            direction = "right";
-            x += speed;
-        }
-    }
-
-    public void draw(Graphics2D g2) {
-        BufferedImage image = null;
-
-        switch (direction) {
-            case "up":
-                image = upImage;
-                break;
-            case "down":
-                image = downImage;
-                break;
-            case "left":
-                image = leftImage;
-                break;
-            case "right":
-                image = rightImage;
-                break;
-        }
-
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-    }
-}
