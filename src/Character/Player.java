@@ -96,7 +96,6 @@ public class Player extends Character {
     }
 }
 
-
 /* Uing PNG
 package Character;
 
