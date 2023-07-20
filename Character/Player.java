@@ -32,14 +32,14 @@ public class Player extends Character {
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player//up2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player//down1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player//down2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player//left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/left2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/right2.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_p_2.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down-2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class Player extends Character {
             x += speed;
         }
         spriteCounter++;
-        if (spriteCounter > 10) {
+        if (spriteCounter > 14) {
             if (spriteNumber == 1) {
                 spriteNumber = 2;
             } else if (spriteNumber == 2) {
