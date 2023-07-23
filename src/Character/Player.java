@@ -2,6 +2,7 @@
 package Character;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class Player extends Character {
     GamePanel gp;
     KeyHandler keyH;
 
-    //screenX and screenY are the coordinates of the player on the screen
+    // screenX and screenY are the coordinates of the player on the screen
     public final int screenX;
     public final int screenY;
 
@@ -29,8 +30,14 @@ public class Player extends Character {
         this.gp = gp;
         this.keyH = keyH;
 
-        screenX = gp.screenWidth/2 -(gp.tileSize/2);
-        screenY = gp.screenHeight/2-(gp.tileSize/2);
+        screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
+        screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
+
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 32;
+        solidArea.height = 32;
 
         setDefaultValues();
         getPlayerImages(); // get the images of the player
@@ -79,6 +86,8 @@ public class Player extends Character {
             direction = "right";
             worldX += speed;
         }
+        collisionOn=false;
+        gp.collisionChecker.checkTile(this);
     }
 
     public void draw(Graphics2D g2) {

@@ -1,6 +1,7 @@
 package Character;
 
 import java.awt.image.BufferedImage;
+import java.awt.Rectangle;
 
 public class Character {
     public int worldX, worldY; //worldX is the x coordinate of the player in the world, worldY is the y coordinate of the player in the world
@@ -11,5 +12,9 @@ public class Character {
 
     public int spriteCounter = 0;
     public int spriteNumber = 1;
+
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
+
 
 }
