@@ -1,4 +1,4 @@
-package tile;
+package Tile;
 
 import Main.GamePanel;
 
@@ -22,22 +22,12 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[gp.maxScreenRow][gp.maxScreenCol];
         getTileImage();
-        loadMap();
+        loadMap("src/maps/map01.txt");
     }
 
     public void getTileImage() {
         try {
-            // tile[0] = new Tile();
-            // tile[0].image =
-            // ImageIO.read(getClass().getResourceAsStream("src/tiles/grass.png"));
 
-            // tile[1] = new Tile();
-            // tile[1].image =
-            // ImageIO.read(getClass().getResourceAsStream("src/tiles/wall.png"));
-
-            // tile[2] = new Tile();
-            // tile[2].image =
-            // ImageIO.read(getClass().getResourceAsStream("src/tiles/water.png"));
             File file = new File("src/tiles/grass.png");
             FileInputStream fis = new FileInputStream(file);
             tile[0] = new Tile();
@@ -58,9 +48,9 @@ public class TileManager {
         }
     }
 
-    public void loadMap() {
+    public void loadMap(String filePath) {
         try {
-            InputStream is = new FileInputStream("src/maps/map01.txt");
+            InputStream is = new FileInputStream(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;

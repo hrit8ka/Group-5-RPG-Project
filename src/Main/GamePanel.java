@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import Character.Player;
-import tile.TileManager;
+import Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
 
