@@ -22,11 +22,18 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol; // screen width
     public final int screenHeight = tileSize * maxScreenRow; // screen height
 
+    // WORLD MAP SETTINGS
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
+
     int FPS = 60; // frames per second
+
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
-    Player player = new Player(this, keyH);
+    public Player player = new Player(this, keyH);
 
     // set player's default position
     // int playerX = 100;
@@ -87,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         // g2.setColor(Color.WHITE);
         // g2.fillRect(playerX, playerY, tileSize, tileSize);
-        tileM.draw(g2); //tile is drawn before player so as to be behind the player
+        tileM.draw(g2); // tile is drawn before player so as to be behind the player
         player.draw(g2);
         g2.dispose();
     }

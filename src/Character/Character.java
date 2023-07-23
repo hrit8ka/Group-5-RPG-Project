@@ -3,8 +3,8 @@ package Character;
 import java.awt.image.BufferedImage;
 
 public class Character {
-    public int x, y;
-    public int speed;
+    public int worldX, worldY; //worldX is the x coordinate of the player in the world, worldY is the y coordinate of the player in the world
+    public int speed; // speed of the player
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public String direction;
