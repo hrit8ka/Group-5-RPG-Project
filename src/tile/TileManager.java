@@ -53,7 +53,7 @@ public class TileManager {
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(fis);
 
-            file = new File("src/tiles/rock.png");
+            file = new File("src/tiles/sand.png");
             fis = new FileInputStream(file);
             tile[5] = new Tile();
             tile[5].image = ImageIO.read(fis);
