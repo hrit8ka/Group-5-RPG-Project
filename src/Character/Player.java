@@ -70,24 +70,49 @@ public class Player extends Character {
     }
 
     public void update() {
-        if (keyH.upPressed) {
-            direction = "up";
-            worldY -= speed;
+
+        if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
+                || keyH.rightPressed == true) {
+
+            if (keyH.upPressed == true) {
+                direction = "up";
+                // worldY -= speed;
+            }
+            if (keyH.downPressed == true) {
+                direction = "down";
+                // worldY += speed;
+            }
+            if (keyH.leftPressed == true) {
+                direction = "left";
+                // worldX -= speed;
+            }
+            if (keyH.rightPressed == true) {
+                direction = "right";
+                // worldX += speed;
+            }
+
+            // check collision
+            collisionOn = false;
+            gp.collisionChecker.checkTile(this);
+            // if collision is false, player can move
+            if (collisionOn == false) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
         }
-        if (keyH.downPressed) {
-            direction = "down";
-            worldY += speed;
-        }
-        if (keyH.leftPressed) {
-            direction = "left";
-            worldX -= speed;
-        }
-        if (keyH.rightPressed) {
-            direction = "right";
-            worldX += speed;
-        }
-        collisionOn=false;
-        gp.collisionChecker.checkTile(this);
+
     }
 
     public void draw(Graphics2D g2) {
