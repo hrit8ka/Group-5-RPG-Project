@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import Character.Player;
+import Object.SuperObject;
 import Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -35,12 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public Player player = new Player(this, keyH);
-
-    // set player's default position
-    // int playerX = 100;
-    // int playerY = 100;
-
-    // int playerSpeed = 4;
+    public SuperObject obj[]=new SuperObject[10];
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
