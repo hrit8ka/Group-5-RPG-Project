@@ -20,7 +20,7 @@ public class Player extends Character {
     // screenX and screenY are the coordinates of the player on the screen
     public final int screenX;
     public final int screenY;
-    int hasKey = 0;
+    public int hasKey = 0;
 
     private BufferedImage upImage; // Image for up movement
     private BufferedImage downImage; // Image for down movement
