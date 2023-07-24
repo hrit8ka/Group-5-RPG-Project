@@ -6,11 +6,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class OBJ_Key extends SuperObject {
-    public OBJ_Key() {
-        name = "Key";
+public class OBJ_Door extends SuperObject{
+     public OBJ_Door() {
+        name = "door";
         try {
-            File file = new File("src/objects/key.png");
+            File file = new File("src/objects/door.png");
             FileInputStream fis = new FileInputStream(file);
             image = ImageIO.read(fis);
 
