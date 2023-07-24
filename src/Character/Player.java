@@ -2,6 +2,7 @@
 package Character;
 
 import java.awt.Graphics2D;
+//import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,6 +12,7 @@ import javax.imageio.ImageIO;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Main.UtilityTool;
 
 public class Player extends Character {
 
@@ -54,9 +56,9 @@ public class Player extends Character {
     }
 
     public void getPlayerImages() {
-        try {
+    
             // Load images for up movement
-            upImage = ImageIO.read(new File("./src/player/up.gif"));
+            /*upImage = ImageIO.read(new File("./src/player/up.gif"));
 
             // Load images for down movement
             downImage = ImageIO.read(new File("./src/player/down.gif"));
@@ -65,11 +67,27 @@ public class Player extends Character {
             leftImage = ImageIO.read(new File("./src/player/left.gif"));
 
             // Load images for right movement
-            rightImage = ImageIO.read(new File("./src/player/right.gif"));
+            rightImage = ImageIO.read(new File("./src/player/right.gif"));*/
 
-        } catch (IOException e) {
+        upImage=setUp("up");
+        downImage=setUp("down");
+        leftImage=setUp("left");
+        rightImage=setUp("right");
+
+    }
+
+    public BufferedImage setUp(String imageName) {
+        UtilityTool tool = new UtilityTool();
+        BufferedImage image = null;
+        try{
+           image=ImageIO.read(new File("./src/player/"+imageName+".gif"));
+            image = tool.scaleImage(image, gp.tileSize, gp.tileSize);
+
+
+        }catch(IOException e){
             e.printStackTrace();
         }
+        return image;
     }
 
     public void update() {
@@ -189,6 +207,6 @@ public class Player extends Character {
                 break;
         }
 
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
     }
 }
