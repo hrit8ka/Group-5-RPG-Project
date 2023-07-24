@@ -147,13 +147,18 @@ public class Player extends Character {
                    if(hasKey > 0){
                        gp.obj[i] = null;
                        hasKey--;
+                       gp.ui.showMessage("Door Opened! You used a key!");
                        System.out.println("You have " + hasKey + " key(s)");
+                   }
+                   else{
+                    gp.ui.showMessage("You need a key to open this door!");
                    }
                    break;
                 case "boots":
                 gp.playSE(2);
                     speed += 2;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("You got boots! Your speed increased!");
                     System.out.println("You have boots");
                     break;
            }
