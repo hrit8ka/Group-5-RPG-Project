@@ -35,12 +35,12 @@ public class Player extends Character {
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
         solidArea = new Rectangle();
-        solidArea.x = 8;
-        solidArea.y = 16;
+        solidArea.x = 2;
+        solidArea.y = 4;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 32;
-        solidArea.height = 32;
+        solidArea.width = 14;
+        solidArea.height = 14;
 
         setDefaultValues();
         getPlayerImages(); // get the images of the player
@@ -162,7 +162,7 @@ public class Player extends Character {
                     break;
                 case "chest":
                     gp.playSE(4);
-                    gp.ui.showMessage("You found the treasure! You win!");
+                    //gp.ui.showMessage("You found the treasure! You win!");
                     gp.ui.gameFinished = true;
                     gp.stopMusic();
                     gp.playSE(4);
