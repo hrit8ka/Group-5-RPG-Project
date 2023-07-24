@@ -147,6 +147,11 @@ public class Player extends Character {
                        System.out.println("You have " + hasKey + " key(s)");
                    }
                    break;
+                case "boots":
+                    speed += 2;
+                    gp.obj[i] = null;
+                    System.out.println("You have boots");
+                    break;
            }
         }
     }
