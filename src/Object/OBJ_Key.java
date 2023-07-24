@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 public class OBJ_Key extends SuperObject {
     public OBJ_Key() {
-        name = "Key";
+        name = "key";
         try {
             File file = new File("src/objects/key.png");
             FileInputStream fis = new FileInputStream(file);

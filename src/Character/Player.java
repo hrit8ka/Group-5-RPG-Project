@@ -20,9 +20,7 @@ public class Player extends Character {
     // screenX and screenY are the coordinates of the player on the screen
     public final int screenX;
     public final int screenY;
-
     int hasKey = 0;
-
 
     private BufferedImage upImage; // Image for up movement
     private BufferedImage downImage; // Image for down movement
@@ -135,22 +133,21 @@ public class Player extends Character {
 
     public void pickUpObject(int i){
         if(i != 999){
-            String objectName = gp.obj[i].name;
-
-            switch(objectName){
-                case "key":
-                    hasKey++;
-                    gp.obj[i] = null;
-                    System.out.println("You have " + hasKey + " keys!");
-                    break;
-                case "door":
-                    if(hasKey > 0){
-                        gp.obj[i] = null;
-                        hasKey--;
-                    }
-                    System.out.println("You have " + hasKey + " keys!");
-                    break;
-            }
+            String objName = gp.obj[i].name;
+           switch(objName){
+               case "key":
+                   hasKey++;
+                   gp.obj[i] = null;
+                   System.out.println("You have " + hasKey + " key(s)");
+                   break;
+               case "door":
+                   if(hasKey > 0){
+                       gp.obj[i] = null;
+                       hasKey--;
+                       System.out.println("You have " + hasKey + " key(s)");
+                   }
+                   break;
+           }
         }
     }
 
