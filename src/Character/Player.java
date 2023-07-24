@@ -136,11 +136,13 @@ public class Player extends Character {
             String objName = gp.obj[i].name;
            switch(objName){
                case "key":
+               gp.playSE(1);
                    hasKey++;
                    gp.obj[i] = null;
                    System.out.println("You have " + hasKey + " key(s)");
                    break;
                case "door":
+               gp.playSE(3);
                    if(hasKey > 0){
                        gp.obj[i] = null;
                        hasKey--;
@@ -148,6 +150,7 @@ public class Player extends Character {
                    }
                    break;
                 case "boots":
+                gp.playSE(2);
                     speed += 2;
                     gp.obj[i] = null;
                     System.out.println("You have boots");
