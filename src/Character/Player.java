@@ -37,8 +37,8 @@ public class Player extends Character {
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
-        solidAreaDefaultX= solidArea.x;
-        solidAreaDefaultY= solidArea.y;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
 
@@ -131,37 +131,43 @@ public class Player extends Character {
         }
     }
 
-    public void pickUpObject(int i){
-        if(i != 999){
+    public void pickUpObject(int i) {
+        if (i != 999) {
             String objName = gp.obj[i].name;
-           switch(objName){
-               case "key":
-               gp.playSE(1);
-                   hasKey++;
-                   gp.obj[i] = null;
-                   gp.ui.showMessage("You got a key!");
-                   System.out.println("You have " + hasKey + " key(s)");
-                   break;
-               case "door":
-               gp.playSE(3);
-                   if(hasKey > 0){
-                       gp.obj[i] = null;
-                       hasKey--;
-                       gp.ui.showMessage("Door Opened! You used a key!");
-                       System.out.println("You have " + hasKey + " key(s)");
-                   }
-                   else{
-                    gp.ui.showMessage("You need a key to open this door!");
-                   }
-                   break;
+            switch (objName) {
+                case "key":
+                    gp.playSE(1);
+                    hasKey++;
+                    gp.obj[i] = null;
+                    gp.ui.showMessage("You got a key!");
+                    System.out.println("You have " + hasKey + " key(s)");
+                    break;
+                case "door":
+                    gp.playSE(3);
+                    if (hasKey > 0) {
+                        gp.obj[i] = null;
+                        hasKey--;
+                        gp.ui.showMessage("Door Opened! You used a key!");
+                        System.out.println("You have " + hasKey + " key(s)");
+                    } else {
+                        gp.ui.showMessage("You need a key to open this door!");
+                    }
+                    break;
                 case "boots":
-                gp.playSE(2);
+                    gp.playSE(2);
                     speed += 2;
                     gp.obj[i] = null;
                     gp.ui.showMessage("You got boots! Your speed increased!");
                     System.out.println("You have boots");
                     break;
-           }
+                case "chest":
+                    gp.playSE(4);
+                    gp.ui.showMessage("You found the treasure! You win!");
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playSE(4);
+                    break;
+            }
         }
     }
 

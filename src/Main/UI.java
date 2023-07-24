@@ -14,6 +14,7 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
+    public boolean gameFinished = false;
 
     public UI(GamePanel gp) {
         this.gp = gp;
