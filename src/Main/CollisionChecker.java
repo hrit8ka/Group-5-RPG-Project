@@ -55,5 +55,10 @@ public class CollisionChecker {
                 break;
         }
     }
+    public int checkObject(Character Character, boolean player){
+        int index = 999;
+        return index;
+        
+    }
 
 }
