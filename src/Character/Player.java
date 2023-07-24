@@ -139,6 +139,7 @@ public class Player extends Character {
                gp.playSE(1);
                    hasKey++;
                    gp.obj[i] = null;
+                   gp.ui.showMessage("You got a key!");
                    System.out.println("You have " + hasKey + " key(s)");
                    break;
                case "door":
