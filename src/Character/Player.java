@@ -21,6 +21,9 @@ public class Player extends Character {
     public final int screenX;
     public final int screenY;
 
+    int hasKey = 0;
+
+
     private BufferedImage upImage; // Image for up movement
     private BufferedImage downImage; // Image for down movement
     private BufferedImage leftImage; // Image for left movement
@@ -96,6 +99,11 @@ public class Player extends Character {
             // check collision
             collisionOn = false;
             gp.collisionChecker.checkTile(this);
+
+            // check collision with objects
+            int objIndex = gp.collisionChecker.checkObject(this, true);
+            pickUpObject(objIndex);
+
             // if collision is false, player can move
             if (collisionOn == false) {
                 switch (direction) {
@@ -121,6 +129,27 @@ public class Player extends Character {
                     spriteNumber = 1;
                 }
                 spriteCounter = 0;
+            }
+        }
+    }
+
+    public void pickUpObject(int i){
+        if(i != 999){
+            String objectName = gp.obj[i].name;
+
+            switch(objectName){
+                case "key":
+                    hasKey++;
+                    gp.obj[i] = null;
+                    System.out.println("You have " + hasKey + " keys!");
+                    break;
+                case "door":
+                    if(hasKey > 0){
+                        gp.obj[i] = null;
+                        hasKey--;
+                    }
+                    System.out.println("You have " + hasKey + " keys!");
+                    break;
             }
         }
     }
