@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import Character.Player;
-import tile.TileManager;
+import Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -17,16 +17,24 @@ public class GamePanel extends JPanel implements Runnable {
     final int scale = 3; // scale of the game
 
     public final int tileSize = originalTileSize * scale; // tile size
-    final int maxScreenCol = 16; // max number of columns on the screen
-    final int maxScreenRow = 12; // max number of rows on the screen
-    final int screenWidth = tileSize * maxScreenCol; // screen width
-    final int screenHeight = tileSize * maxScreenRow; // screen height
+    public final int maxScreenCol = 16; // max number of columns on the screen
+    public final int maxScreenRow = 12; // max number of rows on the screen
+    public final int screenWidth = tileSize * maxScreenCol; // screen width
+    public final int screenHeight = tileSize * maxScreenRow; // screen height
+
+    // WORLD MAP SETTINGS
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
 
     int FPS = 60; // frames per second
+
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
-    Player player = new Player(this, keyH);
+    public CollisionChecker collisionChecker = new CollisionChecker(this);
+    public Player player = new Player(this, keyH);
 
     // set player's default position
     // int playerX = 100;
@@ -87,7 +95,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         // g2.setColor(Color.WHITE);
         // g2.fillRect(playerX, playerY, tileSize, tileSize);
-        tileM.draw(g2); //tile is drawn before player so as to be behind the player
+        tileM.draw(g2); // tile is drawn before player so as to be behind the player
         player.draw(g2);
         g2.dispose();
     }
