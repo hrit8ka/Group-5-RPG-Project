@@ -75,10 +75,19 @@ public class TileManager {
         UtilityTool ut = new UtilityTool();
 
         try{
-            tile[index]=new Tile();
+            /*tile[index]=new Tile();
             tile[index].image = ImageIO.read(new File("/src/tiles/"+ imageName + ".png"));
             tile[index].image = ut.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;*/
+
+            //import image
+            File file = new File("src/tiles/"+ imageName + ".png");
+            FileInputStream fis = new FileInputStream(file);
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(fis);
+            tile[index].image = ut.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
+            
         }catch(IOException e){
             e.printStackTrace();
         }
