@@ -9,6 +9,13 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Main.Main",
+            "projectName": "RPG_ba95b6da"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main.Main",
             "projectName": "RPG_582c39fb"
         },
         {
