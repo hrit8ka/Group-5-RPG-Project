@@ -30,6 +30,8 @@ public class Player extends Character {
     private BufferedImage rightImage; // Image for right movement
 
     public Player(GamePanel gp, KeyHandler keyH) {
+
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
 
