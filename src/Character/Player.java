@@ -24,10 +24,10 @@ public class Player extends Character {
     public final int screenY;
     // public int hasKey = 0;
 
-    //private BufferedImage upImage; // Image for up movement
-    //private BufferedImage downImage; // Image for down movement
-    //private BufferedImage leftImage; // Image for left movement
-    //private BufferedImage rightImage; // Image for right movement
+    // private BufferedImage upImage; // Image for up movement
+    // private BufferedImage downImage; // Image for down movement
+    // private BufferedImage leftImage; // Image for left movement
+    // private BufferedImage rightImage; // Image for right movement
     private BufferedImage up1;
     private BufferedImage up2;
     private BufferedImage down1;
@@ -36,7 +36,6 @@ public class Player extends Character {
     private BufferedImage left2;
     private BufferedImage right1;
     private BufferedImage right2;
-    
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -130,7 +129,7 @@ public class Player extends Character {
             int objIndex = gp.collisionChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
-            //check npc collision
+            // check npc collision
             int npcIndex = gp.collisionChecker.checkCharacter(this, gp.npc);
             interactWithNPC(npcIndex);
 
@@ -163,16 +162,17 @@ public class Player extends Character {
         }
     }
 
-
-
     public void pickUpObject(int i) {
 
     }
 
     public void interactWithNPC(int npcIndex) {
         if (npcIndex != 999) {
-            gp.gameState = gp.dialogueState;
-            gp.npc[npcIndex].speak();
+            if (gp.keyH.enterPressed == true) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[npcIndex].speak();
+            }
+            gp.keyH.enterPressed = false;
         }
     }
 
@@ -212,7 +212,7 @@ public class Player extends Character {
                     image = right2;
                 }
                 break;
-            }
+        }
 
         g2.drawImage(image, screenX, screenY, null);
     }

@@ -31,9 +31,9 @@ public class NPC_Sage extends Character {
 
     public void setDialogue() {
         dialogues[0] = "Hello, Warrior! I am the sage.";
-        dialogues[1] = "I am here to guide you on your journey.";
+        dialogues[1] = "I am here to guide you on \nyour journey.";
         dialogues[2] = "You must defeat the evil wizard.";
-        dialogues[3] = "He is hiding in the cave to the north.";
+        dialogues[3] = "He is hiding in the cave to the \nnorth.";
         dialogues[4] = "Good luck!";
     }
 
@@ -60,25 +60,6 @@ public class NPC_Sage extends Character {
     }
 
     public void speak() {
-        if (dialogues[dialogueIndex] == null) {
-            dialogueIndex = 0;
-        }
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
-
-        switch(gp.player.direction){
-            case "up":
-            direction = "down";
-            break;
-            case "down":
-            direction = "up";
-            break;
-            case "left":
-            direction = "right";
-            break;
-            case "right":
-            direction = "left";
-            break;
-        }
+        super.speak();
     }
 }
