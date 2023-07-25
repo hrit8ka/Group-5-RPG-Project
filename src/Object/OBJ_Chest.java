@@ -8,11 +8,11 @@ import javax.imageio.ImageIO;
 
 import Main.GamePanel;
 
-public class OBJ_Chest extends SuperObject{
+public class OBJ_Chest extends SuperObject {
     GamePanel gp;
 
-      public OBJ_Chest(GamePanel gp) {
-        this.gp=gp;
+    public OBJ_Chest(GamePanel gp) {
+        this.gp = gp;
         name = "chest";
         try {
             File file = new File("src/objects/chest.png");

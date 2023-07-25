@@ -7,7 +7,7 @@ public class Main {
         JFrame window = new JFrame("RPG");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false); // window cannot be resized
-        //window.setContentPane(new GamePanel());
+        // window.setContentPane(new GamePanel());
         window.setTitle("RPG");
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);

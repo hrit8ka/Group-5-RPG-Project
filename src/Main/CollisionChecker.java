@@ -213,7 +213,7 @@ public class CollisionChecker {
                     character.collisionOn = true;
                 }
                 break;
-                
+
         }
         character.solidArea.x = character.solidAreaDefaultX;
         character.solidArea.y = character.solidAreaDefaultY;

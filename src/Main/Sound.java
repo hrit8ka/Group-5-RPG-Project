@@ -9,14 +9,16 @@ import javax.sound.sampled.Clip;
 
 public class Sound {
     Clip clip;
-    URL soundURL[]= new URL[30];
-    
-    public Sound(){
-        /*soundURL[0] = getClass().getResource("src/sound/themesong.wav");
-        soundURL[1] = getClass().getResource("src/sound/coin.wav");
-        soundURL[2] = getClass().getResource("src/sound/powerup.wav");
-        soundURL[3] = getClass().getResource("src/sound/unlock.wav");
-        soundURL[4] = getClass().getResource("src/sound/fanfare.wav"); */
+    URL soundURL[] = new URL[30];
+
+    public Sound() {
+        /*
+         * soundURL[0] = getClass().getResource("src/sound/themesong.wav");
+         * soundURL[1] = getClass().getResource("src/sound/coin.wav");
+         * soundURL[2] = getClass().getResource("src/sound/powerup.wav");
+         * soundURL[3] = getClass().getResource("src/sound/unlock.wav");
+         * soundURL[4] = getClass().getResource("src/sound/fanfare.wav");
+         */
 
         try {
             soundURL[0] = new URL("file:src/sound/themesong.wav");
@@ -44,28 +46,30 @@ public class Sound {
             e.printStackTrace();
         }
 
-
     }
 
-    public void setFile(int i){
-        try{
+    public void setFile(int i) {
+        try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL[i]);
-            clip=AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioInputStream);
-        }catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
     }
-    public void play(){
+
+    public void play() {
         clip.start();
 
     }
-    public void loop(){
+
+    public void loop() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
 
     }
-    public void stop(){
+
+    public void stop() {
         clip.stop();
     }
-    
+
 }

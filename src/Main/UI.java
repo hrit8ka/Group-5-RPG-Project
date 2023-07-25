@@ -30,15 +30,16 @@ public class UI {
         this.gp = gp;
 
         try {
-            //InputStream is = this.getClass().getResourceAsStream("src/font/x12y16pxMaruMonica.ttf");
-            //importing font
+            // InputStream is =
+            // this.getClass().getResourceAsStream("src/font/x12y16pxMaruMonica.ttf");
+            // importing font
             File fontFile = new File("src/font/x12y16pxMaruMonica.ttf");
             InputStream is = new FileInputStream(fontFile);
-            
+
             maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (FontFormatException e) {
             e.printStackTrace();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -91,11 +92,11 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
         x += gp.tileSize;
         y += gp.tileSize;
-        for(String line : currentDialogue.split("\n")){
+        for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, x, y);
             y += 40;
         }
-        //g2.drawString(currentDialogue, x, y);
+        // g2.drawString(currentDialogue, x, y);
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {

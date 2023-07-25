@@ -12,7 +12,7 @@ public class OBJ_Key extends SuperObject {
     GamePanel gp;
 
     public OBJ_Key(GamePanel gp) {
-        this.gp=gp;
+        this.gp = gp;
         name = "key";
         try {
             File file = new File("src/objects/key.png");
