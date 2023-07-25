@@ -1,19 +1,21 @@
 package Main;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-//import java.awt.image.BufferedImage;
-//import java.text.DecimalFormat;
-import java.awt.BasicStroke;
 
-//import Object.OBJ_Key;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Graphics2D;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.awt.BasicStroke;
 
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    Font arial_40, arial_80B;
+    Font maruMonica;
     // BufferedImage keyImage;
     public boolean messageOn = false;
     public String message = "";
@@ -27,10 +29,18 @@ public class UI {
     public UI(GamePanel gp) {
         this.gp = gp;
 
-        arial_40 = new Font("Arial", Font.PLAIN, 40);
-        arial_80B = new Font("Arial", Font.BOLD, 80);
-        // OBJ_Key key = new OBJ_Key(gp);
-        // keyImage = key.image;
+        try {
+            //InputStream is = this.getClass().getResourceAsStream("src/font/x12y16pxMaruMonica.ttf");
+            //importing font
+            File fontFile = new File("src/font/x12y16pxMaruMonica.ttf");
+            InputStream is = new FileInputStream(fontFile);
+            
+            maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void showMessage(String text) {
@@ -40,7 +50,7 @@ public class UI {
 
     public void draw(Graphics2D g2) {
         this.g2 = g2;
-        g2.setFont(arial_40);
+        g2.setFont(maruMonica);
         g2.setColor(Color.white);
 
         // play state
@@ -78,7 +88,7 @@ public class UI {
 
         drawSubWindow(x, y, width, height);
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
         x += gp.tileSize;
         y += gp.tileSize;
         for(String line : currentDialogue.split("\n")){
