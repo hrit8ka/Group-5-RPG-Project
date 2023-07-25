@@ -16,23 +16,32 @@ import Main.KeyHandler;
 
 public class Player extends Character {
 
-    //GamePanel gp;
+    // GamePanel gp;
     KeyHandler keyH;
 
     // screenX and screenY are the coordinates of the player on the screen
     public final int screenX;
     public final int screenY;
-    //public int hasKey = 0;
+    // public int hasKey = 0;
 
-    private BufferedImage upImage; // Image for up movement
-    private BufferedImage downImage; // Image for down movement
-    private BufferedImage leftImage; // Image for left movement
-    private BufferedImage rightImage; // Image for right movement
+    //private BufferedImage upImage; // Image for up movement
+    //private BufferedImage downImage; // Image for down movement
+    //private BufferedImage leftImage; // Image for left movement
+    //private BufferedImage rightImage; // Image for right movement
+    private BufferedImage up1;
+    private BufferedImage up2;
+    private BufferedImage down1;
+    private BufferedImage down2;
+    private BufferedImage left1;
+    private BufferedImage left2;
+    private BufferedImage right1;
+    private BufferedImage right2;
+    
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
         super(gp);
-        //this.gp = gp;
+        // this.gp = gp;
         this.keyH = keyH;
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
@@ -58,23 +67,36 @@ public class Player extends Character {
     }
 
     public void getPlayerImages() {
-    
-            // Load images for up movement
-            /*upImage = ImageIO.read(new File("./src/player/up.gif"));
 
-            // Load images for down movement
-            downImage = ImageIO.read(new File("./src/player/down.gif"));
+        // Load images for up movement
+        /*
+         * upImage = ImageIO.read(new File("./src/player/up.gif"));
+         * 
+         * // Load images for down movement
+         * downImage = ImageIO.read(new File("./src/player/down.gif"));
+         * 
+         * // Load images for left movement
+         * leftImage = ImageIO.read(new File("./src/player/left.gif"));
+         * 
+         * // Load images for right movement
+         * rightImage = ImageIO.read(new File("./src/player/right.gif"));
+         */
 
-            // Load images for left movement
-            leftImage = ImageIO.read(new File("./src/player/left.gif"));
+        /*
+         * upImage=setUp("/player/up");
+         * downImage=setUp("/player/down");
+         * leftImage=setUp("/player/left");
+         * rightImage=setUp("/player/right");
+         */
 
-            // Load images for right movement
-            rightImage = ImageIO.read(new File("./src/player/right.gif"));*/
-
-        upImage=setUp("/player/up");
-        downImage=setUp("/player/down");
-        leftImage=setUp("/player/left");
-        rightImage=setUp("/player/right");
+        up1 = setUp("/npc/boy_up_1");
+        up2 = setUp("/npc/boy_up_2");
+        down1 = setUp("/npc/boy_down_1");
+        down2 = setUp("/npc/boy_down_2");
+        left1 = setUp("/npc/boy_left_1");
+        left2 = setUp("/npc/boy_left_2");
+        right1 = setUp("/npc/boy_right_1");
+        right2 = setUp("/npc/boy_right_2");
 
     }
 
@@ -138,7 +160,7 @@ public class Player extends Character {
     }
 
     public void pickUpObject(int i) {
-        
+
     }
 
     public void draw(Graphics2D g2) {
@@ -146,59 +168,80 @@ public class Player extends Character {
 
         switch (direction) {
             case "up":
-                image = upImage;
+                if (spriteNumber == 1) {
+                    image = up1;
+                }
+                if (spriteNumber == 2) {
+                    image = up2;
+                }
                 break;
             case "down":
-                image = downImage;
+                if (spriteNumber == 1) {
+                    image = down1;
+                }
+                if (spriteNumber == 2) {
+                    image = down2;
+                }
                 break;
             case "left":
-                image = leftImage;
+                if (spriteNumber == 1) {
+                    image = left1;
+                }
+                if (spriteNumber == 2) {
+                    image = left2;
+                }
                 break;
             case "right":
-                image = rightImage;
+                if (spriteNumber == 1) {
+                    image = right1;
+                }
+                if (spriteNumber == 2) {
+                    image = right2;
+                }
                 break;
-        }
+            }
 
         g2.drawImage(image, screenX, screenY, null);
     }
 }
 
-
-//previous pick up object method
-/*if (i != 999) {
-            String objName = gp.obj[i].name;
-            switch (objName) {
-                case "key":
-                    gp.playSE(1);
-                    hasKey++;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You got a key!");
-                    System.out.println("You have " + hasKey + " key(s)");
-                    break;
-                case "door":
-                    gp.playSE(3);
-                    if (hasKey > 0) {
-                        gp.obj[i] = null;
-                        hasKey--;
-                        gp.ui.showMessage("Door Opened! You used a key!");
-                        System.out.println("You have " + hasKey + " key(s)");
-                    } else {
-                        gp.ui.showMessage("You need a key to open this door!");
-                    }
-                    break;
-                case "boots":
-                    gp.playSE(2);
-                    speed += 2;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You got boots! Your speed increased!");
-                    System.out.println("You have boots");
-                    break;
-                case "chest":
-                    gp.playSE(4);
-                    //gp.ui.showMessage("You found the treasure! You win!");
-                    gp.ui.gameFinished = true;
-                    gp.stopMusic();
-                    gp.playSE(4);
-                    break;
-            }
-        }*/
+// previous pick up object method
+/*
+ * if (i != 999) {
+ * String objName = gp.obj[i].name;
+ * switch (objName) {
+ * case "key":
+ * gp.playSE(1);
+ * hasKey++;
+ * gp.obj[i] = null;
+ * gp.ui.showMessage("You got a key!");
+ * System.out.println("You have " + hasKey + " key(s)");
+ * break;
+ * case "door":
+ * gp.playSE(3);
+ * if (hasKey > 0) {
+ * gp.obj[i] = null;
+ * hasKey--;
+ * gp.ui.showMessage("Door Opened! You used a key!");
+ * System.out.println("You have " + hasKey + " key(s)");
+ * } else {
+ * gp.ui.showMessage("You need a key to open this door!");
+ * }
+ * break;
+ * case "boots":
+ * gp.playSE(2);
+ * speed += 2;
+ * gp.obj[i] = null;
+ * gp.ui.showMessage("You got boots! Your speed increased!");
+ * System.out.println("You have boots");
+ * break;
+ * case "chest":
+ * gp.playSE(4);
+ * //gp.ui.showMessage("You found the treasure! You win!");
+ * gp.ui.gameFinished = true;
+ * gp.stopMusic();
+ * gp.playSE(4);
+ * break;
+ * }
+ * }
+ */

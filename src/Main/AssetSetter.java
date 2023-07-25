@@ -14,7 +14,6 @@ public class AssetSetter {
     }
 
     public void setNPC() {
-        
         //sage
         gp.npc[0] = new NPC_Sage(gp);
         gp.npc[0].worldX = 23 * gp.tileSize;
