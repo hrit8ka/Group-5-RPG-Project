@@ -171,7 +171,7 @@ public class Player extends Character {
 
     public void interactWithNPC(int npcIndex) {
         if (npcIndex != 999) {
-            System.out.println("Interacting with NPC");
+            gp.gameState = gp.dialogueState;
         }
     }
 

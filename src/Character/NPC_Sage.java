@@ -28,6 +28,10 @@ public class NPC_Sage extends Character {
 
     }
 
+    public void setDialogue(){
+        dialogues[0] = "Hello, Warrior! I am the sage.";
+    }
+
     public void setAction() {
 
         actionLockCounter++;

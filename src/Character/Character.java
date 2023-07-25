@@ -31,15 +31,17 @@ public class Character {
 
     public int actionLockCounter = 0;
 
+    String dialogues[] = new String[20];
+
     public Character(GamePanel gp) {
         this.gp = gp;
     }
 
-    public void setAction(){
+    public void setAction() {
 
     }
 
-    public void update(){
+    public void update() {
         setAction();
         collisionOn = false;
         gp.collisionChecker.checkTile(this);
@@ -63,7 +65,7 @@ public class Character {
                     break;
             }
         }
-        
+
     }
 
     public void draw(Graphics2D g2) {
