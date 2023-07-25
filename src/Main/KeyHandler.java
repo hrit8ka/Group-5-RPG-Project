@@ -24,6 +24,36 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
 
+        // title state
+        if (gp.gameState == gp.titleState) {
+
+            if (code == KeyEvent.VK_UP) {
+                gp.ui.commandNumber--;
+                if (gp.ui.commandNumber < 0) {
+                    gp.ui.commandNumber = 2;
+                }
+            }
+            if (code == KeyEvent.VK_DOWN) {
+                gp.ui.commandNumber++;
+                if (gp.ui.commandNumber > 2) {
+                    gp.ui.commandNumber = 0;
+                }
+            }
+            if (code == KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNumber == 0) {
+                    gp.gameState = gp.playState;
+                    gp.playMusic(0);
+                }
+                if (gp.ui.commandNumber == 1) {
+                    System.exit(0);
+                    // add code to load game
+                }
+                if (gp.ui.commandNumber == 2) {
+                    System.exit(0);
+                }
+            }
+        }
+
         // play state
         if (gp.gameState == gp.playState) {
             if (code == KeyEvent.VK_UP) {
@@ -60,7 +90,7 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.playState;
             }
         }
-        //dialogue state
+        // dialogue state
         else if (gp.gameState == gp.dialogueState) {
             if (code == KeyEvent.VK_ENTER) {
                 gp.gameState = gp.playState;

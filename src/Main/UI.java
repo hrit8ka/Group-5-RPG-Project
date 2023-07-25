@@ -21,10 +21,8 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
-
-    // double playTime;
-    // DecimalFormat df = new DecimalFormat("#0.00");
     public String currentDialogue = "";
+    public int commandNumber = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -91,19 +89,39 @@ public class UI {
         g2.setColor(Color.white);
         g2.drawString(text, x, y);
 
-        //display player
-        x=gp.screenWidth/2-(gp.tileSize*2)/2;
-        y+=gp.tileSize*2;
-        g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+        // display player
+        x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
+        y += gp.tileSize * 2;
+        g2.drawImage(gp.player.down1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
-        //menu
+        // menu
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40F));
         text = "NEW GAME";
         x = getXforCenteredText(text);
-        y += gp.tileSize * 4;
+        y += gp.tileSize * 3.5;
         g2.drawString(text, x, y);
+        if (commandNumber == 0) {
+            g2.drawString(">", x - gp.tileSize, y);
+
+        }
 
         text = "LOAD GAME";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNumber == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
+
+        }
+
+        text = "EXIT";
+        x = getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNumber == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
+
+        }
     }
 
     public void drawPauseScreen() {
