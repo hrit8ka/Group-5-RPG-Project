@@ -25,5 +25,8 @@ public class NPC_Sage extends Character {
         right2 = setUp("./src/npc/oldman_right_2");
 
     }
+    public void setAction(){
+        
+    }
 
 }
