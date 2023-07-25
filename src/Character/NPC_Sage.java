@@ -15,14 +15,14 @@ public class NPC_Sage extends Character {
 
     public void getImage() {
 
-        up1 = setUp("./src/npc/oldman_up_1");
-        up2 = setUp("./src/npc/oldman_up_2");
-        down1 = setUp("./src/npc/oldman_down_1");
-        down2 = setUp("./src/npc/oldman_down_2");
-        left1 = setUp("./src/npc/oldman_left_1");
-        left2 = setUp("./src/npc/oldman_left_2");
-        right1 = setUp("./src/npc/oldman_right_1");
-        right2 = setUp("./src/npc/oldman_right_2");
+        up1 = setUp("./src/npc/sage_up_1");
+        up2 = setUp("./src/npc/sage_up_2");
+        down1 = setUp("./src/npc/sage_down_1");
+        down2 = setUp("./src/npc/sage_down_2");
+        left1 = setUp("./src/npc/sage_left_1");
+        left2 = setUp("./src/npc/sage_left_2");
+        right1 = setUp("./src/npc/sage_right_1");
+        right2 = setUp("./src/npc/sage_right_2");
 
     }
 
