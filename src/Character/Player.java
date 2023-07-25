@@ -89,14 +89,14 @@ public class Player extends Character {
          * rightImage=setUp("/player/right");
          */
 
-        up1 = setUp("/npc/boy_up_1");
-        up2 = setUp("/npc/boy_up_2");
-        down1 = setUp("/npc/boy_down_1");
-        down2 = setUp("/npc/boy_down_2");
-        left1 = setUp("/npc/boy_left_1");
-        left2 = setUp("/npc/boy_left_2");
-        right1 = setUp("/npc/boy_right_1");
-        right2 = setUp("/npc/boy_right_2");
+        up1 = setUp("/player/boy_up_1");
+        up2 = setUp("/player/boy_up_2");
+        down1 = setUp("/player/boy_down_1");
+        down2 = setUp("/player/boy_down_2");
+        left1 = setUp("/player/boy_left_1");
+        left2 = setUp("/player/boy_left_2");
+        right1 = setUp("/player/boy_right_1");
+        right2 = setUp("/player/boy_right_2");
 
     }
 
