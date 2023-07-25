@@ -43,6 +43,8 @@ public class Character {
         setAction();
         collisionOn = false;
         gp.collisionChecker.checkTile(this);
+        gp.collisionChecker.checkObject(this, false);
+        gp.collisionChecker.checkPlayer(this);
 
         // if collision is false, player can move
         if (collisionOn == false) {

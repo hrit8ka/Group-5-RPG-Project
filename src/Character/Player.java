@@ -130,6 +130,10 @@ public class Player extends Character {
             int objIndex = gp.collisionChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
+            //check npc collision
+            int npcIndex = gp.collisionChecker.checkCharacter(this, gp.npc);
+            interactWithNPC(npcIndex);
+
             // if collision is false, player can move
             if (collisionOn == false) {
                 switch (direction) {
@@ -159,8 +163,16 @@ public class Player extends Character {
         }
     }
 
+
+
     public void pickUpObject(int i) {
 
+    }
+
+    public void interactWithNPC(int npcIndex) {
+        if (npcIndex != 999) {
+            System.out.println("Interacting with NPC");
+        }
     }
 
     public void draw(Graphics2D g2) {
