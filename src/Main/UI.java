@@ -20,8 +20,8 @@ public class UI {
     int messageCounter = 0;
     public boolean gameFinished = false;
 
-    //double playTime;
-    //DecimalFormat df = new DecimalFormat("#0.00");
+    // double playTime;
+    // DecimalFormat df = new DecimalFormat("#0.00");
     public String currentDialogue = "";
 
     public UI(GamePanel gp) {
@@ -77,6 +77,11 @@ public class UI {
         int height = gp.tileSize * 4;
 
         drawSubWindow(x, y, width, height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30));
+        x += gp.tileSize;
+        y += gp.tileSize;
+        g2.drawString(currentDialogue, x, y);
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
@@ -87,7 +92,7 @@ public class UI {
         c = new Color(255, 255, 255);
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
+        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
 
     }
 

@@ -13,6 +13,7 @@ public class NPC_Sage extends Character {
         speed = 1;
 
         getImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -52,6 +53,10 @@ public class NPC_Sage extends Character {
             }
             actionLockCounter = 0;
         }
+    }
+
+    public void speak(){
+        gp.ui.currentDialogue = dialogues[0];
     }
 
 }

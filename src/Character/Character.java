@@ -38,7 +38,9 @@ public class Character {
     }
 
     public void setAction() {
-
+    }
+    public void speak(){
+        
     }
 
     public void update() {
