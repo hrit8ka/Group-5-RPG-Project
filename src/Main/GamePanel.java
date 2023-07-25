@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import Character.NPC_Sage;
 import Character.Player;
 import Object.SuperObject;
 import Tile.TileManager;
@@ -29,21 +30,24 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
-    int FPS = 60; // frames per second
-
+    //fps
+    int FPS = 60;
+    
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound soundEffect = new Sound();
+
     // Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter assetSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     Thread gameThread;
+
     // Character and Object
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
-    public Character npc[] = new Character[10];
+    public NPC_Sage npc[] = new NPC_Sage[10];
 
     // game state
     public int gameState;
@@ -141,6 +145,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         // Player
         player.draw(g2);
+
         // UI
         ui.draw(g2);
 

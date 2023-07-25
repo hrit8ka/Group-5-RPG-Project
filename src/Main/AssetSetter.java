@@ -10,18 +10,19 @@ public class AssetSetter {
     }
 
     public void setObject() {
-        
+
     }
 
+    // to set the NPC in the game, call this method in the setUpGame() method in
+    // GamePanel.java
     public void setNPC() {
-        //sage
-        gp.npc[0] = new NPC_Sage(gp);
+        gp.npc[0] = new NPC_Sage(gp); // create a new NPC object
         gp.npc[0].worldX = 23 * gp.tileSize;
-        gp.npc[0].worldY = 7 * gp.tileSize;
+        gp.npc[0].worldY = 23 * gp.tileSize;
     }
 }
 
-// previous setObject method
+// previous object setter
 /*
  * gp.obj[0] = new OBJ_Key(gp);
  * gp.obj[0].worldX = 23 * gp.tileSize;
