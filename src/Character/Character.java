@@ -32,6 +32,7 @@ public class Character {
     public int actionLockCounter = 0;
 
     String dialogues[] = new String[20];
+    int dialogueIndex = 0;
 
     public Character(GamePanel gp) {
         this.gp = gp;
