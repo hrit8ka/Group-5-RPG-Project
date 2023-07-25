@@ -5,18 +5,18 @@ import java.awt.Graphics2D;
 //import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+//import java.io.File;
+//import java.io.IOException;
 
-import javax.imageio.ImageIO;
+//import javax.imageio.ImageIO;
 
 import Main.GamePanel;
 import Main.KeyHandler;
-import Main.UtilityTool;
+//import Main.UtilityTool;
 
 public class Player extends Character {
 
-    GamePanel gp;
+    //GamePanel gp;
     KeyHandler keyH;
 
     // screenX and screenY are the coordinates of the player on the screen
@@ -32,7 +32,7 @@ public class Player extends Character {
     public Player(GamePanel gp, KeyHandler keyH) {
 
         super(gp);
-        this.gp = gp;
+        //this.gp = gp;
         this.keyH = keyH;
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
@@ -71,25 +71,11 @@ public class Player extends Character {
             // Load images for right movement
             rightImage = ImageIO.read(new File("./src/player/right.gif"));*/
 
-        upImage=setUp("up");
-        downImage=setUp("down");
-        leftImage=setUp("left");
-        rightImage=setUp("right");
+        upImage=setUp("/player/up");
+        downImage=setUp("/player/down");
+        leftImage=setUp("/player/left");
+        rightImage=setUp("/player/right");
 
-    }
-
-    public BufferedImage setUp(String imageName) {
-        UtilityTool tool = new UtilityTool();
-        BufferedImage image = null;
-        try{
-           image=ImageIO.read(new File("./src/player/"+imageName+".gif"));
-            image = tool.scaleImage(image, gp.tileSize, gp.tileSize);
-
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        return image;
     }
 
     public void update() {
