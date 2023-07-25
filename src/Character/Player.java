@@ -48,12 +48,12 @@ public class Player extends Character {
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
         solidArea = new Rectangle();
-        solidArea.x = 2;
-        solidArea.y = 4;
+        solidArea.x = 12;
+        solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 14;
-        solidArea.height = 14;
+        solidArea.width = 32;
+        solidArea.height = 32;
 
         setDefaultValues();
         getPlayerImages(); // get the images of the player
