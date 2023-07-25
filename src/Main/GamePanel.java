@@ -43,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Character and Object
     public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
+    public Character npc[] = new Character[10];
 
     // game state
     public int gameState;
@@ -60,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setUpGame() {
         assetSetter.setObject();
+        assetSetter.setNPC();
         playMusic(0);
         stopMusic();
         gameState = playState;
@@ -103,10 +105,10 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playState) {
             player.update();
         }
-        if(gameState == pauseState){
-            //do nothing
+        if (gameState == pauseState) {
+            // do nothing
         }
-        //player.update();
+        // player.update();
     }
 
     public void paintComponent(Graphics g) {
@@ -127,6 +129,13 @@ public class GamePanel extends JPanel implements Runnable {
         for (int i = 0; i < obj.length; i++) {
             if (obj[i] != null) {
                 obj[i].draw(g2, this);
+            }
+        }
+
+        // npc
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i] != null) {
+                npc[i].draw(g2);
             }
         }
 
