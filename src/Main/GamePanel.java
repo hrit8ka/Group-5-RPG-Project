@@ -30,9 +30,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
-    //fps
+    // fps
     int FPS = 60;
-    
+
     TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
@@ -51,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // game state
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
@@ -69,7 +70,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setNPC();
         playMusic(0);
         stopMusic();
-        gameState = playState;
+        gameState = titleState;
     }
 
     public void startGameThread() {
@@ -108,9 +109,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         if (gameState == playState) {
-            //player
+            // player
             player.update();
-            //npc
+            // npc
             for (int i = 0; i < npc.length; i++) {
                 if (npc[i] != null) {
                     npc[i].update();
@@ -134,29 +135,32 @@ public class GamePanel extends JPanel implements Runnable {
         }
         // drawStart = System.nanoTime();
 
-        // Tile
-        tileM.draw(g2); // tile is drawn before player so as to be behind the player
-
-        // Object
-        for (int i = 0; i < obj.length; i++) {
-            if (obj[i] != null) {
-                obj[i].draw(g2, this);
-            }
+        // title screen
+        if (gameState == titleState) {
+            ui.draw(g2);
+            
         }
-
-        // npc
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i] != null) {
-                npc[i].draw(g2);
+        // others
+        else {
+            // Tile
+            tileM.draw(g2); // tile is drawn before player so as to be behind the player
+            // Object
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    obj[i].draw(g2, this);
+                }
             }
+            // npc
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].draw(g2);
+                }
+            }
+            // Player
+            player.draw(g2);
+            // UI
+            ui.draw(g2);
         }
-
-        // Player
-        player.draw(g2);
-
-        // UI
-        ui.draw(g2);
-
         // debug
         if (keyH.checkDrawTime == true) {
             long drawEnd = System.nanoTime();

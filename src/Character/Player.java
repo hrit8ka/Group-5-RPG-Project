@@ -30,7 +30,7 @@ public class Player extends Character {
     // private BufferedImage rightImage; // Image for right movement
     private BufferedImage up1;
     private BufferedImage up2;
-    private BufferedImage down1;
+    public BufferedImage down1;
     private BufferedImage down2;
     private BufferedImage left1;
     private BufferedImage left2;

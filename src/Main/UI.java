@@ -54,6 +54,11 @@ public class UI {
         g2.setFont(maruMonica);
         g2.setColor(Color.white);
 
+        // title state
+        if (gp.gameState == gp.titleState) {
+            drawTitleScreen();
+        }
+
         // play state
         if (gp.gameState == gp.playState) {
             // do playState UI
@@ -67,6 +72,38 @@ public class UI {
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
+    }
+
+    public void drawTitleScreen() {
+
+        // background
+        g2.setColor(new Color(70, 120, 80));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        // title name
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
+        String text = "RPG";
+        int x = getXforCenteredText(text);
+        int y = gp.tileSize * 3;
+        // shadow
+        g2.setColor(Color.black);
+        g2.drawString(text, x + 5, y + 5);
+        // main color
+        g2.setColor(Color.white);
+        g2.drawString(text, x, y);
+
+        //display player
+        x=gp.screenWidth/2-(gp.tileSize*2)/2;
+        y+=gp.tileSize*2;
+        g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+
+        //menu
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40F));
+        text = "NEW GAME";
+        x = getXforCenteredText(text);
+        y += gp.tileSize * 4;
+        g2.drawString(text, x, y);
+
+        text = "LOAD GAME";
     }
 
     public void drawPauseScreen() {
