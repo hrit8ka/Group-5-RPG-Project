@@ -1,9 +1,14 @@
 package Character;
 
 import java.awt.image.BufferedImage;
+
+import Main.GamePanel;
+
 import java.awt.Rectangle;
 
 public class Character {
+
+    GamePanel gp;
     public int worldX, worldY; //worldX is the x coordinate of the player in the world, worldY is the y coordinate of the player in the world
     public int speed; // speed of the player
 
@@ -17,5 +22,8 @@ public class Character {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
 
+    public Character(GamePanel gp){
+        this.gp=gp;
+    }
 
 }
