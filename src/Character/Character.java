@@ -29,6 +29,8 @@ public class Character {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
 
+    public int actionLockCounter = 0;
+
     public Character(GamePanel gp) {
         this.gp = gp;
     }
@@ -38,6 +40,27 @@ public class Character {
     }
 
     public void update(){
+        setAction();
+        collisionOn = false;
+        gp.collisionChecker.checkTile(this);
+
+        // if collision is false, player can move
+        if (collisionOn == false) {
+            switch (direction) {
+                case "up":
+                    worldY -= speed;
+                    break;
+                case "down":
+                    worldY += speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
+            }
+        }
         
     }
 
