@@ -22,7 +22,7 @@ public class Player extends Character {
     // screenX and screenY are the coordinates of the player on the screen
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
+    //public int hasKey = 0;
 
     private BufferedImage upImage; // Image for up movement
     private BufferedImage downImage; // Image for down movement
@@ -150,7 +150,34 @@ public class Player extends Character {
     }
 
     public void pickUpObject(int i) {
-        if (i != 999) {
+        
+    }
+
+    public void draw(Graphics2D g2) {
+        BufferedImage image = null;
+
+        switch (direction) {
+            case "up":
+                image = upImage;
+                break;
+            case "down":
+                image = downImage;
+                break;
+            case "left":
+                image = leftImage;
+                break;
+            case "right":
+                image = rightImage;
+                break;
+        }
+
+        g2.drawImage(image, screenX, screenY, null);
+    }
+}
+
+
+//previous pick up object method
+/*if (i != 999) {
             String objName = gp.obj[i].name;
             switch (objName) {
                 case "key":
@@ -186,27 +213,4 @@ public class Player extends Character {
                     gp.playSE(4);
                     break;
             }
-        }
-    }
-
-    public void draw(Graphics2D g2) {
-        BufferedImage image = null;
-
-        switch (direction) {
-            case "up":
-                image = upImage;
-                break;
-            case "down":
-                image = downImage;
-                break;
-            case "left":
-                image = leftImage;
-                break;
-            case "right":
-                image = rightImage;
-                break;
-        }
-
-        g2.drawImage(image, screenX, screenY, null);
-    }
-}
+        }*/
