@@ -9,13 +9,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import Object.OBJ_Heart;
+import Object.SuperObject;
+
 import java.awt.BasicStroke;
+import java.awt.image.BufferedImage;
 
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
     Font maruMonica;
+    BufferedImage heart_full, heart_half, heart_blank;
     // BufferedImage keyImage;
     public boolean messageOn = false;
     public String message = "";
@@ -40,6 +46,12 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //Create heart images
+        SuperObject heart = new OBJ_Heart(gp);
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
+
     }
 
     public void showMessage(String text) {
@@ -59,19 +71,31 @@ public class UI {
 
         // play state
         if (gp.gameState == gp.playState) {
-            // do playState UI
+            drawPlayerLife();
         }
         // pause state
         if (gp.gameState == gp.pauseState) {
+            drawPlayerLife();
             drawPauseScreen();
 
         }
         // dialogue state
         if (gp.gameState == gp.dialogueState) {
+            drawPlayerLife();
             drawDialogueScreen();
         }
     }
 
+    public void drawPlayerLife(){
+        int x= gp.tileSize/2;
+        int y= gp.tileSize/2;
+        int i=0;
+        while(i < gp.player.maxLife/2){
+            g2.drawImage(heart_blank, x, y,null);
+            i++;
+            x+=gp.tileSize;
+        }
+    }
     public void drawTitleScreen() {
 
         // background

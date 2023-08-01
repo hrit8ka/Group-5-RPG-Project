@@ -34,6 +34,10 @@ public class Character {
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
+    //Character status
+    public int maxLife;
+    public int life;
+
     public Character(GamePanel gp) {
         this.gp = gp;
     }

@@ -63,6 +63,10 @@ public class Player extends Character {
         worldY = gp.tileSize * 21;
         speed = 4;
         direction = "down";
+
+        //Player status
+        maxLife = 10;
+        life = maxLife;
     }
 
     public void getPlayerImages() {
