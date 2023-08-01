@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import Object.OBJ_Heart;
-import Object.SuperObject;
+import Character.Character;
 
 import java.awt.BasicStroke;
 import java.awt.image.BufferedImage;
@@ -47,7 +47,7 @@ public class UI {
             e.printStackTrace();
         }
         //Create heart images
-        SuperObject heart = new OBJ_Heart(gp);
+        Character heart = new OBJ_Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;

@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JPanel;
 
 import Character.NPC_Sage;
 import Character.Player;
-import Object.SuperObject;
+import Character.Character;
 import Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -32,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // fps
     int FPS = 60;
-
+    // System
     TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
@@ -46,8 +49,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Character and Object
     public Player player = new Player(this, keyH);
-    public SuperObject obj[] = new SuperObject[10];
+    public Character obj[] = new Character[10];
     public NPC_Sage npc[] = new NPC_Sage[10];
+    ArrayList<Character> characterList = new ArrayList<Character>();
 
     // game state
     public int gameState;
@@ -144,20 +148,35 @@ public class GamePanel extends JPanel implements Runnable {
         else {
             // Tile
             tileM.draw(g2); // tile is drawn before player so as to be behind the player
-            // Object
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    obj[i].draw(g2, this);
-                }
-            }
-            // npc
+            // Add character to characterList
+            characterList.add(player);
             for (int i = 0; i < npc.length; i++) {
                 if (npc[i] != null) {
-                    npc[i].draw(g2);
+                    characterList.add(npc[i]);
                 }
             }
-            // Player
-            player.draw(g2);
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    characterList.add(obj[i]);
+                }
+            }
+            //sort
+            Collections.sort(characterList, new Comparator<Character>() {
+                @Override
+                public int compare(Character c1, Character c2) {
+                    int result = Integer.compare(c1.worldY, c2.worldY);
+                    return result;
+                }
+            });
+            //draw characters
+            for(int i=0; i<characterList.size(); i++){
+                characterList.get(i).draw(g2);
+            }
+            //empty characterList
+            for(int i=0; i<characterList.size(); i++){
+                characterList.remove(i);
+            }
+
             // UI
             ui.draw(g2);
         }

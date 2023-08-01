@@ -1,27 +1,17 @@
 package Object;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import Character.Character;
 
 import Main.GamePanel;
 
-public class OBJ_Chest extends SuperObject {
-    GamePanel gp;
+public class OBJ_Chest extends Character {
+    //GamePanel gp;
 
     public OBJ_Chest(GamePanel gp) {
-        this.gp = gp;
+        //this.gp = gp;
+        super(gp);
         name = "chest";
-        try {
-            File file = new File("src/objects/chest.png");
-            FileInputStream fis = new FileInputStream(file);
-            image = ImageIO.read(fis);
-            ut.scaleImage(image, gp.tileSize, gp.tileSize);
+        down1 = setUp("src/objects/chest");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
