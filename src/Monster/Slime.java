@@ -29,10 +29,10 @@ public class Slime extends Character {
         up2 = setUp("src/monsters/greenslime_down2.png");
         down1 = setUp("src/monsters/greenslime_down1.png");
         down2 = setUp("src/monsters/greenslime_down2.png");
-        left1 = setUp("src/monsters/greenslime_left1.png");
-        left2 = setUp("src/monsters/greenslime_left2.png");
-        right1 = setUp("src/monsters/greenslime_right1.png");
-        right2 = setUp("src/monsters/greenslime_right2.png");
+        left1 = setUp("src/monsters/greenslime_down1.png");
+        left2 = setUp("src/monsters/greenslime_down2.png");
+        right1 = setUp("src/monsters/greenslime_down1.png");
+        right2 = setUp("src/monsters/greenslime_down2.png");
 
         getImage();
     }

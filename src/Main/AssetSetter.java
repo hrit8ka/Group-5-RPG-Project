@@ -23,12 +23,12 @@ public class AssetSetter {
 
     public void setMonster(){
         gp.monster[0] = new Slime(gp);
-        gp.monster[0].worldX = 23 * gp.tileSize;
-        gp.monster[0].worldY = 36 * gp.tileSize;
+        gp.monster[0].worldX = gp.tileSize * 23;
+        gp.monster[0].worldY = gp.tileSize * 36;
 
         gp.monster[1] = new Slime(gp);
-        gp.monster[1].worldX = 23 * gp.tileSize;
-        gp.monster[1].worldY = 37 * gp.tileSize;
+        gp.monster[1].worldX = gp.tileSize * 23;
+        gp.monster[1].worldY =gp.tileSize * 37;
 
     }
 }
