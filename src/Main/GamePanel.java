@@ -123,6 +123,7 @@ public class GamePanel extends JPanel implements Runnable {
                     npc[i].update();
                 }
             }
+            //monster
             for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
                     monster[i].update();
@@ -169,7 +170,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
             for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
-                    characterList.add(monster[i]);
+                    characterList.add(monster[i]); // add monster to characterListS
                 }
             }
             // sort
