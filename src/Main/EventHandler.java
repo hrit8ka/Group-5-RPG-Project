@@ -20,11 +20,14 @@ public class EventHandler {
     }
 
     public void checkEvent() {
-        if (hit(27, 16, "right") == true) {
+        /*if (hit(27, 16, "right") == true) {
             damagePit(gp.dialogueState);
-        }
+        }*/
         if (hit(23, 12, "up") == true) {
             healingPool(gp.dialogueState);
+        }
+        if(hit(27,16,"right") == true){
+            teleport(gp.dialogueState);
         }
 
     }
@@ -48,6 +51,13 @@ public class EventHandler {
         eventRect.y = eventRectDefaultY;
 
         return hit;
+    }
+
+    public void teleport(int gameState){
+        gp.gameState = gameState;
+        gp.ui.currentDialogue = "You found a teleporter! You are teleported!";
+        gp.player.worldX = gp.tileSize * 37;
+        gp.player.worldY = gp.tileSize * 10;
     }
 
     public void damagePit(int gameState) {
