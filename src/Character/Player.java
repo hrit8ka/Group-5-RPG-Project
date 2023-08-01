@@ -47,7 +47,7 @@ public class Player extends Character {
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
         solidArea = new Rectangle();
-        solidArea.x = 12;
+        solidArea.x = 8;
         solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -136,7 +136,10 @@ public class Player extends Character {
             // check npc collision
             int npcIndex = gp.collisionChecker.checkCharacter(this, gp.npc);
             interactWithNPC(npcIndex);
-
+            
+            // check event
+            gp.eventHandler.checkEvent();
+            gp.keyH.enterPressed = false;
             // if collision is false, player can move
             if (collisionOn == false) {
                 switch (direction) {
