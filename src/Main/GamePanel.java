@@ -51,6 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     public Character obj[] = new Character[10];
     public NPC_Sage npc[] = new NPC_Sage[10];
+    public Character monster[] = new Character[20];
     ArrayList<Character> characterList = new ArrayList<Character>();
 
     // game state
@@ -72,6 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         assetSetter.setObject();
         assetSetter.setNPC();
+        assetSetter.setMonster();
         playMusic(0);
         stopMusic();
         gameState = titleState;
@@ -121,6 +123,11 @@ public class GamePanel extends JPanel implements Runnable {
                     npc[i].update();
                 }
             }
+            for(int i = 0; i < monster.length; i++){
+                if(monster[i] != null){
+                    monster[i].update();
+                }
+            }
         }
         if (gameState == pauseState) {
             // do nothing
@@ -160,7 +167,7 @@ public class GamePanel extends JPanel implements Runnable {
                     characterList.add(obj[i]);
                 }
             }
-            //sort
+            // sort
             Collections.sort(characterList, new Comparator<Character>() {
                 @Override
                 public int compare(Character c1, Character c2) {
@@ -168,12 +175,12 @@ public class GamePanel extends JPanel implements Runnable {
                     return result;
                 }
             });
-            //draw characters
-            for(int i=0; i<characterList.size(); i++){
+            // draw characters
+            for (int i = 0; i < characterList.size(); i++) {
                 characterList.get(i).draw(g2);
             }
-            //empty characterList
-            for(int i=0; i<characterList.size(); i++){
+            // empty characterList
+            for (int i = 0; i < characterList.size(); i++) {
                 characterList.remove(i);
             }
 
