@@ -186,9 +186,7 @@ public class GamePanel extends JPanel implements Runnable {
                 characterList.get(i).draw(g2);
             }
             // empty characterList
-            for (int i = 0; i < characterList.size(); i++) {
-                characterList.remove(i);
-            }
+            characterList.clear();
 
             // UI
             ui.draw(g2);
