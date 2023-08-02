@@ -30,7 +30,8 @@ public class Character {
     public boolean collisionOn = false;
 
     public int actionLockCounter = 0;
-
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
 
@@ -77,6 +78,8 @@ public class Character {
         collisionOn = false;
         gp.collisionChecker.checkTile(this);
         gp.collisionChecker.checkObject(this, false);
+        gp.collisionChecker.checkCharacter(this, gp.npc);
+        gp.collisionChecker.checkCharacter(this, gp.monster);
         gp.collisionChecker.checkPlayer(this);
 
         // if collision is false, player can move

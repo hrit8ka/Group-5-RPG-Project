@@ -136,7 +136,10 @@ public class Player extends Character {
             // check npc collision
             int npcIndex = gp.collisionChecker.checkCharacter(this, gp.npc);
             interactWithNPC(npcIndex);
-            
+
+            //check monster collision
+            int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);
+            contactMonster(monsterIndex);
             // check event
             gp.eventHandler.checkEvent();
             gp.keyH.enterPressed = false;
@@ -167,9 +170,19 @@ public class Player extends Character {
                 spriteCounter = 0;
             }
         }
+        if(invincible == true){
+            invincibleCounter++;
+            if(invincibleCounter > 60){
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 
     public void pickUpObject(int i) {
+        if(i != 999){
+
+        }
 
     }
 
@@ -180,6 +193,15 @@ public class Player extends Character {
                 gp.npc[npcIndex].speak();
             }
             gp.keyH.enterPressed = false;
+        }
+    }
+
+    public void contactMonster(int monsterIndex) {
+        if (monsterIndex != 999) {
+            if(invincible == false){
+                life -= 1;
+                invincible = true;
+            }
         }
     }
 

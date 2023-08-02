@@ -30,9 +30,9 @@ public class AssetSetter {
         gp.monster[1].worldX = gp.tileSize * 23;
         gp.monster[1].worldY =gp.tileSize * 37;
 
-        System.out.println("Monsters set up:");
-        System.out.println(gp.monster[0]);
-        System.out.println(gp.monster[1]);
+        //System.out.println("Monsters set up:");
+        //System.out.println(gp.monster[0]);
+        //System.out.println(gp.monster[1]);
 
     }
 }
