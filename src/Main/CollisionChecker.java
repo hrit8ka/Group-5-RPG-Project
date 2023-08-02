@@ -144,7 +144,9 @@ public class CollisionChecker {
         return index;
     }
 
-    public void checkPlayer(Character character) {
+    public boolean checkPlayer(Character character) {
+
+        boolean contactPlayer = false;
         // get character's solid area position
         character.solidArea.x = character.worldX + character.solidArea.x;
         character.solidArea.y = character.worldY + character.solidArea.y;
@@ -171,11 +173,14 @@ public class CollisionChecker {
         }
         if (character.solidArea.intersects(gp.player.solidArea)) {
                     character.collisionOn = true;
+                    contactPlayer = true;
                 }
         character.solidArea.x = character.solidAreaDefaultX;
         character.solidArea.y = character.solidAreaDefaultY;
         gp.player.solidArea.x = gp.player.solidAreaDefaultX;
         gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+
+        return contactPlayer;
 
     }
 }

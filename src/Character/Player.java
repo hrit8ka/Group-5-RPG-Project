@@ -1,6 +1,9 @@
 //Using GIF
 package Character;
 
+import java.awt.AlphaComposite;
+//import java.awt.Color;
+//import java.awt.Font;
 import java.awt.Graphics2D;
 //import java.awt.Image;
 import java.awt.Rectangle;
@@ -242,8 +245,20 @@ public class Player extends Character {
                 }
                 break;
         }
+        if(invincible == true){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+
+        }
 
         g2.drawImage(image, screenX, screenY, null);
+
+        //reset the composite
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+
+        //debug
+        //g2.setFont(new Font("Arial", Font.PLAIN, 20));
+        //g2.setColor(Color.WHITE);
+        //g2.drawString("Invincible: " + invincibleCounter, 10, 400);
     }
 }
 

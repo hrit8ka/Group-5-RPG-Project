@@ -10,7 +10,7 @@ public class Slime extends Character {
 
     public Slime(GamePanel gp) {
         super(gp);
-
+        type = 2;
         name = "slime";
         speed = 1;
         maxLife = 4;
