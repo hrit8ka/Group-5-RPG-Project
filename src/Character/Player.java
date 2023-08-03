@@ -246,46 +246,81 @@ public class Player extends Character {
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
-
+        int tempScreenX = screenX;
+        int tempScreenY = screenY;
         switch (direction) {
             case "up":
                 if (attacking == false) {
-                    if (spriteNumber == 1) {image = up1;}
-                    if (spriteNumber == 2) {image = up2;}
+                    if (spriteNumber == 1) {
+                        image = up1;
+                    }
+                    if (spriteNumber == 2) {
+                        image = up2;
+                    }
                 }
                 if (attacking == true) {
-                    if (spriteNumber == 1) {image = attackUp1;}
-                    if (spriteNumber == 2) {image = attackUp2;}
+                    tempScreenY = screenY - gp.tileSize;
+                    if (spriteNumber == 1) {
+                        image = attackUp1;
+                    }
+                    if (spriteNumber == 2) {
+                        image = attackUp2;
+                    }
                 }
                 break;
             case "down":
                 if (attacking == false) {
-                    if (spriteNumber == 1) {image = down1;}
-                    if (spriteNumber == 2) {image = down2;}
+                    if (spriteNumber == 1) {
+                        image = down1;
+                    }
+                    if (spriteNumber == 2) {
+                        image = down2;
+                    }
                 }
                 if (attacking == true) {
-                    if (spriteNumber == 1) {image = attackDown1;}
-                    if (spriteNumber == 2) {image = attackDown2;}
+                    if (spriteNumber == 1) {
+                        image = attackDown1;
+                    }
+                    if (spriteNumber == 2) {
+                        image = attackDown2;
+                    }
                 }
                 break;
             case "left":
                 if (attacking == false) {
-                    if (spriteNumber == 1) {image = left1;}
-                    if (spriteNumber == 2) {image = left2;}
+                    if (spriteNumber == 1) {
+                        image = left1;
+                    }
+                    if (spriteNumber == 2) {
+                        image = left2;
+                    }
                 }
                 if (attacking == true) {
-                    if (spriteNumber == 1) {image = attackLeft1;}
-                    if (spriteNumber == 2) {image = attackLeft2;}
+                    tempScreenX = screenX - gp.tileSize;
+                    if (spriteNumber == 1) {
+                        image = attackLeft1;
+                    }
+                    if (spriteNumber == 2) {
+                        image = attackLeft2;
+                    }
                 }
                 break;
             case "right":
                 if (attacking == false) {
-                    if (spriteNumber == 1) {image = right1;}
-                    if (spriteNumber == 2) {image = right2;}
+                    if (spriteNumber == 1) {
+                        image = right1;
+                    }
+                    if (spriteNumber == 2) {
+                        image = right2;
+                    }
                 }
                 if (attacking == true) {
-                    if (spriteNumber == 1) {image = attackRight1;}
-                    if (spriteNumber == 2) {image = attackRight2;}
+                    if (spriteNumber == 1) {
+                        image = attackRight1;
+                    }
+                    if (spriteNumber == 2) {
+                        image = attackRight2;
+                    }
                 }
                 break;
         }
@@ -294,7 +329,7 @@ public class Player extends Character {
 
         }
 
-        g2.drawImage(image, screenX, screenY, null);
+        g2.drawImage(image, tempScreenX, tempScreenY, null);
 
         // reset the composite
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
