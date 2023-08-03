@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import Main.GamePanel;
 import Main.UtilityTool;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -28,6 +29,7 @@ public class Character {
     public int spriteNumber = 1;
 
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
 
@@ -111,6 +113,23 @@ public class Character {
                     break;
             }
         }
+        spriteCounter++;
+        if(spriteCounter > 12){
+            if(spriteNumber == 1){
+                spriteNumber = 2;
+            }
+            else if(spriteNumber == 2){
+                spriteNumber = 1;
+            }
+            spriteCounter = 0;
+        }
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 40) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
 
     }
 
@@ -158,8 +177,14 @@ public class Character {
                     break;
 
             }
+            if (invincible == true) {
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+            }
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+            //reset the composite
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
         }
     }
 

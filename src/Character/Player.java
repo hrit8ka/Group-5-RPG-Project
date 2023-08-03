@@ -57,6 +57,10 @@ public class Player extends Character {
         solidArea.width = 32;
         solidArea.height = 32;
 
+        attackArea.width = 36;
+        attackArea.height = 36;
+
+
         setDefaultValues();
         getPlayerImages(); // get the images of the player
         getPlayerAttackImage();
@@ -205,6 +209,39 @@ public class Player extends Character {
         }
         if (spriteCounter > 5 && spriteCounter <= 25) {
             spriteNumber = 2;
+            //save the current worldX and worldY, solidAreaWidth and solidAreaHeight
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+            //adjust player's worldX and worldY for the attackArea
+            switch(direction){
+
+                case "up": 
+                worldY -= attackArea.height;
+                break;
+                case "down":
+                worldY += attackArea.height;
+                break;
+                case "left":
+                worldX -= attackArea.width;
+                break;
+                case "right":
+                worldX += attackArea.width;
+                break;
+            }
+            //attack area becomes solid area
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+            //check collision with monster with the attack area
+            int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);
+            damagedMonster(monsterIndex);
+            //after checking, reset the worldX, worldY, solidAreaWidth and solidAreaHeight
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+            
         }
         if (spriteCounter > 25) {
             spriteNumber = 1;
@@ -241,6 +278,22 @@ public class Player extends Character {
                 life -= 1;
                 invincible = true;
             }
+        }
+    }
+
+    public void damagedMonster(int monsterIndex) {
+        if (monsterIndex != 999) {
+            if(gp.monster[monsterIndex].life > 0){
+                gp.monster[monsterIndex].life -= 1;
+                gp.monster[monsterIndex].invincible = true;
+
+                if(gp.monster[monsterIndex].life <= 0){
+                    gp.monster[monsterIndex]=null;
+                }
+            }
+        }
+        else{
+            System.out.println("miss");
         }
     }
 
