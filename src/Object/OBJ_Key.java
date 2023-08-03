@@ -27,7 +27,7 @@ public class OBJ_Key extends Character{
         super(gp);
         
         name = "key";
-        down1 = setUp("src/objects/key");
+        down1 = setUp("src/objects/key", gp.tileSize, gp.tileSize);
 
     }
 }

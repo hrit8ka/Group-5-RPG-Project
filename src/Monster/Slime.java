@@ -7,9 +7,12 @@ import java.util.Random;
 import Character.Character;
 
 public class Slime extends Character {
-
+    GamePanel gp;
     public Slime(GamePanel gp) {
         super(gp);
+
+        this.gp = gp;
+        
         type = 2;
         name = "slime";
         speed = 1;
@@ -36,14 +39,14 @@ public class Slime extends Character {
         right1 = setUp("src/monsters/greenslime_down_1");
         right2 = setUp("src/monsters/greenslime_down_2"); */
 
-        up1= setUp("src/monsters/blueslime");
-        up2= setUp("src/monsters/blueslime2");
-        down1= setUp("src/monsters/blueslime");
-        down2= setUp("src/monsters/blueslime2");
-        left1= setUp("src/monsters/blueslime");
-        left2= setUp("src/monsters/blueslime2");
-        right1= setUp("src/monsters/blueslime");
-        right2= setUp("src/monsters/blueslime2");
+        up1= setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
+        up2= setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
+        down1= setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
+        down2= setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
+        left1= setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
+        left2= setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
+        right1= setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
+        right2= setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
 
 
     }

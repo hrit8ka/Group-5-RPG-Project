@@ -11,7 +11,7 @@ public class OBJ_Boots extends Character {
         //this.gp = gp;
         super(gp);
         name = "boots";
-        down1 = setUp("src/objects/boots");
+        down1 = setUp("src/objects/boots", gp.tileSize, gp.tileSize);
         
     }
 

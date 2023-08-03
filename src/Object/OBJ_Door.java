@@ -10,7 +10,7 @@ public class OBJ_Door extends Character {
         //this.gp = gp;
         super(gp);
         name = "door";
-        down1= setUp("src/objects/door");
+        down1= setUp("src/objects/door", gp.tileSize, gp.tileSize);
         
         collision = true;
 

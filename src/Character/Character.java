@@ -20,7 +20,9 @@ public class Character {
     public int speed; // speed of the player
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public String direction= "down";
+    public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1,
+            attackRight2;
+    public String direction = "down";
 
     public int spriteCounter = 0;
     public int spriteNumber = 1;
@@ -31,6 +33,7 @@ public class Character {
 
     public int actionLockCounter = 0;
     public boolean invincible = false;
+    boolean attacking = false;
     public int invincibleCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
@@ -38,9 +41,9 @@ public class Character {
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
-    public int type; //0=Player, 1=NPC, 2=Monster..
+    public int type; // 0=Player, 1=NPC, 2=Monster..
 
-    //Character status
+    // Character status
     public int maxLife;
     public int life;
 
@@ -83,9 +86,9 @@ public class Character {
         gp.collisionChecker.checkCharacter(this, gp.monster);
         boolean contactPlayer = gp.collisionChecker.checkPlayer(this);
 
-        if(this.type == 2 && contactPlayer == true){
-            if(gp.player.invincible == false){
-                //give damage to player
+        if (this.type == 2 && contactPlayer == true) {
+            if (gp.player.invincible == false) {
+                // give damage to player
                 gp.player.life -= 1;
                 gp.player.invincible = true;
             }
@@ -160,12 +163,12 @@ public class Character {
         }
     }
 
-    public BufferedImage setUp(String imagePath) {
+    public BufferedImage setUp(String imagePath, int width, int height) {
         UtilityTool tool = new UtilityTool();
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File(imagePath + ".png"));
-            image = tool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = tool.scaleImage(image, width, height);
 
         } catch (IOException e) {
             e.printStackTrace();

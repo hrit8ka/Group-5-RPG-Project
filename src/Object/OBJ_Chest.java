@@ -11,7 +11,7 @@ public class OBJ_Chest extends Character {
         //this.gp = gp;
         super(gp);
         name = "chest";
-        down1 = setUp("src/objects/chest");
+        down1 = setUp("src/objects/chest", gp.tileSize, gp.tileSize);
 
     }
 }

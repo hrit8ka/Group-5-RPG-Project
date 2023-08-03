@@ -11,8 +11,8 @@ public class OBJ_Heart extends Character {
         //this.gp = gp;
         super(gp);
         name = "Heart";
-        image = setUp("src/objects/heart_full");
-        image2 = setUp("src/objects/heart_half");
-        image3 = setUp("src/objects/heart_blank");
+        image = setUp("src/objects/heart_full", gp.tileSize, gp.tileSize);
+        image2 = setUp("src/objects/heart_half", gp.tileSize, gp.tileSize);
+        image3 = setUp("src/objects/heart_blank", gp.tileSize, gp.tileSize);
     }
 }
