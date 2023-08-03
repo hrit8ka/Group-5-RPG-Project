@@ -288,7 +288,7 @@ public class Player extends Character {
                 gp.monster[monsterIndex].invincible = true;
 
                 if(gp.monster[monsterIndex].life <= 0){
-                    gp.monster[monsterIndex]=null;
+                    gp.monster[monsterIndex].dying=true;
                 }
             }
         }

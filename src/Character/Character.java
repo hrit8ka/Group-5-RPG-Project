@@ -16,35 +16,34 @@ import java.awt.Rectangle;
 public class Character {
 
     GamePanel gp;
-    public int worldX, worldY; // worldX is the x coordinate of the player in the world, worldY is the y
-                               // coordinate of the player in the world
-    public int speed; // speed of the player
-
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1,
             attackRight2;
-    public String direction = "down";
-
-    public int spriteCounter = 0;
-    public int spriteNumber = 1;
-
+    public BufferedImage image, image2, image3;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
+    public boolean collision = false;
+    String dialogues[] = new String[20];
+    // states
+    public int worldX, worldY; // worldX:x coordinate of player... worldY:y coordinate of player
+    public String direction = "down";
+    public int spriteNumber = 1;
+    int dialogueIndex = 0;
     public boolean collisionOn = false;
-
-    public int actionLockCounter = 0;
     public boolean invincible = false;
     boolean attacking = false;
+    boolean alive = true;
+    boolean dying = false;
+    // counters
+    public int spriteCounter = 0;
+    public int actionLockCounter = 0;
     public int invincibleCounter = 0;
-    String dialogues[] = new String[20];
-    int dialogueIndex = 0;
-
-    public BufferedImage image, image2, image3;
-    public String name;
-    public boolean collision = false;
+    int dyingCounter = 0;
+    // attributes
     public int type; // 0=Player, 1=NPC, 2=Monster..
-
+    public String name;
+    public int speed; // speed of the player
     // Character status
     public int maxLife;
     public int life;
@@ -114,11 +113,10 @@ public class Character {
             }
         }
         spriteCounter++;
-        if(spriteCounter > 12){
-            if(spriteNumber == 1){
+        if (spriteCounter > 12) {
+            if (spriteNumber == 1) {
                 spriteNumber = 2;
-            }
-            else if(spriteNumber == 2){
+            } else if (spriteNumber == 2) {
                 spriteNumber = 1;
             }
             spriteCounter = 0;
@@ -180,11 +178,46 @@ public class Character {
             if (invincible == true) {
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
             }
+            if(dying== true){
+                dyingAnimation(g2);
+            }
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
-            //reset the composite
+            // reset the composite
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+        }
+    }
+    public void dyingAnimation(Graphics2D g2){
+        dyingCounter++;
+        if(dyingCounter <=5){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter >5 && dyingCounter <=10){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter >10 && dyingCounter <=15){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter >15 && dyingCounter <=20){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter >20 && dyingCounter <=25){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter >25 && dyingCounter <=30){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter >30 && dyingCounter <=35){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        }
+        if(dyingCounter >35 && dyingCounter <=40){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+        if(dyingCounter >40){
+            dying = false;
+            //dyingCounter = 0;
+            alive = false;
         }
     }
 
