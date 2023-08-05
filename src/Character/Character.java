@@ -33,8 +33,8 @@ public class Character {
     public boolean collisionOn = false;
     public boolean invincible = false;
     boolean attacking = false;
-    boolean alive = true;
-    boolean dying = false;
+    public boolean alive = true;
+    public boolean dying = false;
     // counters
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
@@ -190,35 +190,39 @@ public class Character {
     }
     public void dyingAnimation(Graphics2D g2){
         dyingCounter++;
-        if(dyingCounter <=5){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+
+        int i=5;
+        if(dyingCounter <=i){
+            updateAlpha(g2, 0f);
         }
-        if(dyingCounter >5 && dyingCounter <=10){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        if(dyingCounter >i && dyingCounter <=i*2){
+            updateAlpha(g2, 1f);
         }
-        if(dyingCounter >10 && dyingCounter <=15){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        if(dyingCounter >i*2 && dyingCounter <=i*3){
         }
-        if(dyingCounter >15 && dyingCounter <=20){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        if(dyingCounter >i*3 && dyingCounter <=i*4){
+            updateAlpha(g2, 1f);
         }
-        if(dyingCounter >20 && dyingCounter <=25){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        if(dyingCounter >i*4 && dyingCounter <=i*5){
+            updateAlpha(g2, 0f);
         }
-        if(dyingCounter >25 && dyingCounter <=30){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        if(dyingCounter >i*5 && dyingCounter <=i*6){
+            updateAlpha(g2, 1f);
         }
-        if(dyingCounter >30 && dyingCounter <=35){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
+        if(dyingCounter >i*6 && dyingCounter <=i*7){
+            updateAlpha(g2, 0f);
         }
-        if(dyingCounter >35 && dyingCounter <=40){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        if(dyingCounter >i*7 && dyingCounter <=i*8){
+            updateAlpha(g2, 1f);
         }
-        if(dyingCounter >40){
+        if(dyingCounter >i*8){
             dying = false;
             //dyingCounter = 0;
             alive = false;
         }
+    }
+    public void updateAlpha(Graphics2D g2, float alpha){
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
     }
 
     public BufferedImage setUp(String imagePath, int width, int height) {
