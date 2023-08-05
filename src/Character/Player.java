@@ -25,6 +25,8 @@ public class Player extends Character {
     // screenX and screenY are the coordinates of the player on the screen
     public final int screenX;
     public final int screenY;
+    int standCounter = 0;
+    public boolean noAttack = false;
     // public int hasKey = 0;
 
     // private BufferedImage upImage; // Image for up movement
@@ -182,6 +184,12 @@ public class Player extends Character {
                         break;
                 }
             }
+            if(keyH.enterPressed == true && noAttack ==false){
+                gp.playSE(7);
+                attacking = true;
+                spriteCounter =0;
+            }
+            noAttack = false;
             gp.keyH.enterPressed = false;
             spriteCounter++;
             if (spriteCounter > 12) {
@@ -261,15 +269,11 @@ public class Player extends Character {
     public void interactWithNPC(int npcIndex) {
         if (gp.keyH.enterPressed == true) {
             if (npcIndex != 999) {
+                noAttack = true;
                 gp.gameState = gp.dialogueState;
                 gp.npc[npcIndex].speak();
             }
             // gp.keyH.enterPressed = false;
-            else {
-                //play swining weapon sound effect
-                gp.playSE(7);
-                attacking = true;
-            }
         }
 
     }
