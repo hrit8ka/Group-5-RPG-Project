@@ -43,16 +43,16 @@ public class EventHandler {
         }
 
         if (canTouchEvent == true) {
-            if (hit(27, 16, "right") == true) {
-                damagePit(27, 16, gp.dialogueState);
-            }
+            // if (hit(27, 16, "right") == true) {
+            // damagePit(27, 16, gp.dialogueState);
+            // }
 
             if (hit(23, 12, "up") == true) {
                 healingPool(23, 12, gp.dialogueState);
             }
-            // if (hit(27, 16, "right") == true) {
-            // teleport(gp.dialogueState);
-            // }
+            if (hit(27, 16, "right") == true) {
+                teleport(gp.dialogueState);
+            }
         }
 
     }
@@ -83,6 +83,7 @@ public class EventHandler {
 
     public void teleport(int gameState) {
         gp.gameState = gameState;
+        gp.playSE(9);
         gp.ui.currentDialogue = "You found a teleporter! You are teleported!";
         gp.player.worldX = gp.tileSize * 37;
         gp.player.worldY = gp.tileSize * 10;
@@ -104,6 +105,7 @@ public class EventHandler {
             gp.playSE(2);
             gp.ui.currentDialogue = "You found a healing pool! You are healed!";
             gp.player.life = gp.player.maxLife; // player recovers all HP
+            gp.assetSetter.setMonster();
         }
         // gp.keyH.enterPressed = false;
     }

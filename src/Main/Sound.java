@@ -62,7 +62,14 @@ public class Sound {
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        try{
+            soundURL[8] = new URL("file:src/sound/teleport.wav");
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
+        
     }
 
     public void setFile(int i) {

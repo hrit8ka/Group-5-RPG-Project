@@ -21,6 +21,7 @@ public class Slime extends Character {
         life = maxLife;
         attack = 5;
         defense = 0;
+        xp=2;
 
         solidArea.x = 3;
         solidArea.y = 18;

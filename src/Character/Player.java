@@ -77,7 +77,7 @@ public class Player extends Character {
 
         // Player status
         level = 1;
-        maxLife = 10;
+        maxLife = 4;
         life = maxLife;
         strength = 1; // more strength, more damage given by the player
         agility = 1; // more agility, less damage received by the player
@@ -302,7 +302,7 @@ public class Player extends Character {
             if (invincible == false) {
                 gp.playSE(6);
                 int damage = gp.monster[monsterIndex].attack - defense;
-                if(damage <0){
+                if (damage < 0) {
                     damage = 0;
                 }
                 life -= damage;
@@ -316,17 +316,38 @@ public class Player extends Character {
             if (gp.monster[monsterIndex].invincible == false) {
                 gp.playSE(5);
                 int damage = attack - gp.monster[monsterIndex].defense;
-                if(damage <0){
+                if (damage < 0) {
                     damage = 0;
                 }
                 gp.monster[monsterIndex].life -= damage;
+                gp.ui.addMessage("+" + damage + " damage!");
                 gp.monster[monsterIndex].invincible = true;
                 gp.monster[monsterIndex].monsterDamageReaction();
 
                 if (gp.monster[monsterIndex].life <= 0) {
                     gp.monster[monsterIndex].dying = true;
+                    gp.ui.addMessage("You defeated the " + gp.monster[monsterIndex].name + "!");
+                    gp.ui.addMessage("+" + gp.monster[monsterIndex].xp + " XP!");
+                    xp += gp.monster[monsterIndex].xp;
+                    checkLevelUp();
                 }
             }
+        }
+    }
+
+    private void checkLevelUp() {
+        if (xp >= nextLevelXP) {
+            level++;
+            nextLevelXP = nextLevelXP * 2;
+            maxLife += 2;
+            life = maxLife;
+            strength++;
+            agility++;
+            attack = getAttack();
+            defense = getDefense();
+            gp.playSE(8);
+            gp.gameState = gp.dialogueState;
+            gp.ui.currentDialogue = "Level" + level + "!";
         }
     }
 
