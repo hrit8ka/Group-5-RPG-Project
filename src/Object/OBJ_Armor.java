@@ -8,7 +8,7 @@ public class OBJ_Armor extends Character {
         super(gp);
 
         name = "armor";
-        down1 = setUp("/objects/shield_wood.png", gp.tileSize, gp.tileSize);
+        down1 = setUp("src/objects/shield_wood", gp.tileSize, gp.tileSize);
         defenseValue = 1;
 
     }
