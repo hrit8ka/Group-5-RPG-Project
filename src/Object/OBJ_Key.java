@@ -1,14 +1,9 @@
 package Object;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import Character.Character;
 import Main.GamePanel;
 
-public class OBJ_Key extends SuperObject {
+/*public class OBJ_Key extends SuperObject {
     GamePanel gp;
 
     public OBJ_Key(GamePanel gp) {
@@ -23,5 +18,16 @@ public class OBJ_Key extends SuperObject {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+}*/
+
+public class OBJ_Key extends Character{
+
+    public OBJ_Key(GamePanel gp){
+        super(gp);
+        
+        name = "key";
+        down1 = setUp("src/objects/key", gp.tileSize, gp.tileSize);
+
     }
 }

@@ -1,28 +1,24 @@
 package Object;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import Character.Character;
 import Main.GamePanel;
 
-public class OBJ_Door extends SuperObject {
-    GamePanel gp;
+public class OBJ_Door extends Character {
+    //GamePanel gp;
 
     public OBJ_Door(GamePanel gp) {
-        this.gp = gp;
+        //this.gp = gp;
+        super(gp);
         name = "door";
-        try {
-            File file = new File("src/objects/door.png");
-            FileInputStream fis = new FileInputStream(file);
-            image = ImageIO.read(fis);
-            ut.scaleImage(image, gp.tileSize, gp.tileSize);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        down1= setUp("src/objects/door", gp.tileSize, gp.tileSize);
+        
         collision = true;
+
+        solidArea.x=0;
+        solidArea.y=16;
+        solidArea.width=48;
+        solidArea.height=32;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
     }
 }

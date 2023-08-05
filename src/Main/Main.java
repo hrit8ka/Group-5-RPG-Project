@@ -20,3 +20,5 @@ public class Main {
         gamePanel.startGameThread();
     }
 }
+
+//video 24, reached 4:26

@@ -9,13 +9,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import Object.OBJ_Heart;
+import Character.Character;
+
 import java.awt.BasicStroke;
+import java.awt.image.BufferedImage;
 
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
     Font maruMonica;
+    BufferedImage heart_full, heart_half, heart_blank;
     // BufferedImage keyImage;
     public boolean messageOn = false;
     public String message = "";
@@ -40,6 +46,12 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //Create heart images
+        Character heart = new OBJ_Heart(gp);
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
+
     }
 
     public void showMessage(String text) {
@@ -59,19 +71,48 @@ public class UI {
 
         // play state
         if (gp.gameState == gp.playState) {
-            // do playState UI
+            drawPlayerLife();
         }
         // pause state
         if (gp.gameState == gp.pauseState) {
+            drawPlayerLife();
             drawPauseScreen();
 
         }
         // dialogue state
         if (gp.gameState == gp.dialogueState) {
+            drawPlayerLife();
             drawDialogueScreen();
         }
     }
 
+    public void drawPlayerLife(){
+
+        //gp.player.life = 5;
+        int x= gp.tileSize/2;
+        int y= gp.tileSize/2;
+        int i=0;
+        //draw max life
+        while(i < gp.player.maxLife/2){
+            g2.drawImage(heart_blank, x, y,null);
+            i++;
+            x+=gp.tileSize;
+        }
+        //Reset x and y
+        x= gp.tileSize/2;
+        y= gp.tileSize/2;
+        i=0;
+        //draw current hearts/life
+        while(i < gp.player.life){
+            g2.drawImage(heart_half, x, y,null);
+            i++;
+            if(i<gp.player.life){
+                g2.drawImage(heart_full, x, y,null);
+                i++;
+                x=x+gp.tileSize;
+            }
+        }
+    }
     public void drawTitleScreen() {
 
         // background

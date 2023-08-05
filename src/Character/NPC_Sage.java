@@ -18,14 +18,14 @@ public class NPC_Sage extends Character {
 
     public void getImage() {
 
-        up1 = setUp("./src/npc/sage_up_1");
-        up2 = setUp("./src/npc/sage_up_2");
-        down1 = setUp("./src/npc/sage_down_1");
-        down2 = setUp("./src/npc/sage_down_2");
-        left1 = setUp("./src/npc/sage_left_1");
-        left2 = setUp("./src/npc/sage_left_2");
-        right1 = setUp("./src/npc/sage_right_1");
-        right2 = setUp("./src/npc/sage_right_2");
+        up1 = setUp("./src/npc/sage_up_1", gp.tileSize, gp.tileSize);
+        up2 = setUp("./src/npc/sage_up_2", gp.tileSize, gp.tileSize);
+        down1 = setUp("./src/npc/sage_down_1", gp.tileSize, gp.tileSize);
+        down2 = setUp("./src/npc/sage_down_2", gp.tileSize, gp.tileSize);
+        left1 = setUp("./src/npc/sage_left_1", gp.tileSize, gp.tileSize);
+        left2 = setUp("./src/npc/sage_left_2", gp.tileSize, gp.tileSize);
+        right1 = setUp("./src/npc/sage_right_1", gp.tileSize, gp.tileSize);
+        right2 = setUp("./src/npc/sage_right_2", gp.tileSize, gp.tileSize);
 
     }
 
