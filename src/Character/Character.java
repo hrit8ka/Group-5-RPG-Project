@@ -51,6 +51,20 @@ public class Character {
     public int maxLife;
     public int life;
 
+    public int strength;
+    public int agility;
+    public int attack;
+    public int defense;
+    public int xp;
+    public int level;
+    public int gold;
+    public Character currentWeapon;
+    public Character currentArmor;
+
+    //item attributes
+    public int attackValue;
+    public int defenseValue;
+
     public Character(GamePanel gp) {
         this.gp = gp;
     }
@@ -58,7 +72,7 @@ public class Character {
     public void setAction() {
     }
     public void monsterDamageReaction(){
-        
+
     }
 
     public void speak() {
