@@ -92,6 +92,7 @@ public class UI {
         // character state
         if (gp.gameState == gp.characterState) {
             drawCharacterScreen();
+            drawInventory();
         }
     }
     public void drawPlayerLife() {
@@ -286,7 +287,14 @@ public class UI {
         g2.drawImage(gp.player.currentArmor.down1, textX + 148, textY + lineHeight * 11 - 32, null);
 
     }
-
+public void drawInventory(){
+    int frameX = gp.tileSize*9;
+    int frameY = gp.tileSize;
+    int frameWidth = gp.tileSize * 6;
+    int frameHeight = gp.tileSize * 5;
+    drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+    
+}
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(0, 0, 0, 210);
         g2.setColor(c);
