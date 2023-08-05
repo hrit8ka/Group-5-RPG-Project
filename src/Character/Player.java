@@ -16,6 +16,8 @@ import java.awt.image.BufferedImage;
 import Main.GamePanel;
 import Main.KeyHandler;
 //import Main.UtilityTool;
+import Object.OBJ_Armor;
+import Object.OBJ_Sword;
 
 public class Player extends Character {
 
@@ -62,7 +64,6 @@ public class Player extends Character {
         attackArea.width = 36;
         attackArea.height = 36;
 
-
         setDefaultValues();
         getPlayerImages(); // get the images of the player
         getPlayerAttackImage();
@@ -75,8 +76,26 @@ public class Player extends Character {
         direction = "down";
 
         // Player status
+        level = 1;
         maxLife = 10;
         life = maxLife;
+        strength = 1; // more strength, more damage given by the player
+        agility = 1; // more agility, less damage received by the player
+        xp = 0;
+        nextLevelXP = 5;
+        gold = 0;
+        currentWeapon = new OBJ_Sword(gp);
+        currentArmor = new OBJ_Armor(gp);
+        attack = getAttack(); // total attack value depends on strength and weapon
+        defense = getDefense(); // total defense value depends on agility and armor
+    }
+
+    public int getAttack() {
+        return attack = strength * currentWeapon.attackValue;
+    }
+
+    public int getDefense() {
+        return defense = agility * currentArmor.defenseValue;
     }
 
     public void getPlayerImages() {
@@ -184,10 +203,10 @@ public class Player extends Character {
                         break;
                 }
             }
-            if(keyH.enterPressed == true && noAttack ==false){
+            if (keyH.enterPressed == true && noAttack == false) {
                 gp.playSE(7);
                 attacking = true;
-                spriteCounter =0;
+                spriteCounter = 0;
             }
             noAttack = false;
             gp.keyH.enterPressed = false;
@@ -217,39 +236,39 @@ public class Player extends Character {
         }
         if (spriteCounter > 5 && spriteCounter <= 25) {
             spriteNumber = 2;
-            //save the current worldX and worldY, solidAreaWidth and solidAreaHeight
+            // save the current worldX and worldY, solidAreaWidth and solidAreaHeight
             int currentWorldX = worldX;
             int currentWorldY = worldY;
             int solidAreaWidth = solidArea.width;
             int solidAreaHeight = solidArea.height;
-            //adjust player's worldX and worldY for the attackArea
-            switch(direction){
+            // adjust player's worldX and worldY for the attackArea
+            switch (direction) {
 
-                case "up": 
-                worldY -= attackArea.height;
-                break;
+                case "up":
+                    worldY -= attackArea.height;
+                    break;
                 case "down":
-                worldY += attackArea.height;
-                break;
+                    worldY += attackArea.height;
+                    break;
                 case "left":
-                worldX -= attackArea.width;
-                break;
+                    worldX -= attackArea.width;
+                    break;
                 case "right":
-                worldX += attackArea.width;
-                break;
+                    worldX += attackArea.width;
+                    break;
             }
-            //attack area becomes solid area
+            // attack area becomes solid area
             solidArea.width = attackArea.width;
             solidArea.height = attackArea.height;
-            //check collision with monster with the attack area
+            // check collision with monster with the attack area
             int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);
             damagedMonster(monsterIndex);
-            //after checking, reset the worldX, worldY, solidAreaWidth and solidAreaHeight
+            // after checking, reset the worldX, worldY, solidAreaWidth and solidAreaHeight
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
-            
+
         }
         if (spriteCounter > 25) {
             spriteNumber = 1;
@@ -290,13 +309,13 @@ public class Player extends Character {
 
     public void damagedMonster(int monsterIndex) {
         if (monsterIndex != 999) {
-            if(gp.monster[monsterIndex].invincible == false){
+            if (gp.monster[monsterIndex].invincible == false) {
                 gp.playSE(5);
                 gp.monster[monsterIndex].life -= 1;
                 gp.monster[monsterIndex].invincible = true;
                 gp.monster[monsterIndex].monsterDamageReaction();
 
-                if(gp.monster[monsterIndex].life <= 0){
+                if (gp.monster[monsterIndex].life <= 0) {
                     gp.monster[monsterIndex].dying = true;
                 }
             }

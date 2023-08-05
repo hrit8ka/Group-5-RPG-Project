@@ -50,18 +50,18 @@ public class Character {
     // Character status
     public int maxLife;
     public int life;
-
+    public int level;
     public int strength;
     public int agility;
     public int attack;
     public int defense;
     public int xp;
-    public int level;
+    public int nextLevelXP;
     public int gold;
     public Character currentWeapon;
     public Character currentArmor;
 
-    //item attributes
+    // item attributes
     public int attackValue;
     public int defenseValue;
 
@@ -71,7 +71,8 @@ public class Character {
 
     public void setAction() {
     }
-    public void monsterDamageReaction(){
+
+    public void monsterDamageReaction() {
 
     }
 
