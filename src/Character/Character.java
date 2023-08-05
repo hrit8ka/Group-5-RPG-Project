@@ -10,6 +10,7 @@ import Main.GamePanel;
 import Main.UtilityTool;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -35,11 +36,13 @@ public class Character {
     boolean attacking = false;
     public boolean alive = true;
     public boolean dying = false;
+    boolean hpBarOn = false;
     // counters
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int invincibleCounter = 0;
     int dyingCounter = 0;
+    int hpBarCounter = 0;
     // attributes
     public int type; // 0=Player, 1=NPC, 2=Monster..
     public String name;
@@ -53,6 +56,9 @@ public class Character {
     }
 
     public void setAction() {
+    }
+    public void monsterDamageReaction(){
+        
     }
 
     public void speak() {
@@ -174,55 +180,79 @@ public class Character {
                         image = right2;
                     }
                     break;
+            }
+            // health bar for monster
+            if (type == 2 && hpBarOn == true) {
+                // updating monster health bar
+                double healthBar = (double) gp.tileSize / maxLife;
+                double healthBarValue = healthBar * life;
 
+                // outline of health bar
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX - 1, screenY - 11, gp.tileSize + 2, 6);
+                // set color of health bar (red)
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 10, (int) healthBarValue, 5);
+
+                hpBarCounter++;
+
+                if (hpBarCounter > 600) {
+                    hpBarCounter = 0;
+                    hpBarOn = false;
+                }
             }
+
             if (invincible == true) {
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+                hpBarOn = true;
+                hpBarCounter = 0;
+                updateAlpha(g2, 0.4f);
             }
-            if(dying== true){
+            if (dying == true) {
                 dyingAnimation(g2);
             }
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
             // reset the composite
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+            updateAlpha(g2, 1.0f);
         }
     }
-    public void dyingAnimation(Graphics2D g2){
+
+    public void dyingAnimation(Graphics2D g2) {
         dyingCounter++;
 
-        int i=5;
-        if(dyingCounter <=i){
+        int i = 5;
+        if (dyingCounter <= i) {
             updateAlpha(g2, 0f);
         }
-        if(dyingCounter >i && dyingCounter <=i*2){
+        if (dyingCounter > i && dyingCounter <= i * 2) {
             updateAlpha(g2, 1f);
         }
-        if(dyingCounter >i*2 && dyingCounter <=i*3){
+        if (dyingCounter > i * 2 && dyingCounter <= i * 3) {
         }
-        if(dyingCounter >i*3 && dyingCounter <=i*4){
+        if (dyingCounter > i * 3 && dyingCounter <= i * 4) {
             updateAlpha(g2, 1f);
         }
-        if(dyingCounter >i*4 && dyingCounter <=i*5){
+        if (dyingCounter > i * 4 && dyingCounter <= i * 5) {
             updateAlpha(g2, 0f);
         }
-        if(dyingCounter >i*5 && dyingCounter <=i*6){
+        if (dyingCounter > i * 5 && dyingCounter <= i * 6) {
             updateAlpha(g2, 1f);
         }
-        if(dyingCounter >i*6 && dyingCounter <=i*7){
+        if (dyingCounter > i * 6 && dyingCounter <= i * 7) {
             updateAlpha(g2, 0f);
         }
-        if(dyingCounter >i*7 && dyingCounter <=i*8){
+        if (dyingCounter > i * 7 && dyingCounter <= i * 8) {
             updateAlpha(g2, 1f);
         }
-        if(dyingCounter >i*8){
+        if (dyingCounter > i * 8) {
             dying = false;
-            //dyingCounter = 0;
+            // dyingCounter = 0;
             alive = false;
         }
     }
-    public void updateAlpha(Graphics2D g2, float alpha){
+
+    public void updateAlpha(Graphics2D g2, float alpha) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
     }
 

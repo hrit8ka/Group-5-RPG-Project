@@ -290,6 +290,7 @@ public class Player extends Character {
                 gp.playSE(5);
                 gp.monster[monsterIndex].life -= 1;
                 gp.monster[monsterIndex].invincible = true;
+                gp.monster[monsterIndex].monsterDamageReaction();
 
                 if(gp.monster[monsterIndex].life <= 0){
                     gp.monster[monsterIndex].dying = true;

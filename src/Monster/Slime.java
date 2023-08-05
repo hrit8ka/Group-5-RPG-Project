@@ -8,15 +8,16 @@ import Character.Character;
 
 public class Slime extends Character {
     GamePanel gp;
+
     public Slime(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
-        
+
         type = 2;
         name = "slime";
         speed = 1;
-        maxLife = 4;
+        maxLife = 5;
         life = maxLife;
 
         solidArea.x = 3;
@@ -30,28 +31,29 @@ public class Slime extends Character {
     }
 
     public void getImage() {
-       /*  up1 = setUp("src/monsters/greenslime_down_1");
-        up2 = setUp("src/monsters/greenslime_down_2");
-        down1 = setUp("src/monsters/greenslime_down_1");
-        down2 = setUp("src/monsters/greenslime_down_2");
-        left1 = setUp("src/monsters/greenslime_down_1");
-        left2 = setUp("src/monsters/greenslime_down_2");
-        right1 = setUp("src/monsters/greenslime_down_1");
-        right2 = setUp("src/monsters/greenslime_down_2"); */
+        /*
+         * up1 = setUp("src/monsters/greenslime_down_1");
+         * up2 = setUp("src/monsters/greenslime_down_2");
+         * down1 = setUp("src/monsters/greenslime_down_1");
+         * down2 = setUp("src/monsters/greenslime_down_2");
+         * left1 = setUp("src/monsters/greenslime_down_1");
+         * left2 = setUp("src/monsters/greenslime_down_2");
+         * right1 = setUp("src/monsters/greenslime_down_1");
+         * right2 = setUp("src/monsters/greenslime_down_2");
+         */
 
-        up1= setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
-        up2= setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
-        down1= setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
-        down2= setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
-        left1= setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
-        left2= setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
-        right1= setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
-        right2= setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
-
+        up1 = setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
+        up2 = setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
+        down1 = setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
+        down2 = setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
+        left1 = setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
+        left2 = setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
+        right1 = setUp("src/monsters/blueslime", gp.tileSize, gp.tileSize);
+        right2 = setUp("src/monsters/blueslime2", gp.tileSize, gp.tileSize);
 
     }
 
-    public void setAction(){
+    public void setAction() {
         actionLockCounter++;
         if (actionLockCounter == 120) {
             Random random = new Random();
@@ -70,5 +72,12 @@ public class Slime extends Character {
             }
             actionLockCounter = 0;
         }
+    }
+
+    public void monsterDamageReaction() {
+        // when attacking, monster moves away from player
+        actionLockCounter = 0;
+        direction = gp.player.direction;
+
     }
 }
