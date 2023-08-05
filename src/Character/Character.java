@@ -112,7 +112,11 @@ public class Character {
             if (gp.player.invincible == false) {
                 // give damage to player
                 gp.playSE(6);
-                gp.player.life -= 1;
+                int damage = this.attack - gp.player.defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+                gp.player.life -= damage;
                 gp.player.invincible = true;
             }
         }

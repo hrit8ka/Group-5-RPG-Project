@@ -301,7 +301,11 @@ public class Player extends Character {
         if (monsterIndex != 999) {
             if (invincible == false) {
                 gp.playSE(6);
-                life -= 1;
+                int damage = gp.monster[monsterIndex].attack - defense;
+                if(damage <0){
+                    damage = 0;
+                }
+                life -= damage;
                 invincible = true;
             }
         }
@@ -311,7 +315,11 @@ public class Player extends Character {
         if (monsterIndex != 999) {
             if (gp.monster[monsterIndex].invincible == false) {
                 gp.playSE(5);
-                gp.monster[monsterIndex].life -= 1;
+                int damage = attack - gp.monster[monsterIndex].defense;
+                if(damage <0){
+                    damage = 0;
+                }
+                gp.monster[monsterIndex].life -= damage;
                 gp.monster[monsterIndex].invincible = true;
                 gp.monster[monsterIndex].monsterDamageReaction();
 

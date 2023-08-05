@@ -46,7 +46,7 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //Create heart images
+        // Create heart images
         Character heart = new OBJ_Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
@@ -85,39 +85,40 @@ public class UI {
             drawDialogueScreen();
         }
 
-        //character state
+        // character state
         if (gp.gameState == gp.characterState) {
             drawCharacterScreen();
         }
     }
 
-    public void drawPlayerLife(){
+    public void drawPlayerLife() {
 
-        //gp.player.life = 5;
-        int x= gp.tileSize/2;
-        int y= gp.tileSize/2;
-        int i=0;
-        //draw max life
-        while(i < gp.player.maxLife/2){
-            g2.drawImage(heart_blank, x, y,null);
+        // gp.player.life = 5;
+        int x = gp.tileSize / 2;
+        int y = gp.tileSize / 2;
+        int i = 0;
+        // draw max life
+        while (i < gp.player.maxLife / 2) {
+            g2.drawImage(heart_blank, x, y, null);
             i++;
-            x+=gp.tileSize;
+            x += gp.tileSize;
         }
-        //Reset x and y
-        x= gp.tileSize/2;
-        y= gp.tileSize/2;
-        i=0;
-        //draw current hearts/life
-        while(i < gp.player.life){
-            g2.drawImage(heart_half, x, y,null);
+        // Reset x and y
+        x = gp.tileSize / 2;
+        y = gp.tileSize / 2;
+        i = 0;
+        // draw current hearts/life
+        while (i < gp.player.life) {
+            g2.drawImage(heart_half, x, y, null);
             i++;
-            if(i<gp.player.life){
-                g2.drawImage(heart_full, x, y,null);
+            if (i < gp.player.life) {
+                g2.drawImage(heart_full, x, y, null);
                 i++;
-                x=x+gp.tileSize;
+                x = x + gp.tileSize;
             }
         }
     }
+
     public void drawTitleScreen() {
 
         // background
@@ -199,13 +200,65 @@ public class UI {
         }
         // g2.drawString(currentDialogue, x, y);
     }
-    public void drawCharacterScreen(){
+
+    public void drawCharacterScreen() {
         // creating a frame
-        final int frameX=gp.tileSize*2;
-        final int frameY=gp.tileSize;
-        final int frameWidth=gp.tileSize*5;
-        final int frameHeight=gp.tileSize*10;
+        final int frameX = gp.tileSize;
+        final int frameY = gp.tileSize;
+        final int frameWidth = gp.tileSize * 5;
+        final int frameHeight = gp.tileSize * 10;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // text
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        int textX = frameX + 20;
+        int textY = frameY + gp.tileSize;
+        final int lineHeight = 35;
+        // title of the frame in bold
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+        g2.drawString("Player Stats", textX, textY);
+        // reset font
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        // names
+        g2.drawString("Level: ", textX, textY + lineHeight);
+        g2.drawString("HP: ", textX, textY + lineHeight * 2);
+        g2.drawString("Strength: ", textX, textY + lineHeight * 3);
+        g2.drawString("Agility: ", textX, textY + lineHeight * 4);
+        g2.drawString("Attack: ", textX, textY + lineHeight * 5);
+        g2.drawString("Defense: ", textX, textY + lineHeight * 6);
+        g2.drawString("XP: ", textX, textY + lineHeight * 7);
+        g2.drawString("Next Level: ", textX, textY + lineHeight * 8);
+        g2.drawString("Gold: ", textX, textY + lineHeight * 9);
+        g2.drawString("Weapon: ", textX, textY + lineHeight * 10);
+        g2.drawString("Armor: ", textX, textY + lineHeight * 11);
+        // values
+        // align the values to the right
+        int valueX = (frameX + frameWidth) - 30;
+        // reset textY
+        textY = frameY + gp.tileSize;
+        String value;
+        value = String.valueOf(gp.player.level);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight);
+        value = String.valueOf(gp.player.life + "/" + gp.player.maxLife);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 2);
+        value = String.valueOf(gp.player.strength);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 3);
+        value = String.valueOf(gp.player.agility);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 4);
+        value = String.valueOf(gp.player.attack);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 5);
+        value = String.valueOf(gp.player.defense);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 6);
+        value = String.valueOf(gp.player.xp);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 7);
+        value = String.valueOf(gp.player.nextLevelXP);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 8);
+        value = String.valueOf(gp.player.gold);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 9);
+        // display equipments image
+        g2.drawImage(gp.player.currentWeapon.down1, textX + 142, textY + lineHeight * 10 - 32, null);
+        g2.drawImage(gp.player.currentArmor.down1, textX + 148, textY + lineHeight * 11 - 32, null);
 
     }
 
@@ -222,12 +275,16 @@ public class UI {
     }
 
     public int getXforCenteredText(String text) {
-        int x;
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        x = gp.screenWidth / 2 - length / 2;
+        int x = gp.screenWidth / 2 - length / 2;
         return x;
     }
 
+    public int getXforAlignRightText(String text, int valueX) {
+        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = valueX - length;
+        return x;
+    }
 }
 
 // previous draw method
