@@ -266,6 +266,8 @@ public class Player extends Character {
             }
             // gp.keyH.enterPressed = false;
             else {
+                //play swining weapon sound effect
+                gp.playSE(7);
                 attacking = true;
             }
         }
@@ -275,6 +277,7 @@ public class Player extends Character {
     public void contactMonster(int monsterIndex) {
         if (monsterIndex != 999) {
             if (invincible == false) {
+                gp.playSE(6);
                 life -= 1;
                 invincible = true;
             }
@@ -283,17 +286,15 @@ public class Player extends Character {
 
     public void damagedMonster(int monsterIndex) {
         if (monsterIndex != 999) {
-            if(gp.monster[monsterIndex].life > 0){
+            if(gp.monster[monsterIndex].invincible == false){
+                gp.playSE(5);
                 gp.monster[monsterIndex].life -= 1;
                 gp.monster[monsterIndex].invincible = true;
 
                 if(gp.monster[monsterIndex].life <= 0){
-                    gp.monster[monsterIndex].dying=true;
+                    gp.monster[monsterIndex].dying = true;
                 }
             }
-        }
-        else{
-            System.out.println("miss");
         }
     }
 

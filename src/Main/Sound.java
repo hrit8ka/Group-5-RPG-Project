@@ -45,6 +45,23 @@ public class Sound {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        try{
+            soundURL[5] = new URL("file:src/sound/hitmonster.wav");
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        }
+        try{
+            soundURL[6] = new URL("file:src/sound/receivedamage.wav");
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try{
+            soundURL[7] = new URL("file:src/sound/swingingweapon.wav");
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
     }
 

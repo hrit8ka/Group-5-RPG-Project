@@ -90,6 +90,7 @@ public class Character {
         if (this.type == 2 && contactPlayer == true) {
             if (gp.player.invincible == false) {
                 // give damage to player
+                gp.playSE(6);
                 gp.player.life -= 1;
                 gp.player.invincible = true;
             }
