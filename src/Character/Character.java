@@ -64,6 +64,7 @@ public class Character {
     // item attributes
     public int attackValue;
     public int defenseValue;
+    public String description = "";
 
     public Character(GamePanel gp) {
         this.gp = gp;

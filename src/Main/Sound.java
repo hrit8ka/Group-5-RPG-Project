@@ -68,6 +68,12 @@ public class Sound {
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        try{
+            soundURL[9] = new URL("file:src/sound/select.wav");
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         
     }

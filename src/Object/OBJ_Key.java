@@ -28,6 +28,7 @@ public class OBJ_Key extends Character{
         
         name = "key";
         down1 = setUp("src/objects/key", gp.tileSize, gp.tileSize);
+        description = "[" +name+"]\nIt opens the door.";
 
     }
 }

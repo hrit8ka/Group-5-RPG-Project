@@ -10,6 +10,7 @@ public class OBJ_Armor extends Character {
         name = "armor";
         down1 = setUp("src/objects/shield_wood", gp.tileSize, gp.tileSize);
         defenseValue = 1;
+        description = "[" +name+"]\nKnight's armor.";
 
     }
 

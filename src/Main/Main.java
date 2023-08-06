@@ -21,4 +21,4 @@ public class Main {
     }
 }
 
-//video 27, 2:51
+//video 28

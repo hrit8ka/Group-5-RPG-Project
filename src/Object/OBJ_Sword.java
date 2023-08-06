@@ -10,6 +10,7 @@ public class OBJ_Sword extends Character {
         name = "sword";
         down1= setUp("src/objects/sword_normal", gp.tileSize, gp.tileSize);
         attackValue= 1;
+        description = "[" +name+"]\nA magical ancient sword.";
         
     }
 

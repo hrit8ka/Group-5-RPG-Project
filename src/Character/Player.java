@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 //import java.io.File;
 //import java.io.IOException;
+import java.util.ArrayList;
 
 //import javax.imageio.ImageIO;
 
@@ -17,6 +18,7 @@ import Main.GamePanel;
 import Main.KeyHandler;
 //import Main.UtilityTool;
 import Object.OBJ_Armor;
+import Object.OBJ_Key;
 import Object.OBJ_Sword;
 
 public class Player extends Character {
@@ -30,11 +32,9 @@ public class Player extends Character {
     int standCounter = 0;
     public boolean noAttack = false;
     // public int hasKey = 0;
+    public ArrayList <Character> inventory = new ArrayList <> ();
+    public final int maxInventorySize =20;
 
-    // private BufferedImage upImage; // Image for up movement
-    // private BufferedImage downImage; // Image for down movement
-    // private BufferedImage leftImage; // Image for left movement
-    // private BufferedImage rightImage; // Image for right movement
     private BufferedImage up1;
     private BufferedImage up2;
     public BufferedImage down1;
@@ -67,6 +67,7 @@ public class Player extends Character {
         setDefaultValues();
         getPlayerImages(); // get the images of the player
         getPlayerAttackImage();
+        setItems();
     }
 
     public void setDefaultValues() {
@@ -88,6 +89,14 @@ public class Player extends Character {
         currentArmor = new OBJ_Armor(gp);
         attack = getAttack(); // total attack value depends on strength and weapon
         defense = getDefense(); // total defense value depends on agility and armor
+
+    }
+    public void setItems(){
+        inventory.add(currentWeapon);
+        inventory.add(currentArmor);
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Key(gp));
     }
 
     public int getAttack() {
