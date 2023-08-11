@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import Character.NPC_Sage;
 import Character.Player;
 import Character.Character;
+import Character.Healer;
 import Tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -51,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     public Character obj[] = new Character[10];
     public NPC_Sage npc[] = new NPC_Sage[10];
+    public Healer healer[] = new Healer[10];
     public Character monster[] = new Character[20];
     ArrayList<Character> characterList = new ArrayList<Character>();
 

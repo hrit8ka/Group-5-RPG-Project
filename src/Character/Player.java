@@ -336,6 +336,17 @@ public class Player extends Character {
         }
 
     }
+    public void interactWithHealer(int healerIndex) {
+        if (gp.keyH.enterPressed == true) {
+            if (healerIndex != 999) {
+                noAttack = true;
+                gp.gameState = gp.dialogueState;
+                gp.healer[healerIndex].catHeal();
+            }
+            // gp.keyH.enterPressed = false;
+        }
+
+    }
 
     public void contactMonster(int monsterIndex) {
         if (monsterIndex != 999) {

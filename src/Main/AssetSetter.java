@@ -1,5 +1,6 @@
 package Main;
 
+import Character.Healer;
 import Character.NPC_Sage;
 import Monster.Slime;
 import Object.OBJ_Axe;
@@ -14,7 +15,7 @@ public class AssetSetter {
     }
 
     public void setObject() {
-       
+
         int i = 0;
         gp.obj[i] = new OBJ_BlackCrystal(gp);
         gp.obj[i].worldX = gp.tileSize * 21;
@@ -36,24 +37,36 @@ public class AssetSetter {
         gp.obj[i].worldX = gp.tileSize * 35;
         gp.obj[i].worldY = gp.tileSize * 21;
     }
+
     // to set the NPC in the game, call this method in the setUpGame() method in
     // GamePanel.java
     public void setNPC() {
         gp.npc[0] = new NPC_Sage(gp); // create a new NPC object
         gp.npc[0].worldX = 23 * gp.tileSize;
         gp.npc[0].worldY = 23 * gp.tileSize;
+
     }
 
-    public void setMonster(){
+    //set healer in the game
+    public void setHealer() {
+        int i = 0;
+        gp.healer[i] = new Healer(gp);
+        gp.healer[i].worldX = 37 * gp.tileSize;
+        gp.healer[i].worldY = 10 * gp.tileSize;
+        i++;
+    }
 
-        int i=0;
+    // set monster to the game
+    public void setMonster() {
+
+        int i = 0;
         gp.monster[i] = new Slime(gp);
         gp.monster[i].worldX = gp.tileSize * 21;
         gp.monster[i].worldY = gp.tileSize * 38;
         i++;
         gp.monster[i] = new Slime(gp);
         gp.monster[i].worldX = gp.tileSize * 23;
-        gp.monster[i].worldY =gp.tileSize * 42;
+        gp.monster[i].worldY = gp.tileSize * 42;
         i++;
         gp.monster[i] = new Slime(gp);
         gp.monster[i].worldX = gp.tileSize * 24;
@@ -67,9 +80,9 @@ public class AssetSetter {
         gp.monster[i].worldX = gp.tileSize * 38;
         gp.monster[i].worldY = gp.tileSize * 42;
         i++;
-        //System.out.println("Monsters set up:");
-        //System.out.println(gp.monster[0]);
-        //System.out.println(gp.monster[1]);
+        // System.out.println("Monsters set up:");
+        // System.out.println(gp.monster[0]);
+        // System.out.println(gp.monster[1]);
 
     }
 }

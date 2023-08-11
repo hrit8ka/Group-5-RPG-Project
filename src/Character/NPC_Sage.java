@@ -59,6 +59,7 @@ public class NPC_Sage extends Character {
         }
     }
 
+    // the sage speaks to the player when the player is in front of him
     public void speak() {
         super.speak();
     }
