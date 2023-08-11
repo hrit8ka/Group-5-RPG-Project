@@ -76,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         assetSetter.setObject();
         assetSetter.setNPC();
+        assetSetter.setHealer();
         assetSetter.setMonster();
         playMusic(0);
         stopMusic();
@@ -126,6 +127,12 @@ public class GamePanel extends JPanel implements Runnable {
                     npc[i].update();
                 }
             }
+            // healer
+            for (int i = 0; i < healer.length; i++) {
+                if (healer[i] != null) {
+                    healer[i].update();
+                }
+            }
             // monster
             for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
@@ -169,12 +176,17 @@ public class GamePanel extends JPanel implements Runnable {
             characterList.add(player);
             for (int i = 0; i < npc.length; i++) {
                 if (npc[i] != null) {
-                    characterList.add(npc[i]);
+                    characterList.add(npc[i]);// add npc to characterList
+                }
+            }
+            for (int i = 0; i < healer.length; i++) {
+                if (healer[i] != null) {
+                    characterList.add(healer[i]);// add healer to characterList
                 }
             }
             for (int i = 0; i < obj.length; i++) {
                 if (obj[i] != null) {
-                    characterList.add(obj[i]);
+                    characterList.add(obj[i]);// add object to characterList
                 }
             }
             for (int i = 0; i < monster.length; i++) {

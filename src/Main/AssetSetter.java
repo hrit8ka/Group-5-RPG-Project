@@ -47,7 +47,7 @@ public class AssetSetter {
 
     }
 
-    //set healer in the game
+    // set healer in the game
     public void setHealer() {
         int i = 0;
         gp.healer[i] = new Healer(gp);
