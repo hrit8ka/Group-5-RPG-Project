@@ -302,7 +302,7 @@ public class Player extends Character {
             if (inventory.size() != maxInventorySize){
                 inventory.add(gp.obj[i]);
                 gp.playSE(5);
-                text = "You picked up " + gp.obj[i].name;
+                text = "picked up a " + gp.obj[i].name;
             }
             else{
                 text = "Your inventory is full";

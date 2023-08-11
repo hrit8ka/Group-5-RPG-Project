@@ -9,7 +9,7 @@ public class OBJ_BlackCrystal extends Character {
     public OBJ_BlackCrystal(GamePanel gp) {
         // this.gp = gp;
         super(gp);
-        name = "black_crystal";
+        name = "black crystal";
         down1 = setUp("src/objects/black_crystal", gp.tileSize, gp.tileSize);
 
         collision = true;

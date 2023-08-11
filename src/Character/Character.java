@@ -1,5 +1,4 @@
-//This .java file is the parent class of all characters in the game. 
-//It contains all the attributes and methods that are common to all characters.
+//This is the parent class of all characters in the game. It contains all the attributes and methods that are common to all characters.
 package Character;
 
 import java.awt.image.BufferedImage;
@@ -18,7 +17,8 @@ import java.awt.Rectangle;
 
 public class Character {
 
-    GamePanel gp;
+    GamePanel gp;// GamePanel object
+    // declaring all the methods and attributes that are common to all characters
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1,
             attackRight2;
@@ -68,10 +68,12 @@ public class Character {
     public int defenseValue;
     public String description = "";
 
+    // constructor Character
     public Character(GamePanel gp) {
         this.gp = gp;
     }
 
+    // set action method
     public void setAction() {
     }
 
