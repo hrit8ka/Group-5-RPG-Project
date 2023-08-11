@@ -16,7 +16,6 @@ public class Healer extends Character{
         speed = 1;
 
         getImage();
-        setDialogue();
     }
     public void getImage(){
         //the healer has 4 images for each direction
@@ -37,13 +36,6 @@ public class Healer extends Character{
         right3 = setUp("./src/npc/cat_right_3", gp.tileSize, gp.tileSize);
         right4 = setUp("./src/npc/cat_right_4", gp.tileSize, gp.tileSize);
 
-    }
-
-    public void setDialogue(){
-        //the healer's dialogue is just a bunch of meows
-        dialogues[0] = "Meow! I am the healer.";
-        dialogues[1] = "I am here to heal you.";
-        dialogues[2] = "Meow! Meooooowwww!";
     }
 
     public void setAction(){

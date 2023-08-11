@@ -41,6 +41,10 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.dialogueState) {
             dialogueState(code);
         }
+        //healing state
+        else if (gp.gameState == gp.healingState) {
+            healingState(code);
+        }
         // character state
         else if (gp.gameState == gp.characterState) {
             characterState(code);
@@ -114,6 +118,11 @@ public class KeyHandler implements KeyListener {
     }
 
     public void dialogueState(int code) {
+        if (code == KeyEvent.VK_ENTER) {
+            gp.gameState = gp.playState;
+        }
+    }
+    public void healingState(int code) {
         if (code == KeyEvent.VK_ENTER) {
             gp.gameState = gp.playState;
         }

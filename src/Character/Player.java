@@ -209,6 +209,10 @@ public class Player extends Character {
             // check npc collision
             int npcIndex = gp.collisionChecker.checkCharacter(this, gp.npc);
             interactWithNPC(npcIndex);
+            
+            //check healer collision
+            int healerIndex = gp.collisionChecker.checkCharacter(this, gp.healer);
+            interactWithHealer(healerIndex);
 
             // check monster collision
             int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);
@@ -330,7 +334,7 @@ public class Player extends Character {
             if (npcIndex != 999) {
                 noAttack = true;
                 gp.gameState = gp.dialogueState;
-                gp.npc[npcIndex].speak();
+                gp.npc[npcIndex].speak(); //speak to the npc
             }
             // gp.keyH.enterPressed = false;
         }
@@ -339,9 +343,12 @@ public class Player extends Character {
     public void interactWithHealer(int healerIndex) {
         if (gp.keyH.enterPressed == true) {
             if (healerIndex != 999) {
-                noAttack = true;
+                noAttack = true; 
                 gp.gameState = gp.dialogueState;
-                gp.healer[healerIndex].catHeal();
+                gp.healer[healerIndex].speak(); //speak to the healer
+                gp.gameState = gp.healingState;
+                gp.healer[healerIndex].catHeal(); //heal the player
+
             }
             // gp.keyH.enterPressed = false;
         }

@@ -14,6 +14,7 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+//import java.awt.event.KeyEvent;
 
 public class Character {
 
@@ -309,9 +310,15 @@ public class Character {
     }
 
     public void catHeal() {
-        if (type == 3) {
-            if (life < maxLife) {
-                life++;
+        // if player life is less than max life, heal player when 'enter' is pressed
+        if (gp.keyH.enterPressed && gp.player.life < gp.player.maxLife) {
+            // heal the player fully
+            gp.player.life = gp.player.maxLife;
+            // set enterPressed to false so that the player can't heal again
+            gp.keyH.enterPressed = false;
+            // if player is healed, display text saying so
+            if (gp.player.life == gp.player.maxLife) {
+                gp.ui.addMessage("You have been healed!");
             }
         }
     }
