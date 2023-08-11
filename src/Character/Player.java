@@ -131,12 +131,15 @@ public class Player extends Character {
 
         up1 = setUp("./src/player/boy_up_1", gp.tileSize, gp.tileSize);
         up2 = setUp("./src/player/boy_up_2", gp.tileSize, gp.tileSize);
-        down1 = setUp("./src/player/boy_down_1", gp.tileSize, gp.tileSize);
-        down2 = setUp("./src/player/boy_down_2", gp.tileSize, gp.tileSize);
+       // down1 = setUp("./src/player/boy_down_1", gp.tileSize, gp.tileSize);
+        //down2 = setUp("./src/player/boy_down_2", gp.tileSize, gp.tileSize);
         left1 = setUp("./src/player/boy_left_1", gp.tileSize, gp.tileSize);
         left2 = setUp("./src/player/boy_left_2", gp.tileSize, gp.tileSize);
         right1 = setUp("./src/player/boy_right_1", gp.tileSize, gp.tileSize);
         right2 = setUp("./src/player/boy_right_2", gp.tileSize, gp.tileSize);
+
+        down1=setUp("./src/player/down_1", gp.tileSize, gp.tileSize);
+        down2=setUp("./src/player/down_2", gp.tileSize, gp.tileSize);
     }
 
     public void getPlayerAttackImage() {
