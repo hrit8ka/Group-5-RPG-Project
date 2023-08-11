@@ -1,4 +1,3 @@
-//Using GIF
 package Character;
 
 import java.awt.AlphaComposite;
@@ -138,7 +137,6 @@ public class Player extends Character {
         left2 = setUp("./src/player/boy_left_2", gp.tileSize, gp.tileSize);
         right1 = setUp("./src/player/boy_right_1", gp.tileSize, gp.tileSize);
         right2 = setUp("./src/player/boy_right_2", gp.tileSize, gp.tileSize);
-
     }
 
     public void getPlayerAttackImage() {
@@ -289,7 +287,18 @@ public class Player extends Character {
 
     public void pickUpObject(int i) {
         if (i != 999) {
-
+            String text;
+            //if inventory is not full, pick up the object
+            if (inventory.size() != maxInventorySize){
+                inventory.add(gp.obj[i]);
+                gp.playSE(5);
+                text = "You picked up " + gp.obj[i].name;
+            }
+            else{
+                text = "Your inventory is full";
+            }
+            gp.ui.addMessage(text);
+            gp.obj[i]=null;
         }
 
     }
@@ -455,4 +464,5 @@ public class Player extends Character {
         // g2.setColor(Color.WHITE);
         // g2.drawString("Invincible: " + invincibleCounter, 10, 400);
     }
+
 }

@@ -2,6 +2,7 @@ package Main;
 
 import Character.NPC_Sage;
 import Monster.Slime;
+import Object.OBJ_BlackCrystal;
 
 public class AssetSetter {
     GamePanel gp;
@@ -11,7 +12,21 @@ public class AssetSetter {
     }
 
     public void setObject() {
-
+       
+        int i = 0;
+        gp.obj[i] = new OBJ_BlackCrystal(gp);
+        gp.obj[i].worldX = gp.tileSize * 21;
+        gp.obj[i].worldY = gp.tileSize * 23;
+        i++;
+        gp.obj[i] = new OBJ_BlackCrystal(gp);
+        gp.obj[i].worldX = gp.tileSize * 21;
+        gp.obj[i].worldY = gp.tileSize * 19;
+        i++;
+        gp.obj[i] = new OBJ_BlackCrystal(gp);
+        gp.obj[i].worldX = gp.tileSize * 26;
+        gp.obj[i].worldY = gp.tileSize * 21;
+        i++;
+        
     }
     // to set the NPC in the game, call this method in the setUpGame() method in
     // GamePanel.java
