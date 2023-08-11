@@ -156,7 +156,7 @@ public class UI {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         // title name
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
-        String text = "RPG";
+        String text = "The Legend of Hyrule";
         int x = getXforCenteredText(text);
         int y = gp.tileSize * 3;
         // shadow
