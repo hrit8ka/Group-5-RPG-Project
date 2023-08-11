@@ -46,7 +46,7 @@ public class Character {
     int dyingCounter = 0;
     int hpBarCounter = 0;
     // attributes
-    public int type; // 0=Player, 1=NPC, 2=Monster..
+   // public int type; // 0=Player, 1=NPC, 2=Monster..
     public String name;
     public int speed; // speed of the player
     // Character status
@@ -67,6 +67,17 @@ public class Character {
     public int attackValue;
     public int defenseValue;
     public String description = "";
+
+    //Type 
+    public int type; 
+    public final int playerType = 0;
+    public final int npcType = 1;
+    public final int monsterType = 2;
+    public final int swordType = 3;
+    public final int armorType = 4;
+    public final int axeType = 5;
+    public final int crystalType = 6;
+    public final int potionType = 7;
 
     // constructor Character
     public Character(GamePanel gp) {
@@ -113,7 +124,7 @@ public class Character {
         gp.collisionChecker.checkCharacter(this, gp.monster);
         boolean contactPlayer = gp.collisionChecker.checkPlayer(this);
 
-        if (this.type == 2 && contactPlayer == true) {
+        if (this.type == monsterType && contactPlayer == true) {
             if (gp.player.invincible == false) {
                 // give damage to player
                 gp.playSE(6);

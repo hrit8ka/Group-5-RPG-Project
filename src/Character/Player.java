@@ -60,9 +60,6 @@ public class Player extends Character {
         solidArea.width = 32;
         solidArea.height = 32;
 
-        attackArea.width = 36;
-        attackArea.height = 36;
-
         setDefaultValues();
         getPlayerImages(); // get the images of the player
         getPlayerAttackImage();
@@ -99,6 +96,7 @@ public class Player extends Character {
     }
 
     public int getAttack() {
+        attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
 

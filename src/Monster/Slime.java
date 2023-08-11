@@ -14,7 +14,7 @@ public class Slime extends Character {
 
         this.gp = gp;
 
-        type = 2;
+        type = monsterType;
         name = "slime";
         speed = 1;
         maxLife = 5;
