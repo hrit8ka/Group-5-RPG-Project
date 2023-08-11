@@ -8,7 +8,7 @@ public class OBJ_BlueShield extends Character {
         super(gp);
         type = armorType;
         name = "Eldoria shield";
-        down1= setUp("src/objects/blue_shield", gp.tileSize, gp.tileSize);
+        down1= setUp("src/objects/shield_blue", gp.tileSize, gp.tileSize);
         defenseValue= 1;
         description = "[" +name+"]\nA magical shield.";
         

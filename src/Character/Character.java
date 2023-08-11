@@ -114,6 +114,9 @@ public class Character {
                 break;
         }
     }
+    public void use(Character Character){
+        //to be overridden in player class
+    }
 
     public void update() {
         setAction();

@@ -4,6 +4,7 @@ import Character.NPC_Sage;
 import Monster.Slime;
 import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
+import Object.OBJ_BlueShield;
 
 public class AssetSetter {
     GamePanel gp;
@@ -31,7 +32,9 @@ public class AssetSetter {
         gp.obj[i].worldX = gp.tileSize * 33;
         gp.obj[i].worldY = gp.tileSize * 21;
         i++;
-        
+        gp.obj[i] = new OBJ_BlueShield(gp);
+        gp.obj[i].worldX = gp.tileSize * 35;
+        gp.obj[i].worldY = gp.tileSize * 21;
     }
     // to set the NPC in the game, call this method in the setUpGame() method in
     // GamePanel.java

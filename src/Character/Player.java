@@ -31,8 +31,8 @@ public class Player extends Character {
     int standCounter = 0;
     public boolean noAttack = false;
     // public int hasKey = 0;
-    public ArrayList <Character> inventory = new ArrayList <> ();
-    public final int maxInventorySize =20;
+    public ArrayList<Character> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
 
     private BufferedImage up1;
     private BufferedImage up2;
@@ -87,7 +87,8 @@ public class Player extends Character {
         defense = getDefense(); // total defense value depends on agility and armor
 
     }
-    public void setItems(){
+
+    public void setItems() {
         inventory.add(currentWeapon);
         inventory.add(currentArmor);
         inventory.add(new OBJ_Key(gp));
@@ -127,35 +128,49 @@ public class Player extends Character {
          * rightImage=setUp("/player/right");
          */
 
-        /*up1 = setUp("./src/player/boy_up_1", gp.tileSize, gp.tileSize);
-        up2 = setUp("./src/player/boy_up_2", gp.tileSize, gp.tileSize);
-       down1 = setUp("./src/player/boy_down_1", gp.tileSize, gp.tileSize);
-        down2 = setUp("./src/player/boy_down_2", gp.tileSize, gp.tileSize);
-        left1 = setUp("./src/player/boy_left_1", gp.tileSize, gp.tileSize);
-        left2 = setUp("./src/player/boy_left_2", gp.tileSize, gp.tileSize);
-        right1 = setUp("./src/player/boy_right_1", gp.tileSize, gp.tileSize);
-        right2 = setUp("./src/player/boy_right_2", gp.tileSize, gp.tileSize);*/
+        /*
+         * up1 = setUp("./src/player/boy_up_1", gp.tileSize, gp.tileSize);
+         * up2 = setUp("./src/player/boy_up_2", gp.tileSize, gp.tileSize);
+         * down1 = setUp("./src/player/boy_down_1", gp.tileSize, gp.tileSize);
+         * down2 = setUp("./src/player/boy_down_2", gp.tileSize, gp.tileSize);
+         * left1 = setUp("./src/player/boy_left_1", gp.tileSize, gp.tileSize);
+         * left2 = setUp("./src/player/boy_left_2", gp.tileSize, gp.tileSize);
+         * right1 = setUp("./src/player/boy_right_1", gp.tileSize, gp.tileSize);
+         * right2 = setUp("./src/player/boy_right_2", gp.tileSize, gp.tileSize);
+         */
 
-        up1=setUp("./src/player/up_1", gp.tileSize, gp.tileSize);
-        up2=setUp("./src/player/up_2", gp.tileSize, gp.tileSize);
-        down1=setUp("./src/player/down_1", gp.tileSize, gp.tileSize);
-        down2=setUp("./src/player/down_2", gp.tileSize, gp.tileSize);
-        left1=setUp("./src/player/left_1", gp.tileSize, gp.tileSize);
-        left2=setUp("./src/player/left_2", gp.tileSize, gp.tileSize);
-        right1=setUp("./src/player/right_1", gp.tileSize, gp.tileSize);
-        right2=setUp("./src/player/right_2", gp.tileSize, gp.tileSize);
+        up1 = setUp("./src/player/up_1", gp.tileSize, gp.tileSize);
+        up2 = setUp("./src/player/up_2", gp.tileSize, gp.tileSize);
+        down1 = setUp("./src/player/down_1", gp.tileSize, gp.tileSize);
+        down2 = setUp("./src/player/down_2", gp.tileSize, gp.tileSize);
+        left1 = setUp("./src/player/left_1", gp.tileSize, gp.tileSize);
+        left2 = setUp("./src/player/left_2", gp.tileSize, gp.tileSize);
+        right1 = setUp("./src/player/right_1", gp.tileSize, gp.tileSize);
+        right2 = setUp("./src/player/right_2", gp.tileSize, gp.tileSize);
     }
 
     public void getPlayerAttackImage() {
-        attackUp1 = setUp("./src/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
-        attackUp2 = setUp("./src/player/boy_attack_up_2", gp.tileSize, gp.tileSize * 2);
-        attackDown1 = setUp("./src/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
-        //attackDown1 = setUp("./src/player/attack_down_1", gp.tileSize, gp.tileSize*2);
-        attackDown2 = setUp("./src/player/boy_attack_down_2", gp.tileSize, gp.tileSize * 2);
-        attackLeft1 = setUp("./src/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
-        attackLeft2 = setUp("./src/player/boy_attack_left_2", gp.tileSize * 2, gp.tileSize);
-        attackRight1 = setUp("./src/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
-        attackRight2 = setUp("./src/player/boy_attack_right_2", gp.tileSize * 2, gp.tileSize);
+
+        if (currentWeapon.type == swordType) {
+            attackUp1 = setUp("./src/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setUp("./src/player/boy_attack_up_2", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setUp("./src/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+            attackDown2 = setUp("./src/player/boy_attack_down_2", gp.tileSize, gp.tileSize * 2);
+            attackLeft1 = setUp("./src/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
+            attackLeft2 = setUp("./src/player/boy_attack_left_2", gp.tileSize * 2, gp.tileSize);
+            attackRight1 = setUp("./src/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
+            attackRight2 = setUp("./src/player/boy_attack_right_2", gp.tileSize * 2, gp.tileSize);
+        }
+        if (currentWeapon.type == axeType) {
+            attackUp1 = setUp("./src/player/boy_axe_up_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setUp("./src/player/boy_axe_up_2", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setUp("./src/player/boy_axe_down_1", gp.tileSize, gp.tileSize * 2);
+            attackDown2 = setUp("./src/player/boy_axe_down_2", gp.tileSize, gp.tileSize * 2);
+            attackLeft1 = setUp("./src/player/boy_axe_left_1", gp.tileSize * 2, gp.tileSize);
+            attackLeft2 = setUp("./src/player/boy_axe_left_2", gp.tileSize * 2, gp.tileSize);
+            attackRight1 = setUp("./src/player/boy_axe_right_1", gp.tileSize * 2, gp.tileSize);
+            attackRight2 = setUp("./src/player/boy_axe_right_2", gp.tileSize * 2, gp.tileSize);
+        }
     }
 
     public void update() {
@@ -296,17 +311,16 @@ public class Player extends Character {
     public void pickUpObject(int i) {
         if (i != 999) {
             String text;
-            //if inventory is not full, pick up the object
-            if (inventory.size() != maxInventorySize){
+            // if inventory is not full, pick up the object
+            if (inventory.size() != maxInventorySize) {
                 inventory.add(gp.obj[i]);
                 gp.playSE(5);
                 text = "picked up a " + gp.obj[i].name;
-            }
-            else{
+            } else {
                 text = "Your inventory is full";
             }
             gp.ui.addMessage(text);
-            gp.obj[i]=null;
+            gp.obj[i] = null;
         }
 
     }
@@ -374,6 +388,28 @@ public class Player extends Character {
             gp.playSE(8);
             gp.gameState = gp.dialogueState;
             gp.ui.currentDialogue = "Level" + level + "!";
+        }
+    }
+
+    public void selectItem() {
+        int itemIndex = gp.ui.getItemIndexOnInventorySlot();
+
+        if (itemIndex < inventory.size()) {
+            Character selectedItem = inventory.get(itemIndex);
+            // check the type of the item
+            if (selectedItem.type == swordType || selectedItem.type == axeType) {
+                currentWeapon = selectedItem;
+                attack = getAttack();
+                getPlayerAttackImage();
+            }
+            if (selectedItem.type == armorType) {
+                currentArmor = selectedItem;
+                defense = getDefense();
+            }
+            if (selectedItem.type == crystalType) {
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
         }
     }
 
