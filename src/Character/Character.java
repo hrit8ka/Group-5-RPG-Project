@@ -1,3 +1,5 @@
+//This .java file is the parent class of all characters in the game. 
+//It contains all the attributes and methods that are common to all characters.
 package Character;
 
 import java.awt.image.BufferedImage;

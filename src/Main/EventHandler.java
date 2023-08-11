@@ -50,7 +50,7 @@ public class EventHandler {
             if (hit(23, 12, "up") == true) {
                 healingPool(23, 12, gp.dialogueState);
             }
-            if (hit(27, 16, "right") == true) {
+            if (hit(26, 16, "right") == true) {
                 teleport(gp.dialogueState);
             }
         }
