@@ -321,5 +321,9 @@ public class Character {
                 gp.ui.addMessage("You have been healed!");
             }
         }
+        else{
+            //display message "You are already at full health!"
+            gp.ui.addMessage("Meoww!");
+        }
     }
 }
