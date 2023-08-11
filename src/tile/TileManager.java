@@ -109,8 +109,8 @@ public class TileManager {
         setUp(41, "tree03", true);
         setUp(42, "tree02", true);
         setUp(44, "ruins", false);
-        //setUp(45, "ruins01", true);
-        //setUp(46, "ruins02", true);
+        setUp(45, "ruins02", true);
+        //setUp(46, "ruins01", true);
 
     }
 
