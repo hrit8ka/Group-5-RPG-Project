@@ -4,11 +4,11 @@ import javax.swing.JFrame;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame window = new JFrame("RPG");
+        JFrame window = new JFrame("The Legend of Hyrule");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false); // window cannot be resized
         // window.setContentPane(new GamePanel());
-        window.setTitle("RPG");
+        window.setTitle("The Legend of Hyrule");
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
 

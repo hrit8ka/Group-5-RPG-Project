@@ -60,9 +60,6 @@ public class Player extends Character {
         solidArea.width = 32;
         solidArea.height = 32;
 
-        attackArea.width = 36;
-        attackArea.height = 36;
-
         setDefaultValues();
         getPlayerImages(); // get the images of the player
         getPlayerAttackImage();
@@ -99,6 +96,7 @@ public class Player extends Character {
     }
 
     public int getAttack() {
+        attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
 
@@ -152,6 +150,7 @@ public class Player extends Character {
         attackUp1 = setUp("./src/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
         attackUp2 = setUp("./src/player/boy_attack_up_2", gp.tileSize, gp.tileSize * 2);
         attackDown1 = setUp("./src/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+        //attackDown1 = setUp("./src/player/attack_down_1", gp.tileSize, gp.tileSize*2);
         attackDown2 = setUp("./src/player/boy_attack_down_2", gp.tileSize, gp.tileSize * 2);
         attackLeft1 = setUp("./src/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
         attackLeft2 = setUp("./src/player/boy_attack_left_2", gp.tileSize * 2, gp.tileSize);
@@ -301,7 +300,7 @@ public class Player extends Character {
             if (inventory.size() != maxInventorySize){
                 inventory.add(gp.obj[i]);
                 gp.playSE(5);
-                text = "You picked up " + gp.obj[i].name;
+                text = "picked up a " + gp.obj[i].name;
             }
             else{
                 text = "Your inventory is full";

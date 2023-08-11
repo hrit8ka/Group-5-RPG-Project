@@ -1,3 +1,4 @@
+//This is the parent class of all characters in the game. It contains all the attributes and methods that are common to all characters.
 package Character;
 
 import java.awt.image.BufferedImage;
@@ -16,7 +17,8 @@ import java.awt.Rectangle;
 
 public class Character {
 
-    GamePanel gp;
+    GamePanel gp;// GamePanel object
+    // declaring all the methods and attributes that are common to all characters
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1,
             attackRight2;
@@ -44,7 +46,7 @@ public class Character {
     int dyingCounter = 0;
     int hpBarCounter = 0;
     // attributes
-    public int type; // 0=Player, 1=NPC, 2=Monster..
+   // public int type; // 0=Player, 1=NPC, 2=Monster..
     public String name;
     public int speed; // speed of the player
     // Character status
@@ -66,10 +68,23 @@ public class Character {
     public int defenseValue;
     public String description = "";
 
+    //Type 
+    public int type; 
+    public final int playerType = 0;
+    public final int npcType = 1;
+    public final int monsterType = 2;
+    public final int swordType = 3;
+    public final int armorType = 4;
+    public final int axeType = 5;
+    public final int crystalType = 6;
+    public final int potionType = 7;
+
+    // constructor Character
     public Character(GamePanel gp) {
         this.gp = gp;
     }
 
+    // set action method
     public void setAction() {
     }
 
@@ -109,7 +124,7 @@ public class Character {
         gp.collisionChecker.checkCharacter(this, gp.monster);
         boolean contactPlayer = gp.collisionChecker.checkPlayer(this);
 
-        if (this.type == 2 && contactPlayer == true) {
+        if (this.type == monsterType && contactPlayer == true) {
             if (gp.player.invincible == false) {
                 // give damage to player
                 gp.playSE(6);

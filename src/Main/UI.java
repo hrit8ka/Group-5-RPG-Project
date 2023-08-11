@@ -156,7 +156,7 @@ public class UI {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         // title name
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 80F));
-        String text = "RPG";
+        String text = "The Legend of Hyrule";
         int x = getXforCenteredText(text);
         int y = gp.tileSize * 3;
         // shadow
@@ -307,6 +307,13 @@ public class UI {
         int slotSize = gp.tileSize + 3;
         // draw player's items
         for (int i = 0; i < gp.player.inventory.size(); i++) {
+            //equip cursor
+            if(gp.player.inventory.get(i) == gp.player.currentWeapon || gp.player.inventory.get(i) == gp.player.currentArmor){
+                g2.setColor(new Color(240, 190, 190));
+                g2.setStroke(new BasicStroke(3));
+                g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
+            }
+
             g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
             slotX += slotSize;
             if (slotX >= slotXstart + (gp.tileSize * 5)) {
@@ -336,11 +343,11 @@ public class UI {
         if (itemIndex < gp.player.inventory.size()) {
             drawSubWindow(descriptionFrameX, descriptionFrameY, descriptionFrameWidth, descriptionFrameHeight);
             for (String line : gp.player.inventory.get(itemIndex).description.split("\n")) {
-                //draw text in description frame
+                // draw text in description frame
                 g2.drawString(line, textX + 20, textY + 40);
                 textY += 40;
             }
-        } 
+        }
 
     }
 

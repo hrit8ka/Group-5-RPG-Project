@@ -106,12 +106,11 @@ public class TileManager {
         setUp(38, "road12", false);
         setUp(39, "earth", false);
         setUp(40, "wall", true);
-        setUp(41, "tree", true);
-        setUp(42, "tree01", true);
-        setUp(43, "tree02", true);
+        setUp(41, "tree03", true);
+        setUp(42, "tree02", true);
         setUp(44, "ruins", false);
-        setUp(45, "ruins01", true);
-        setUp(46, "ruins02", true);
+        setUp(45, "ruins02", true);
+        //setUp(46, "ruins01", true);
 
     }
 

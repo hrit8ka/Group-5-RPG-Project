@@ -2,6 +2,7 @@ package Main;
 
 import Character.NPC_Sage;
 import Monster.Slime;
+import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
 
 public class AssetSetter {
@@ -24,6 +25,10 @@ public class AssetSetter {
         i++;
         gp.obj[i] = new OBJ_BlackCrystal(gp);
         gp.obj[i].worldX = gp.tileSize * 26;
+        gp.obj[i].worldY = gp.tileSize * 21;
+        i++;
+        gp.obj[i] = new OBJ_Axe(gp);
+        gp.obj[i].worldX = gp.tileSize * 33;
         gp.obj[i].worldY = gp.tileSize * 21;
         i++;
         
