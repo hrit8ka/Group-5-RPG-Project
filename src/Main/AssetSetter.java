@@ -7,6 +7,8 @@ import Object.Coin;
 import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
 import Object.OBJ_BlueShield;
+import Object.OBJ_Heart;
+import Object.OBJ_Mana;
 
 public class AssetSetter {
     GamePanel gp;
@@ -18,6 +20,7 @@ public class AssetSetter {
     public void setObject() {
 
         int i = 0;
+        //add black crystal
         gp.obj[i] = new OBJ_BlackCrystal(gp);
         gp.obj[i].worldX = gp.tileSize * 21;
         gp.obj[i].worldY = gp.tileSize * 23;
@@ -30,10 +33,12 @@ public class AssetSetter {
         gp.obj[i].worldX = gp.tileSize * 26;
         gp.obj[i].worldY = gp.tileSize * 21;
         i++;
+        //add axe
         gp.obj[i] = new OBJ_Axe(gp);
         gp.obj[i].worldX = gp.tileSize * 33;
         gp.obj[i].worldY = gp.tileSize * 21;
         i++;
+        //add blue shield
         gp.obj[i] = new OBJ_BlueShield(gp);
         gp.obj[i].worldX = gp.tileSize * 35;
         gp.obj[i].worldY = gp.tileSize * 21;
@@ -51,6 +56,17 @@ public class AssetSetter {
         gp.obj[i] = new Coin(gp);
         gp.obj[i].worldX = gp.tileSize * 26;
         gp.obj[i].worldY = gp.tileSize * 19;
+        i++;
+
+        //set heart
+        gp.obj[i] = new OBJ_Heart(gp);
+        gp.obj[i].worldX = gp.tileSize * 22;
+        gp.obj[i].worldY = gp.tileSize * 27;
+        i++;
+        //set mana
+        gp.obj[i] = new OBJ_Mana(gp);
+        gp.obj[i].worldX = gp.tileSize * 22;
+        gp.obj[i].worldY = gp.tileSize * 29;
         i++;
     }
 

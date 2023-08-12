@@ -4,9 +4,9 @@ import Main.GamePanel;
 
 // Projectile class for the projectiles
 public class Projectile extends Character {
-    Character user;
+    Character user;// the user of the projectile
 
-    // Constructor
+    // Constructor Projectile
     public Projectile(GamePanel gp) {
         super(gp);// call super constructor to set gp
 
@@ -25,19 +25,20 @@ public class Projectile extends Character {
     // Update projectile
     public void update() {
 
-        if (user == gp.player) {
+        if (user == gp.player) {// if user is player
             // check collision with monsters
-            int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);
-            if (monsterIndex != 999) {
+            int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);// check collision with monsters
+            if (monsterIndex != 999) {// if collision with monster
                 gp.player.damagedMonster(monsterIndex, attack); // damage monster
                 alive = false;// set alive to false
             }
         }
-        if (user != gp.player) {
+        if (user != gp.player) {// if user is not player
             // check collision with player
-            boolean contactWithPlayer = gp.collisionChecker.checkPlayer(this);
-            if (gp.player.invincible == false && contactWithPlayer == true) {
-                if (contactWithPlayer) {
+            boolean contactWithPlayer = gp.collisionChecker.checkPlayer(this);// check collision with player
+            if (gp.player.invincible == false && contactWithPlayer == true) {// if player is not invincible and there is
+                                                                             // contact with player
+                if (contactWithPlayer) {// if contact with player
                     gp.player.damagePlayer(attack); // damage player
                     alive = false;// set alive to false
                 }
@@ -73,12 +74,16 @@ public class Projectile extends Character {
             spriteCounter = 0; // reset sprite counter
         }
     }
-    public boolean haveMana(Character user){
-        boolean haveMana = false;
-        return haveMana;
+
+    // method to check if the user has enough mana to use the projectile
+    public boolean haveMana(Character user) {
+        boolean haveMana = false;// boolean to check if the user has enough mana
+        return haveMana;// return the boolean
     }
-    public void subtractMana(Character user){
-        
+
+    // method to subtract mana from the user
+    public void subtractMana(Character user) {
+        // Override this method in the subclasses
     }
 
 }

@@ -14,7 +14,6 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-//import java.awt.event.KeyEvent;
 
 public class Character {
 
@@ -24,308 +23,327 @@ public class Character {
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1,
             attackRight2;
     public BufferedImage image, image2, image3;
-    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
-    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
-    public int solidAreaDefaultX, solidAreaDefaultY;
-    public boolean collision = false;
-    String dialogues[] = new String[20];
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // solidArea: the area that the player cannot walk through
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);// attackArea: the area that the player can attack
+    public int solidAreaDefaultX, solidAreaDefaultY;// the default position of the solidArea
+    public boolean collision = false;// collision: whether the player can walk through the character
+    String dialogues[] = new String[20];// dialogues: the dialogues that the character can say
     // states
     public int worldX, worldY; // worldX:x coordinate of player... worldY:y coordinate of player
-    public String direction = "down";
-    public int spriteNumber = 1;
-    int dialogueIndex = 0;
-    public boolean collisionOn = false;
-    public boolean invincible = false;
-    boolean attacking = false;
-    public boolean alive = true;
-    public boolean dying = false;
-    boolean hpBarOn = false;
+    public String direction = "down";// direction: the direction that the player is facing
+    public int spriteNumber = 1;// spriteNumber: the number of sprites that the character has
+    int dialogueIndex = 0;// dialogueIndex: the index of the dialogue that the character is saying
+    public boolean collisionOn = false;// collisionOn: whether the collision is on
+    public boolean invincible = false;// invincible: whether the character is invincible
+    boolean attacking = false;// attacking: whether the character is attacking
+    public boolean alive = true;// alive: whether the character is alive
+    public boolean dying = false; // dying: whether the character is dying
+    boolean hpBarOn = false;// hpBarOn: whether the hpBar is on
     // counters
-    public int spriteCounter = 0;
-    public int actionLockCounter = 0;
-    public int invincibleCounter = 0;
-    public int projectileCounter = 0;
-    int dyingCounter = 0;
-    int hpBarCounter = 0;
+    public int spriteCounter = 0;// spriteCounter: the counter that controls the sprite animation of the
+                                 // character
+    public int actionLockCounter = 0;// actionLockCounter: the counter that controls the actionLock of the character
+    public int invincibleCounter = 0;// invincibleCounter: the counter that checks if the character is invincible
+    public int projectileCounter = 0;// projectileCounter: the counter that controls the projectile usage
+    int dyingCounter = 0;// dyingCounter: the counter that controls the dying animation
+    int hpBarCounter = 0; // hpBarCounter: the counter that controls the hpBar
+
     // attributes
-    // public int type; // 0=Player, 1=NPC, 2=Monster..
-    public String name;
+    public String name;// name: the name of the character or object
     public int speed; // speed of the player
+
     // Character status
-    public int maxLife;
-    public int life;
-    public int level;
-    public int maxMana;
-    public int mana;
-    public int strength;
-    public int agility;
-    public int attack;
-    public int defense;
-    public int xp;
-    public int nextLevelXP;
-    public int gold;
-    public Character currentWeapon;
-    public Character currentArmor;
-    public Projectile projectile;
+    public int maxLife;// maxLife: the maximum life of the character
+    public int life;// life: the current life of the character
+    public int level;// level: the level of the character
+    public int maxMana;// maxMana: the maximum mana of the character
+    public int mana;// mana: the current mana of the character
+    public int strength;// strength: the strength of the character
+    public int agility;// agility: the agility of the character
+    public int attack;// attack: the attacking power of weapon or the character
+    public int defense; // defense: the defending power of armor or the character
+    public int xp;// xp: the current xp of the character
+    public int nextLevelXP; // nextLevelXP: the xp that the character needs to level up
+    public int gold;// gold: the number of gold coins that the character has
+    public Character currentWeapon; // currentWeapon: the current weapon that the character is using
+    public Character currentArmor;// currentArmor: the current armor that the character is using
+    public Projectile projectile;// projectile: the projectile that the character is using
 
     // item attributes
-    public int value; 
-    public int attackValue;
-    public int defenseValue;
-    public String description = "";
-    public int usePrice;
+    public int value; // value: the value of the item
+    public int attackValue;// attackValue: the attacking power of the item
+    public int defenseValue;// defenseValue: the defending power of the item
+    public String description = "";// description: the description of the item
+    public int usePrice;// usePrice: the price of the item
 
     // Type
-    public int type;
-    public final int playerType = 0;
-    public final int npcType = 1;
-    public final int monsterType = 2;
-    public final int swordType = 3;
-    public final int armorType = 4;
-    public final int axeType = 5;
-    public final int crystalType = 6;
-    public final int potionType = 7;
-    public final int pickUpType = 8;
+    public int type;// type: the type of the character
+    public final int playerType = 0; // playerType: the type of the player is 0
+    public final int npcType = 1;// npcType: the type of the npc is 1
+    public final int monsterType = 2;// monsterType: the type of the monster is 2
+    public final int swordType = 3;// swordType: the type of the sword is 3
+    public final int armorType = 4;// armorType: the type of the armor is 4
+    public final int axeType = 5;// axeType: the type of the axe is 5
+    public final int crystalType = 6;// crystalType: the type of the crystal is 6
+    public final int potionType = 7;// potionType: the type of the potion is 7
+    public final int pickUpType = 8;// pickUpType: the type of the pickUp is 8
 
     // constructor Character
     public Character(GamePanel gp) {
-        this.gp = gp;
+        this.gp = gp;// set gp
     }
 
     // set action method
     public void setAction() {
     }
 
+    // monster damage reaction method
     public void monsterDamageReaction() {
-
+        // override in monster class
     }
 
+    // speak method that sets the current dialogue of the character/npc
     public void speak() {
-        if (dialogues[dialogueIndex] == null) {
-            dialogueIndex = 0;
+        if (dialogues[dialogueIndex] == null) {// if the dialogue is null
+            dialogueIndex = 0;// set dialogueIndex to 0
         }
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
+        gp.ui.currentDialogue = dialogues[dialogueIndex]; // set the current dialogue to the dialogue at the
+                                                          // dialogueIndex
+        dialogueIndex++; // increase the dialogueIndex
 
-        switch (gp.player.direction) {
-            case "up":
-                direction = "down";
+        switch (gp.player.direction) {// set the direction of the player
+            case "up": // if the player is facing up
+                direction = "down"; // set the direction of the character to down
                 break;
-            case "down":
-                direction = "up";
+            case "down":// if the player is facing down
+                direction = "up";// set the direction of the character to up
                 break;
-            case "left":
-                direction = "right";
+            case "left": // if the player is facing left
+                direction = "right";// set the direction of the character to right
                 break;
-            case "right":
-                direction = "left";
+            case "right":// if the player is facing right
+                direction = "left";// set the direction of the character to left
                 break;
         }
     }
 
+    // use method
     public void use(Character Character) {
         // to be overridden in player class
     }
 
-    public void update() {
-        setAction();
-        collisionOn = false;
-        gp.collisionChecker.checkTile(this);
-        gp.collisionChecker.checkObject(this, false);
-        gp.collisionChecker.checkCharacter(this, gp.npc);
-        gp.collisionChecker.checkCharacter(this, gp.monster);
-        boolean contactPlayer = gp.collisionChecker.checkPlayer(this);
+    // check drop method to check if items were dropped
+    public void checkDrop() {
 
+    }
+
+    // drop item method for dropping items
+    public void dropItem(Character droppedItem) {
+        // to be overridden in player class
+    }
+
+    // update method
+    public void update() {
+        setAction();// call setAction method
+        collisionOn = false;// set collisionOn to false
+        gp.collisionChecker.checkTile(this);// call checkTile method
+        gp.collisionChecker.checkObject(this, false);// call checkObject method
+        gp.collisionChecker.checkCharacter(this, gp.npc);// call checkCharacter method
+        gp.collisionChecker.checkCharacter(this, gp.monster);// call checkCharacter method
+        boolean contactPlayer = gp.collisionChecker.checkPlayer(this);// call checkPlayer method
+        // if the character is a monster and the player is attacking
         if (this.type == monsterType && contactPlayer == true) {
-            //call damagePlayer method
+            // call damagePlayer method
             damagePlayer(attack);
         }
 
         // if collision is false, player can move
         if (collisionOn == false) {
             switch (direction) {
-                case "up":
-                    worldY -= speed;
+                case "up": // if the direction is up
+                    worldY -= speed;// move up
                     break;
-                case "down":
-                    worldY += speed;
+                case "down":// if the direction is down
+                    worldY += speed;// move down
                     break;
-                case "left":
-                    worldX -= speed;
+                case "left":// if the direction is left
+                    worldX -= speed;// move left
                     break;
-                case "right":
-                    worldX += speed;
+                case "right":// if the direction is right
+                    worldX += speed;// move right
                     break;
             }
         }
-        spriteCounter++;
-        if (spriteCounter > 12) {
-            if (spriteNumber == 1) {
-                spriteNumber = 2;
-            } else if (spriteNumber == 2) {
+        spriteCounter++;// increase spriteCounter
+        if (spriteCounter > 12) {// if spriteCounter is greater than 12, change sprite
+            if (spriteNumber == 1) {// if spriteNumber is 1
+                spriteNumber = 2;// set spriteNumber to 2
+            } else if (spriteNumber == 2) {// if spriteNumber is 2, set spriteNumber to 1
                 spriteNumber = 1;
             }
-            spriteCounter = 0;
+            spriteCounter = 0;// set spriteCounter to 0
         }
-        if (invincible == true) {
-            invincibleCounter++;
-            if (invincibleCounter > 40) {
-                invincible = false;
-                invincibleCounter = 0;
+        if (invincible == true) {// if the character is invincible
+            invincibleCounter++;// increase invincibleCounter
+            if (invincibleCounter > 40) {// if invincibleCounter is greater than 40
+                invincible = false;// set invincible to false
+                invincibleCounter = 0;// set invincibleCounter to 0
             }
         }
-        if(projectileCounter <30){
-            projectileCounter++;
+        if (projectileCounter < 30) {// if projectileCounter is less than 30
+            projectileCounter++;// increase projectileCounter
         }
 
     }
 
-    public void damagePlayer(int attack){
-           if (gp.player.invincible == false) {
-                // give damage to player
-                gp.playSE(6);
-                int damage = this.attack - gp.player.defense;
-                if (damage < 0) {
-                    damage = 0;
-                }
-                gp.player.life -= damage;
-                gp.player.invincible = true;
+    // method damagePlayer
+    public void damagePlayer(int attack) {
+        if (gp.player.invincible == false) {// if the player is not invincible
+            // give damage to player
+            gp.playSE(6);// play sound effect
+            int damage = this.attack - gp.player.defense;// calculate damage
+            if (damage < 0) {// if damage is less than 0, set damage to 0
+                damage = 0;// set damage to 0
             }
+            gp.player.life -= damage;// decrease player life by damage
+            gp.player.invincible = true;// set player invincible to true
+        }
     }
 
+    // method draw
     public void draw(Graphics2D g2) {
-        BufferedImage image = null;
-        int screenX = worldX - gp.player.worldX + gp.player.screenX;
-        int screenY = worldY - gp.player.worldY + gp.player.screenY;
-
+        BufferedImage image = null;// set image to null
+        int screenX = worldX - gp.player.worldX + gp.player.screenX;// calculate screenX
+        int screenY = worldY - gp.player.worldY + gp.player.screenY;// calculate screenY
+        // if the character is on the screen, draw the character
         if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
             switch (direction) {
-                case "up":
-                    if (spriteNumber == 1) {
+                case "up": // if the direction is up
+                    if (spriteNumber == 1) {// if spriteNumber is 1, set image to up1
                         image = up1;
                     }
-                    if (spriteNumber == 2) {
+                    if (spriteNumber == 2) {// if spriteNumber is 2, set image to up2
                         image = up2;
                     }
                     break;
-                case "down":
-                    if (spriteNumber == 1) {
+                case "down":// if the direction is down
+                    if (spriteNumber == 1) {// if spriteNumber is 1, set image to down1
                         image = down1;
                     }
-                    if (spriteNumber == 2) {
+                    if (spriteNumber == 2) {// if spriteNumber is 2, set image to down2
                         image = down2;
                     }
                     break;
-                case "left":
-                    if (spriteNumber == 1) {
+                case "left":// if the direction is left
+                    if (spriteNumber == 1) {// if spriteNumber is 1, set image to left1
                         image = left1;
                     }
-                    if (spriteNumber == 2) {
+                    if (spriteNumber == 2) {// if spriteNumber is 2, set image to left2
                         image = left2;
                     }
                     break;
-                case "right":
-                    if (spriteNumber == 1) {
+                case "right":// if the direction is right
+                    if (spriteNumber == 1) {// if spriteNumber is 1, set image to right1
                         image = right1;
                     }
-                    if (spriteNumber == 2) {
+                    if (spriteNumber == 2) {// if spriteNumber is 2, set image to right2
                         image = right2;
                     }
                     break;
             }
             // health bar for monster
-            if (type == 2 && hpBarOn == true) {
+            if (type == 2 && hpBarOn == true) {// if the character is a monster and hpBarOn is true
                 // updating monster health bar
-                double healthBar = (double) gp.tileSize / maxLife;
-                double healthBarValue = healthBar * life;
+                double healthBar = (double) gp.tileSize / maxLife;// calculate health bar
+                double healthBarValue = healthBar * life;// calculate health bar value
 
                 // outline of health bar
-                g2.setColor(new Color(35, 35, 35));
-                g2.fillRect(screenX - 1, screenY - 11, gp.tileSize + 2, 6);
+                g2.setColor(new Color(35, 35, 35));// set color of health bar outline (black)
+                g2.fillRect(screenX - 1, screenY - 11, gp.tileSize + 2, 6);// draw health bar outline
                 // set color of health bar (red)
-                g2.setColor(new Color(255, 0, 30));
-                g2.fillRect(screenX, screenY - 10, (int) healthBarValue, 5);
-
-                hpBarCounter++;
-
+                g2.setColor(new Color(255, 0, 30));// set color of health bar (red)
+                g2.fillRect(screenX, screenY - 10, (int) healthBarValue, 5);// draw health bar
+                hpBarCounter++;// increase hpBarCounter
+                // if hpBarCounter is greater than 600, set hpBarOn to false
                 if (hpBarCounter > 600) {
-                    hpBarCounter = 0;
+                    hpBarCounter = 0;// set hpBarCounter to 0
                     hpBarOn = false;
                 }
             }
-
-            if (invincible == true) {
-                hpBarOn = true;
-                hpBarCounter = 0;
-                updateAlpha(g2, 0.4f);
+            // health bar for boss
+            if (invincible == true) {// if the character is invincible
+                hpBarOn = true;// set hpBarOn to true
+                hpBarCounter = 0;// set hpBarCounter to 0
+                updateAlpha(g2, 0.4f);// set alpha to 0.4
             }
-            if (dying == true) {
-                dyingAnimation(g2);
+            if (dying == true) {// if the character is dying
+                dyingAnimation(g2);// call dyingAnimation method
             }
 
-            g2.drawImage(image, screenX, screenY, null);
+            g2.drawImage(image, screenX, screenY, null);// draw the character
 
             // reset the composite
             updateAlpha(g2, 1.0f);
         }
     }
 
-    //method to update alpha when "dying"
+    // method to update alpha when "dying"
     public void dyingAnimation(Graphics2D g2) {
-        dyingCounter++;//increment counter
+        dyingCounter++;// increment counter
 
-        int i = 5;//counter interval
-        if (dyingCounter <= i) {//first interval
+        int i = 5;// counter interval
+        if (dyingCounter <= i) {// first interval
             updateAlpha(g2, 0f);
         }
-        if (dyingCounter > i && dyingCounter <= i * 2) {//second interval 
+        if (dyingCounter > i && dyingCounter <= i * 2) {// second interval
             updateAlpha(g2, 1f);
         }
-        if (dyingCounter > i * 2 && dyingCounter <= i * 3) {//third interval 
+        if (dyingCounter > i * 2 && dyingCounter <= i * 3) {// third interval
             updateAlpha(g2, 0f);
         }
-        if (dyingCounter > i * 3 && dyingCounter <= i * 4) {//fourth interval
+        if (dyingCounter > i * 3 && dyingCounter <= i * 4) {// fourth interval
             updateAlpha(g2, 1f);
         }
-        if (dyingCounter > i * 4 && dyingCounter <= i * 5) {//fifth interval
+        if (dyingCounter > i * 4 && dyingCounter <= i * 5) {// fifth interval
             updateAlpha(g2, 0f);
         }
-        if (dyingCounter > i * 5 && dyingCounter <= i * 6) {//sixth interval
+        if (dyingCounter > i * 5 && dyingCounter <= i * 6) {// sixth interval
             updateAlpha(g2, 1f);
         }
-        if (dyingCounter > i * 6 && dyingCounter <= i * 7) {//seventh interval
+        if (dyingCounter > i * 6 && dyingCounter <= i * 7) {// seventh interval
             updateAlpha(g2, 0f);
         }
         if (dyingCounter > i * 7 && dyingCounter <= i * 8) {//
             updateAlpha(g2, 1f);
         }
-        if (dyingCounter > i * 8) {//reset counter and set dying to false
-            //dying = false;
-            // dyingCounter = 0;
+        if (dyingCounter > i * 8) {// reset counter and set dying to false
             alive = false;
         }
     }
 
+    // method to update alpha
     public void updateAlpha(Graphics2D g2, float alpha) {
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));// set alpha
     }
 
+    // method to set up images
     public BufferedImage setUp(String imagePath, int width, int height) {
-        UtilityTool tool = new UtilityTool();
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(new File(imagePath + ".png"));
-            image = tool.scaleImage(image, width, height);
+        UtilityTool tool = new UtilityTool();// create new UtilityTool object
+        BufferedImage image = null;// create new BufferedImage object
+        try {// try to read image
+            image = ImageIO.read(new File(imagePath + ".png"));// read image
+            image = tool.scaleImage(image, width, height);// scale image
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {// catch error
+            e.printStackTrace();// print error
         }
-        return image;
+        return image;// return image
     }
 
+    // method for cat (healer) to heal player
     public void catHeal() {
         // if player life is less than max life, heal player when 'enter' is pressed
         if (gp.keyH.enterPressed && gp.player.life < gp.player.maxLife) {
@@ -335,14 +353,12 @@ public class Character {
             gp.keyH.enterPressed = false;
             // if player is healed, display text saying so
             if (gp.player.life == gp.player.maxLife) {
-                gp.playSE(7);
-                gp.ui.addMessage("You have been healed!");
+                gp.playSE(7);// play sound effect
+                gp.ui.addMessage("You have been healed!");// display message
             }
-        }
-        else{
-            //display message "You are already at full health!"
-            gp.playSE(11);
-            gp.ui.addMessage("Meoww!");
+        } else {
+            gp.playSE(11);// play sound effect
+            gp.ui.addMessage("Meoww!");// display message
         }
     }
 }
