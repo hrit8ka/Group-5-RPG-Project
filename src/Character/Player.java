@@ -264,6 +264,8 @@ public class Player extends Character {
             gp.projectileList.add(projectile);
             projectileCounter = 0; //reset projectile counter
             gp.playSE(10);
+            //stop projectile shooting
+            gp.keyH.shotKeyPressed = false;
         }
 
 

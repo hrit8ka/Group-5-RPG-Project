@@ -34,7 +34,14 @@ public class Projectile extends Character {
             }
         }
         if (user != gp.player) {
-
+            // check collision with player
+            boolean contactWithPlayer = gp.collisionChecker.checkPlayer(this);
+            if(gp.player.invincible == false && contactWithPlayer == true){
+                if (contactWithPlayer) {
+                    gp.player.damagePlayer(attack); // damage player
+                    alive = false;// set alive to false
+                }
+            }
         }
         // if alive, move
         switch (direction) { // move in direction

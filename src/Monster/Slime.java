@@ -1,6 +1,7 @@
 package Monster;
 
 import Main.GamePanel;
+import Object.Rock;
 
 import java.util.Random;
 
@@ -22,6 +23,7 @@ public class Slime extends Character {
         attack = 5;
         defense = 0;
         xp=2;
+        projectile = new Rock(gp);
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -74,6 +76,12 @@ public class Slime extends Character {
                 direction = "right";
             }
             actionLockCounter = 0;
+        }
+        int i = new Random().nextInt(100) + 1; // pick a random number between 1 and 100
+        if(i> 99 && projectile.alive == false && projectileCounter == 30){
+            projectile.set(worldX, worldY, direction, true, this);
+            gp.projectileList.add(projectile);
+            projectileCounter = 0;
         }
     }
 

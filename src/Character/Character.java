@@ -135,16 +135,8 @@ public class Character {
         boolean contactPlayer = gp.collisionChecker.checkPlayer(this);
 
         if (this.type == monsterType && contactPlayer == true) {
-            if (gp.player.invincible == false) {
-                // give damage to player
-                gp.playSE(6);
-                int damage = this.attack - gp.player.defense;
-                if (damage < 0) {
-                    damage = 0;
-                }
-                gp.player.life -= damage;
-                gp.player.invincible = true;
-            }
+            //call damagePlayer method
+            damagePlayer(attack);
         }
 
         // if collision is false, player can move
@@ -180,7 +172,23 @@ public class Character {
                 invincibleCounter = 0;
             }
         }
+        if(projectileCounter <30){
+            projectileCounter++;
+        }
 
+    }
+
+    public void damagePlayer(int attack){
+           if (gp.player.invincible == false) {
+                // give damage to player
+                gp.playSE(6);
+                int damage = this.attack - gp.player.defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+                gp.player.life -= damage;
+                gp.player.invincible = true;
+            }
     }
 
     public void draw(Graphics2D g2) {
