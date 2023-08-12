@@ -74,6 +74,12 @@ public class Sound {
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        try{
+            soundURL[10] = new URL("file:src/sound/fireball.wav");
+        }
+        catch(MalformedURLException e){
+            e.printStackTrace();
+        }
 
         
     }

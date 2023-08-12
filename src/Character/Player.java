@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Object.Fireball;
 //import Main.UtilityTool;
 import Object.OBJ_Armor;
 import Object.OBJ_Key;
@@ -83,6 +84,7 @@ public class Player extends Character {
         gold = 0;
         currentWeapon = new OBJ_Sword(gp);
         currentArmor = new OBJ_Armor(gp);
+        projectile = new Fireball(gp);
         attack = getAttack(); // total attack value depends on strength and weapon
         defense = getDefense(); // total defense value depends on agility and armor
 
@@ -209,8 +211,8 @@ public class Player extends Character {
             // check npc collision
             int npcIndex = gp.collisionChecker.checkCharacter(this, gp.npc);
             interactWithNPC(npcIndex);
-            
-            //check healer collision
+
+            // check healer collision
             int healerIndex = gp.collisionChecker.checkCharacter(this, gp.healer);
             interactWithHealer(healerIndex);
 
@@ -254,12 +256,28 @@ public class Player extends Character {
                 spriteCounter = 0;
             }
         }
+        //if F key is pressed and previous projectile is inactive, shoot projectile
+        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && projectileCounter == 30){
+            //set default coordinates, direction and user of projectile
+            projectile.set(worldX, worldY, direction, true, this);
+            //add projectile to array list
+            gp.projectileList.add(projectile);
+            projectileCounter = 0; //reset projectile counter
+            gp.playSE(10);
+        }
+
+
+        // check if player is invincible
         if (invincible == true) {
             invincibleCounter++;
             if (invincibleCounter > 60) {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if(projectileCounter < 30){
+            //increase projectile counter
+            projectileCounter++;
         }
     }
 
@@ -296,7 +314,7 @@ public class Player extends Character {
             solidArea.height = attackArea.height;
             // check collision with monster with the attack area
             int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);
-            damagedMonster(monsterIndex);
+            damagedMonster(monsterIndex, attack);
             // after checking, reset the worldX, worldY, solidAreaWidth and solidAreaHeight
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -334,20 +352,21 @@ public class Player extends Character {
             if (npcIndex != 999) {
                 noAttack = true;
                 gp.gameState = gp.dialogueState;
-                gp.npc[npcIndex].speak(); //speak to the npc
+                gp.npc[npcIndex].speak(); // speak to the npc
             }
             // gp.keyH.enterPressed = false;
         }
 
     }
+
     public void interactWithHealer(int healerIndex) {
         if (gp.keyH.enterPressed == true) {
             if (healerIndex != 999) {
-                noAttack = true; 
+                noAttack = true;
                 gp.gameState = gp.dialogueState;
-                gp.healer[healerIndex].speak(); //speak to the healer
+                gp.healer[healerIndex].speak(); // speak to the healer
                 gp.gameState = gp.healingState;
-                gp.healer[healerIndex].catHeal(); //heal the player
+                gp.healer[healerIndex].catHeal(); // heal the player
 
             }
             // gp.keyH.enterPressed = false;
@@ -355,21 +374,22 @@ public class Player extends Character {
 
     }
 
+    // method to check if the player is in contact with the monster
     public void contactMonster(int monsterIndex) {
-        if (monsterIndex != 999) {
-            if (invincible == false) {
-                gp.playSE(6);
-                int damage = gp.monster[monsterIndex].attack - defense;
-                if (damage < 0) {
+        if (monsterIndex != 999) {// if the player is in contact with the monster, the player will be damaged
+            if (invincible == false && gp.monster[monsterIndex].dying == false) {
+                gp.playSE(6);// play the sound effect
+                int damage = gp.monster[monsterIndex].attack - defense; // calculate the damage
+                if (damage < 0) {// if the damage is less than 0, set the damage to 0
                     damage = 0;
                 }
-                life -= damage;
-                invincible = true;
+                life -= damage;// decrease the player's life
+                invincible = true;// set the player to invincible
             }
         }
     }
 
-    public void damagedMonster(int monsterIndex) {
+    public void damagedMonster(int monsterIndex, int attack) {
         if (monsterIndex != 999) {
             if (gp.monster[monsterIndex].invincible == false) {
                 gp.playSE(5);
@@ -405,7 +425,7 @@ public class Player extends Character {
             defense = getDefense();
             gp.playSE(8);
             gp.gameState = gp.dialogueState;
-            gp.ui.currentDialogue = "Level" + level + "!";
+            gp.ui.currentDialogue = "Level " + level + "!\nYou are stronger now";
         }
     }
 

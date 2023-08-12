@@ -44,6 +44,7 @@ public class Character {
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int invincibleCounter = 0;
+    public int projectileCounter = 0;
     int dyingCounter = 0;
     int hpBarCounter = 0;
     // attributes
@@ -53,6 +54,8 @@ public class Character {
     // Character status
     public int maxLife;
     public int life;
+    public int maxMana;
+    public int mana;
     public int level;
     public int strength;
     public int agility;
@@ -63,11 +66,13 @@ public class Character {
     public int gold;
     public Character currentWeapon;
     public Character currentArmor;
+    public Projectile projectile;
 
     // item attributes
     public int attackValue;
     public int defenseValue;
     public String description = "";
+    public int usePrice;
 
     // Type
     public int type;
@@ -258,35 +263,37 @@ public class Character {
         }
     }
 
+    //method to update alpha when "dying"
     public void dyingAnimation(Graphics2D g2) {
-        dyingCounter++;
+        dyingCounter++;//increment counter
 
-        int i = 5;
-        if (dyingCounter <= i) {
+        int i = 5;//counter interval
+        if (dyingCounter <= i) {//first interval
             updateAlpha(g2, 0f);
         }
-        if (dyingCounter > i && dyingCounter <= i * 2) {
+        if (dyingCounter > i && dyingCounter <= i * 2) {//second interval 
             updateAlpha(g2, 1f);
         }
-        if (dyingCounter > i * 2 && dyingCounter <= i * 3) {
-        }
-        if (dyingCounter > i * 3 && dyingCounter <= i * 4) {
-            updateAlpha(g2, 1f);
-        }
-        if (dyingCounter > i * 4 && dyingCounter <= i * 5) {
+        if (dyingCounter > i * 2 && dyingCounter <= i * 3) {//third interval 
             updateAlpha(g2, 0f);
         }
-        if (dyingCounter > i * 5 && dyingCounter <= i * 6) {
+        if (dyingCounter > i * 3 && dyingCounter <= i * 4) {//fourth interval
             updateAlpha(g2, 1f);
         }
-        if (dyingCounter > i * 6 && dyingCounter <= i * 7) {
+        if (dyingCounter > i * 4 && dyingCounter <= i * 5) {//fifth interval
             updateAlpha(g2, 0f);
         }
-        if (dyingCounter > i * 7 && dyingCounter <= i * 8) {
+        if (dyingCounter > i * 5 && dyingCounter <= i * 6) {//sixth interval
             updateAlpha(g2, 1f);
         }
-        if (dyingCounter > i * 8) {
-            dying = false;
+        if (dyingCounter > i * 6 && dyingCounter <= i * 7) {//seventh interval
+            updateAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 7 && dyingCounter <= i * 8) {//
+            updateAlpha(g2, 1f);
+        }
+        if (dyingCounter > i * 8) {//reset counter and set dying to false
+            //dying = false;
             // dyingCounter = 0;
             alive = false;
         }

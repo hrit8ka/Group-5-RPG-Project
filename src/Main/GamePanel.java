@@ -54,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     public NPC_Sage npc[] = new NPC_Sage[10];
     public Healer healer[] = new Healer[10];
     public Character monster[] = new Character[20];
+    public ArrayList < Character > projectileList = new ArrayList < Character > ();
     ArrayList<Character> characterList = new ArrayList<Character>();
 
     // game state
@@ -118,6 +119,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    //update method for the characterList
     public void update() {
         if (gameState == playState) {
             // player
@@ -146,6 +148,18 @@ public class GamePanel extends JPanel implements Runnable {
                     // monster[i].update();
                 }
             }
+            //projectile
+            for (int i = 0; i < projectileList.size(); i++) {
+                if (projectileList.get(i) != null) {
+                    if(projectileList.get(i).alive == true){
+                        projectileList.get(i).update();
+                    }
+                    if(projectileList.get(i).alive == false){
+                        projectileList.remove(i);
+                    }
+                }
+            }
+
         }
         if (gameState == pauseState) {
             // do nothing
@@ -193,6 +207,11 @@ public class GamePanel extends JPanel implements Runnable {
             for (int i = 0; i < monster.length; i++) {
                 if (monster[i] != null) {
                     characterList.add(monster[i]); // add monster to characterListS
+                }
+            }
+            for(int i = 0; i < projectileList.size(); i++){
+                if(projectileList.get(i) != null){
+                    characterList.add(projectileList.get(i));// add projectile to characterList
                 }
             }
             // sort
