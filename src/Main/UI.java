@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import Object.OBJ_Heart;
-import Object.OBJ_Mana;
 import Character.Character;
 
 import java.awt.BasicStroke;
@@ -58,10 +57,6 @@ public class UI {
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;
-        //instanciate mana images
-        Character mana = new OBJ_Mana(gp);
-        mana_full = mana.image;
-        mana_blank = mana.image2;
         
     }
 
@@ -242,7 +237,7 @@ public class UI {
         final int frameX = gp.tileSize;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize * 5;
-        final int frameHeight =(int)(gp.tileSize * 10.5);
+        final int frameHeight =gp.tileSize * 10;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // text
