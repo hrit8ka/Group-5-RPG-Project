@@ -333,11 +333,13 @@ public class Character {
             gp.keyH.enterPressed = false;
             // if player is healed, display text saying so
             if (gp.player.life == gp.player.maxLife) {
+                gp.playSE(7);
                 gp.ui.addMessage("You have been healed!");
             }
         }
         else{
             //display message "You are already at full health!"
+            gp.playSE(11);
             gp.ui.addMessage("Meoww!");
         }
     }

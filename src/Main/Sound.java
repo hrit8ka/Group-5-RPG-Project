@@ -80,6 +80,12 @@ public class Sound {
         catch(MalformedURLException e){
             e.printStackTrace();
         }
+        try{
+            soundURL[11] = new URL("file:src/sound/cat.wav");
+        }
+        catch(MalformedURLException e){
+            e.printStackTrace();
+        }
 
         
     }
