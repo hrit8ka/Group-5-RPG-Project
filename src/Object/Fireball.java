@@ -1,6 +1,7 @@
 package Object;
 
 import Character.Projectile;
+import Character.Character;
 import Main.GamePanel;
 
 // Fireball class for the fireball projectile
@@ -18,6 +19,7 @@ public class Fireball extends Projectile {
         maxLife = 80; // 80 frames = 1.33 seconds
         life = maxLife; // set life to max
         attack = 5; // 5 damage
+        usePrice = 1; // 1 mana
         alive = false; // set alive to false
         getImage();
     }
@@ -33,5 +35,15 @@ public class Fireball extends Projectile {
         right1 = setUp("./src/projectiles/fireball_right_1", gp.tileSize, gp.tileSize);
         right2 = setUp("./src/projectiles/fireball_right_2", gp.tileSize, gp.tileSize);
 
+    }
+    public boolean haveMana(Character user){
+        boolean haveMana = false;
+        if(user.mana >= usePrice){ //why is this not working? because it's not in the update method
+            haveMana = true;
+        } 
+        return haveMana;
+    }
+    public void subtractMana(Character user){
+        user.mana -= usePrice;
     }
 }

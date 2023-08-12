@@ -73,5 +73,12 @@ public class Projectile extends Character {
             spriteCounter = 0; // reset sprite counter
         }
     }
+    public boolean haveMana(Character user){
+        boolean haveMana = false;
+        return haveMana;
+    }
+    public void subtractMana(Character user){
+        
+    }
 
 }

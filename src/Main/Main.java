@@ -21,4 +21,4 @@ public class Main {
     }
 }
 
-// video 30, 8:36
+// video 31, 1:13

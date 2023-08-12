@@ -77,6 +77,8 @@ public class Player extends Character {
         level = 1;
         maxLife = 6;
         life = maxLife;
+        maxMana = 4;
+        mana = maxMana;
         strength = 1; // more strength, more damage given by the player
         agility = 1; // more agility, less damage received by the player
         xp = 0;
@@ -259,9 +261,12 @@ public class Player extends Character {
             }
         }
         //if F key is pressed and previous projectile is inactive, shoot projectile
-        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && projectileCounter == 30){
+        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && projectileCounter == 30 
+        && projectile.haveMana(this) == true){
             //set default coordinates, direction and user of projectile
             projectile.set(worldX, worldY, direction, true, this);
+            //subtract mana
+            projectile.subtractMana(this);
             //add projectile to array list
             gp.projectileList.add(projectile);
             projectileCounter = 0; //reset projectile counter

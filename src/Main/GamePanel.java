@@ -54,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     public NPC_Sage npc[] = new NPC_Sage[10];
     public Healer healer[] = new Healer[10];
     public Character monster[] = new Character[20];
-    public ArrayList < Character > projectileList = new ArrayList < Character > ();
+    public ArrayList < Character > projectileList = new ArrayList <> ();
     ArrayList<Character> characterList = new ArrayList<Character>();
 
     // game state
