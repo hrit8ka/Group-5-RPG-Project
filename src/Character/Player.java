@@ -77,8 +77,6 @@ public class Player extends Character {
         level = 1;
         maxLife = 6;
         life = maxLife;
-        maxMana = 4;
-        mana = maxMana;// mana is used for casting spells
         strength = 1; // more strength, more damage given by the player
         agility = 1; // more agility, less damage received by the player
         xp = 0;
@@ -145,7 +143,8 @@ public class Player extends Character {
 
         up1 = setUp("./src/player/up_1", gp.tileSize, gp.tileSize);
         up2 = setUp("./src/player/up_2", gp.tileSize, gp.tileSize);
-        down1 = setUp("./src/player/down_1", gp.tileSize, gp.tileSize);
+        //down1 = setUp("./src/player/down_1", gp.tileSize, gp.tileSize);
+        down1 = setUp("./src/player/link_attacking_down_1", gp.tileSize, gp.tileSize);
         down2 = setUp("./src/player/down_2", gp.tileSize, gp.tileSize);
         left1 = setUp("./src/player/left_1", gp.tileSize, gp.tileSize);
         left2 = setUp("./src/player/left_2", gp.tileSize, gp.tileSize);
@@ -158,7 +157,8 @@ public class Player extends Character {
         if (currentWeapon.type == swordType) {
             attackUp1 = setUp("./src/player/boy_attack_up_1", gp.tileSize, gp.tileSize * 2);
             attackUp2 = setUp("./src/player/boy_attack_up_2", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setUp("./src/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+            //attackDown1 = setUp("./src/player/boy_attack_down_1", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setUp("./src/player/link_attacking_down_1", gp.tileSize, gp.tileSize * 2);
             attackDown2 = setUp("./src/player/boy_attack_down_2", gp.tileSize, gp.tileSize * 2);
             attackLeft1 = setUp("./src/player/boy_attack_left_1", gp.tileSize * 2, gp.tileSize);
             attackLeft2 = setUp("./src/player/boy_attack_left_2", gp.tileSize * 2, gp.tileSize);

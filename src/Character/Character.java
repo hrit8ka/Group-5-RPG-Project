@@ -54,8 +54,6 @@ public class Character {
     // Character status
     public int maxLife;
     public int life;
-    public int maxMana;
-    public int mana;
     public int level;
     public int strength;
     public int agility;

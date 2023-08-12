@@ -130,26 +130,6 @@ public class UI {
                 x = x + gp.tileSize;
             }
         }
-        //draw mana life
-        x= (gp.tileSize / 2)-5;
-        y= (int)(gp.tileSize * 1.5);
-        i=0;
-        //draw max mana
-        while (i < gp.player.maxMana) {
-            g2.drawImage(mana_blank, x, y, null);
-            i++;
-            x += 35;
-        }
-        //reset x and y
-          x= (gp.tileSize / 2)-5;
-        y= (int)(gp.tileSize * 1.5);
-        i=0;
-        //draw mana
-        while (i < gp.player.mana) {
-            g2.drawImage(mana_full, x, y, null);
-            i++;
-            x += 35;
-        }
 
     }
 
@@ -279,16 +259,15 @@ public class UI {
         // names
         g2.drawString("Level: ", textX, textY + lineHeight);
         g2.drawString("HP: ", textX, textY + lineHeight * 2);
-        g2.drawString("Mana: ", textX, textY + lineHeight * 3);
-        g2.drawString("Strength: ", textX, textY + lineHeight * 4);
-        g2.drawString("Agility: ", textX, textY + lineHeight * 5);
-        g2.drawString("Attack: ", textX, textY + lineHeight * 6);
-        g2.drawString("Defense: ", textX, textY + lineHeight * 7);
-        g2.drawString("XP: ", textX, textY + lineHeight * 8);
-        g2.drawString("Next Level: ", textX, textY + lineHeight * 9);
-        g2.drawString("Gold: ", textX, textY + lineHeight * 10);
-        g2.drawString("Weapon: ", textX, textY + lineHeight * 11);
-        g2.drawString("Armor: ", textX, textY + lineHeight * 12);
+        g2.drawString("Strength: ", textX, textY + lineHeight * 3);
+        g2.drawString("Agility: ", textX, textY + lineHeight * 4);
+        g2.drawString("Attack: ", textX, textY + lineHeight * 5);
+        g2.drawString("Defense: ", textX, textY + lineHeight * 6);
+        g2.drawString("XP: ", textX, textY + lineHeight * 7);
+        g2.drawString("Next Level: ", textX, textY + lineHeight * 8);
+        g2.drawString("Gold: ", textX, textY + lineHeight * 9);
+        g2.drawString("Weapon: ", textX, textY + lineHeight * 10);
+        g2.drawString("Armor: ", textX, textY + lineHeight * 11);
         // values
         // align the values to the right
         int valueX = (frameX + frameWidth) - 30;
@@ -301,33 +280,30 @@ public class UI {
         // hp
         value = String.valueOf(gp.player.life + "/" + gp.player.maxLife);
         g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 2);
-        //mana
-        value = String.valueOf(gp.player.mana + "/" + gp.player.maxMana);
-        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 3);
         // strength
         value = String.valueOf(gp.player.strength);
-        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 4);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 3);
         // agility
         value = String.valueOf(gp.player.agility);
-        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 5);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 4);
         // attack
         value = String.valueOf(gp.player.attack);
-        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 6);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 5);
         // defense
         value = String.valueOf(gp.player.defense);
-        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 7);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 6);
         // xp
         value = String.valueOf(gp.player.xp);
-        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 8);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 7);
         // next level
         value = String.valueOf(gp.player.nextLevelXP);
-        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 9);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 8);
         // gold
         value = String.valueOf(gp.player.gold);
-        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 10);
+        g2.drawString(value, getXforAlignRightText(value, valueX), textY + lineHeight * 9);
         // display equipments image
-        g2.drawImage(gp.player.currentWeapon.down1, textX + 142, textY + lineHeight * 11 - 32, null);
-        g2.drawImage(gp.player.currentArmor.down1, textX + 148, textY + lineHeight * 12 - 32, null);
+        g2.drawImage(gp.player.currentWeapon.down1, textX + 142, textY + lineHeight * 10 - 32, null);
+        g2.drawImage(gp.player.currentArmor.down1, textX + 148, textY + lineHeight * 11 - 32, null);
 
     }
 

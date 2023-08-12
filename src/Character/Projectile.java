@@ -74,15 +74,4 @@ public class Projectile extends Character {
         }
     }
 
-    // method to check if player has enough mana to use fireball
-    public boolean checkMana(Character user) {
-
-        boolean checkMana = false;
-        return checkMana;
-    }
-
-    public void subtractMana(Character user) {
-
-    }
-
 }

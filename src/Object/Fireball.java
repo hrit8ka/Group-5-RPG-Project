@@ -18,7 +18,6 @@ public class Fireball extends Projectile {
         maxLife = 80; // 80 frames = 1.33 seconds
         life = maxLife; // set life to max
         attack = 5; // 5 damage
-        usePrice = 1; // 1 mana
         alive = false; // set alive to false
         getImage();
     }
@@ -35,20 +34,4 @@ public class Fireball extends Projectile {
         right2 = setUp("./src/projectiles/fireball_right_2", gp.tileSize, gp.tileSize);
 
     }
-
-    // method to check if player has enough mana to use fireball
-    public boolean checkMana(Character user) {
-        boolean checkMana;
-        if (user.mana >= usePrice) { // if player has enough mana, return true
-            checkMana = true;
-        } else { // if player does not have enough mana, return false
-            checkMana = false;
-        }
-    }
-
-    // method to subtract mana from player's mana
-    public void subtractMana(Character user) {
-        user.mana -= usePrice;// subtract mana from player's mana
-    }
-
 }
