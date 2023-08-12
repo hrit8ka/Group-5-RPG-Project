@@ -77,6 +77,8 @@ public class Player extends Character {
         level = 1;
         maxLife = 4;
         life = maxLife;
+        maxMana = 4;
+        mana = maxMana;// mana is used for casting spells
         strength = 1; // more strength, more damage given by the player
         agility = 1; // more agility, less damage received by the player
         xp = 0;
