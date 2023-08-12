@@ -36,4 +36,19 @@ public class Fireball extends Projectile {
 
     }
 
+    // method to check if player has enough mana to use fireball
+    public boolean checkMana(Character user) {
+        boolean checkMana;
+        if (user.mana >= usePrice) { // if player has enough mana, return true
+            checkMana = true;
+        } else { // if player does not have enough mana, return false
+            checkMana = false;
+        }
+    }
+
+    // method to subtract mana from player's mana
+    public void subtractMana(Character user) {
+        user.mana -= usePrice;// subtract mana from player's mana
+    }
+
 }
