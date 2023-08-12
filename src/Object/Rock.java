@@ -3,7 +3,8 @@ package Object;
 import Character.Projectile;
 import Main.GamePanel;
 
-public class Rock extends Projectile{
+// Rock class for the rock projectile
+public class Rock extends Projectile {
 
     GamePanel gp;
 
@@ -13,16 +14,17 @@ public class Rock extends Projectile{
         this.gp = gp;
 
         name = "Rock";
-        speed = 5;
-        maxLife = 80;
-        attack = 10;
-        usePrice = 0;
-        alive = false;
+        speed = 5; // 5 speed
+        maxLife = 80; // 80 frames = 1.33 seconds
+        attack = 10; // + 10 damage
+        usePrice = 0;// cost for using rock
+        alive = false;// set alive to false
 
-        getImage();
+        getImage(); // import image
     }
 
-    public void getImage(){
+    // Get image method
+    public void getImage() {
 
         up1 = setUp("./src/projectiles/rock_down_1", gp.tileSize, gp.tileSize);
         up2 = setUp("./src/projectiles/rock_down_1", gp.tileSize, gp.tileSize);

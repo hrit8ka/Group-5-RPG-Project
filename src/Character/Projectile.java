@@ -36,7 +36,7 @@ public class Projectile extends Character {
         if (user != gp.player) {
             // check collision with player
             boolean contactWithPlayer = gp.collisionChecker.checkPlayer(this);
-            if(gp.player.invincible == false && contactWithPlayer == true){
+            if (gp.player.invincible == false && contactWithPlayer == true) {
                 if (contactWithPlayer) {
                     gp.player.damagePlayer(attack); // damage player
                     alive = false;// set alive to false
@@ -72,6 +72,17 @@ public class Projectile extends Character {
             }
             spriteCounter = 0; // reset sprite counter
         }
+    }
+
+    // method to check if player has enough mana to use fireball
+    public boolean checkMana(Character user) {
+
+        boolean checkMana = false;
+        return checkMana;
+    }
+
+    public void subtractMana(Character user) {
+
     }
 
 }

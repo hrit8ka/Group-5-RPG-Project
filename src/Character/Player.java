@@ -75,7 +75,7 @@ public class Player extends Character {
 
         // Player status
         level = 1;
-        maxLife = 4;
+        maxLife = 6;
         life = maxLife;
         maxMana = 4;
         mana = maxMana;// mana is used for casting spells
