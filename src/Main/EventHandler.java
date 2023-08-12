@@ -105,6 +105,8 @@ public class EventHandler {
             gp.playSE(2);
             gp.ui.currentDialogue = "You found a healing pool! You are healed!";
             gp.player.life = gp.player.maxLife; // player recovers all HP
+            //player recovers all mana
+            gp.player.mana = gp.player.maxMana;
             gp.assetSetter.setMonster();
         }
         // gp.keyH.enterPressed = false;

@@ -5,13 +5,13 @@ import Main.GamePanel;
 
 public class OBJ_BlackCrystal extends Character {
     GamePanel gp;
-    int healingValue = 5;
     public OBJ_BlackCrystal(GamePanel gp) {
         
         super(gp);
         this.gp = gp;
         type = crystalType;
         name = "black crystal";
+        value = 5;
         down1 = setUp("src/objects/black_crystal", gp.tileSize, gp.tileSize);
 
         collision = true;
@@ -22,12 +22,12 @@ public class OBJ_BlackCrystal extends Character {
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        description = "[" + name + "]\nPowerful black crystal\nthat can heal you by " + healingValue + " HP.";
+        description = "[" + name + "]\nPowerful black crystal\nthat can heal you by " + value + " HP.";
     }
     public void use(Character Character){
         gp.gameState = gp.dialogueState;
-        gp.ui.currentDialogue = "You used the " + name + ".\nYou healed by " + healingValue + " HP.";
-        Character.life += healingValue;
+        gp.ui.currentDialogue = "You used the " + name + ".\nYou healed by " + value + " HP.";
+        Character.life +=  value;
         if(gp.player.life > gp.player.maxLife){
             gp.player.life = gp.player.maxLife;
         }

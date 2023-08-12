@@ -69,6 +69,7 @@ public class Character {
     public Projectile projectile;
 
     // item attributes
+    public int value; 
     public int attackValue;
     public int defenseValue;
     public String description = "";
@@ -84,6 +85,7 @@ public class Character {
     public final int axeType = 5;
     public final int crystalType = 6;
     public final int potionType = 7;
+    public final int pickUpType = 8;
 
     // constructor Character
     public Character(GamePanel gp) {
@@ -264,7 +266,7 @@ public class Character {
                 dyingAnimation(g2);
             }
 
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(image, screenX, screenY, null);
 
             // reset the composite
             updateAlpha(g2, 1.0f);

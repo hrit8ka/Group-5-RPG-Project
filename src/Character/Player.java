@@ -341,6 +341,13 @@ public class Player extends Character {
 
     public void pickUpObject(int i) {
         if (i != 999) {
+            //pickup object
+            if(gp.obj[i].type == pickUpType){
+                gp.obj[i].use(this);
+                gp.obj[i] = null;
+                
+            }
+            else{//inventory items
             String text;
             // if inventory is not full, pick up the object
             if (inventory.size() != maxInventorySize) {
@@ -352,6 +359,7 @@ public class Player extends Character {
             }
             gp.ui.addMessage(text);
             gp.obj[i] = null;
+        }
         }
 
     }

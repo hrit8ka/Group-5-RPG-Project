@@ -26,7 +26,7 @@ public class Sound {
             e.printStackTrace();
         }
         try {
-            soundURL[1] = new URL("file:src/sound/coin.wav");
+            soundURL[1] = new URL("file:src/sound/collectcoin.wav");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
