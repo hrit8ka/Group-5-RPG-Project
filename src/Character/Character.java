@@ -139,14 +139,61 @@ public class Character {
 
     // drop item method for dropping items
     public void dropItem(Character droppedItem) {
-        for(int i =0; i<gp.obj.length; i++){// loop through the obj array
-            if(gp.obj[i]== null){// if the obj is null
+        for (int i = 0; i < gp.obj.length; i++) {// loop through the obj array
+            if (gp.obj[i] == null) {// if the obj is null
                 gp.obj[i] = droppedItem;// set the obj to the droppedItem
                 gp.obj[i].worldX = worldX; // dead monster's worldX
                 gp.obj[i].worldY = worldY; // dead monster's worldY
                 break;// break out of the loop
             }
         }
+    }
+
+    // get particle color method to get the color of the particle
+    public Color getParticleColor() {
+        Color color = null;
+        return color;
+    }
+
+    // get particle size method to get the size of the particle
+    public int getParticleSize() {
+        int size = 0; // size of the particle 6 pixels
+        return size;
+    }
+
+    // get particle speed method to get the speed of the particle
+    public int getParticleSpeed() {
+        int speed = 0; // speed of the particle 2 pixels per frame
+        return speed;
+    }
+
+    // get particle max life method to get the time that the particle will last
+    public int getParticleMaxLife() {
+        int maxLife = 0; // max life of the particle 20 frames
+        return maxLife;
+    }
+
+    //method to generate particles
+    public void generateParticles(Character generator, Character target) {
+        // get the particle color
+        Color color = generator.getParticleColor();
+        // get the particle size
+        int size = generator.getParticleSize();
+        // get the particle speed
+        int speed = generator.getParticleSpeed();
+        // get the particle max life
+        int maxLife = generator.getParticleMaxLife();
+        // instantiate the particle class and pass in the parameters 
+        Particle particle = new Particle(gp, generator, color, size, speed, maxLife, -2, -1);
+        Particle particle2 = new Particle(gp, generator, color, size, speed, maxLife, 2, -1);
+        Particle particle3 = new Particle(gp, generator, color, size, speed, maxLife, -2, 1);
+        Particle particle4 = new Particle(gp, generator, color, size, speed, maxLife, 2, 1);
+        gp.particleList.add(particle);// add particle to the particleList
+        gp.particleList.add(particle2);// add particle2 to the particleList
+        gp.particleList.add(particle3);// add particle3 to the particleList
+        gp.particleList.add(particle4);// add particle4 to the particleList
+
+        
     }
 
     // update method

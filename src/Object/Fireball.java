@@ -1,6 +1,9 @@
 package Object;
 
 import Character.Projectile;
+
+import java.awt.Color;
+
 import Character.Character;
 import Main.GamePanel;
 
@@ -45,5 +48,24 @@ public class Fireball extends Projectile {
     }
     public void subtractMana(Character user){
         user.mana -= usePrice;
+    }
+    public Color getParticleColor() {
+        Color color = new Color(240, 50, 0);//orange color
+        return color;
+    }
+
+    public int getParticleSize() {
+        int size = 10; // size of the particle 6 pixels
+        return size;
+    }
+
+    public int getParticleSpeed() {
+        int speed = 2; // speed of the particle 2 pixels per frame
+        return speed;
+    }
+
+    public int getParticleMaxLife(){
+        int maxLife = 20; // max life of the particle 20 frames
+        return maxLife;
     }
 }

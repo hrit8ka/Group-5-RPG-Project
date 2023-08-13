@@ -1,5 +1,7 @@
 package Object;
 
+import java.awt.Color;
+
 import Character.Projectile;
 import Main.GamePanel;
 
@@ -33,5 +35,24 @@ public class Rock extends Projectile {
         left2 = setUp("./src/projectiles/rock_down_1", gp.tileSize, gp.tileSize);
         right1 = setUp("./src/projectiles/rock_down_1", gp.tileSize, gp.tileSize);
         right2 = setUp("./src/projectiles/rock_down_1", gp.tileSize, gp.tileSize);
+    }
+    public Color getParticleColor() {
+        Color color = new Color(40, 50, 0);//brown color
+        return color;
+    }
+
+    public int getParticleSize() {
+        int size = 10; // size of the particle 6 pixels
+        return size;
+    }
+
+    public int getParticleSpeed() {
+        int speed = 2; // speed of the particle 2 pixels per frame
+        return speed;
+    }
+
+    public int getParticleMaxLife(){
+        int maxLife = 20; // max life of the particle 20 frames
+        return maxLife;
     }
 }
