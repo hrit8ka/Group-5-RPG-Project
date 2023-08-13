@@ -9,6 +9,7 @@ import Object.OBJ_BlackCrystal;
 import Object.OBJ_BlueShield;
 import Object.OBJ_Heart;
 import Object.OBJ_Mana;
+import Tile_Interactive.dryTree;
 
 public class AssetSetter {
     GamePanel gp;
@@ -116,5 +117,23 @@ public class AssetSetter {
         // System.out.println(gp.monster[0]);
         // System.out.println(gp.monster[1]);
 
+    }
+
+    public void setInteractiveTile(){
+        int i = 0;
+        gp.interactiveTile[i] = new dryTree(gp, 27, 12);
+        i++;
+        gp.interactiveTile[i] = new dryTree(gp, 28, 12);
+        i++;
+        gp.interactiveTile[i] = new dryTree(gp, 29, 12);
+        i++;
+        gp.interactiveTile[i] = new dryTree(gp, 30, 12);
+        i++;
+        gp.interactiveTile[i] = new dryTree(gp, 31, 12);
+        i++;
+        gp.interactiveTile[i] = new dryTree(gp, 32, 12);
+        i++;
+        gp.interactiveTile[i] = new dryTree(gp, 33, 12);
+        i++;
     }
 }

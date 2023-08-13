@@ -15,6 +15,7 @@ import Character.Player;
 import Character.Character;
 import Character.Healer;
 import Tile.TileManager;
+import Tile_Interactive.interactiveTile;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -50,10 +51,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Character and Object
     public Player player = new Player(this, keyH);
-    public Character obj[] = new Character[10];
+    public Character obj[] = new Character[20];
     public NPC_Sage npc[] = new NPC_Sage[10];
     public Healer healer[] = new Healer[10];
     public Character monster[] = new Character[20];
+    public interactiveTile interactiveTile[] = new interactiveTile[50];
     public ArrayList < Character > projectileList = new ArrayList <> ();
     ArrayList<Character> characterList = new ArrayList<Character>();
 
@@ -80,6 +82,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setNPC();
         assetSetter.setHealer();
         assetSetter.setMonster();
+        assetSetter. setInteractiveTile();
         playMusic(0);
         stopMusic();
         gameState = titleState;
@@ -143,6 +146,8 @@ public class GamePanel extends JPanel implements Runnable {
                         monster[i].update();
                     }
                     if (monster[i].alive == false) {
+                        //check if monster drops item when it dies
+                        monster[i].checkDrop();
                         monster[i] = null;
                     }
                     // monster[i].update();
@@ -157,6 +162,12 @@ public class GamePanel extends JPanel implements Runnable {
                     if(projectileList.get(i).alive == false){
                         projectileList.remove(i);
                     }
+                }
+            }
+            // interactiveTile
+            for(int i =0; i <interactiveTile.length; i++){
+                if(interactiveTile[i] != null){
+                    interactiveTile[i].update();
                 }
             }
 
@@ -187,6 +198,12 @@ public class GamePanel extends JPanel implements Runnable {
         else {
             // Tile
             tileM.draw(g2); // tile is drawn before player so as to be behind the player
+            //interactiveTile
+            for(int i = 0; i < interactiveTile.length; i++){
+                if(interactiveTile[i] != null){
+                    interactiveTile[i].draw(g2);
+                }
+            }
             // Add character to characterList
             characterList.add(player);
             for (int i = 0; i < npc.length; i++) {

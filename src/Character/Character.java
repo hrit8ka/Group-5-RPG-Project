@@ -139,7 +139,14 @@ public class Character {
 
     // drop item method for dropping items
     public void dropItem(Character droppedItem) {
-        // to be overridden in player class
+        for(int i =0; i<gp.obj.length; i++){// loop through the obj array
+            if(gp.obj[i]== null){// if the obj is null
+                gp.obj[i] = droppedItem;// set the obj to the droppedItem
+                gp.obj[i].worldX = worldX; // dead monster's worldX
+                gp.obj[i].worldY = worldY; // dead monster's worldY
+                break;// break out of the loop
+            }
+        }
     }
 
     // update method

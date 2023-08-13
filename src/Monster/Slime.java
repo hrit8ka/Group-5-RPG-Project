@@ -1,6 +1,9 @@
 package Monster;
 
 import Main.GamePanel;
+import Object.Coin;
+import Object.OBJ_BlackCrystal;
+import Object.OBJ_Heart;
 import Object.Rock;
 
 import java.util.Random;
@@ -87,6 +90,23 @@ public class Slime extends Character {
         // when attacking, monster moves away from player
         actionLockCounter = 0;// set action lock counter to 0
         direction = gp.player.direction;// set direction to player direction
+
+    }
+
+    // method to check the drop of the monster
+    public void checkDrop() {
+        // cast a random number between 1 and 100
+        int i = new Random().nextInt(100) + 1;
+        // set the monster drop
+        if (i <= 50) {// if i is less than or equal to 50
+            dropItem(new Coin(gp));// drop a coin
+        }
+        if (i > 50 && i <= 75) {// if i is greater than 50 and less than or equal to 75
+            dropItem(new OBJ_Heart(gp));// drop a heart
+        }
+        if (i > 75 && i <= 100) {// if i is greater than 75 and less than or equal to 100
+            dropItem(new OBJ_BlackCrystal(gp));// drop a black crystal
+        }
 
     }
 }
