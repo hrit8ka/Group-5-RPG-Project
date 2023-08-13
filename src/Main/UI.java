@@ -454,13 +454,13 @@ public class UI {
         // End Game
         textY += gp.tileSize;
         g2.drawString("End Game", textX, textY);
-        if(commandNumber == 5 ){
+        if(commandNumber == 4 ){
             g2.drawString(">", textX - 25, textY);
         }
         //back
         textY += gp.tileSize * 2;
         g2.drawString("Back", textX, textY);
-        if(commandNumber == 6 ){
+        if(commandNumber == 5 ){
             g2.drawString(">", textX - 25, textY);
         }
 
