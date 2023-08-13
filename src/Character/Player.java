@@ -89,9 +89,22 @@ public class Player extends Character {
         defense = getDefense(); // total defense value depends on agility and armor
 
     }
+    //call method to set the default position of the player
+    public void setDefaultPosition(){
+        worldX = gp.tileSize * 23;// set the worldX coordinate
+        worldY = gp.tileSize * 21;// set the worldY coordinate
+        direction = "down";// set the direction of the player
+
+    }
+    public void restoreLifeandMana() {
+        life = maxLife;// set the life of the player
+        mana = maxMana;// set the mana of the player
+        invincible = false; //reset invincible
+    }
 
     // method to set the items of the player
     public void setItems() {
+        inventory.clear();// clear the inventory of the player
         inventory.add(currentWeapon);// add the current weapon to the inventory
         inventory.add(currentArmor);// add the current armor to the inventory
         inventory.add(new OBJ_Key(gp));// add a key to the inventory
@@ -306,6 +319,11 @@ public class Player extends Character {
         if (mana > maxMana) {
             // set mana to max mana
             mana = maxMana;
+        }
+        //if player's life is less than or equal to 0, set game state to game over state
+        if(life <= 0){
+            gp.gameState = gp.gameOverState;
+            gp.playSE(13);
         }
     }
 

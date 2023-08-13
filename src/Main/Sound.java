@@ -90,6 +90,11 @@ public class Sound {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        try {
+            soundURL[13] = new URL("file:src/sound/gameover.wav");// sound URL for door
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
     }
 
