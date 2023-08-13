@@ -206,7 +206,7 @@ public class UI {
         // display player
         x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
         y += gp.tileSize * 2;
-        g2.drawImage(gp.player.down1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+        g2.drawImage(gp.player.idle, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
         // menu
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40F));
