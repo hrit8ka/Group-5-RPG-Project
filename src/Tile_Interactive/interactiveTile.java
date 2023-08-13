@@ -16,6 +16,13 @@ public class interactiveTile extends Character{
         boolean isCorrectItem = false;
         return isCorrectItem;
     }
+    public void playSE(){
+
+    }
+    public interactiveTile getDestroyedTile(){
+        interactiveTile tile = null;
+        return tile;
+    }
    public void update(){
 
    }

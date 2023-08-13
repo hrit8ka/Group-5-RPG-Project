@@ -462,8 +462,9 @@ public class Player extends Character {
 
     private void damageInteractiveTile(int i) {
         // if the interactive tile is not null, damage the interactive tile
-        if(i != 999 && gp.interactiveTile[i].destructible == true){
-            gp.interactiveTile[i] = null;
+        if(i != 999 && gp.interactiveTile[i].destructible == true && gp.interactiveTile[i].isCorrectItem(this)==true){
+            gp.interactiveTile[i].playSE();
+            gp.interactiveTile[i] = gp.interactiveTile[i].getDestroyedTile();
         }
     }
 

@@ -81,6 +81,11 @@ public class Sound {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        try {
+            soundURL[12] = new URL("file:src/sound/cutTree.wav");// sound URL for cutting tree
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
     }
 
