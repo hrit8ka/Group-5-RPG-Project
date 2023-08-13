@@ -36,6 +36,7 @@ public class UI {
     public int titleScreenState = 0;
     public int slotColumn = 0;
     public int slotRow = 0;
+    int subState = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -396,17 +397,74 @@ public class UI {
 
     }
 
-public void drawOptionScreen(){
-    g2.setColor(Color.white);
-    g2.setFont(g2.getFont().deriveFont(32F));
+    public void drawOptionScreen() {
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(32F));
 
-    //sub window
-    int frameX = gp.tileSize * 6;
-    int frameY = gp.tileSize;
-    int frameWidth = gp.tileSize * 8;
-    int frameHeight = gp.tileSize * 10;
-    drawSubWindow(frameX, frameY, frameWidth, frameHeight);
-}
+        // sub window
+        int frameX = gp.tileSize * 6;
+        int frameY = gp.tileSize;
+        int frameWidth = gp.tileSize * 8;
+        int frameHeight = gp.tileSize * 10;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        switch (subState) {
+            case 0:
+                optionTop(frameX, frameY);
+                break;
+            case 1:
+
+        }
+    }
+
+    public void optionTop(int frameX, int frameY) {
+        int textX;
+        int textY;
+
+        // Title
+        String text = "Options";
+        textX = getXforCenteredText(text);
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+        // Full Screen on/off
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize * 2;
+        g2.drawString("Full Screen", textX, textY);
+        if(commandNumber == 0 ){
+            g2.drawString(">", textX - 25, textY);
+        }
+        // Music
+        textY += gp.tileSize;
+        g2.drawString("Music", textX, textY);
+        if(commandNumber == 1 ){
+            g2.drawString(">", textX - 25, textY);
+        }
+        // SE
+        textY += gp.tileSize;
+        g2.drawString("SE", textX, textY);
+        if(commandNumber == 2 ){
+            g2.drawString(">", textX - 25, textY);
+        }
+        // Control
+        textY += gp.tileSize;
+        g2.drawString("Control", textX, textY);
+        if(commandNumber == 3 ){
+            g2.drawString(">", textX - 25, textY);
+        }
+        // End Game
+        textY += gp.tileSize;
+        g2.drawString("End Game", textX, textY);
+        if(commandNumber == 5 ){
+            g2.drawString(">", textX - 25, textY);
+        }
+        //back
+        textY += gp.tileSize * 2;
+        g2.drawString("Back", textX, textY);
+        if(commandNumber == 6 ){
+            g2.drawString(">", textX - 25, textY);
+        }
+
+    }
 
     public int getItemIndexOnInventorySlot() {
         int itemIndex = slotColumn + (slotRow * 5);

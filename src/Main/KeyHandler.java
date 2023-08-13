@@ -178,6 +178,30 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_ENTER){
             enterPressed = true;
         }
+
+        int maxCommandNumber = 0;
+        switch(gp.ui.subState){
+            case 0:
+                maxCommandNumber = 7;
+        }
+
+        if(code == KeyEvent.VK_UP){
+           gp.ui.commandNumber --;
+           gp.playSE(9);
+           if(gp.ui.commandNumber < 0){
+            gp.ui.commandNumber = maxCommandNumber;
+           }
+           //reset command number
+        }
+        if(code == KeyEvent.VK_DOWN){
+            gp.ui.commandNumber ++;
+            gp.playSE(9);
+            if(gp.ui.commandNumber > maxCommandNumber){
+                gp.ui.commandNumber = 0;
+            }
+        }
+
+
     }
 
     @Override
