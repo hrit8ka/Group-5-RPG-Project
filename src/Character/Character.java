@@ -154,10 +154,11 @@ public class Character {
         setAction();// call setAction method
         collisionOn = false;// set collisionOn to false
         gp.collisionChecker.checkTile(this);// call checkTile method
-        gp.collisionChecker.checkObject(this, false);// call checkObject method
-        gp.collisionChecker.checkCharacter(this, gp.npc);// call checkCharacter method
-        gp.collisionChecker.checkCharacter(this, gp.monster);// call checkCharacter method
-        boolean contactPlayer = gp.collisionChecker.checkPlayer(this);// call checkPlayer method
+        gp.collisionChecker.checkObject(this, false);// check collision with object
+        gp.collisionChecker.checkCharacter(this, gp.npc);// check collision with npc
+        gp.collisionChecker.checkCharacter(this, gp.monster);// check collision with monster
+        gp.collisionChecker.checkCharacter(this, gp.interactiveTile);// check collision with interactiveTile
+        boolean contactPlayer = gp.collisionChecker.checkPlayer(this);// check collision with player
         // if the character is a monster and the player is attacking
         if (this.type == monsterType && contactPlayer == true) {
             // call damagePlayer method
