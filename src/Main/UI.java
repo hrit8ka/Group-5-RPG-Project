@@ -62,8 +62,7 @@ public class UI {
         Character mana = new OBJ_Mana(gp);
         mana_full = mana.image;
         mana_blank = mana.image2;
-        
-        
+
     }
 
     public void addMessage(String text) {
@@ -103,6 +102,11 @@ public class UI {
             drawCharacterScreen();
             drawInventory();
         }
+
+        // option state
+        if (gp.gameState == gp.optionState) {
+            drawOptionScreen();
+        }
     }
 
     public void drawPlayerLife() {
@@ -132,8 +136,8 @@ public class UI {
             }
         }
         // draw mana images
-         x = (gp.tileSize / 2)-5;
-        y = (int)(gp.tileSize * 1.5);
+        x = (gp.tileSize / 2) - 5;
+        y = (int) (gp.tileSize * 1.5);
         i = 0;
         // draw max mana
         while (i < gp.player.maxMana) {
@@ -142,8 +146,8 @@ public class UI {
             x += 35;
         }
         // Reset x and y
-        x = (gp.tileSize / 2)-5;
-        y = (int)(gp.tileSize * 1.5);
+        x = (gp.tileSize / 2) - 5;
+        y = (int) (gp.tileSize * 1.5);
         i = 0;
         // draw current mana
         while (i < gp.player.mana) {
@@ -151,7 +155,6 @@ public class UI {
             i++;
             x += 35;
         }
-
 
     }
 
@@ -261,10 +264,10 @@ public class UI {
 
     public void drawCharacterScreen() {
         // creating a frame
-        final int frameX = gp.tileSize;
+        final int frameX = gp.tileSize * 2;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize * 5;
-        final int frameHeight =(int)(gp.tileSize * 10.5);
+        final int frameHeight = (int) (gp.tileSize * 10.5);
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // text
@@ -287,7 +290,7 @@ public class UI {
         g2.drawString("Attack: ", textX, textY + lineHeight * 6);
         g2.drawString("Defense: ", textX, textY + lineHeight * 7);
         g2.drawString("XP: ", textX, textY + lineHeight * 8);
-        g2.drawString("Next Level: ", textX, textY + lineHeight *9);
+        g2.drawString("Next Level: ", textX, textY + lineHeight * 9);
         g2.drawString("Gold: ", textX, textY + lineHeight * 10);
         g2.drawString("Weapon: ", textX, textY + lineHeight * 11);
         g2.drawString("Armor: ", textX, textY + lineHeight * 12);
@@ -335,7 +338,7 @@ public class UI {
 
     public void drawInventory() {
         // inventory frame
-        int frameX = gp.tileSize * 9;
+        int frameX = gp.tileSize * 12;
         int frameY = gp.tileSize;
         int frameWidth = gp.tileSize * 6;
         int frameHeight = gp.tileSize * 5;
@@ -348,8 +351,9 @@ public class UI {
         int slotSize = gp.tileSize + 3;
         // draw player's items
         for (int i = 0; i < gp.player.inventory.size(); i++) {
-            //equip cursor
-            if(gp.player.inventory.get(i) == gp.player.currentWeapon || gp.player.inventory.get(i) == gp.player.currentArmor){
+            // equip cursor
+            if (gp.player.inventory.get(i) == gp.player.currentWeapon
+                    || gp.player.inventory.get(i) == gp.player.currentArmor) {
                 g2.setColor(new Color(240, 190, 190));
                 g2.setStroke(new BasicStroke(3));
                 g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
@@ -391,6 +395,18 @@ public class UI {
         }
 
     }
+
+public void drawOptionScreen(){
+    g2.setColor(Color.white);
+    g2.setFont(g2.getFont().deriveFont(32F));
+
+    //sub window
+    int frameX = gp.tileSize * 6;
+    int frameY = gp.tileSize;
+    int frameWidth = gp.tileSize * 8;
+    int frameHeight = gp.tileSize * 10;
+    drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+}
 
     public int getItemIndexOnInventorySlot() {
         int itemIndex = slotColumn + (slotRow * 5);
