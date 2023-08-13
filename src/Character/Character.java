@@ -184,10 +184,10 @@ public class Character {
         // get the particle max life
         int maxLife = generator.getParticleMaxLife();
         // instantiate the particle class and pass in the parameters 
-        Particle particle = new Particle(gp, generator, color, size, speed, maxLife, -2, -1);
-        Particle particle2 = new Particle(gp, generator, color, size, speed, maxLife, 2, -1);
-        Particle particle3 = new Particle(gp, generator, color, size, speed, maxLife, -2, 1);
-        Particle particle4 = new Particle(gp, generator, color, size, speed, maxLife, 2, 1);
+        Particle particle = new Particle(gp, target, color, size, speed, maxLife, -2, -1);
+        Particle particle2 = new Particle(gp, target, color, size, speed, maxLife, 2, -1);
+        Particle particle3 = new Particle(gp, target, color, size, speed, maxLife, -2, 1);
+        Particle particle4 = new Particle(gp, target, color, size, speed, maxLife, 2, 1);
         gp.particleList.add(particle);// add particle to the particleList
         gp.particleList.add(particle2);// add particle2 to the particleList
         gp.particleList.add(particle3);// add particle3 to the particleList

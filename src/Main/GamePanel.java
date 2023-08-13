@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,16 +25,21 @@ public class GamePanel extends JPanel implements Runnable {
     final int scale = 3; // scale of the game
 
     public final int tileSize = originalTileSize * scale; // tile size
-    public final int maxScreenCol = 16; // max number of columns on the screen
+    public final int maxScreenCol = 20; // max number of columns on the screen
     public final int maxScreenRow = 12; // max number of rows on the screen
-    public final int screenWidth = tileSize * maxScreenCol; // screen width
-    public final int screenHeight = tileSize * maxScreenRow; // screen height
+    public final int screenWidth = tileSize * maxScreenCol; // screen width, 20 tiles * 48 pixels = 960 pixels
+    public final int screenHeight = tileSize * maxScreenRow; // screen height, 12 tiles * 48 pixels = 576 pixels
 
     // WORLD MAP SETTINGS
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
+    //FULL SCREEN SETTINGS
+    int screenWidth2 = screenWidth;
+    int screenHeight2 = screenHeight;
+    BufferedImage tempScreen;
+    Graphics2D g2;
 
     // fps
     int FPS = 60;
@@ -87,6 +93,9 @@ public class GamePanel extends JPanel implements Runnable {
         playMusic(0);
         stopMusic();
         gameState = titleState;
+
+        tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
+        g2 = (Graphics2D) tempScreen.getGraphics();
     }
 
     public void startGameThread() {
