@@ -6,11 +6,15 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 // Sound class is used to play sounds
 public class Sound {
     Clip clip;// clip for sound
     URL soundURL[] = new URL[30]; // URL is used to store the location of the sound file
+    FloatControl fc; // float control is used to control the volume of the sound
+    int volumeScale = 3; // volume scale is used to scale the volume of the sound
+    float volume; // volume is used to store the volume of the sound
 
     public Sound() {
         /*
@@ -95,6 +99,8 @@ public class Sound {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL[i]);// get audio input stream
             clip = AudioSystem.getClip();// get clip
             clip.open(audioInputStream);// open clip
+            fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);// get float control
+            checkVolume();
         } catch (Exception e) {
 
         }
@@ -116,5 +122,31 @@ public class Sound {
     public void stop() {
         clip.stop();// stop clip
     }
+
+    // checkVolume method is used to check the volume of the sound
+    public void checkVolume() {
+        switch(volumeScale){
+            case 0: 
+                volume = -80.0f;
+                break;
+            case 1:
+                volume = -20.0f;
+                break;
+            case 2:
+                volume = -12.0f;
+                break;
+            case 3:
+                volume = -5.0f;
+                break;
+            case 4:
+                volume = 1.0f;
+                break;
+            case 5:
+                volume = 6.0f;
+                break;
+        }
+        fc.setValue(volume);// set value of float control
+    }
+
 
 }
