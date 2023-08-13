@@ -12,7 +12,10 @@ public class interactiveTile extends Character{
         super(gp);
         this.gp = gp;
     }
-
+    public boolean isCorrectItem(Character Character){
+        boolean isCorrectItem = false;
+        return isCorrectItem;
+    }
    public void update(){
 
    }

@@ -229,6 +229,10 @@ public class Player extends Character {
             int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);
             contactMonster(monsterIndex);// call the method to contact the monster
 
+            // check interactive tile collision
+            int interactiveTileIndex = gp.collisionChecker.checkCharacter(this, gp.interactiveTile);
+            interactWithInteractiveTile(interactiveTileIndex);// call the method to interact with the interactive tile
+
             // check event
             gp.eventHandler.checkEvent();
             // gp.keyH.enterPressed = false;
@@ -339,6 +343,9 @@ public class Player extends Character {
             // check collision with monster with the attack area
             int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);// check collision with monster
             damagedMonster(monsterIndex, attack);// call the method to damage the monster
+            // check collision with interactive tiles
+            int interactiveTileIndex = gp.collisionChecker.checkCharacter(this, gp.interactiveTile);
+            damageInteractiveTile(interactiveTileIndex);
             // after checking, reset the worldX, worldY, solidAreaWidth and solidAreaHeight
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -423,6 +430,9 @@ public class Player extends Character {
         }
     }
 
+    private void interactWithInteractiveTile(int interactiveTileIndex) {
+    }
+
     // method to check the damage of the monster
     public void damagedMonster(int monsterIndex, int attack) {
         if (monsterIndex != 999) {// if the monster is not null
@@ -447,6 +457,13 @@ public class Player extends Character {
                     checkLevelUp();// call the method to check if the player leveled up
                 }
             }
+        }
+    }
+
+    private void damageInteractiveTile(int i) {
+        // if the interactive tile is not null, damage the interactive tile
+        if(i != 999 && gp.interactiveTile[i].destructible == true){
+            gp.interactiveTile[i] = null;
         }
     }
 
