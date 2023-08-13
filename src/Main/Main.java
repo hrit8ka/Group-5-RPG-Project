@@ -16,6 +16,11 @@ public class Main {
         GamePanel gamePanel = new GamePanel();// create game panel
         window.add(gamePanel);// add game panel to window
 
+        gamePanel.config.loadConfig();// load config
+        if(gamePanel.fullScreenOn == true){
+            window.setExtendedState(JFrame.MAXIMIZED_BOTH);// set window to full screen
+        }
+
         window.pack();// pack window
 
         window.setLocationRelativeTo(null); // window appears in the center of the screen
@@ -25,4 +30,4 @@ public class Main {
     }
 }
 
-// video 35. 17:03
+// video 37
