@@ -4,6 +4,7 @@ package Character;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -70,6 +71,8 @@ public class Character {
     public Projectile projectile;// projectile: the projectile that the character is using
 
     // item attributes
+    public ArrayList<Character> inventory = new ArrayList<>();// inventory of the player
+    public final int maxInventorySize = 20;// max size of the inventory
     public int value; // value: the value of the item
     public int attackValue;// attackValue: the attacking power of the item
     public int defenseValue;// defenseValue: the defending power of the item
@@ -173,7 +176,7 @@ public class Character {
         return maxLife;
     }
 
-    //method to generate particles
+    // method to generate particles
     public void generateParticles(Character generator, Character target) {
         // get the particle color
         Color color = generator.getParticleColor();
@@ -183,7 +186,7 @@ public class Character {
         int speed = generator.getParticleSpeed();
         // get the particle max life
         int maxLife = generator.getParticleMaxLife();
-        // instantiate the particle class and pass in the parameters 
+        // instantiate the particle class and pass in the parameters
         Particle particle = new Particle(gp, target, color, size, speed, maxLife, -2, -1);
         Particle particle2 = new Particle(gp, target, color, size, speed, maxLife, 2, -1);
         Particle particle3 = new Particle(gp, target, color, size, speed, maxLife, -2, 1);
@@ -193,7 +196,6 @@ public class Character {
         gp.particleList.add(particle3);// add particle3 to the particleList
         gp.particleList.add(particle4);// add particle4 to the particleList
 
-        
     }
 
     // update method
@@ -230,7 +232,7 @@ public class Character {
             }
         }
         spriteCounter++;// increase spriteCounter
-        if (spriteCounter > 12) {// if spriteCounter is greater than 12, change sprite
+        if (spriteCounter > 24) {// if spriteCounter is greater than 12, change sprite
             if (spriteNumber == 1) {// if spriteNumber is 1
                 spriteNumber = 2;// set spriteNumber to 2
             } else if (spriteNumber == 2) {// if spriteNumber is 2, set spriteNumber to 1

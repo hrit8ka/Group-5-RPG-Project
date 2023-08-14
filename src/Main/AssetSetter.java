@@ -1,6 +1,7 @@
 package Main;
 
 import Character.Healer;
+import Character.NPC_Merchant;
 import Character.NPC_Sage;
 import Monster.Slime;
 import Object.Coin;
@@ -21,7 +22,7 @@ public class AssetSetter {
     public void setObject() {
         int mapNum = 0;
         int i = 0;
-        //add black crystal
+        // add black crystal
         gp.obj[mapNum][i] = new OBJ_BlackCrystal(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 21;
         gp.obj[mapNum][i].worldY = gp.tileSize * 23;
@@ -34,17 +35,17 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = gp.tileSize * 26;
         gp.obj[mapNum][i].worldY = gp.tileSize * 21;
         i++;
-        //add axe
+        // add axe
         gp.obj[mapNum][i] = new OBJ_Axe(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 33;
         gp.obj[mapNum][i].worldY = gp.tileSize * 21;
         i++;
-        //add blue shield
+        // add blue shield
         gp.obj[mapNum][i] = new OBJ_BlueShield(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 35;
         gp.obj[mapNum][i].worldY = gp.tileSize * 21;
 
-        //add gold coins
+        // add gold coins
         i++;
         gp.obj[mapNum][i] = new Coin(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 21;
@@ -59,12 +60,12 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = gp.tileSize * 19;
         i++;
 
-        //set heart
+        // set heart
         gp.obj[mapNum][i] = new OBJ_Heart(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 22;
         gp.obj[mapNum][i].worldY = gp.tileSize * 27;
         i++;
-        //set mana
+        // set mana
         gp.obj[mapNum][i] = new OBJ_Mana(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 22;
         gp.obj[mapNum][i].worldY = gp.tileSize * 29;
@@ -75,9 +76,18 @@ public class AssetSetter {
     // GamePanel.java
     public void setNPC() {
         int mapNum = 0;
+        int i;
         gp.npc[mapNum][0] = new NPC_Sage(gp); // create a new NPC object
         gp.npc[mapNum][0].worldX = 23 * gp.tileSize;
-        gp.npc[mapNum][0].worldY = 23 * gp.tileSize;
+        gp.npc[mapNum][0].worldY = 23 * gp.tileSize;       
+
+        //adding merchant to the game in Map 1
+        mapNum = 1;
+        i = 0;
+        gp.merchant[mapNum][i] = new NPC_Merchant(gp);
+        gp.merchant[mapNum][i].worldX = 12 * gp.tileSize;
+        gp.merchant[mapNum][i].worldY = 7 * gp.tileSize;
+        i++;
 
     }
 
@@ -120,17 +130,9 @@ public class AssetSetter {
         // System.out.println(gp.monster[0]);
         // System.out.println(gp.monster[1]);
 
-        //Map 1
-        mapNum = 1;
-        gp.npc[mapNum][0] = new NPC_Sage(gp); // create a new NPC object
-        gp.npc[mapNum][0].worldX = 12 * gp.tileSize;
-        gp.npc[mapNum][0].worldY = 7 * gp.tileSize;
-        i++;
-
-
     }
 
-    public void setInteractiveTile(){
+    public void setInteractiveTile() {
         int mapNum = 0;
         int i = 0;
         gp.interactiveTile[mapNum][i] = new dryTree(gp, 27, 12);

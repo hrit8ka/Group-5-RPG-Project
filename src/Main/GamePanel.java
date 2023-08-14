@@ -17,6 +17,7 @@ import Character.NPC_Sage;
 import Character.Player;
 import Character.Character;
 import Character.Healer;
+import Character.NPC_Merchant;
 import Tile.TileManager;
 import Tile_Interactive.interactiveTile;
 
@@ -65,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     public Character obj[][] = new Character[maxMap][20];
     public NPC_Sage npc[][] = new NPC_Sage[maxMap][10];
+    public NPC_Merchant merchant[][] = new NPC_Merchant[maxMap][10];
     public Healer healer[][] = new Healer[maxMap][10];
     public Character monster[][] = new Character[maxMap][20];
     public interactiveTile interactiveTile[][] = new interactiveTile[maxMap][50];
@@ -184,10 +186,16 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playState) {
             // player
             player.update();
-            // npc
+            // npc sage
             for (int i = 0; i < npc[1].length; i++) {
                 if (npc[currentMap][i] != null) {
                     npc[currentMap][i].update();
+                }
+            }
+            // npc merchant
+            for (int i = 0; i < merchant[1].length; i++) {
+                if (merchant[currentMap][i] != null) {
+                    merchant[currentMap][i].update();
                 }
             }
             // healer
@@ -274,6 +282,11 @@ public class GamePanel extends JPanel implements Runnable {
             for (int i = 0; i < npc[1].length; i++) {
                 if (npc[currentMap][i] != null) {
                     characterList.add(npc[currentMap][i]);// add npc to characterList
+                }
+            }
+            for (int i = 0; i < merchant[1].length; i++) {
+                if (merchant[currentMap][i] != null) {
+                    characterList.add(merchant[currentMap][i]);// add merchant to characterList
                 }
             }
             for (int i = 0; i < healer[1].length; i++) {

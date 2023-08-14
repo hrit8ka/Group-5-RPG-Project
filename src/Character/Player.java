@@ -4,7 +4,6 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import Main.GamePanel;
 import Main.KeyHandler;
@@ -27,8 +26,9 @@ public class Player extends Character {
     int standCounter = 0;// counter for the standing animation
     public boolean noAttack = false;// boolean to check if the player is attacking
     // public int hasKey = 0;
-    public ArrayList<Character> inventory = new ArrayList<>();// inventory of the player
-    public final int maxInventorySize = 20;// max size of the inventory
+    // public ArrayList<Character> inventory = new ArrayList<>();// inventory of the
+    // player
+    // public final int maxInventorySize = 20;// max size of the inventory
     private BufferedImage up1;// image Up for the player
     private BufferedImage up2;// image Up for the player
     public BufferedImage down1;// image Down for the player
@@ -68,8 +68,9 @@ public class Player extends Character {
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;// set the worldX coordinate
         worldY = gp.tileSize * 21;// set the worldY coordinate
-        //worldX = gp.tileSize *12;
-        //worldY = gp.tileSize * 13;
+        worldX = gp.tileSize * 12;
+        worldY = gp.tileSize * 13;
+        gp.currentMap = 1;
         speed = 4;// set the speed of the player
         direction = "down";// set the direction of the player
 
@@ -91,17 +92,19 @@ public class Player extends Character {
         defense = getDefense(); // total defense value depends on agility and armor
 
     }
-    //call method to set the default position of the player
-    public void setDefaultPosition(){
+
+    // call method to set the default position of the player
+    public void setDefaultPosition() {
         worldX = gp.tileSize * 23;// set the worldX coordinate
         worldY = gp.tileSize * 21;// set the worldY coordinate
         direction = "down";// set the direction of the player
 
     }
+
     public void restoreLifeandMana() {
         life = maxLife;// set the life of the player
         mana = maxMana;// set the mana of the player
-        invincible = false; //reset invincible
+        invincible = false; // reset invincible
     }
 
     // method to set the items of the player
@@ -127,9 +130,9 @@ public class Player extends Character {
 
     // method to get the images of the player
     public void getPlayerImages() {
-        //get image for idle
+        // get image for idle
         idle = setUp("./src/player/idle", gp.tileSize, gp.tileSize);
-        //get image for walking
+        // get image for walking
         up1 = setUp("./src/player/up_1", gp.tileSize, gp.tileSize);
         up2 = setUp("./src/player/up_2", gp.tileSize, gp.tileSize);
         down1 = setUp("./src/player/down_1", gp.tileSize, gp.tileSize);
@@ -153,7 +156,6 @@ public class Player extends Character {
             attackRight1 = setUp("./src/player/atack_right_1", gp.tileSize * 2, gp.tileSize);
             attackRight2 = setUp("./src/player/attack_right_2", gp.tileSize * 2, gp.tileSize);
 
-            
         }
         if (currentWeapon.type == axeType) {// if the current weapon is an axe, load the axe attack images
             attackUp1 = setUp("./src/player/axe_down_1", gp.tileSize, gp.tileSize * 2);
@@ -291,8 +293,9 @@ public class Player extends Character {
             // set mana to max mana
             mana = maxMana;
         }
-        //if player's life is less than or equal to 0, set game state to game over state
-        if(life <= 0){
+        // if player's life is less than or equal to 0, set game state to game over
+        // state
+        if (life <= 0) {
             gp.gameState = gp.gameOverState;
             gp.ui.commandNumber = -1;
             gp.playSE(13);
@@ -435,14 +438,20 @@ public class Player extends Character {
                 gp.monster[gp.currentMap][monsterIndex].life -= damage;// decrease the monster's life
                 gp.ui.addMessage("+" + damage + " damage!");// add the message to the message list
                 gp.monster[gp.currentMap][monsterIndex].invincible = true;// set the monster to invincible
-                gp.monster[gp.currentMap][monsterIndex].monsterDamageReaction();// call the method to make the monster react to the
-                                                                 // damage
+                gp.monster[gp.currentMap][monsterIndex].monsterDamageReaction();// call the method to make the monster
+                                                                                // react to the
+                // damage
 
-                if (gp.monster[gp.currentMap][monsterIndex].life <= 0) {// if the monster's life is less than or equal to 0
+                if (gp.monster[gp.currentMap][monsterIndex].life <= 0) {// if the monster's life is less than or equal
+                                                                        // to 0
                     gp.monster[gp.currentMap][monsterIndex].dying = true;// set the monster to dying
-                    gp.ui.addMessage("You defeated the " + gp.monster[gp.currentMap][monsterIndex].name + "!");// add the message to
+                    gp.ui.addMessage("You defeated the " + gp.monster[gp.currentMap][monsterIndex].name + "!");// add
+                                                                                                               // the
+                                                                                                               // message
+                                                                                                               // to
+                    // the message list
+                    gp.ui.addMessage("+" + gp.monster[gp.currentMap][monsterIndex].xp + " XP!");// add the message to
                                                                                                 // the message list
-                    gp.ui.addMessage("+" + gp.monster[gp.currentMap][monsterIndex].xp + " XP!");// add the message to the message list
                     xp += gp.monster[gp.currentMap][monsterIndex].xp;// increase the player's xp
                     checkLevelUp();// call the method to check if the player leveled up
                 }
@@ -452,7 +461,8 @@ public class Player extends Character {
 
     private void damageInteractiveTile(int i) {
         // if the interactive tile is not null, damage the interactive tile
-        if(i != 999 && gp.interactiveTile[gp.currentMap][i].destructible == true && gp.interactiveTile[gp.currentMap][i].isCorrectItem(this)==true){
+        if (i != 999 && gp.interactiveTile[gp.currentMap][i].destructible == true
+                && gp.interactiveTile[gp.currentMap][i].isCorrectItem(this) == true) {
             gp.interactiveTile[gp.currentMap][i].playSE();
             generateParticles(gp.interactiveTile[gp.currentMap][i], gp.interactiveTile[gp.currentMap][i]);
             gp.interactiveTile[gp.currentMap][i] = gp.interactiveTile[gp.currentMap][i].getDestroyedTile();
