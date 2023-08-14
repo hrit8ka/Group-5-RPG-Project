@@ -292,6 +292,7 @@ public class Player extends Character {
         //if player's life is less than or equal to 0, set game state to game over state
         if(life <= 0){
             gp.gameState = gp.gameOverState;
+            gp.ui.commandNumber = -1;
             gp.playSE(13);
         }
     }

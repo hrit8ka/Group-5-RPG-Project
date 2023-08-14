@@ -27,29 +27,29 @@ public class CollisionChecker {
         // character will not move
         switch (Character.direction) {
             case "up":
-                tileNum1 = gp.tileM.mapTileNum[CharacterTopRow][CharacterLeftCol];
-                tileNum2 = gp.tileM.mapTileNum[CharacterTopRow][CharacterRightCol];
+                tileNum1 = gp.tileM.mapTileNum[gp.currentMap][CharacterTopRow][CharacterLeftCol];
+                tileNum2 = gp.tileM.mapTileNum[gp.currentMap][CharacterTopRow][CharacterRightCol];
                 if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
                     Character.worldY += Character.speed;
                 }
                 break;
             case "down":
-                tileNum1 = gp.tileM.mapTileNum[CharacterBottomRow][CharacterLeftCol];
-                tileNum2 = gp.tileM.mapTileNum[CharacterBottomRow][CharacterRightCol];
+                tileNum1 = gp.tileM.mapTileNum[gp.currentMap][CharacterBottomRow][CharacterLeftCol];
+                tileNum2 = gp.tileM.mapTileNum[gp.currentMap][CharacterBottomRow][CharacterRightCol];
                 if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
                     Character.worldY -= Character.speed;
                 }
                 break;
             case "left":
-                tileNum1 = gp.tileM.mapTileNum[CharacterTopRow][CharacterLeftCol];
-                tileNum2 = gp.tileM.mapTileNum[CharacterBottomRow][CharacterLeftCol];
+                tileNum1 = gp.tileM.mapTileNum[gp.currentMap][CharacterTopRow][CharacterLeftCol];
+                tileNum2 = gp.tileM.mapTileNum[gp.currentMap][CharacterBottomRow][CharacterLeftCol];
                 if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
                     Character.worldX += Character.speed;
                 }
                 break;
             case "right":
-                tileNum1 = gp.tileM.mapTileNum[CharacterTopRow][CharacterRightCol];
-                tileNum2 = gp.tileM.mapTileNum[CharacterBottomRow][CharacterRightCol];
+                tileNum1 = gp.tileM.mapTileNum[gp.currentMap][CharacterTopRow][CharacterRightCol];
+                tileNum2 = gp.tileM.mapTileNum[gp.currentMap][CharacterBottomRow][CharacterRightCol];
                 if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
                     Character.worldX -= Character.speed;
                 }

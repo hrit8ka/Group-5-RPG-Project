@@ -16,16 +16,17 @@ import java.io.InputStreamReader;
 public class TileManager {
     GamePanel gp;// game panel
     public Tile[] tile;// array of tiles
-    public int mapTileNum[][];// 2D array of tile numbers
+    public int mapTileNum[][][];// 3D array of tile numbers
 
     // constructor for TileManager
     public TileManager(GamePanel gp) {
         this.gp = gp;// set game panel
 
         tile = new Tile[50];// initialize tile array
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];// initialize map tile number array
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];// initialize map tile number array
         getTileImage();// get tile images
-        loadMap("src/maps/worldV2.txt");// load map
+        loadMap("src/maps/worldV2.txt", 0);// load map
+        loadMap("src/maps/interior01", 1);
     }
 
     public void getTileImage() {
@@ -109,10 +110,10 @@ public class TileManager {
         setUp(39, "earth", false);
         setUp(40, "wall", true);
         setUp(41, "tree03", true);
-        setUp(42, "tree02", true);
-        setUp(44, "ruins", false);
-        setUp(45, "ruins02", true);
-        // setUp(46, "ruins01", true);
+        setUp(42, "hut", false);
+        setUp(44, "floor01", false);
+        setUp(45, "table01", true);
+        setUp(46, "tree02", true);
 
     }
 
@@ -144,7 +145,7 @@ public class TileManager {
     }
 
     // method to load map
-    public void loadMap(String filePath) {
+    public void loadMap(String filePath, int map) {
         try {// try catch
             InputStream is = new FileInputStream(filePath);// input stream
             BufferedReader br = new BufferedReader(new InputStreamReader(is));// buffered reader
@@ -160,7 +161,7 @@ public class TileManager {
 
                     int num = Integer.parseInt(numbers[col]);// parse int to string
 
-                    mapTileNum[row][col] = num;// set map tile number
+                    mapTileNum[map][row][col] = num;// set map tile number
                     col++;// increment column
                 }
                 if (col == gp.maxWorldCol) {// if column is equal to max world column
@@ -184,7 +185,7 @@ public class TileManager {
                                                                         // column and world row is less than max world
                                                                         // row
 
-            int tileNum = mapTileNum[worldRow][worldCol];// tile number is equal to map tile number
+            int tileNum = mapTileNum[gp.currentMap][worldRow][worldCol];// tile number is equal to map tile number
 
             int worldX = worldCol * gp.tileSize;// world x is equal to world column times tile size
             int worldY = worldRow * gp.tileSize;// world y is equal to world row times tile size
