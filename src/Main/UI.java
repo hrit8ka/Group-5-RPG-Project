@@ -37,6 +37,7 @@ public class UI {
     public int slotColumn = 0;
     public int slotRow = 0;
     int subState = 0;
+    int counter =0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -112,6 +113,11 @@ public class UI {
         // game over state
         if (gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
+        }
+
+        //transition state
+        if(gp.gameState == gp.transitionState){
+            drawTransition();
         }
     }
 
@@ -665,6 +671,21 @@ public class UI {
         }
 
 
+    }
+   
+    public void drawTransition(){
+        counter ++;
+        g2.setColor(new Color(0,0,0));//black
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        if(counter == 50){
+            counter = 0;
+            gp.gameState = gp.playState;
+            gp.currentMap =gp.eventHandler.tempMap;
+            gp.player.worldX = gp.tileSize * gp.eventHandler.tempCol;
+            gp.player.worldY = gp.tileSize * gp.eventHandler.tempRow;
+            gp.eventHandler.previousEventX = gp.player.worldX;
+            gp.eventHandler.previousEventY = gp.player.worldY;
+        }
     }
 
     public int getItemIndexOnInventorySlot() {
