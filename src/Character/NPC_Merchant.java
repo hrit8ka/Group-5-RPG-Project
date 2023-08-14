@@ -51,5 +51,10 @@ public class NPC_Merchant extends Character {
         inventory.add(new OBJ_BlueShield(gp));
         inventory.add(new OBJ_Sword(gp));
     }
+    public void speak(){
+        super.speak();
+        gp.gameState = gp.tradeState;
+        gp.ui.merchant = this;
+    }
 
 }

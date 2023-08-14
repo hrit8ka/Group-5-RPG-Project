@@ -1,5 +1,7 @@
 package Main;
 
+import Character.NPC_Merchant;
+
 public class EventHandler {
     GamePanel gp;
     // Rectangle eventRect;
@@ -54,12 +56,12 @@ public class EventHandler {
 
             if (hit(0, 23, 12, "up") == true) {
                 healingPool(gp.dialogueState);
-            }
-            else if(hit(0, 10, 39, "any") ==true){
+            } else if (hit(0, 10, 39, "any") == true) {
                 teleport(1, 12, 13);
-            }
-            else if(hit(1, 12, 13, "any") ==true){
+            } else if (hit(1, 12, 13, "any") == true) {
                 teleport(0, 10, 39);
+            } else if (hit(1, 12, 9, "up") == true) {
+                speak(gp.merchant[0][1]);
             }
         }
 
@@ -98,14 +100,13 @@ public class EventHandler {
         tempMap = map;
         tempCol = col;
         tempRow = row;
-        //gp.currentMap = map;
-        //gp.player.worldX = gp.tileSize * col;
-        //gp.player.worldY = gp.tileSize * row;
-        //previousEventX = gp.player.worldX;
-        //previousEventY = gp.player.worldY;
+        // gp.currentMap = map;
+        // gp.player.worldX = gp.tileSize * col;
+        // gp.player.worldY = gp.tileSize * row;
+        // previousEventX = gp.player.worldX;
+        // previousEventY = gp.player.worldY;
         canTouchEvent = false;
         gp.playSE(14);
-
 
     }
 
@@ -130,6 +131,15 @@ public class EventHandler {
             gp.assetSetter.setMonster();
         }
         // gp.keyH.enterPressed = false;
+    }
+
+    public void speak(NPC_Merchant merchant) {
+        if (gp.keyH.enterPressed == true) {
+            gp.gameState = gp.dialogueState;
+            gp.player.noAttack = true;
+            merchant.speak();
+
+        }
     }
 
 }

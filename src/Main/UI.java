@@ -38,6 +38,7 @@ public class UI {
     public int slotRow = 0;
     int subState = 0;
     int counter =0;
+    public Character merchant;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -118,6 +119,11 @@ public class UI {
         //transition state
         if(gp.gameState == gp.transitionState){
             drawTransition();
+        }
+
+        //trade state
+        if(gp.gameState == gp.tradeState){
+            drawTradeScreen();
         }
     }
 
@@ -257,9 +263,9 @@ public class UI {
 
     public void drawDialogueScreen() {
         // creating a dialogue box
-        int x = gp.tileSize * 2;
+        int x = gp.tileSize * 3;
         int y = gp.tileSize / 2;
-        int width = gp.screenWidth - (gp.tileSize * 4);
+        int width = gp.screenWidth - (gp.tileSize * 6);
         int height = gp.tileSize * 4;
 
         drawSubWindow(x, y, width, height);
@@ -686,6 +692,39 @@ public class UI {
             gp.eventHandler.previousEventX = gp.player.worldX;
             gp.eventHandler.previousEventY = gp.player.worldY;
         }
+    }
+
+    public void drawTradeScreen(){
+        switch(subState){
+            case 0: 
+            selectTrade();
+            break;
+            case 1:
+            tradeBuy();
+            break;
+            case 2:
+            tradeSell();
+            break;
+        }
+        gp.keyH.enterPressed = false;
+    }
+
+    public void selectTrade(){
+        drawDialogueScreen();   
+
+        //drawSubWindow
+        int x = gp.tileSize * 15;
+        int y = gp.tileSize * 4;
+        int width = gp.tileSize * 3;
+        int height = (int)(gp.tileSize * 3.5);
+        drawSubWindow(x, y, width, height);
+    }
+
+    public void tradeBuy(){
+
+    }
+    public void tradeSell(){
+
     }
 
     public int getItemIndexOnInventorySlot() {
