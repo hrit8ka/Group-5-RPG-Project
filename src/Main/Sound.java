@@ -26,7 +26,7 @@ public class Sound {
          */
 
         try {
-            soundURL[0] = new URL("file:src/sound/themesong.wav");// sound URL for theme song
+            soundURL[0] = new URL("file:src/sound/zelda_title.wav");// sound URL for theme song
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -92,6 +92,11 @@ public class Sound {
         }
         try {
             soundURL[13] = new URL("file:src/sound/gameover.wav");// sound URL for door
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            soundURL[14] = new URL("file:src/sound/runningingrass.wav");// sound URL for door
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

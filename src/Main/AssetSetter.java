@@ -120,7 +120,13 @@ public class AssetSetter {
         // System.out.println(gp.monster[0]);
         // System.out.println(gp.monster[1]);
 
-        //mapNum = 1;
+        //Map 1
+        mapNum = 1;
+        gp.npc[mapNum][0] = new NPC_Sage(gp); // create a new NPC object
+        gp.npc[mapNum][0].worldX = 12 * gp.tileSize;
+        gp.npc[mapNum][0].worldY = 7 * gp.tileSize;
+        i++;
+
 
     }
 

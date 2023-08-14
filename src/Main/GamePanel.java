@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
     public final int maxMap = 10;
-    public int currentMap = 1;
+    public int currentMap = 0;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
     // FULL SCREEN SETTINGS
@@ -198,7 +198,7 @@ public class GamePanel extends JPanel implements Runnable {
             // monster
             for (int i = 0; i < monster[1].length; i++) {
                 if (monster[currentMap][i] != null) {
-                    if (monster[currentMap][i].alive == true && monster[i][currentMap].dying == false) {
+                    if (monster[currentMap][i].alive == true && monster[currentMap][i].dying == false) {
                         monster[currentMap][i].update();
                     }
                     if (monster[currentMap][i].alive == false) {
