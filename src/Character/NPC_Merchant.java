@@ -40,9 +40,7 @@ public class NPC_Merchant extends Character {
     // set the dialogue for the merchant
     public void setDialogue() {
         // the merchant has dialogues
-        dialogues[0] = "Howdy, stranger! I am the merchant.";
-        dialogues[1] = "Do you need any supplies?";
-        dialogues[2] = "You can trade.";
+        dialogues[0] = "Howdy, stranger!\nI am the merchant of Minish Haven.\nDo you want to trade?";
     }
 
     public void setItems(){

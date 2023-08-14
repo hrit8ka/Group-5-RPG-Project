@@ -486,7 +486,7 @@ public class Player extends Character {
     }
 
     public void selectItem() {
-        int itemIndex = gp.ui.getItemIndexOnInventorySlot();
+        int itemIndex = gp.ui.getItemIndexOnInventorySlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
 
         if (itemIndex < inventory.size()) {
             Character selectedItem = inventory.get(itemIndex);

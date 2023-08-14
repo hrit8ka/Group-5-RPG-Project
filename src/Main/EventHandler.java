@@ -61,7 +61,7 @@ public class EventHandler {
             } else if (hit(1, 12, 13, "any") == true) {
                 teleport(0, 10, 39);
             } else if (hit(1, 12, 9, "up") == true) {
-                speak(gp.merchant[0][1]);
+                speak(gp.merchant[1][0]);
             }
         }
 
