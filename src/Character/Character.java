@@ -40,6 +40,7 @@ public class Character {
     public boolean alive = true;// alive: whether the character is alive
     public boolean dying = false; // dying: whether the character is dying
     boolean hpBarOn = false;// hpBarOn: whether the hpBar is on
+    public boolean onPath = false;// onPath: whether the character is on a path
     // counters
     public int spriteCounter = 0;// spriteCounter: the counter that controls the sprite animation of the
                                  // character
@@ -198,9 +199,7 @@ public class Character {
 
     }
 
-    // update method
-    public void update() {
-        setAction();// call setAction method
+    public void checkCollision() {
         collisionOn = false;// set collisionOn to false
         gp.collisionChecker.checkTile(this);// call checkTile method
         gp.collisionChecker.checkObject(this, false);// check collision with object
@@ -214,6 +213,12 @@ public class Character {
             damagePlayer(attack);
         }
 
+    }
+
+    // update method
+    public void update() {
+        setAction();// call setAction method
+        checkCollision();
         // if collision is false, player can move
         if (collisionOn == false) {
             switch (direction) {
@@ -417,5 +422,9 @@ public class Character {
             gp.playSE(11);// play sound effect
             gp.ui.addMessage("Meoww!");// display message
         }
+    }
+
+    public void searchPath(int goalCol, int goalRow) {
+        
     }
 }

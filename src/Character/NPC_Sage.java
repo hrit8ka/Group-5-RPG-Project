@@ -44,24 +44,30 @@ public class NPC_Sage extends Character {
 
     // set the action for the sage
     public void setAction() {
+        if (onPath == true) {
+            int goalCol=12;
+            int goalRow=9;
 
-        actionLockCounter++;// increment the action lock counter
-        if (actionLockCounter == 120) {// if the action lock counter is 120
-            Random random = new Random();// create a new random object
-            int i = random.nextInt(100) + 1; // pick a random number between 1 and 100
-            if (i <= 25) {// if the number is less than or equal to 25
-                direction = "up";// set the direction to up
+            searchPath(goalCol, goalRow);
+        } else {
+            actionLockCounter++;// increment the action lock counter
+            if (actionLockCounter == 120) {// if the action lock counter is 120
+                Random random = new Random();// create a new random object
+                int i = random.nextInt(100) + 1; // pick a random number between 1 and 100
+                if (i <= 25) {// if the number is less than or equal to 25
+                    direction = "up";// set the direction to up
+                }
+                if (i > 25 && i <= 50) {// if the number is greater than 25 and less than or equal to 50
+                    direction = "down";// set the direction to down
+                }
+                if (i > 50 && i <= 75) {// if the number is greater than 50 and less than or equal to 75
+                    direction = "left";// set the direction to left
+                }
+                if (i > 75 && i <= 100) {// if the number is greater than 75 and less than or equal to 100
+                    direction = "right";// set the direction to right
+                }
+                actionLockCounter = 0;// reset the action lock counter
             }
-            if (i > 25 && i <= 50) {// if the number is greater than 25 and less than or equal to 50
-                direction = "down";// set the direction to down
-            }
-            if (i > 50 && i <= 75) {// if the number is greater than 50 and less than or equal to 75
-                direction = "left";// set the direction to left
-            }
-            if (i > 75 && i <= 100) {// if the number is greater than 75 and less than or equal to 100
-                direction = "right";// set the direction to right
-            }
-            actionLockCounter = 0;// reset the action lock counter
         }
     }
 
@@ -69,5 +75,6 @@ public class NPC_Sage extends Character {
     // of him
     public void speak() {
         super.speak();// call the super speak method to speak to the player
+        onPath = true;
     }
 }

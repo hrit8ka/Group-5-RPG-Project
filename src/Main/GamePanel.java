@@ -13,6 +13,7 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
+import AI.PathFinder;
 import Character.NPC_Sage;
 import Character.Player;
 import Character.Character;
@@ -50,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
     // fps
     int FPS = 60;
     // System
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound soundEffect = new Sound();
@@ -60,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     public EventHandler eventHandler = new EventHandler(this);
     Config config = new Config(this);
+    public PathFinder pathFinder = new PathFinder(this);
     Thread gameThread;
 
     // Character and Object
