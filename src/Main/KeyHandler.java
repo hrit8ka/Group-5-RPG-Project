@@ -161,7 +161,7 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.playState;
         }
         if (code == KeyEvent.VK_ENTER) {
-            gp.player.selectItem();
+            gp.player.selectItem();// select item in inventory
             gp.playSE(8);
         }
         // move cursor in inventory frame
