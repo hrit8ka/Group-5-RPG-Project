@@ -59,14 +59,14 @@ public class CollisionChecker {
 
     public int checkObject(Character Character, boolean player) {
         int index = 999;
-        for (int i = 0; i < gp.obj.length; i++) {
-            if (gp.obj[i] != null) {
+        for (int i = 0; i < gp.obj[1].length; i++) {
+            if (gp.obj[gp.currentMap][i] != null) {
                 // get character's solid area position
                 Character.solidArea.x = Character.worldX + Character.solidArea.x;
                 Character.solidArea.y = Character.worldY + Character.solidArea.y;
                 // get object's solid area position
-                gp.obj[i].solidArea.x = gp.obj[i].worldX + gp.obj[i].solidArea.x;
-                gp.obj[i].solidArea.y = gp.obj[i].worldY + gp.obj[i].solidArea.y;
+                gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].worldX + gp.obj[gp.currentMap][i].solidArea.x;
+                gp.obj[gp.currentMap][i].solidArea.y = gp.obj[gp.currentMap][i].worldY + gp.obj[gp.currentMap][i].solidArea.y;
 
                 // check if the character is colliding with an object
                 switch (Character.direction) {
@@ -83,8 +83,8 @@ public class CollisionChecker {
                         Character.solidArea.x += Character.speed;
                         break;
                 }
-                if (Character.solidArea.intersects(gp.obj[i].solidArea)) {
-                    if (gp.obj[i].collision == true) {
+                if (Character.solidArea.intersects(gp.obj[gp.currentMap][i].solidArea)) {
+                    if (gp.obj[gp.currentMap][i].collision == true) {
                         Character.collisionOn = true;
                     }
                     if (player == true) {
@@ -93,8 +93,8 @@ public class CollisionChecker {
                 }
                 Character.solidArea.x = Character.solidAreaDefaultX;
                 Character.solidArea.y = Character.solidAreaDefaultY;
-                gp.obj[i].solidArea.x = gp.obj[i].solidAreaDefaultX;
-                gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;
+                gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].solidAreaDefaultX;
+                gp.obj[gp.currentMap][i].solidArea.y = gp.obj[gp.currentMap][i].solidAreaDefaultY;
             }
         }
         return index;
@@ -102,17 +102,17 @@ public class CollisionChecker {
     }
 
     // check NPC or monster collision
-    public int checkCharacter(Character character, Character[] target) {
+    public int checkCharacter(Character character, Character[][] target) {
         int index = 999;
-        for (int i = 0; i < target.length; i++) {
-            if (target[i] != null) {
+        for (int i = 0; i < target[1].length; i++) {
+            if (target[gp.currentMap][i] != null) {
                 // get character's solid area position
                 character.solidArea.x = character.worldX + character.solidArea.x;
                 character.solidArea.y = character.worldY + character.solidArea.y;
 
                 // get object's solid area position
-                target[i].solidArea.x = target[i].worldX + target[i].solidArea.x;
-                target[i].solidArea.y = target[i].worldY + target[i].solidArea.y;
+                target[gp.currentMap][i].solidArea.x = target[gp.currentMap][i].worldX + target[gp.currentMap][i].solidArea.x;
+                target[gp.currentMap][i].solidArea.y = target[gp.currentMap][i].worldY + target[gp.currentMap][i].solidArea.y;
 
                 // check if the character is colliding with an object
                 switch (character.direction) {
@@ -129,16 +129,16 @@ public class CollisionChecker {
                         character.solidArea.x += character.speed;
                         break;
                 }
-                if (character.solidArea.intersects(target[i].solidArea)) {
-                    if(target[i] != character){
+                if (character.solidArea.intersects(target[gp.currentMap][i].solidArea)) {
+                    if(target[gp.currentMap][i] != character){
                     character.collisionOn = true;
                     index = i;
                     }
                 }
                 character.solidArea.x = character.solidAreaDefaultX;
                 character.solidArea.y = character.solidAreaDefaultY;
-                target[i].solidArea.x = target[i].solidAreaDefaultX;
-                target[i].solidArea.y = target[i].solidAreaDefaultY;
+                target[gp.currentMap][i].solidArea.x = target[gp.currentMap][i].solidAreaDefaultX;
+                target[gp.currentMap][i].solidArea.y = target[gp.currentMap][i].solidAreaDefaultY;
             }
         }
         return index;

@@ -111,9 +111,9 @@ public class TileManager {
         setUp(40, "wall", true);
         setUp(41, "tree03", true);
         setUp(42, "hut", false);
-        setUp(44, "floor01", false);
-        setUp(45, "table01", true);
-        setUp(46, "tree02", true);
+        setUp(43, "floor01", false);
+        setUp(44, "table01", true);
+        setUp(45, "tree02", true);
 
     }
 

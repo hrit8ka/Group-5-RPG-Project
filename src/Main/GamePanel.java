@@ -63,11 +63,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Character and Object
     public Player player = new Player(this, keyH);
-    public Character obj[] = new Character[20];
-    public NPC_Sage npc[] = new NPC_Sage[10];
-    public Healer healer[] = new Healer[10];
-    public Character monster[] = new Character[20];
-    public interactiveTile interactiveTile[] = new interactiveTile[50];
+    public Character obj[][] = new Character[maxMap][20];
+    public NPC_Sage npc[][] = new NPC_Sage[maxMap][10];
+    public Healer healer[][] = new Healer[maxMap][10];
+    public Character monster[][] = new Character[maxMap][20];
+    public interactiveTile interactiveTile[][] = new interactiveTile[maxMap][50];
     public ArrayList<Character> projectileList = new ArrayList<>();
     public ArrayList<Character> particleList = new ArrayList<>();
     ArrayList<Character> characterList = new ArrayList<Character>();
@@ -184,27 +184,27 @@ public class GamePanel extends JPanel implements Runnable {
             // player
             player.update();
             // npc
-            for (int i = 0; i < npc.length; i++) {
-                if (npc[i] != null) {
-                    npc[i].update();
+            for (int i = 0; i < npc[1].length; i++) {
+                if (npc[currentMap][i] != null) {
+                    npc[currentMap][i].update();
                 }
             }
             // healer
-            for (int i = 0; i < healer.length; i++) {
-                if (healer[i] != null) {
-                    healer[i].update();
+            for (int i = 0; i < healer[1].length; i++) {
+                if (healer[currentMap][i] != null) {
+                    healer[currentMap][i].update();
                 }
             }
             // monster
-            for (int i = 0; i < monster.length; i++) {
-                if (monster[i] != null) {
-                    if (monster[i].alive == true && monster[i].dying == false) {
-                        monster[i].update();
+            for (int i = 0; i < monster[1].length; i++) {
+                if (monster[currentMap][i] != null) {
+                    if (monster[currentMap][i].alive == true && monster[i][currentMap].dying == false) {
+                        monster[currentMap][i].update();
                     }
-                    if (monster[i].alive == false) {
+                    if (monster[currentMap][i].alive == false) {
                         // check if monster drops item when it dies
-                        monster[i].checkDrop();
-                        monster[i] = null;
+                        monster[currentMap][i].checkDrop();
+                        monster[currentMap][i] = null;
                     }
                     // monster[i].update();
                 }
@@ -232,9 +232,9 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             // interactiveTile
-            for (int i = 0; i < interactiveTile.length; i++) {
-                if (interactiveTile[i] != null) {
-                    interactiveTile[i].update();
+            for (int i = 0; i < interactiveTile[1].length; i++) {
+                if (interactiveTile[currentMap][i] != null) {
+                    interactiveTile[currentMap][i].update();
                 }
             }
 
@@ -263,31 +263,31 @@ public class GamePanel extends JPanel implements Runnable {
             // Tile
             tileM.draw(g2); // tile is drawn before player so as to be behind the player
             // interactiveTile
-            for (int i = 0; i < interactiveTile.length; i++) {
-                if (interactiveTile[i] != null) {
-                    interactiveTile[i].draw(g2);
+            for (int i = 0; i < interactiveTile[1].length; i++) {
+                if (interactiveTile[currentMap][i] != null) {
+                    interactiveTile[currentMap][i].draw(g2);
                 }
             }
             // Add character to characterList
             characterList.add(player);
-            for (int i = 0; i < npc.length; i++) {
-                if (npc[i] != null) {
-                    characterList.add(npc[i]);// add npc to characterList
+            for (int i = 0; i < npc[1].length; i++) {
+                if (npc[currentMap][i] != null) {
+                    characterList.add(npc[currentMap][i]);// add npc to characterList
                 }
             }
-            for (int i = 0; i < healer.length; i++) {
-                if (healer[i] != null) {
-                    characterList.add(healer[i]);// add healer to characterList
+            for (int i = 0; i < healer[1].length; i++) {
+                if (healer[currentMap][i] != null) {
+                    characterList.add(healer[currentMap][i]);// add healer to characterList
                 }
             }
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    characterList.add(obj[i]);// add object to characterList
+            for (int i = 0; i < obj[1].length; i++) {
+                if (obj[currentMap][i] != null) {
+                    characterList.add(obj[currentMap][i]);// add object to characterList
                 }
             }
-            for (int i = 0; i < monster.length; i++) {
-                if (monster[i] != null) {
-                    characterList.add(monster[i]); // add monster to characterListS
+            for (int i = 0; i < monster[1].length; i++) {
+                if (monster[currentMap][i] != null) {
+                    characterList.add(monster[currentMap][i]); // add monster to characterListS
                 }
             }
             for (int i = 0; i < projectileList.size(); i++) {

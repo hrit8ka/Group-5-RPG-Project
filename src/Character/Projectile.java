@@ -30,7 +30,7 @@ public class Projectile extends Character {
             int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);// check collision with monsters
             if (monsterIndex != 999) {// if collision with monster
                 gp.player.damagedMonster(monsterIndex, attack); // damage monster
-                generateParticles(user.projectile, gp.monster[monsterIndex]);// generate particles
+                generateParticles(user.projectile, gp.monster[gp.currentMap][monsterIndex]);// generate particles
                 alive = false;// set alive to false
             }
         }

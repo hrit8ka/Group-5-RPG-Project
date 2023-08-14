@@ -355,22 +355,22 @@ public class Player extends Character {
     public void pickUpObject(int i) {
         if (i != 999) {// if the object is not null
             // pickup object
-            if (gp.obj[i].type == pickUpType) {// if the object is a pick up item
-                gp.obj[i].use(this);// use the object
-                gp.obj[i] = null;// set the object to null
+            if (gp.obj[gp.currentMap][i].type == pickUpType) {// if the object is a pick up item
+                gp.obj[gp.currentMap][i].use(this);// use the object
+                gp.obj[gp.currentMap][i] = null;// set the object to null
 
             } else {// inventory items
                 String text;// text to display
                 // if inventory is not full, pick up the object
                 if (inventory.size() != maxInventorySize) {// if the inventory is not full
-                    inventory.add(gp.obj[i]);// add the object to the inventory
+                    inventory.add(gp.obj[gp.currentMap][i]);// add the object to the inventory
                     gp.playSE(5);// play the sound effect
-                    text = "picked up  " + gp.obj[i].name;// set the text to display
+                    text = "picked up  " + gp.obj[gp.currentMap][i].name;// set the text to display
                 } else {
                     text = "Your inventory is full";// else display that inventory is full
                 }
                 gp.ui.addMessage(text);// add the text to the message list
-                gp.obj[i] = null;// set the object to null
+                gp.obj[gp.currentMap][i] = null;// set the object to null
             }
         }
 
@@ -382,7 +382,7 @@ public class Player extends Character {
             if (npcIndex != 999) {// if the npc is not null
                 noAttack = true;// set noAttack to true
                 gp.gameState = gp.dialogueState;// set the game state to dialogue state
-                gp.npc[npcIndex].speak(); // speak to the npc
+                gp.npc[gp.currentMap][npcIndex].speak(); // speak to the npc
             }
             // gp.keyH.enterPressed = false;
         }
@@ -395,9 +395,9 @@ public class Player extends Character {
             if (healerIndex != 999) {// if the healer is not null
                 noAttack = true;// set noAttack to true
                 gp.gameState = gp.dialogueState;// set the game state to dialogue state
-                gp.healer[healerIndex].speak(); // speak to the healer
+                gp.healer[gp.currentMap][healerIndex].speak(); // speak to the healer
                 gp.gameState = gp.healingState;// set the game state to healing state
-                gp.healer[healerIndex].catHeal(); // heal the player
+                gp.healer[gp.currentMap][healerIndex].catHeal(); // heal the player
 
             }
             // gp.keyH.enterPressed = false;
@@ -408,9 +408,9 @@ public class Player extends Character {
     // method to check if the player is in contact with the monster
     public void contactMonster(int monsterIndex) {
         if (monsterIndex != 999) {// if the player is in contact with the monster, the player will be damaged
-            if (invincible == false && gp.monster[monsterIndex].dying == false) {
+            if (invincible == false && gp.monster[gp.currentMap][monsterIndex].dying == false) {
                 gp.playSE(6);// play the sound effect
-                int damage = gp.monster[monsterIndex].attack - defense; // calculate the damage
+                int damage = gp.monster[gp.currentMap][monsterIndex].attack - defense; // calculate the damage
                 if (damage < 0) {// if the damage is less than 0, set the damage to 0
                     damage = 0;
                 }
@@ -426,24 +426,24 @@ public class Player extends Character {
     // method to check the damage of the monster
     public void damagedMonster(int monsterIndex, int attack) {
         if (monsterIndex != 999) {// if the monster is not null
-            if (gp.monster[monsterIndex].invincible == false) {// if the monster is not invincible
+            if (gp.monster[gp.currentMap][monsterIndex].invincible == false) {// if the monster is not invincible
                 gp.playSE(5);// play the sound effect
-                int damage = attack - gp.monster[monsterIndex].defense;// calculate the damage
+                int damage = attack - gp.monster[gp.currentMap][monsterIndex].defense;// calculate the damage
                 if (damage < 0) {// if the damage is less than 0, set the damage to 0
                     damage = 0;
                 }
-                gp.monster[monsterIndex].life -= damage;// decrease the monster's life
+                gp.monster[gp.currentMap][monsterIndex].life -= damage;// decrease the monster's life
                 gp.ui.addMessage("+" + damage + " damage!");// add the message to the message list
-                gp.monster[monsterIndex].invincible = true;// set the monster to invincible
-                gp.monster[monsterIndex].monsterDamageReaction();// call the method to make the monster react to the
+                gp.monster[gp.currentMap][monsterIndex].invincible = true;// set the monster to invincible
+                gp.monster[gp.currentMap][monsterIndex].monsterDamageReaction();// call the method to make the monster react to the
                                                                  // damage
 
-                if (gp.monster[monsterIndex].life <= 0) {// if the monster's life is less than or equal to 0
-                    gp.monster[monsterIndex].dying = true;// set the monster to dying
-                    gp.ui.addMessage("You defeated the " + gp.monster[monsterIndex].name + "!");// add the message to
+                if (gp.monster[gp.currentMap][monsterIndex].life <= 0) {// if the monster's life is less than or equal to 0
+                    gp.monster[gp.currentMap][monsterIndex].dying = true;// set the monster to dying
+                    gp.ui.addMessage("You defeated the " + gp.monster[gp.currentMap][monsterIndex].name + "!");// add the message to
                                                                                                 // the message list
-                    gp.ui.addMessage("+" + gp.monster[monsterIndex].xp + " XP!");// add the message to the message list
-                    xp += gp.monster[monsterIndex].xp;// increase the player's xp
+                    gp.ui.addMessage("+" + gp.monster[gp.currentMap][monsterIndex].xp + " XP!");// add the message to the message list
+                    xp += gp.monster[gp.currentMap][monsterIndex].xp;// increase the player's xp
                     checkLevelUp();// call the method to check if the player leveled up
                 }
             }
@@ -452,10 +452,10 @@ public class Player extends Character {
 
     private void damageInteractiveTile(int i) {
         // if the interactive tile is not null, damage the interactive tile
-        if(i != 999 && gp.interactiveTile[i].destructible == true && gp.interactiveTile[i].isCorrectItem(this)==true){
-            gp.interactiveTile[i].playSE();
-            generateParticles(gp.interactiveTile[i], gp.interactiveTile[i]);
-            gp.interactiveTile[i] = gp.interactiveTile[i].getDestroyedTile();
+        if(i != 999 && gp.interactiveTile[gp.currentMap][i].destructible == true && gp.interactiveTile[gp.currentMap][i].isCorrectItem(this)==true){
+            gp.interactiveTile[gp.currentMap][i].playSE();
+            generateParticles(gp.interactiveTile[gp.currentMap][i], gp.interactiveTile[gp.currentMap][i]);
+            gp.interactiveTile[gp.currentMap][i] = gp.interactiveTile[gp.currentMap][i].getDestroyedTile();
         }
     }
 
