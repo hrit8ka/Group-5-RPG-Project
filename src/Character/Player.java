@@ -66,8 +66,10 @@ public class Player extends Character {
 
     // method to set the default values of the player
     public void setDefaultValues() {
-        worldX = gp.tileSize * 23;// set the worldX coordinate
-        worldY = gp.tileSize * 21;// set the worldY coordinate
+        //worldX = gp.tileSize * 23;// set the worldX coordinate
+        //worldY = gp.tileSize * 21;// set the worldY coordinate
+        worldX = gp.tileSize *12;
+        worldY = gp.tileSize * 13;
         speed = 4;// set the speed of the player
         direction = "down";// set the direction of the player
 
