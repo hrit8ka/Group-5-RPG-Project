@@ -189,7 +189,7 @@ public class PathFinder {
     public void trackPath(){
         Node current = endNode;
 
-        while(current != null && current != startNode){
+        while(current != startNode){
             pathList.add(0, current);
             current = current.parent;
         }

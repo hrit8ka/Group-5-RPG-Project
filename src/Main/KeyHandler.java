@@ -283,7 +283,7 @@ public class KeyHandler implements KeyListener {
             merchantInventory(code);
             if(code == KeyEvent.VK_ESCAPE){
                 gp.ui.subState = 0;
-                //gp.ui.commandNumber = 0;
+                gp.ui.commandNumber = 0;
             }
         }
     }

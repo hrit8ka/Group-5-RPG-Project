@@ -750,7 +750,7 @@ public class UI {
         if(commandNumber == 0){
             g2.drawString(">", x - 24, y);
             if(gp.keyH.enterPressed == true){
-                subState = 2;
+                subState = 1;
                 //commandNumber = 0;
             }
         }

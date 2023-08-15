@@ -30,5 +30,4 @@ public class Main {
     }
 }
 
-// video 39, 30:29 (resume video later - inventory not showing on screen)
 // video 40 23:03
