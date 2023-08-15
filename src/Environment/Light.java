@@ -3,10 +3,6 @@ package Environment;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RadialGradientPaint;
-import java.awt.Shape;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import Main.GamePanel;
@@ -20,20 +16,11 @@ public class Light {
         darkEffect = new BufferedImage(gp.getWidth(), gp.getHeight(), BufferedImage.TYPE_INT_ARGB);
         // create a graphics object from the buffered image
         Graphics2D g2 = darkEffect.createGraphics();
-        // create a new area that is the size of the screen
-        Area screenArea = new Area(new Rectangle2D.Double(0, 0, gp.screenWidth, gp.screenHeight));
+
         // create a new area that is the size of the circle
         int centerX = gp.player.screenX + (gp.tileSize) / 2;
         int centerY = gp.player.screenY + (gp.tileSize) / 2;
-        // create a new area that is the size of the circle
-        double x = centerX - (circleSize / 2);
-        double y = centerY - (circleSize / 2);
-        // create a light circle shape
-        Shape circleShaped = new Ellipse2D.Double(x, y, circleSize, circleSize);
-        // create a light circle area
-        Area lightArea = new Area(circleShaped);
-        // subtract the light circle area from the screen area
-        screenArea.subtract(lightArea);
+
         // create a gradient effect with the light circle area
         Color color[] = new Color[12];
         float fraction[] = new float[12];
@@ -68,11 +55,7 @@ public class Light {
         RadialGradientPaint gPaint = new RadialGradientPaint(centerX, centerY, (circleSize / 2), fraction, color);
         // set the paint to the graphics object
         g2.setPaint(gPaint);
-        // fill the light circle area with the gradient paint
-        g2.fill(lightArea);
-
-        // draw the screen area with the light circle area subtracted
-        g2.fill(screenArea);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         // dispose of the graphics object
         g2.dispose();
 
