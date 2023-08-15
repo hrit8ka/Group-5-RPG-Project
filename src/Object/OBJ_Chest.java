@@ -39,11 +39,10 @@ public class OBJ_Chest extends Character {
             sb.append(loot.name);
             sb.append("!");
 
-            if (gp.player.inventory.size() == gp.player.maxInventorySize) {
+            if (gp.player.canObtainItem(loot) == false) {
                 sb.append("\nBut your inventory is full.");
             } else {
                 sb.append("\nThe " + loot.name + " was added to your inventory.");
-                gp.player.inventory.add(loot);
                 down1 = image2;
                 opened = true;
             }

@@ -10,6 +10,7 @@ import Main.KeyHandler;
 import Object.Fireball;
 
 import Object.OBJ_Armor;
+import Object.OBJ_BlackCrystal;
 import Object.OBJ_Key;
 import Object.OBJ_Sword;
 
@@ -66,11 +67,11 @@ public class Player extends Character {
 
     // method to set the default values of the player
     public void setDefaultValues() {
-        worldX = gp.tileSize * 23;// set the worldX coordinate
-        worldY = gp.tileSize * 21;// set the worldY coordinate
-        //worldX = gp.tileSize * 12;
-        //worldY = gp.tileSize * 13;
-        //gp.currentMap = 1;
+        //worldX = gp.tileSize * 23;// set the worldX coordinate
+        //worldY = gp.tileSize * 21;// set the worldY coordinate
+        worldX = gp.tileSize * 12;
+        worldY = gp.tileSize * 13;
+        gp.currentMap = 1;
         defaultSpeed = 4;
 
         speed = defaultSpeed;// set the speed of the player
@@ -86,7 +87,7 @@ public class Player extends Character {
         agility = 1; // more agility, less damage received by the player
         xp = 0;// xp is the experience of the player
         nextLevelXP = 5;// set the next level xp of the player
-        gold = 0;// set the number of gold coins the player has
+        gold = 500;// set the number of gold coins the player has
         currentWeapon = new OBJ_Sword(gp);// set the current weapon of the player
         currentArmor = new OBJ_Armor(gp);// set the current armor of the player
         projectile = new Fireball(gp);// set the projectile of the player
@@ -115,8 +116,7 @@ public class Player extends Character {
         inventory.add(currentWeapon);// add the current weapon to the inventory
         inventory.add(currentArmor);// add the current armor to the inventory
         inventory.add(new OBJ_Key(gp));// add a key to the inventory
-        inventory.add(new OBJ_Key(gp));// add a key to the inventory
-        inventory.add(new OBJ_Key(gp));// add a key to the inventory
+        inventory.add(new OBJ_BlackCrystal(gp));// add a black crystal to the inventory
     }
 
     // method getAttack to get the attack of the player
@@ -371,25 +371,24 @@ public class Player extends Character {
         if (i != 999) {// if the object is not null
             // pickup object
             if (gp.obj[gp.currentMap][i].type == pickUpType) {// if the object is a pick up item
+        
                 gp.obj[gp.currentMap][i].use(this);// use the object
                 gp.obj[gp.currentMap][i] = null;// set the object to null
-            
 
-            } else if(gp.obj[gp.currentMap][i].type == obstacleType){// if the object is an obstacle
-                if(keyH.enterPressed == true){
-                    noAttack= true;
+            } else if (gp.obj[gp.currentMap][i].type == obstacleType) {// if the object is an obstacle
+                if (keyH.enterPressed == true) {
+                    noAttack = true;
                     gp.obj[gp.currentMap][i].interact();
                 }
-            }
-            else {// inventory items
+            } else {// inventory items
                 String text;// text to display
+              
                 // if inventory is not full, pick up the object
-                if (inventory.size() != maxInventorySize) {// if the inventory is not full
-                    inventory.add(gp.obj[gp.currentMap][i]);// add the object to the inventory
+                if (canObtainItem(gp.obj[gp.currentMap][i])==true) {// if the inventory is not full
                     gp.playSE(5);// play the sound effect
                     text = "picked up  " + gp.obj[gp.currentMap][i].name;// set the text to display
                 } else {
-                    text = "Your inventory is full";// else display that inventory is full
+                    text = "Your inventory is full!";// else display that inventory is full
                 }
                 gp.ui.addMessage(text);// add the text to the message list
                 gp.obj[gp.currentMap][i] = null;// set the object to null
@@ -542,11 +541,53 @@ public class Player extends Character {
                 selectedItem.use(this);
                 inventory.remove(itemIndex);
             }
-            if(selectedItem.type == consumableType){
-                selectedItem.use(this);
+            if (selectedItem.type == consumableType) {
+                if(selectedItem.amount >1){
+                    selectedItem.amount--;
+                }
+                else{
+                //selectedItem.use(this);
                 inventory.remove(itemIndex);
+                }
             }
         }
+    }
+
+    public int searchItemInInventory(String itemName) {
+        int itemIndex = 999;
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).name.equals(itemName)) {
+                itemIndex = i;
+                break;
+            }
+        }
+        return itemIndex;
+    }
+
+    public boolean canObtainItem(Character item) {
+        boolean canObtain = false;
+        // check if stackable
+        if (item.stackable == true) {
+            int index = searchItemInInventory(item.name);
+            if (index != 999) {
+                // if the item is stackable and the player has the item, increase the amount
+                inventory.get(index).amount++;
+                canObtain = true;
+            } else {
+                if (inventory.size() != maxInventorySize) {
+                    inventory.add(item);
+                    canObtain = true;
+                }
+            }
+        }
+        else{
+            //not stackable, check if the inventory is full
+            if (inventory.size() != maxInventorySize) {
+                inventory.add(item);
+                canObtain = true;
+            }
+        }
+        return canObtain;
     }
 
     public void draw(Graphics2D g2) {

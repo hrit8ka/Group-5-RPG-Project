@@ -19,6 +19,7 @@ public class NPC_Merchant extends Character {
 
         getImage();// get the images for the merchant
         setDialogue();// set the dialogue for the merchant
+        setItems();
     }
 
     // get the images for the merchant

@@ -82,6 +82,8 @@ public class Character {
     public int usePrice;// usePrice: the price of the item
     public int price; // price: the price of the item
     public int knockBackPower = 0;// knockBackPower: the knockBack power of the item
+    public boolean stackable = false;// stackable: whether the item is stackable
+    public int amount = 1;
 
     // Type
     public int type;// type: the type of the character

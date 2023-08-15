@@ -13,7 +13,7 @@ public class Coin extends Character {
 
         type = pickUpType;
         name = "gold coin";
-        value = 1;
+        value = 10;
 
         down1 = setUp("./src/objects/goldcoin", gp.tileSize, gp.tileSize);
     }

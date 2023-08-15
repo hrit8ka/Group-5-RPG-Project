@@ -403,6 +403,23 @@ public class UI {
             }
 
             g2.drawImage(character.inventory.get(i).down1, slotX, slotY, null);
+
+            // display the number of items
+            if (character.inventory.get(i).amount > 1 && character == gp.player) {
+                g2.setFont(g2.getFont().deriveFont(32f));
+                int amountX;
+                int amountY;
+
+                String s = "" + character.inventory.get(i).amount;
+                amountX = getXforAlignRightText(s, slotX + 44);
+                amountY = slotY + gp.tileSize;
+
+                // shadow of the text
+                g2.setColor(Color.black);
+                g2.drawString(s, amountX, amountY);
+                g2.setColor(Color.white);
+                g2.drawString(s, amountX - 3, amountY - 3);
+            }
             slotX += slotSize;
             if (slotX >= slotXstart + (gp.tileSize * 5)) {
                 slotX = slotXstart;
@@ -769,7 +786,9 @@ public class UI {
             if (gp.keyH.enterPressed == true) {
                 commandNumber = 0;
                 gp.gameState = gp.dialogueState;
-                currentDialogue = "Come again, friend!";
+                // currentDialogue = "Come again, friend!";
+                // display player inventory
+                subState = 2;
                 // commandNumber = 0;
             }
         }
@@ -778,8 +797,12 @@ public class UI {
         if (commandNumber == 2) {
             g2.drawString(">", x - 24, y);
             if (gp.keyH.enterPressed == true) {
+                //exit trade screen
+                gp.gameState = gp.dialogueState;
+                currentDialogue = "Come again, friend!";
                 subState = 0;
                 commandNumber = 0;
+                
             }
         }
 
@@ -830,19 +853,17 @@ public class UI {
                     currentDialogue = "You don't have enough gold!";
                     drawDialogueScreen();
                 }
-                // if player inventory has no empty slot, player cannot buy
-                if (gp.player.inventory.size() == gp.player.maxInventorySize) {
-                    subState = 0;
-                    gp.gameState = gp.dialogueState;
-                    currentDialogue = "Your inventory is full!";
-                    drawDialogueScreen();
-                } else {
-                    // add item to player inventory
-                    gp.player.inventory.add(merchant.inventory.get(itemIndex));
-                    // remove item from merchant inventory
-                    merchant.inventory.remove(itemIndex);
-                    // subtract gold from player
-                    gp.player.gold -= merchant.inventory.get(itemIndex).price;
+                else{
+                    if(gp.player.canObtainItem(merchant.inventory.get(itemIndex))==true){
+                        // subtract gold from player
+                        gp.player.gold -= merchant.inventory.get(itemIndex).price;
+                    }
+                    else{
+                        //couldn't obtain item
+                        subState = 0;
+                        gp.gameState = gp.dialogueState;
+                        currentDialogue = "Your inventory is full!";
+                    }
                 }
             }
         }
@@ -899,10 +920,12 @@ public class UI {
                     currentDialogue = "You cannot sell equipped items!";
                     drawDialogueScreen();
                 } else {
-                    // add item to merchant inventory
-                    merchant.inventory.add(gp.player.inventory.get(itemIndex));
-                    // remove item from player inventory
-                    gp.player.inventory.remove(itemIndex);
+                    if(gp.player.inventory.get(itemIndex).amount >1){
+                        gp.player.inventory.get(itemIndex).amount--;
+                    }
+                    else{
+                        gp.player.inventory.remove(itemIndex);
+                    }
                     // add gold to player
                     gp.player.gold += price;
                 }
