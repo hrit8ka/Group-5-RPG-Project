@@ -13,6 +13,7 @@ public class OBJ_Axe extends Character {
         attackArea.width = 30;
         attackArea.height = 30;
         description = "[" +name+"]\nAn ancient axe.";
+        price = 100;
         
     }
 

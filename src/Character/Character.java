@@ -79,6 +79,7 @@ public class Character {
     public int defenseValue;// defenseValue: the defending power of the item
     public String description = "";// description: the description of the item
     public int usePrice;// usePrice: the price of the item
+    public int price;   // price: the price of the item
 
     // Type
     public int type;// type: the type of the character

@@ -12,6 +12,8 @@ public class OBJ_Armor extends Character {
         defenseValue = 1;
         description = "[" +name+"]\nKnight's armor.";
 
+        price = 10;
+
     }
 
 }

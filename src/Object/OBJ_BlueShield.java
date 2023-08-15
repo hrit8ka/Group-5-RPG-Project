@@ -11,6 +11,7 @@ public class OBJ_BlueShield extends Character {
         down1= setUp("src/objects/shield_blue", gp.tileSize, gp.tileSize);
         defenseValue= 1;
         description = "[" +name+"]\nA magical shield.";
+        price = 100;
         
     }
 

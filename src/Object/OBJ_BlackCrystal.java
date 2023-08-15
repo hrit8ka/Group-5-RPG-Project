@@ -23,6 +23,7 @@ public class OBJ_BlackCrystal extends Character {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         description = "[" + name + "]\nPowerful black crystal\nthat can heal you by " + value + " HP.";
+        price = 0;
     }
     public void use(Character Character){
         gp.gameState = gp.dialogueState;
