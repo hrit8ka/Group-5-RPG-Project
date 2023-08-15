@@ -131,6 +131,11 @@ public class UI {
         if (gp.gameState == gp.tradeState) {
             drawTradeScreen();
         }
+
+        //sleep state
+        if (gp.gameState == gp.sleepState) {
+            drawSleepScreen();
+        }
     }
 
     public void drawPlayerLife() {
@@ -933,6 +938,10 @@ public class UI {
 
             }
         }
+    }
+    public void drawSleepScreen(){
+        counter++;
+        
     }
 
     public int getItemIndexOnInventorySlot(int slotCol, int slotRow) {
