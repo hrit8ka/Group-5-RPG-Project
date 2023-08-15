@@ -17,10 +17,11 @@ public class OBJ_Mana extends Character {
         image = setUp("./src/objects/mana_full", gp.tileSize, gp.tileSize);
         image2 = setUp("./src/objects/mana_blank", gp.tileSize, gp.tileSize);
     }
-    public void use(Character Character){
+    public boolean use(Character Character){
         gp.playSE(2);
         gp.ui.addMessage("Mana + " + value);
         Character.life += value;
+        return true;
     }
     
 }

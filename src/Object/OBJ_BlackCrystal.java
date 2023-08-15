@@ -25,7 +25,7 @@ public class OBJ_BlackCrystal extends Character {
         description = "[" + name + "]\nPowerful black crystal\nthat can heal you by " + value + " HP.";
         price = 0;
     }
-    public void use(Character Character){
+    public boolean use(Character Character){
         gp.gameState = gp.dialogueState;
         gp.ui.currentDialogue = "You used the " + name + ".\nYou healed by " + value + " HP.";
         Character.life +=  value;
@@ -33,5 +33,6 @@ public class OBJ_BlackCrystal extends Character {
             gp.player.life = gp.player.maxLife;
         }
         gp.playSE(2);
+        return true;
     }
 }

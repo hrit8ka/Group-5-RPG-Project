@@ -6,7 +6,8 @@ import Main.GamePanel;
 public class Coin extends Character {
 
     GamePanel gp;
-    public Coin(GamePanel gp){
+
+    public Coin(GamePanel gp) {
         super(gp);
         this.gp = gp;
 
@@ -16,12 +17,13 @@ public class Coin extends Character {
 
         down1 = setUp("./src/objects/goldcoin", gp.tileSize, gp.tileSize);
     }
-    public void use(Character Character){
-       gp.playSE(1);
-       gp.ui.addMessage("Gold + " + value);
-         gp.player.gold += value;
+
+    public boolean use(Character Character) {
+        gp.playSE(1);
+        gp.ui.addMessage("Gold + " + value);
+        gp.player.gold += value;
+        return true;
+
     }
 
-    
-    
 }

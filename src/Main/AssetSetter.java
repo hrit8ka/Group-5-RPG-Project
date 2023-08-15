@@ -8,7 +8,10 @@ import Object.Coin;
 import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
 import Object.OBJ_BlueShield;
+import Object.OBJ_Chest;
+import Object.OBJ_Door;
 import Object.OBJ_Heart;
+import Object.OBJ_Key;
 import Object.OBJ_Mana;
 import Tile_Interactive.dryTree;
 
@@ -70,6 +73,18 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = gp.tileSize * 22;
         gp.obj[mapNum][i].worldY = gp.tileSize * 29;
         i++;
+
+        // set doors
+        gp.obj[mapNum][i] = new OBJ_Door(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 12;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 12;
+        i++;
+
+        // set chest
+        gp.obj[mapNum][i] = new OBJ_Chest(gp, new OBJ_Key(gp));
+        gp.obj[mapNum][i].worldX = gp.tileSize * 30;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 29;
+
     }
 
     // to set the NPC in the game, call this method in the setUpGame() method in
@@ -79,9 +94,9 @@ public class AssetSetter {
         int i;
         gp.npc[mapNum][0] = new NPC_Sage(gp); // create a new NPC object
         gp.npc[mapNum][0].worldX = 23 * gp.tileSize;
-        gp.npc[mapNum][0].worldY = 23 * gp.tileSize;       
+        gp.npc[mapNum][0].worldY = 23 * gp.tileSize;
 
-        //adding merchant to the game in Map 1
+        // adding merchant to the game in Map 1
         mapNum = 1;
         i = 0;
         gp.merchant[mapNum][i] = new NPC_Merchant(gp);
@@ -149,5 +164,6 @@ public class AssetSetter {
         i++;
         gp.interactiveTile[mapNum][i] = new dryTree(gp, 33, 12);
         i++;
+
     }
 }

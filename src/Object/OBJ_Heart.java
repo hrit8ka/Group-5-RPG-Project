@@ -22,9 +22,11 @@ public class OBJ_Heart extends Character {
         image2 = setUp("src/objects/heart_half", gp.tileSize, gp.tileSize);
         image3 = setUp("src/objects/heart_blank", gp.tileSize, gp.tileSize);
     }
-    public void use(Character Character){
+    public boolean use(Character Character){
         gp.playSE(2);
         gp.ui.addMessage("HP + " + value);
         Character.life += value;
+
+        return true;
     }
 }

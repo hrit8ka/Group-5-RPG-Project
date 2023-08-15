@@ -68,9 +68,9 @@ public class Player extends Character {
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;// set the worldX coordinate
         worldY = gp.tileSize * 21;// set the worldY coordinate
-        // worldX = gp.tileSize * 12;
-        // worldY = gp.tileSize * 13;
-        // gp.currentMap = 1;
+        //worldX = gp.tileSize * 12;
+        //worldY = gp.tileSize * 13;
+        //gp.currentMap = 1;
         defaultSpeed = 4;
 
         speed = defaultSpeed;// set the speed of the player
@@ -373,8 +373,15 @@ public class Player extends Character {
             if (gp.obj[gp.currentMap][i].type == pickUpType) {// if the object is a pick up item
                 gp.obj[gp.currentMap][i].use(this);// use the object
                 gp.obj[gp.currentMap][i] = null;// set the object to null
+            
 
-            } else {// inventory items
+            } else if(gp.obj[gp.currentMap][i].type == obstacleType){// if the object is an obstacle
+                if(keyH.enterPressed == true){
+                    noAttack= true;
+                    gp.obj[gp.currentMap][i].interact();
+                }
+            }
+            else {// inventory items
                 String text;// text to display
                 // if inventory is not full, pick up the object
                 if (inventory.size() != maxInventorySize) {// if the inventory is not full
@@ -532,6 +539,10 @@ public class Player extends Character {
                 defense = getDefense();
             }
             if (selectedItem.type == crystalType) {
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+            }
+            if(selectedItem.type == consumableType){
                 selectedItem.use(this);
                 inventory.remove(itemIndex);
             }

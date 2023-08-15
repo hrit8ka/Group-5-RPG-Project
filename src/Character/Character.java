@@ -92,12 +92,32 @@ public class Character {
     public final int armorType = 4;// armorType: the type of the armor is 4
     public final int axeType = 5;// axeType: the type of the axe is 5
     public final int crystalType = 6;// crystalType: the type of the crystal is 6
-    public final int potionType = 7;// potionType: the type of the potion is 7
+    public final int consumableType = 7;// consumableType: the type of the consumable is 7
     public final int pickUpType = 8;// pickUpType: the type of the pickUp is 8
+    public final int obstacleType = 9;// obstacleType: the type of the obstacle is 9
 
     // constructor Character
     public Character(GamePanel gp) {
         this.gp = gp;// set gp
+    }
+    //getters for the x and y coordinates of the character
+    public int getLeftX(){
+        return worldX + solidArea.x;
+    }
+    public int getRightX(){
+        return worldX + solidArea.x + solidArea.width;
+    }
+    public int getTopY(){
+        return worldY + solidArea.y;
+    }
+    public int getBottomY(){
+        return worldY + solidArea.y + solidArea.height;
+    }
+    public int getCol(){
+        return (worldX + solidArea.x)/gp.tileSize;
+    }
+    public int getRow(){
+        return (worldY + solidArea.y)/gp.tileSize;
     }
 
     // set action method
@@ -134,9 +154,13 @@ public class Character {
         }
     }
 
+    public void interact(){
+
+    }
     // use method
-    public void use(Character Character) {
+    public boolean use(Character Character) {
         // to be overridden in player class
+        return false;
     }
 
     // check drop method to check if items were dropped
@@ -533,6 +557,39 @@ public class Character {
          * onPath = false;
          * }
          */
+    }
+    public int getDetected(Character user, Character target[][], String targetName){
+        int index = 999;
+        //check the surrounding area
+        int nextWorldX = user.getLeftX();
+        int nextWorldY = user.getTopY();
 
+        switch(user.direction){
+            case "up":
+                nextWorldY -= user.getTopY()-1;
+                break;
+            case "down":
+                nextWorldY += user.getBottomY()+1;
+                break;
+            case "left":
+                nextWorldX -= user.getLeftX()-1;
+                break;
+            case "right":
+                nextWorldX += user.getRightX()+1;
+                break;
+        }
+        int col = nextWorldX/gp.tileSize;
+        int row = nextWorldY/gp.tileSize;
+
+        for(int i = 0; i < target[1].length; i++){
+            if(target[gp.currentMap][i] != null){
+                if(target[gp.currentMap][i].getCol()== col && target[gp.currentMap][i].getRow() == row
+                && target[gp.currentMap][i].name.equals(targetName)){
+                    index = i;
+                    break;
+                }
+            }
+        }
+        return index;
     }
 }

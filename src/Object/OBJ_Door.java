@@ -4,11 +4,13 @@ import Character.Character;
 import Main.GamePanel;
 
 public class OBJ_Door extends Character {
-    //GamePanel gp;
+    GamePanel gp;
 
     public OBJ_Door(GamePanel gp) {
-        //this.gp = gp;
         super(gp);
+        this.gp = gp;
+        
+        type = obstacleType;
         name = "door";
         down1= setUp("src/objects/door", gp.tileSize, gp.tileSize);
         
@@ -20,5 +22,9 @@ public class OBJ_Door extends Character {
         solidArea.height=32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+    }
+    public void interact(){
+        gp.gameState = gp.dialogueState;
+        gp.ui.currentDialogue = "You need a key to open this door.";
     }
 }

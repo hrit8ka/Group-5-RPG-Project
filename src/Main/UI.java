@@ -790,7 +790,7 @@ public class UI {
         drawInventory(gp.player, false);
         // draw merchant inventory
         drawInventory(merchant, true);
-
+ 
         // draw hint subwindow
         int x = gp.tileSize * 2;
         int y = gp.tileSize * 9;
