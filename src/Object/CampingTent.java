@@ -10,7 +10,7 @@ public class CampingTent extends Character {
         super(gp);
         this.gp = gp;
         type = consumableType;
-        name = "Tent";
+        name = "tent";
         down1 = setUp("./src/objects/tent", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\n\nA tent. You can rest here.";
 
@@ -21,6 +21,7 @@ public class CampingTent extends Character {
         gp.playSE(15);
         gp.player.life = gp.player.maxLife;
         gp.player.mana = gp.player.maxMana;
+        gp.player.getSleepingImage(down1);
         return false;
         // return false; if you want to keep the item after use
     }

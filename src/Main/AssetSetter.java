@@ -1,10 +1,10 @@
 package Main;
 
-import Character.Character;
 import Character.Healer;
 import Character.NPC_Merchant;
 import Character.NPC_Sage;
 import Monster.Slime;
+import Object.CampingTent;
 import Object.Candle;
 import Object.Coin;
 import Object.OBJ_Axe;
@@ -89,8 +89,8 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = gp.tileSize * 29;
         i++;
 
-        //place the house
-        gp.obj[mapNum][i] = new Character(gp);
+        //place the tent
+        gp.obj[mapNum][i] = new CampingTent(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 27;
         gp.obj[mapNum][i].worldY = gp.tileSize * 16;
         i++;

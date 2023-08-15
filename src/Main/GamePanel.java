@@ -13,6 +13,7 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
+import AI.Map;
 import AI.PathFinder;
 import Character.NPC_Sage;
 import Character.Player;
@@ -64,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
     Config config = new Config(this);
     public PathFinder pathFinder = new PathFinder(this);
     envManager environmentManager = new envManager(this);
+    Map map = new Map(this);
     Thread gameThread;
 
     // Character and Object
@@ -92,6 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int transitionState = 8;
     public final int tradeState = 9;
     public final int sleepState = 10;
+    public final int mapState = 11;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -279,6 +282,10 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == titleState) {
             ui.draw(g2);
 
+        }
+        //map screen
+        else if(gameState == mapState){
+            map.draw(g2);
         }
         // others
         else {

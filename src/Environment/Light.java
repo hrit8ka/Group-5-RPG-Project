@@ -11,7 +11,7 @@ import Main.GamePanel;
 public class Light {
     GamePanel gp;
     BufferedImage darkEffect;
-    int dayCounter;
+    public int dayCounter;
     public float filterAlpha = 0f;
     // day state
     public final int day = 0;

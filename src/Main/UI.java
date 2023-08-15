@@ -952,6 +952,7 @@ public class UI {
                 counter = 0;
                 gp.environmentManager.lighting.timeOfDay = gp.environmentManager.lighting.day;
                 gp.gameState = gp.playState;
+                gp.player.getPlayerImages();
             }
         }
     }

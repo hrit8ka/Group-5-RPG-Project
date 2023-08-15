@@ -135,6 +135,18 @@ public class Player extends Character {
         right2 = setUp("./src/player/right_2", gp.tileSize, gp.tileSize);
     }
 
+    public void getSleepingImage(BufferedImage image) {
+        
+        up1 = image;
+        up2 = image;
+        down1 = image;
+        down2 = image;
+        left1 = image;
+        left2 = image;
+        right1 = image;
+        right2 = image;
+    }
+
     // method to get the attack image of the player
     public void getPlayerAttackImage() {
 
@@ -534,8 +546,7 @@ public class Player extends Character {
             if (selectedItem.type == lightType) {
                 if (currentLight == selectedItem) {
                     currentLight = null;
-                }
-                else{
+                } else {
                     currentLight = selectedItem;
                 }
                 lightUpdated = true;
