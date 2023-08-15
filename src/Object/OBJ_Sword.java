@@ -14,6 +14,7 @@ public class OBJ_Sword extends Character {
         attackArea.height = 36;
         description = "[" +name+"]\nA magical ancient sword.";
         price =120;
+        knockBackPower = 2;
         
     }
 

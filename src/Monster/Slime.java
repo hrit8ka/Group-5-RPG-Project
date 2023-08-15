@@ -22,7 +22,8 @@ public class Slime extends Character {
 
         type = monsterType;// set type to monsterType
         name = "slime";// set name to slime
-        speed = 1;// set speed to 1
+        defaultSpeed = 1;// set default speed to 1
+        speed = defaultSpeed;// set speed to default speed
         maxLife = 5;// set max life to 5
         life = maxLife;// set life to max life
         attack = 5;// set attack to 5
@@ -54,20 +55,20 @@ public class Slime extends Character {
 
     }
 
-    public void update(){
+    public void update() {
         super.update();
 
         int xDistance = Math.abs(worldX - gp.player.worldX);
         int yDistance = Math.abs(worldY - gp.player.worldY);
-        int tileDistance =(xDistance + yDistance)/gp.tileSize;
+        int tileDistance = (xDistance + yDistance) / gp.tileSize;
 
-        if(onPath == false && tileDistance < 5){
+        if (onPath == false && tileDistance < 5) {
             int i = new Random().nextInt(100) + 1; // pick a random number between 1 and 100
-            if (i > 50){
+            if (i > 50) {
                 onPath = true;
             }
         }
-        if(onPath == true && tileDistance > 20){
+        if (onPath == true && tileDistance > 20) {
             onPath = false;
         }
     }
@@ -90,7 +91,14 @@ public class Slime extends Character {
                 projectile.set(worldX, worldY, direction, true, this);// set projectile to the slime monster's world x
                                                                       // and
                                                                       // y, direction, alive to true, and owner to this
-                gp.projectileList.add(projectile);// add projectile to the projectile list
+                // gp.projectileList.add(projectile);// add projectile to the projectile list
+                // check if projectile array is full
+                for (int j = 0; j < gp.projectile[1].length; j++) {
+                    if (gp.projectile[1][j] == null) {
+                        gp.projectile[1][j] = projectile;
+                        break;
+                    }
+                }
                 projectileCounter = 0;// set projectile counter to 0
             }
 
@@ -121,8 +129,8 @@ public class Slime extends Character {
     public void monsterDamageReaction() {
         // when attacking, monster moves away from player
         actionLockCounter = 0;// set action lock counter to 0
-        //direction = gp.player.direction;// set direction to player direction
-        onPath= true;// set on path to true
+        // direction = gp.player.direction;// set direction to player direction
+        onPath = true;// set on path to true
 
     }
 

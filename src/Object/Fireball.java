@@ -22,6 +22,7 @@ public class Fireball extends Projectile {
         maxLife = 80; // 80 frames = 1.33 seconds
         life = maxLife; // set life to max
         attack = 5; // 5 damage
+        knockBackPower = 0; // 0 knockback
         usePrice = 1; // 1 mana
         alive = false; // set alive to false
         getImage();

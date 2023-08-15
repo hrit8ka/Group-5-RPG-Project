@@ -72,7 +72,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Healer healer[][] = new Healer[maxMap][10];
     public Character monster[][] = new Character[maxMap][20];
     public interactiveTile interactiveTile[][] = new interactiveTile[maxMap][50];
-    public ArrayList<Character> projectileList = new ArrayList<>();
+    public Character projectile[][] = new Character[maxMap][20];
+    // public ArrayList<Character> projectileList = new ArrayList<>();
     public ArrayList<Character> particleList = new ArrayList<>();
     ArrayList<Character> characterList = new ArrayList<Character>();
 
@@ -111,11 +112,12 @@ public class GamePanel extends JPanel implements Runnable {
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
 
-        if(fullScreenOn == true){
-        setFullScreen();
+        if (fullScreenOn == true) {
+            setFullScreen();
         }
     }
-    public void retry(){
+
+    public void retry() {
         player.setDefaultPosition();
         player.restoreLifeandMana();
         assetSetter.setMonster();
@@ -123,7 +125,8 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setHealer();
 
     }
-    public void restart(){
+
+    public void restart() {
         player.setDefaultPosition();
         player.restoreLifeandMana();
         player.setItems();
@@ -136,14 +139,15 @@ public class GamePanel extends JPanel implements Runnable {
         stopMusic();
         gameState = titleState;
     }
+
     public void setFullScreen() {
-       //Get local graphics environment
-         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //Get graphics device
-            GraphicsDevice gd = ge.getDefaultScreenDevice();
-            //Enter full screen mode
-            gd.setFullScreenWindow(Main.window);
-        //get full screen width and height
+        // Get local graphics environment
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        // Get graphics device
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        // Enter full screen mode
+        gd.setFullScreenWindow(Main.window);
+        // get full screen width and height
         screenWidth2 = Main.window.getWidth();
         screenHeight2 = Main.window.getHeight();
     }
@@ -164,9 +168,9 @@ public class GamePanel extends JPanel implements Runnable {
 
             update();
 
-           //repaint();
-           drawTempScreen(); //draw everything to the buffered image
-           drawToScreen();//draw the buffered image to the screen
+            // repaint();
+            drawTempScreen(); // draw everything to the buffered image
+            drawToScreen();// draw the buffered image to the screen
 
             try {
 
@@ -222,13 +226,13 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             // projectile
-            for (int i = 0; i < projectileList.size(); i++) {
-                if (projectileList.get(i) != null) {
-                    if (projectileList.get(i).alive == true) {
-                        projectileList.get(i).update();
+            for (int i = 0; i < projectile[1].length; i++) {
+                if (projectile[currentMap][i] != null) {
+                    if (projectile[currentMap][i].alive == true) {
+                        projectile[currentMap][i].update();
                     }
-                    if (projectileList.get(i).alive == false) {
-                        projectileList.remove(i);
+                    if (projectile[currentMap][i].alive == false) {
+                        projectile[currentMap][i] = null;
                     }
                 }
             }
@@ -307,9 +311,9 @@ public class GamePanel extends JPanel implements Runnable {
                     characterList.add(monster[currentMap][i]); // add monster to characterListS
                 }
             }
-            for (int i = 0; i < projectileList.size(); i++) {
-                if (projectileList.get(i) != null) {
-                    characterList.add(projectileList.get(i));// add projectile to characterList
+            for (int i = 0; i < projectile[1].length; i++) {
+                if (projectile[currentMap][i] != null) {
+                    characterList.add(projectile[currentMap][i]);// add projectile to characterList
                 }
             }
             for (int i = 0; i < particleList.size(); i++) {
@@ -344,97 +348,101 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    /*public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-
-        // debug
-        long drawStart = 0;
-        if (keyH.checkDrawTime == true) {
-            drawStart = System.nanoTime();
-        }
-        // drawStart = System.nanoTime();
-
-        // title screen
-        if (gameState == titleState) {
-            ui.draw(g2);
-
-        }
-        // others
-        else {
-            // Tile
-            tileM.draw(g2); // tile is drawn before player so as to be behind the player
-            // interactiveTile
-            for (int i = 0; i < interactiveTile.length; i++) {
-                if (interactiveTile[i] != null) {
-                    interactiveTile[i].draw(g2);
-                }
-            }
-            // Add character to characterList
-            characterList.add(player);
-            for (int i = 0; i < npc.length; i++) {
-                if (npc[i] != null) {
-                    characterList.add(npc[i]);// add npc to characterList
-                }
-            }
-            for (int i = 0; i < healer.length; i++) {
-                if (healer[i] != null) {
-                    characterList.add(healer[i]);// add healer to characterList
-                }
-            }
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    characterList.add(obj[i]);// add object to characterList
-                }
-            }
-            for (int i = 0; i < monster.length; i++) {
-                if (monster[i] != null) {
-                    characterList.add(monster[i]); // add monster to characterListS
-                }
-            }
-            for (int i = 0; i < projectileList.size(); i++) {
-                if (projectileList.get(i) != null) {
-                    characterList.add(projectileList.get(i));// add projectile to characterList
-                }
-            }
-            for (int i = 0; i < particleList.size(); i++) {
-                if (particleList.get(i) != null) {
-                    characterList.add(particleList.get(i));// add particle to characterList
-                }
-            }
-            // sort
-            Collections.sort(characterList, new Comparator<Character>() {
-                @Override
-                public int compare(Character c1, Character c2) {
-                    int result = Integer.compare(c1.worldY, c2.worldY);
-                    return result;
-                }
-            });
-            // draw characters
-            for (int i = 0; i < characterList.size(); i++) {
-                characterList.get(i).draw(g2);
-            }
-            // empty characterList
-            characterList.clear();
-
-            // UI
-            ui.draw(g2);
-        }
-        // debug
-        if (keyH.checkDrawTime == true) {
-            long drawEnd = System.nanoTime();
-            long passed = drawEnd - drawStart;
-            g2.drawString("Draw time: " + passed, 10, 400);
-            System.out.println("Draw time: " + passed);
-        }
-
-        g2.dispose();
-    }*/
-    public void drawToScreen(){
+    /*
+     * public void paintComponent(Graphics g) {
+     * super.paintComponent(g);
+     * Graphics2D g2 = (Graphics2D) g;
+     * 
+     * // debug
+     * long drawStart = 0;
+     * if (keyH.checkDrawTime == true) {
+     * drawStart = System.nanoTime();
+     * }
+     * // drawStart = System.nanoTime();
+     * 
+     * // title screen
+     * if (gameState == titleState) {
+     * ui.draw(g2);
+     * 
+     * }
+     * // others
+     * else {
+     * // Tile
+     * tileM.draw(g2); // tile is drawn before player so as to be behind the player
+     * // interactiveTile
+     * for (int i = 0; i < interactiveTile.length; i++) {
+     * if (interactiveTile[i] != null) {
+     * interactiveTile[i].draw(g2);
+     * }
+     * }
+     * // Add character to characterList
+     * characterList.add(player);
+     * for (int i = 0; i < npc.length; i++) {
+     * if (npc[i] != null) {
+     * characterList.add(npc[i]);// add npc to characterList
+     * }
+     * }
+     * for (int i = 0; i < healer.length; i++) {
+     * if (healer[i] != null) {
+     * characterList.add(healer[i]);// add healer to characterList
+     * }
+     * }
+     * for (int i = 0; i < obj.length; i++) {
+     * if (obj[i] != null) {
+     * characterList.add(obj[i]);// add object to characterList
+     * }
+     * }
+     * for (int i = 0; i < monster.length; i++) {
+     * if (monster[i] != null) {
+     * characterList.add(monster[i]); // add monster to characterListS
+     * }
+     * }
+     * for (int i = 0; i < projectileList.size(); i++) {
+     * if (projectileList.get(i) != null) {
+     * characterList.add(projectileList.get(i));// add projectile to characterList
+     * }
+     * }
+     * for (int i = 0; i < particleList.size(); i++) {
+     * if (particleList.get(i) != null) {
+     * characterList.add(particleList.get(i));// add particle to characterList
+     * }
+     * }
+     * // sort
+     * Collections.sort(characterList, new Comparator<Character>() {
+     * 
+     * @Override
+     * public int compare(Character c1, Character c2) {
+     * int result = Integer.compare(c1.worldY, c2.worldY);
+     * return result;
+     * }
+     * });
+     * // draw characters
+     * for (int i = 0; i < characterList.size(); i++) {
+     * characterList.get(i).draw(g2);
+     * }
+     * // empty characterList
+     * characterList.clear();
+     * 
+     * // UI
+     * ui.draw(g2);
+     * }
+     * // debug
+     * if (keyH.checkDrawTime == true) {
+     * long drawEnd = System.nanoTime();
+     * long passed = drawEnd - drawStart;
+     * g2.drawString("Draw time: " + passed, 10, 400);
+     * System.out.println("Draw time: " + passed);
+     * }
+     * 
+     * g2.dispose();
+     * }
+     */
+    public void drawToScreen() {
         Graphics g = getGraphics();
         g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
         g.dispose();
     }
+
     public void playMusic(int i) {
         music.setFile(i);
         music.play();

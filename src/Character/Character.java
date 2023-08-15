@@ -41,17 +41,18 @@ public class Character {
     public boolean dying = false; // dying: whether the character is dying
     boolean hpBarOn = false;// hpBarOn: whether the hpBar is on
     public boolean onPath = false;// onPath: whether the character is on a path
+    public boolean knockBack = false;// knockBack: whether the character is knocked back
     // counters
-    public int spriteCounter = 0;// spriteCounter: the counter that controls the sprite animation of the
-                                 // character
-    public int actionLockCounter = 0;// actionLockCounter: the counter that controls the actionLock of the character
-    public int invincibleCounter = 0;// invincibleCounter: the counter that checks if the character is invincible
-    public int projectileCounter = 0;// projectileCounter: the counter that controls the projectile usage
-    int dyingCounter = 0;// dyingCounter: the counter that controls the dying animation
-    int hpBarCounter = 0; // hpBarCounter: the counter that controls the hpBar
-
+    public int spriteCounter = 0;// the counter that controls the sprite animation of character
+    public int actionLockCounter = 0;// the counter that controls the actionLock of the character
+    public int invincibleCounter = 0;// the counter that checks if the character is invincible
+    public int projectileCounter = 0;// the counter that controls the projectile usage
+    int dyingCounter = 0;// the counter that controls the dying animation
+    int hpBarCounter = 0; // the counter that controls the hpBar
+    int knockBackCounter = 0;// the counter that controls the knockBack
     // attributes
     public String name;// name: the name of the character or object
+    public int defaultSpeed;// defaultSpeed: the default speed of the character
     public int speed; // speed of the player
 
     // Character status
@@ -79,7 +80,8 @@ public class Character {
     public int defenseValue;// defenseValue: the defending power of the item
     public String description = "";// description: the description of the item
     public int usePrice;// usePrice: the price of the item
-    public int price;   // price: the price of the item
+    public int price; // price: the price of the item
+    public int knockBackPower = 0;// knockBackPower: the knockBack power of the item
 
     // Type
     public int type;// type: the type of the character
@@ -218,25 +220,59 @@ public class Character {
 
     // update method
     public void update() {
-        setAction();// call setAction method
-        checkCollision();
-        // if collision is false, player can move
-        if (collisionOn == false) {
-            switch (direction) {
-                case "up": // if the direction is up
-                    worldY -= speed;// move up
-                    break;
-                case "down":// if the direction is down
-                    worldY += speed;// move down
-                    break;
-                case "left":// if the direction is left
-                    worldX -= speed;// move left
-                    break;
-                case "right":// if the direction is right
-                    worldX += speed;// move right
-                    break;
+
+        if (knockBack == true) {
+            checkCollision();
+
+            if (collisionOn == true) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            } else if (collisionOn == false) {
+                switch (gp.player.direction) {
+                    case "up":
+                        worldY += speed;
+                        break;
+                    case "down":
+                        worldY -= speed;
+                        break;
+                    case "left":
+                        worldX += speed;
+                        break;
+                    case "right":
+                        worldX -= speed;
+                        break;
+                }
+            }
+            knockBackCounter++;
+            if (knockBackCounter == 10) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+
+        } else {
+            setAction();// call setAction method
+            checkCollision();
+            // if collision is false, player can move
+            if (collisionOn == false) {
+                switch (direction) {
+                    case "up": // if the direction is up
+                        worldY -= speed;// move up
+                        break;
+                    case "down":// if the direction is down
+                        worldY += speed;// move down
+                        break;
+                    case "left":// if the direction is left
+                        worldX -= speed;// move left
+                        break;
+                    case "right":// if the direction is right
+                        worldX += speed;// move right
+                        break;
+                }
             }
         }
+
         spriteCounter++;// increase spriteCounter
         if (spriteCounter > 24) {// if spriteCounter is greater than 12, change sprite
             if (spriteNumber == 1) {// if spriteNumber is 1

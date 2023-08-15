@@ -6,18 +6,19 @@ import javax.swing.JFrame;
 public class Main {
     // main method is used to create the window for the game and start the game
     public static JFrame window;
+
     public static void main(String[] args) {
         window = new JFrame("The Legend of Hyrule");// create window and set title of frame
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// close window when x is clicked
         window.setResizable(false); // window cannot be resized
         // window.setContentPane(new GamePanel());
         window.setTitle("The Legend of Hyrule");// set title of window
-        //window.setUndecorated(true);// remove title bar from window
+        // window.setUndecorated(true);// remove title bar from window
         GamePanel gamePanel = new GamePanel();// create game panel
         window.add(gamePanel);// add game panel to window
 
         gamePanel.config.loadConfig();// load config
-        if(gamePanel.fullScreenOn == true){
+        if (gamePanel.fullScreenOn == true) {
             window.setExtendedState(JFrame.MAXIMIZED_BOTH);// set window to full screen
         }
 
@@ -30,4 +31,4 @@ public class Main {
     }
 }
 
-// video 41, 0:34
+// video 42, 0:38

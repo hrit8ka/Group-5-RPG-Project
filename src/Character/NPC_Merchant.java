@@ -23,8 +23,8 @@ public class NPC_Merchant extends Character {
 
     // get the images for the merchant
     public void getImage() {
-        
-        //get merchant images
+
+        // get merchant images
         up1 = setUp("./src/npc/merchant_down_1", gp.tileSize, gp.tileSize);
         up2 = setUp("./src/npc/merchant_down_2", gp.tileSize, gp.tileSize);
         down1 = setUp("./src/npc/merchant_down_1", gp.tileSize, gp.tileSize);
@@ -34,7 +34,6 @@ public class NPC_Merchant extends Character {
         right1 = setUp("./src/npc/merchant_down_1", gp.tileSize, gp.tileSize);
         right2 = setUp("./src/npc/merchant_down_2", gp.tileSize, gp.tileSize);
 
-
     }
 
     // set the dialogue for the merchant
@@ -43,13 +42,14 @@ public class NPC_Merchant extends Character {
         dialogues[0] = "Howdy, stranger!\nI am the merchant of Minish Haven.\nDo you want to trade?";
     }
 
-    public void setItems(){
+    public void setItems() {
         inventory.add(new OBJ_BlackCrystal(gp));
         inventory.add(new OBJ_Axe(gp));
         inventory.add(new OBJ_BlueShield(gp));
         inventory.add(new OBJ_Sword(gp));
     }
-    public void speak(){
+
+    public void speak() {
         super.speak();
         gp.gameState = gp.tradeState;
         gp.ui.merchant = this;

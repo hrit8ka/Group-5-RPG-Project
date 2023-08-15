@@ -68,10 +68,12 @@ public class Player extends Character {
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;// set the worldX coordinate
         worldY = gp.tileSize * 21;// set the worldY coordinate
-        worldX = gp.tileSize * 12;
-        worldY = gp.tileSize * 13;
-        gp.currentMap = 1;
-        speed = 4;// set the speed of the player
+        // worldX = gp.tileSize * 12;
+        // worldY = gp.tileSize * 13;
+        // gp.currentMap = 1;
+        defaultSpeed = 4;
+
+        speed = defaultSpeed;// set the speed of the player
         direction = "down";// set the direction of the player
 
         // Player status
@@ -264,7 +266,14 @@ public class Player extends Character {
             // subtract mana
             projectile.subtractMana(this);
             // add projectile to array list
-            gp.projectileList.add(projectile);
+            // gp.projectileList.add(projectile);
+            // check if projectile array is full
+            for (int i = 0; i < gp.projectile[1].length; i++) {
+                if (gp.projectile[gp.currentMap][i] == null) {
+                    gp.projectile[gp.currentMap][i] = projectile;
+                    break;
+                }
+            }
             projectileCounter = 0; // reset projectile counter
             gp.playSE(10);
             // stop projectile shooting
@@ -272,7 +281,9 @@ public class Player extends Character {
         }
 
         // check if player is invincible
-        if (invincible == true) {// if the player is invincible
+        if (invincible == true)
+
+        {// if the player is invincible
             invincibleCounter++;// increment the invincible counter
             if (invincibleCounter > 60) {// if the invincible counter is greater than 60
                 invincible = false;// set invincible to false
@@ -308,8 +319,7 @@ public class Player extends Character {
         if (spriteCounter <= 5) {// if the sprite counter is less than or equal to 5
             spriteNumber = 1;// set the sprite number to 1
         }
-        if (spriteCounter > 5 && spriteCounter <= 25) {// if the sprite counter is greater than 5 and less than or equal
-                                                       // to 25
+        if (spriteCounter > 5 && spriteCounter <= 25) {// if the sprite counter is > 5 and <= equal to 25
             spriteNumber = 2;// set the sprite number to 2
             int currentWorldX = worldX;// save the current worldX
             int currentWorldY = worldY;// save the current worldY
@@ -335,10 +345,12 @@ public class Player extends Character {
             solidArea.height = attackArea.height;// set the solid area height to the attack area height
             // check collision with monster with the attack area
             int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);// check collision with monster
-            damagedMonster(monsterIndex, attack);// call the method to damage the monster
+            damagedMonster(monsterIndex, attack, currentWeapon.knockBackPower);// call the method to damage the monster
             // check collision with interactive tiles
             int interactiveTileIndex = gp.collisionChecker.checkCharacter(this, gp.interactiveTile);
             damageInteractiveTile(interactiveTileIndex);
+            int projectileIndex = gp.collisionChecker.checkCharacter(this, gp.projectile);
+            damageProjectile(projectileIndex);
             // after checking, reset the worldX, worldY, solidAreaWidth and solidAreaHeight
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -427,10 +439,16 @@ public class Player extends Character {
     }
 
     // method to check the damage of the monster
-    public void damagedMonster(int monsterIndex, int attack) {
+    public void damagedMonster(int monsterIndex, int attack, int knockBackPower) {
         if (monsterIndex != 999) {// if the monster is not null
             if (gp.monster[gp.currentMap][monsterIndex].invincible == false) {// if the monster is not invincible
                 gp.playSE(5);// play the sound effect
+                if (knockBackPower > 0) {
+                    knockBack(gp.monster[gp.currentMap][monsterIndex], knockBackPower);// call the method to knock back
+                                                                                       // the monster
+                }
+                knockBack(gp.monster[gp.currentMap][monsterIndex], knockBackPower);// call the method to knock back the
+                                                                                   // player
                 int damage = attack - gp.monster[gp.currentMap][monsterIndex].defense;// calculate the damage
                 if (damage < 0) {// if the damage is less than 0, set the damage to 0
                     damage = 0;
@@ -438,12 +456,10 @@ public class Player extends Character {
                 gp.monster[gp.currentMap][monsterIndex].life -= damage;// decrease the monster's life
                 gp.ui.addMessage("+" + damage + " damage!");// add the message to the message list
                 gp.monster[gp.currentMap][monsterIndex].invincible = true;// set the monster to invincible
-                gp.monster[gp.currentMap][monsterIndex].monsterDamageReaction();// call the method to make the monster
-                                                                                // react to the
-                // damage
+                gp.monster[gp.currentMap][monsterIndex].monsterDamageReaction();// call method to make monsterreact to
+                                                                                // damage
 
-                if (gp.monster[gp.currentMap][monsterIndex].life <= 0) {// if the monster's life is less than or equal
-                                                                        // to 0
+                if (gp.monster[gp.currentMap][monsterIndex].life <= 0) {// if monster's life is <= to 0
                     gp.monster[gp.currentMap][monsterIndex].dying = true;// set the monster to dying
                     gp.ui.addMessage("You defeated the " + gp.monster[gp.currentMap][monsterIndex].name + "!");// add
                                                                                                                // the
@@ -459,7 +475,14 @@ public class Player extends Character {
         }
     }
 
-    private void damageInteractiveTile(int i) {
+    public void knockBack(Character character, int knockBackPower) {
+        character.direction = direction;
+        character.speed += knockBackPower;
+        character.knockBack = true;
+
+    }
+
+    public void damageInteractiveTile(int i) {
         // if the interactive tile is not null, damage the interactive tile
         if (i != 999 && gp.interactiveTile[gp.currentMap][i].destructible == true
                 && gp.interactiveTile[gp.currentMap][i].isCorrectItem(this) == true) {
@@ -469,7 +492,15 @@ public class Player extends Character {
         }
     }
 
-    private void checkLevelUp() {
+    public void damageProjectile(int i) {
+        if (i != 999) {
+            Character projectile = gp.projectile[gp.currentMap][i];
+            projectile.alive = false;
+            generateParticles(projectile, projectile);
+        }
+    }
+
+    public void checkLevelUp() {
         if (xp >= nextLevelXP) {
             level++;
             nextLevelXP = nextLevelXP * 2;

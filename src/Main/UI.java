@@ -102,7 +102,7 @@ public class UI {
         }
         // dialogue state
         if (gp.gameState == gp.dialogueState) {
-            //drawPlayerLife();
+            // drawPlayerLife();
             drawDialogueScreen();
         }
 
@@ -883,28 +883,28 @@ public class UI {
             drawSubWindow(x, y, width, height);
             g2.drawImage(gold, x + 10, y + 8, 32, 32, null);
 
-            int price = gp.player.inventory.get(itemIndex).price/2;
+            int price = gp.player.inventory.get(itemIndex).price / 2;
             String text = "" + price;
-            x = getXforAlignRightText(text, gp.tileSize * 18-20);
+            x = getXforAlignRightText(text, gp.tileSize * 18 - 20);
             g2.drawString(text, x, y + 34);
 
             // sell an item
             if (gp.keyH.enterPressed == true) {
-                //if item equipped, cannot sell
-                if (gp.player.inventory.get(itemIndex) == gp.player.currentWeapon || gp.player.inventory.get(itemIndex) == gp.player.currentArmor) {
+                // if item equipped, cannot sell
+                if (gp.player.inventory.get(itemIndex) == gp.player.currentWeapon
+                        || gp.player.inventory.get(itemIndex) == gp.player.currentArmor) {
                     commandNumber = 0;
                     subState = 0;
                     gp.gameState = gp.dialogueState;
                     currentDialogue = "You cannot sell equipped items!";
                     drawDialogueScreen();
-                }
-                else{
-                // add item to merchant inventory
-                merchant.inventory.add(gp.player.inventory.get(itemIndex));
-                // remove item from player inventory
-                gp.player.inventory.remove(itemIndex);
-                // add gold to player
-                gp.player.gold += price;
+                } else {
+                    // add item to merchant inventory
+                    merchant.inventory.add(gp.player.inventory.get(itemIndex));
+                    // remove item from player inventory
+                    gp.player.inventory.remove(itemIndex);
+                    // add gold to player
+                    gp.player.gold += price;
                 }
 
             }
