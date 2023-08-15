@@ -23,7 +23,7 @@ public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    Font maruMonica;
+    public Font maruMonica;
     BufferedImage heart_full, heart_half, heart_blank, mana_full, mana_blank, gold;
     // BufferedImage keyImage;
     public boolean messageOn = false;
@@ -136,6 +136,7 @@ public class UI {
         if (gp.gameState == gp.sleepState) {
             drawSleepScreen();
         }
+        
     }
 
     public void drawPlayerLife() {

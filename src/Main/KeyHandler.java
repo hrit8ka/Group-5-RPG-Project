@@ -61,6 +61,10 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.tradeState) {
             tradeState(code);
         }
+        // map state
+        else if (gp.gameState == gp.mapState) {
+            mapState(code);
+        }
 
     }
 
@@ -115,6 +119,14 @@ public class KeyHandler implements KeyListener {
             shotKeyPressed = true;
         } else if (code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.optionState;
+        } else if (code == KeyEvent.VK_M) {
+            gp.gameState = gp.mapState;
+        } else if (code == KeyEvent.VK_N) {
+            if (gp.map.miniMapOn == false) {
+                gp.map.miniMapOn = true;
+            } else {
+                gp.map.miniMapOn = false;
+            }
         }
 
         // debug
@@ -279,19 +291,25 @@ public class KeyHandler implements KeyListener {
                 gp.playSE(9);
             }
         }
-        if(gp.ui.subState == 1){
+        if (gp.ui.subState == 1) {
             merchantInventory(code);
-            if(code == KeyEvent.VK_ESCAPE){
+            if (code == KeyEvent.VK_ESCAPE) {
                 gp.ui.subState = 0;
                 gp.ui.commandNumber = 0;
             }
         }
-          if(gp.ui.subState == 2){
+        if (gp.ui.subState == 2) {
             playerInventory(code);
-            if(code == KeyEvent.VK_ESCAPE){
+            if (code == KeyEvent.VK_ESCAPE) {
                 gp.ui.subState = 0;
                 gp.ui.commandNumber = 0;
             }
+        }
+    }
+
+    public void mapState(int code) {
+        if (code == KeyEvent.VK_M) {
+            gp.gameState = gp.mapState;
         }
     }
 

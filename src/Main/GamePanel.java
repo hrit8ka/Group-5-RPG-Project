@@ -281,10 +281,9 @@ public class GamePanel extends JPanel implements Runnable {
         // title screen
         if (gameState == titleState) {
             ui.draw(g2);
-
         }
-        //map screen
-        else if(gameState == mapState){
+        // map screen
+        if (gameState == mapState) {
             map.draw(g2);
         }
         // others
@@ -351,6 +350,9 @@ public class GamePanel extends JPanel implements Runnable {
 
             // environment
             environmentManager.draw(g2);
+
+            //miniMap
+            map.drawMiniMap(g2);
 
             // UI
             ui.draw(g2);
