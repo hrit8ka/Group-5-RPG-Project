@@ -23,7 +23,7 @@ public class OBJ_BlackCrystal extends Character {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         description = "[" + name + "]\nPowerful black crystal\nthat can heal you by " + value + " HP.";
-        price = 0;
+        price = 50;
         stackable = true;
     }
     public boolean use(Character Character){
