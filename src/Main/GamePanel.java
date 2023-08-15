@@ -91,6 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gameOverState = 7;
     public final int transitionState = 8;
     public final int tradeState = 9;
+    public final int sleepState = 10;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -256,7 +257,7 @@ public class GamePanel extends JPanel implements Runnable {
                     interactiveTile[currentMap][i].update();
                 }
             }
-            //environment manager
+            // environment manager
             environmentManager.update();
 
         }
@@ -341,7 +342,7 @@ public class GamePanel extends JPanel implements Runnable {
             // empty characterList
             characterList.clear();
 
-            //environment
+            // environment
             environmentManager.draw(g2);
 
             // UI

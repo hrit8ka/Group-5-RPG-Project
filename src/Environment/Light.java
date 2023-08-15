@@ -1,5 +1,6 @@
 package Environment;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RadialGradientPaint;
@@ -10,6 +11,14 @@ import Main.GamePanel;
 public class Light {
     GamePanel gp;
     BufferedImage darkEffect;
+    int dayCounter;
+    float filterAlpha = 0.0f;
+    // day state
+    final int day = 0;
+    final int dusk = 1;
+    final int night = 2;
+    final int dawn = 3;
+    int timeOfDay = day;
 
     public Light(GamePanel gp) {
         this.gp = gp;
@@ -68,14 +77,63 @@ public class Light {
         // dispose of the graphics object
         g2.dispose();
     }
-    public void update(){
-        if(gp.player.lightUpdated == true)  {
+
+    public void update() {
+        if (gp.player.lightUpdated == true) {
             setLightSource();
             gp.player.lightUpdated = false;
+        }
+        // check the state of the day
+        if (timeOfDay == day) {
+            dayCounter++;
+            if (dayCounter > 300) {
+                timeOfDay = dusk;
+                dayCounter = 0;
+            }
+        } else if (timeOfDay == dusk) {
+            filterAlpha += 0.001f;
+            if (filterAlpha > 1f) {
+                filterAlpha = 1f;
+                timeOfDay = night;
+            }
+        } else if (timeOfDay == night) {
+            dayCounter++;
+            if (dayCounter > 300) {
+                timeOfDay = dawn;
+                dayCounter = 0;
+            }
+        } else if (timeOfDay == dawn) {
+            filterAlpha -= 0.001f;
+            if (filterAlpha < 0f) {
+                filterAlpha = 0;
+                timeOfDay = day;
+            }
         }
     }
 
     public void draw(Graphics2D g2) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
         g2.drawImage(darkEffect, 0, 0, null);// draw the dark effect
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+
+        // debug
+        String condition = "";
+        switch (timeOfDay) {
+            case day:
+                condition = "day";
+                break;
+            case dusk:
+                condition = "dusk";
+                break;
+            case night:
+                condition = "night";
+                break;
+            case dawn:
+                condition = "dawn";
+                break;
+        }
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(20f));
+        g2.drawString(condition, 800, 500);
     }
 }
