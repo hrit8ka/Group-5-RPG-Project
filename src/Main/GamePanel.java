@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import AI.PathFinder;
 import Character.NPC_Sage;
 import Character.Player;
+import Environment.envManager;
 import Character.Character;
 import Character.Healer;
 import Character.NPC_Merchant;
@@ -62,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     public EventHandler eventHandler = new EventHandler(this);
     Config config = new Config(this);
     public PathFinder pathFinder = new PathFinder(this);
+    envManager environmentManager = new envManager(this);
     Thread gameThread;
 
     // Character and Object
@@ -105,6 +107,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setHealer();
         assetSetter.setMonster();
         assetSetter.setInteractiveTile();
+        environmentManager.setUp();
         playMusic(0);
         stopMusic();
         gameState = titleState;
@@ -335,6 +338,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
             // empty characterList
             characterList.clear();
+
+            //environment
+            environmentManager.draw(g2);
 
             // UI
             ui.draw(g2);

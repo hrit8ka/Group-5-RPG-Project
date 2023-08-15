@@ -67,11 +67,11 @@ public class Player extends Character {
 
     // method to set the default values of the player
     public void setDefaultValues() {
-        //worldX = gp.tileSize * 23;// set the worldX coordinate
-        //worldY = gp.tileSize * 21;// set the worldY coordinate
-        worldX = gp.tileSize * 12;
-        worldY = gp.tileSize * 13;
-        gp.currentMap = 1;
+        worldX = gp.tileSize * 23;// set the worldX coordinate
+        worldY = gp.tileSize * 21;// set the worldY coordinate
+        //worldX = gp.tileSize * 12;
+        //worldY = gp.tileSize * 13;
+        //gp.currentMap = 1;
         defaultSpeed = 4;
 
         speed = defaultSpeed;// set the speed of the player
