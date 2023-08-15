@@ -26,7 +26,7 @@ public class Slime extends Character {
         speed = defaultSpeed;// set speed to default speed
         maxLife = 5;// set max life to 5
         life = maxLife;// set life to max life
-        attack = 5;// set attack to 5
+        attack = 2;// set attack to 5
         defense = 0;// set defense to 0
         xp = 2;// set xp to 2
         projectile = new Rock(gp);// set projectile to a new rock
