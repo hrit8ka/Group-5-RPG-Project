@@ -55,7 +55,7 @@ public class Character {
     public int defaultSpeed;// defaultSpeed: the default speed of the character
     public int speed; // speed of the player
 
-    // Character status
+    // Character attributes
     public int maxLife;// maxLife: the maximum life of the character
     public int life;// life: the current life of the character
     public int level;// level: the level of the character
@@ -70,6 +70,7 @@ public class Character {
     public int gold;// gold: the number of gold coins that the character has
     public Character currentWeapon; // currentWeapon: the current weapon that the character is using
     public Character currentArmor;// currentArmor: the current armor that the character is using
+    public Character currentLight; // currentLight: the candle that the character is using
     public Projectile projectile;// projectile: the projectile that the character is using
 
     // item attributes
@@ -84,6 +85,7 @@ public class Character {
     public int knockBackPower = 0;// knockBackPower: the knockBack power of the item
     public boolean stackable = false;// stackable: whether the item is stackable
     public int amount = 1;
+    public int lightRadius = 0;// lightRadius: the light radius of the item
 
     // Type
     public int type;// type: the type of the character
@@ -97,29 +99,36 @@ public class Character {
     public final int consumableType = 7;// consumableType: the type of the consumable is 7
     public final int pickUpType = 8;// pickUpType: the type of the pickUp is 8
     public final int obstacleType = 9;// obstacleType: the type of the obstacle is 9
+    public final int lightType = 10;// lightType: the type of the light is 10
 
     // constructor Character
     public Character(GamePanel gp) {
         this.gp = gp;// set gp
     }
-    //getters for the x and y coordinates of the character
-    public int getLeftX(){
+
+    // getters for the x and y coordinates of the character
+    public int getLeftX() {
         return worldX + solidArea.x;
     }
-    public int getRightX(){
+
+    public int getRightX() {
         return worldX + solidArea.x + solidArea.width;
     }
-    public int getTopY(){
+
+    public int getTopY() {
         return worldY + solidArea.y;
     }
-    public int getBottomY(){
+
+    public int getBottomY() {
         return worldY + solidArea.y + solidArea.height;
     }
-    public int getCol(){
-        return (worldX + solidArea.x)/gp.tileSize;
+
+    public int getCol() {
+        return (worldX + solidArea.x) / gp.tileSize;
     }
-    public int getRow(){
-        return (worldY + solidArea.y)/gp.tileSize;
+
+    public int getRow() {
+        return (worldY + solidArea.y) / gp.tileSize;
     }
 
     // set action method
@@ -156,9 +165,10 @@ public class Character {
         }
     }
 
-    public void interact(){
+    public void interact() {
 
     }
+
     // use method
     public boolean use(Character Character) {
         // to be overridden in player class
@@ -560,33 +570,34 @@ public class Character {
          * }
          */
     }
-    public int getDetected(Character user, Character target[][], String targetName){
+
+    public int getDetected(Character user, Character target[][], String targetName) {
         int index = 999;
-        //check the surrounding area
+        // check the surrounding area
         int nextWorldX = user.getLeftX();
         int nextWorldY = user.getTopY();
 
-        switch(user.direction){
+        switch (user.direction) {
             case "up":
-                nextWorldY -= user.getTopY()-1;
+                nextWorldY -= user.getTopY() - 1;
                 break;
             case "down":
-                nextWorldY += user.getBottomY()+1;
+                nextWorldY += user.getBottomY() + 1;
                 break;
             case "left":
-                nextWorldX -= user.getLeftX()-1;
+                nextWorldX -= user.getLeftX() - 1;
                 break;
             case "right":
-                nextWorldX += user.getRightX()+1;
+                nextWorldX += user.getRightX() + 1;
                 break;
         }
-        int col = nextWorldX/gp.tileSize;
-        int row = nextWorldY/gp.tileSize;
+        int col = nextWorldX / gp.tileSize;
+        int row = nextWorldY / gp.tileSize;
 
-        for(int i = 0; i < target[1].length; i++){
-            if(target[gp.currentMap][i] != null){
-                if(target[gp.currentMap][i].getCol()== col && target[gp.currentMap][i].getRow() == row
-                && target[gp.currentMap][i].name.equals(targetName)){
+        for (int i = 0; i < target[1].length; i++) {
+            if (target[gp.currentMap][i] != null) {
+                if (target[gp.currentMap][i].getCol() == col && target[gp.currentMap][i].getRow() == row
+                        && target[gp.currentMap][i].name.equals(targetName)) {
                     index = i;
                     break;
                 }

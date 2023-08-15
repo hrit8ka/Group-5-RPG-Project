@@ -16,9 +16,12 @@ public class envManager {
 
     public void setUp() {
         // set up lighting
-        lighting = new Light(gp, 525);
+        lighting = new Light(gp);
     }
-
+    public void update(){
+        lighting.update();
+    }
+    
     public void draw(Graphics2D g2) {
         lighting.draw(g2);// draw lighting
     }

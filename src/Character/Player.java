@@ -26,22 +26,12 @@ public class Player extends Character {
     public final int screenY;
     int standCounter = 0;// counter for the standing animation
     public boolean noAttack = false;// boolean to check if the player is attacking
-    // public int hasKey = 0;
-    // public ArrayList<Character> inventory = new ArrayList<>();// inventory of the
-    // player
-    // public final int maxInventorySize = 20;// max size of the inventory
-    private BufferedImage up1;// image Up for the player
-    private BufferedImage up2;// image Up for the player
-    public BufferedImage down1;// image Down for the player
-    private BufferedImage down2;// image Down for the player
-    private BufferedImage left1;// image Left for the player
-    private BufferedImage left2;// image Left for the player
-    private BufferedImage right1;// image Right for the player
-    private BufferedImage right2;// image Right for the player
-    public BufferedImage idle;
-    // Constructor for the player class, passes the GamePanel and the KeyHandler as
-    // parameters
 
+    public boolean lightUpdated;
+
+    public BufferedImage idle;
+
+    // Constructor for the player class
     public Player(GamePanel gp, KeyHandler keyH) {
 
         super(gp);// call the super constructor
@@ -69,9 +59,9 @@ public class Player extends Character {
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;// set the worldX coordinate
         worldY = gp.tileSize * 21;// set the worldY coordinate
-        //worldX = gp.tileSize * 12;
-        //worldY = gp.tileSize * 13;
-        //gp.currentMap = 1;
+        // worldX = gp.tileSize * 12;
+        // worldY = gp.tileSize * 13;
+        // gp.currentMap = 1;
         defaultSpeed = 4;
 
         speed = defaultSpeed;// set the speed of the player
@@ -371,7 +361,7 @@ public class Player extends Character {
         if (i != 999) {// if the object is not null
             // pickup object
             if (gp.obj[gp.currentMap][i].type == pickUpType) {// if the object is a pick up item
-        
+
                 gp.obj[gp.currentMap][i].use(this);// use the object
                 gp.obj[gp.currentMap][i] = null;// set the object to null
 
@@ -382,9 +372,9 @@ public class Player extends Character {
                 }
             } else {// inventory items
                 String text;// text to display
-              
+
                 // if inventory is not full, pick up the object
-                if (canObtainItem(gp.obj[gp.currentMap][i])==true) {// if the inventory is not full
+                if (canObtainItem(gp.obj[gp.currentMap][i]) == true) {// if the inventory is not full
                     gp.playSE(5);// play the sound effect
                     text = "picked up  " + gp.obj[gp.currentMap][i].name;// set the text to display
                 } else {
@@ -541,13 +531,23 @@ public class Player extends Character {
                 selectedItem.use(this);
                 inventory.remove(itemIndex);
             }
-            if (selectedItem.type == consumableType) {
-                if(selectedItem.amount >1){
-                    selectedItem.amount--;
+            if (selectedItem.type == lightType) {
+                if (currentLight == selectedItem) {
+                    currentLight = null;
                 }
                 else{
-                //selectedItem.use(this);
-                inventory.remove(itemIndex);
+                    currentLight = selectedItem;
+                }
+                lightUpdated = true;
+            }
+            if (selectedItem.type == consumableType) {
+                if (selectedItem.use(this) == true) {
+                    if (selectedItem.amount > 1) {
+                        selectedItem.amount--;
+                    } else {
+                        // selectedItem.use(this);
+                        inventory.remove(itemIndex);
+                    }
                 }
             }
         }
@@ -579,9 +579,8 @@ public class Player extends Character {
                     canObtain = true;
                 }
             }
-        }
-        else{
-            //not stackable, check if the inventory is full
+        } else {
+            // not stackable, check if the inventory is full
             if (inventory.size() != maxInventorySize) {
                 inventory.add(item);
                 canObtain = true;

@@ -396,7 +396,8 @@ public class UI {
         for (int i = 0; i < character.inventory.size(); i++) {
             // equip cursor
             if (character.inventory.get(i) == character.currentWeapon
-                    || character.inventory.get(i) == character.currentArmor) {
+                    || character.inventory.get(i) == character.currentArmor 
+                    || character.inventory.get(i) == character.currentLight) {
                 g2.setColor(new Color(240, 190, 190));
                 g2.setStroke(new BasicStroke(3));
                 g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);

@@ -22,7 +22,7 @@ public class OBJ_BlackCrystal extends Character {
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        description = "[" + name + "]\nPowerful black crystal\nthat can heal you by " + value + " HP.";
+        description = "[" + name + "]\nPowerful black crystal\nIt heals you by " + value + " HP.";
         price = 50;
         stackable = true;
     }

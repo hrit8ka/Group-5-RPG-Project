@@ -4,6 +4,7 @@ import Character.Healer;
 import Character.NPC_Merchant;
 import Character.NPC_Sage;
 import Monster.Slime;
+import Object.Candle;
 import Object.Coin;
 import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
@@ -25,11 +26,12 @@ public class AssetSetter {
     public void setObject() {
         int mapNum = 0;
         int i = 0;
-        // add black crystal
-        gp.obj[mapNum][i] = new OBJ_BlackCrystal(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize * 21;
-        gp.obj[mapNum][i].worldY = gp.tileSize * 23;
+        // add candle
+        gp.obj[mapNum][i] = new Candle(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 18;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 20;
         i++;
+        // add black crystal
         gp.obj[mapNum][i] = new OBJ_BlackCrystal(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 21;
         gp.obj[mapNum][i].worldY = gp.tileSize * 19;
