@@ -12,7 +12,7 @@ public class NPC_Sage extends Character {
         super(gp);// call the super constructor
 
         direction = "down";// the sage starts facing down
-        speed = 1;// the sage moves at a speed of 1
+        speed = 2;// the sage moves at a speed of 1
 
         getImage();// get the images for the sage
         setDialogue();// set the dialogue for the sage
@@ -45,11 +45,15 @@ public class NPC_Sage extends Character {
     // set the action for the sage
     public void setAction() {
         if (onPath == true) {
-            int goalCol=12;
-            int goalRow=9;
+            //int goalCol=12;
+            //int goalRow=9;
+            int goalCol=(gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
+            int goalRow=(gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
 
             searchPath(goalCol, goalRow);
+           
         } else {
+            // if the sage is not on the path, the sage will move randomly
             actionLockCounter++;// increment the action lock counter
             if (actionLockCounter == 120) {// if the action lock counter is 120
                 Random random = new Random();// create a new random object

@@ -67,6 +67,7 @@ public class PathFinder {
 
         // set start, end and current node
         startNode = node[startCol][startRow];
+        currentNode = startNode;
         endNode = node[endCol][endRow];
         openList.add(currentNode);
 
@@ -188,7 +189,7 @@ public class PathFinder {
     public void trackPath(){
         Node current = endNode;
 
-        while(current != startNode){
+        while(current != null && current != startNode){
             pathList.add(0, current);
             current = current.parent;
         }

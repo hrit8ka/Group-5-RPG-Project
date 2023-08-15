@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -17,6 +19,7 @@ public class TileManager {
     GamePanel gp;// game panel
     public Tile[] tile;// array of tiles
     public int mapTileNum[][][];// 3D array of tile numbers
+    boolean drawPath = true;// boolean to draw path
 
     // constructor for TileManager
     public TileManager(GamePanel gp) {
@@ -209,6 +212,19 @@ public class TileManager {
                 worldCol = 0;
                 worldRow++;
 
+            }
+        }
+        if(drawPath == true){
+            g2.setColor(new Color(250, 0, 70));
+            for(int i = 0; i < gp.pathFinder.pathList.size(); i++){
+                int worldX =gp.pathFinder.pathList.get(i).col * gp.tileSize;// world x is equal to world column times tile size
+                int worldY = gp.pathFinder.pathList.get(i).row * gp.tileSize;// world y is equal to world row times tile size
+
+                int screenX = worldX - gp.player.worldX + gp.player.screenX;// screen x is equal to world x minus player
+                                                                            // world x plus player screen x
+                int screenY = worldY - gp.player.worldY + gp.player.screenY;// screen y is equal to world y minus player
+
+                g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
             }
         }
 
