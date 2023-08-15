@@ -91,12 +91,17 @@ public class Sound {
             e.printStackTrace();
         }
         try {
-            soundURL[13] = new URL("file:src/sound/gameover.wav");// sound URL for door
+            soundURL[13] = new URL("file:src/sound/gameover.wav");// sound URL for game over
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         try {
             soundURL[14] = new URL("file:src/sound/runningingrass.wav");// sound URL for door
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try{
+            soundURL[15] = new URL("file:src/sound/sleep.wav");// sound URL for sleep
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 package Main;
 
+import Character.Character;
 import Character.Healer;
 import Character.NPC_Merchant;
 import Character.NPC_Sage;
@@ -86,7 +87,13 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_Chest(gp, new OBJ_Key(gp));
         gp.obj[mapNum][i].worldX = gp.tileSize * 30;
         gp.obj[mapNum][i].worldY = gp.tileSize * 29;
+        i++;
 
+        //place the house
+        gp.obj[mapNum][i] = new Character(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 27;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 16;
+        i++;
     }
 
     // to set the NPC in the game, call this method in the setUpGame() method in

@@ -132,7 +132,7 @@ public class UI {
             drawTradeScreen();
         }
 
-        //sleep state
+        // sleep state
         if (gp.gameState == gp.sleepState) {
             drawSleepScreen();
         }
@@ -401,7 +401,7 @@ public class UI {
         for (int i = 0; i < character.inventory.size(); i++) {
             // equip cursor
             if (character.inventory.get(i) == character.currentWeapon
-                    || character.inventory.get(i) == character.currentArmor 
+                    || character.inventory.get(i) == character.currentArmor
                     || character.inventory.get(i) == character.currentLight) {
                 g2.setColor(new Color(240, 190, 190));
                 g2.setStroke(new BasicStroke(3));
@@ -803,12 +803,12 @@ public class UI {
         if (commandNumber == 2) {
             g2.drawString(">", x - 24, y);
             if (gp.keyH.enterPressed == true) {
-                //exit trade screen
+                // exit trade screen
                 gp.gameState = gp.dialogueState;
                 currentDialogue = "Come again, friend!";
                 subState = 0;
                 commandNumber = 0;
-                
+
             }
         }
 
@@ -819,7 +819,7 @@ public class UI {
         drawInventory(gp.player, false);
         // draw merchant inventory
         drawInventory(merchant, true);
- 
+
         // draw hint subwindow
         int x = gp.tileSize * 2;
         int y = gp.tileSize * 9;
@@ -858,14 +858,12 @@ public class UI {
                     gp.gameState = gp.dialogueState;
                     currentDialogue = "You don't have enough gold!";
                     drawDialogueScreen();
-                }
-                else{
-                    if(gp.player.canObtainItem(merchant.inventory.get(itemIndex))==true){
+                } else {
+                    if (gp.player.canObtainItem(merchant.inventory.get(itemIndex)) == true) {
                         // subtract gold from player
                         gp.player.gold -= merchant.inventory.get(itemIndex).price;
-                    }
-                    else{
-                        //couldn't obtain item
+                    } else {
+                        // couldn't obtain item
                         subState = 0;
                         gp.gameState = gp.dialogueState;
                         currentDialogue = "Your inventory is full!";
@@ -926,10 +924,9 @@ public class UI {
                     currentDialogue = "You cannot sell equipped items!";
                     drawDialogueScreen();
                 } else {
-                    if(gp.player.inventory.get(itemIndex).amount >1){
+                    if (gp.player.inventory.get(itemIndex).amount > 1) {
                         gp.player.inventory.get(itemIndex).amount--;
-                    }
-                    else{
+                    } else {
                         gp.player.inventory.remove(itemIndex);
                     }
                     // add gold to player
@@ -939,9 +936,24 @@ public class UI {
             }
         }
     }
-    public void drawSleepScreen(){
+
+    public void drawSleepScreen() {
         counter++;
-        
+        if (counter < 120) {
+            gp.environmentManager.lighting.filterAlpha += 0.01f;
+            if (gp.environmentManager.lighting.filterAlpha > 1f) {
+                gp.environmentManager.lighting.filterAlpha = 1f;
+            }
+        }
+        if (counter >= 120) {
+            gp.environmentManager.lighting.filterAlpha -= 0.01f;
+            if (gp.environmentManager.lighting.filterAlpha < +0f) {
+                gp.environmentManager.lighting.filterAlpha = 0f;
+                counter = 0;
+                gp.environmentManager.lighting.timeOfDay = gp.environmentManager.lighting.day;
+                gp.gameState = gp.playState;
+            }
+        }
     }
 
     public int getItemIndexOnInventorySlot(int slotCol, int slotRow) {

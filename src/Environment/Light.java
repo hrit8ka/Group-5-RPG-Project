@@ -12,13 +12,13 @@ public class Light {
     GamePanel gp;
     BufferedImage darkEffect;
     int dayCounter;
-    float filterAlpha = 0.0f;
+    public float filterAlpha = 0f;
     // day state
-    final int day = 0;
-    final int dusk = 1;
-    final int night = 2;
-    final int dawn = 3;
-    int timeOfDay = day;
+    public final int day = 0;
+    public final int dusk = 1;
+    public final int night = 2;
+    public final int dawn = 3;
+    public int timeOfDay = day;
 
     public Light(GamePanel gp) {
         this.gp = gp;
