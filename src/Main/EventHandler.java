@@ -56,7 +56,12 @@ public class EventHandler {
 
             if (hit(0, 23, 12, "up") == true) {
                 healingPool(gp.dialogueState);
-            } else if (hit(0, 10, 39, "any") == true) {
+            } 
+            //if hit tile 27, 39, teleport to tile 1, 12, 13
+            else if (hit(0, 27, 16, "any") == true) {
+                teleport(0, 36, 11);
+            }
+            else if (hit(0, 10, 39, "any") == true) {
                 teleport(1, 12, 13);
             } else if (hit(1, 12, 13, "any") == true) {
                 teleport(0, 10, 39);

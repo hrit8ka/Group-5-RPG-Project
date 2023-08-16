@@ -23,7 +23,7 @@ public class ForestMonster extends Character{
         life = maxLife;
         attack = 4;
         defense = 2;
-        xp = 10;
+        xp = 6;
         projectile = new Fireball(gp);
         
         solidArea.x = 3;// set solid area x to 3
