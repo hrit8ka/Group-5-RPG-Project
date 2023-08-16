@@ -99,8 +99,8 @@ public class AssetSetter {
 
         //place the diamond
         gp.obj[mapNum][i] = new HiddenGem(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize * 8;
-        gp.obj[mapNum][i].worldY = gp.tileSize * 14;
+        gp.obj[mapNum][i].worldX = gp.tileSize * 12;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 10;
     }
 
     // to set the NPC in the game, call this method in the setUpGame() method in

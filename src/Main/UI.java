@@ -673,7 +673,7 @@ public class UI {
 
         textX = frameX + gp.tileSize * 6;
         textY = frameY + gp.tileSize * 2;
-        g2.drawString("Arrow", textX, textY);
+        g2.drawString("A W S D", textX, textY);
         textY += gp.tileSize;
         g2.drawString("ENTER", textX, textY);
         textY += gp.tileSize;

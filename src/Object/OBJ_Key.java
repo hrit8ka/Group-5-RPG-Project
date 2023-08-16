@@ -43,7 +43,7 @@ public class OBJ_Key extends Character {
         if (objectIndex != 999) {
             gp.ui.currentDialogue = "You used the key to open the door.";
             gp.playSE(3);
-            gp.obj[gp.currentMap][objectIndex] = null;
+            gp.obj[gp.currentMap][objectIndex] = null; // remove the door
             return true;
         } else {
             gp.ui.currentDialogue = "There is no door to open.";

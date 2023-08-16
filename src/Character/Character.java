@@ -845,6 +845,7 @@ public class Character {
             if (target[gp.currentMap][i] != null) {
                 if (target[gp.currentMap][i].getCol() == col && target[gp.currentMap][i].getRow() == row
                         && target[gp.currentMap][i].name.equals(targetName)) {
+                            System.out.print("detected");
                     index = i;
                     break;
                 }
