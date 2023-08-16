@@ -105,6 +105,11 @@ public class Sound {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        try{
+            soundURL[16] = new URL("file:src/sound/win.wav");// sound URL for picking diamond 
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
     }
 

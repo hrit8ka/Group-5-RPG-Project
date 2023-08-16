@@ -8,6 +8,7 @@ import Monster.Slime;
 import Object.CampingTent;
 import Object.Candle;
 import Object.Coin;
+import Object.HiddenGem;
 import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
 import Object.OBJ_BlueShield;
@@ -95,6 +96,11 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = gp.tileSize * 27;
         gp.obj[mapNum][i].worldY = gp.tileSize * 16;
         i++;
+
+        //place the diamond
+        gp.obj[mapNum][i] = new HiddenGem(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 8;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 14;
     }
 
     // to set the NPC in the game, call this method in the setUpGame() method in

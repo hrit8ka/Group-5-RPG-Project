@@ -97,13 +97,13 @@ public class KeyHandler implements KeyListener {
     }
 
     public void playState(int code) {
-        if (code == KeyEvent.VK_UP) {
+        if (code == KeyEvent.VK_W) {
             upPressed = true;
-        } else if (code == KeyEvent.VK_DOWN) {
+        } else if (code == KeyEvent.VK_S) {
             downPressed = true;
-        } else if (code == KeyEvent.VK_LEFT) {
+        } else if (code == KeyEvent.VK_A) {
             leftPressed = true;
-        } else if (code == KeyEvent.VK_RIGHT) {
+        } else if (code == KeyEvent.VK_D) {
             rightPressed = true;
         } else if (code == KeyEvent.VK_P) {
             if (gp.gameState == gp.playState) {
@@ -376,18 +376,19 @@ public class KeyHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_UP) {
+        if (code == KeyEvent.VK_UP ||code==KeyEvent.VK_W) {
             upPressed = false;
-        } else if (code == KeyEvent.VK_DOWN) {
+        } else if (code == KeyEvent.VK_DOWN ||code==KeyEvent.VK_S) {
             downPressed = false;
-        } else if (code == KeyEvent.VK_LEFT) {
+        } else if (code == KeyEvent.VK_LEFT ||code==KeyEvent.VK_A) {
             leftPressed = false;
-        } else if (code == KeyEvent.VK_RIGHT) {
+        } else if (code == KeyEvent.VK_RIGHT ||code==KeyEvent.VK_D) {
             rightPressed = false;
         }
         if (code == KeyEvent.VK_F) {
             enterPressed = false;
         }
+        
 
     }
 }
