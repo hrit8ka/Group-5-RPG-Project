@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -129,6 +130,31 @@ public class Character {
 
     public int getRow() {
         return (worldY + solidArea.y) / gp.tileSize;
+    }
+
+    public int getXDistance(Character target) {
+        int xDistance = Math.abs(worldX - target.worldX);
+        return xDistance;
+    }
+
+    public int getYDistance(Character target) {
+        int yDistance = Math.abs(worldY - target.worldY);
+        return yDistance;
+    }
+
+    public int getTileDistance(Character target) {
+        int tileDistance = (getXDistance(target) + getYDistance(target)) / gp.tileSize;
+        return tileDistance;
+    }
+
+    public int getGoalCol(Character target) {
+        int goalCol = (target.worldX + target.solidArea.x) / gp.tileSize;
+        return goalCol;
+    }
+
+    public int getGoalRow(Character target) {
+        int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
+        return goalRow;
     }
 
     // set action method
@@ -329,6 +355,61 @@ public class Character {
             projectileCounter++;// increase projectileCounter
         }
 
+    }
+
+    public void checkShoot(int rate, int shotInterval) {
+        // check if player is in range to shoot projectile
+        int i = new Random().nextInt(rate) + 1; // pick a random number between 1 and 100
+        if (i == 0 && projectile.alive == false && projectileCounter == shotInterval) {
+            projectile.set(worldX, worldY, direction, true, this);
+            for (int j = 0; j < gp.projectile[1].length; j++) {
+                if (gp.projectile[1][j] == null) {
+                    gp.projectile[1][j] = projectile;
+                    break;
+                }
+            }
+            projectileCounter = 0;// set projectile counter to 0
+        }
+    }
+
+    public void checkStartChasing(Character target, int distance, int rate) {
+        if (getTileDistance(target) <= distance) {
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                onPath = true;
+            }
+        }
+    }
+
+    public void checkStopChasing(Character target, int distance, int rate) {
+        if (getTileDistance(target) > distance) {
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                onPath = false;
+            }
+        }
+    }
+
+    public void getRandomDirection() {
+        actionLockCounter++;// increment the action lock counter
+        if (actionLockCounter == 120) {// if the action lock counter is 120
+            Random random = new Random();// create a new random object
+            int i = random.nextInt(100) + 1; // pick a random number between 1 and 100
+            if (i <= 25) {// if the number is less than or equal to 25
+                direction = "up";// set the direction to up
+            }
+            if (i > 25 && i <= 50) {// if the number is greater than 25 and less than or equal to 50
+                direction = "down";// set the direction to down
+            }
+            if (i > 50 && i <= 75) {// if the number is greater than 50 and less than or equal to 75
+                direction = "left";// set the direction to left
+            }
+            if (i > 75 && i <= 100) {// if the number is greater than 75 and less than or equal to 100
+                direction = "right";// set the direction to right
+            }
+            actionLockCounter = 0;// reset the action lock counter
+
+        }
     }
 
     // method damagePlayer

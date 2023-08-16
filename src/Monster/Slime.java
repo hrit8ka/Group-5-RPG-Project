@@ -57,84 +57,22 @@ public class Slime extends Character {
 
     public void update() {
         super.update();
-
-        int xDistance = Math.abs(worldX - gp.player.worldX);
-        int yDistance = Math.abs(worldY - gp.player.worldY);
-        int tileDistance = (xDistance + yDistance) / gp.tileSize;
-
-        if (onPath == false && tileDistance < 5) {
-            int i = new Random().nextInt(100) + 1; // pick a random number between 1 and 100
-            if (i > 50) {
-                onPath = true;
-            }
-        }
-        if (onPath == true && tileDistance > 20) {
-            onPath = false;
-        }
     }
 
     // method to set the action of the slime monster
     public void setAction() {
-         int xDistance = Math.abs(worldX - gp.player.worldX);
-        int yDistance = Math.abs(worldY - gp.player.worldY);
-        int tileDistance = (xDistance + yDistance) / gp.tileSize;
 
-        if (onPath == false && tileDistance < 5) {
-            int i = new Random().nextInt(100) + 1; // pick a random number between 1 and 100
-            if (i > 50) {
-                onPath = true;
-            }
-        }
-        if (onPath == true && tileDistance > 20) {
-            onPath = false;
-        }
         if (onPath == true) {
-            // int goalCol=12;
-            // int goalRow=9;
-            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
+            checkStopChasing(gp.player, 15, 100);
 
-            searchPath(goalCol, goalRow);
-            int i = new Random().nextInt(100) + 1; // pick a random number between 1 and 100
-            if (i > 99 && projectile.alive == false && projectileCounter == 30) {// if i is greater than 99 and
-                                                                                 // projectile
-                                                                                 // is not alive and projectile counter
-                                                                                 // is
-                                                                                 // 30
-                projectile.set(worldX, worldY, direction, true, this);// set projectile to the slime monster's world x
-                                                                      // and
-                                                                      // y, direction, alive to true, and owner to this
-                // gp.projectileList.add(projectile);// add projectile to the projectile list
-                // check if projectile array is full
-                for (int j = 0; j < gp.projectile[1].length; j++) {
-                    if (gp.projectile[1][j] == null) {
-                        gp.projectile[1][j] = projectile;
-                        break;
-                    }
-                }
-                projectileCounter = 0;// set projectile counter to 0
-            }
+            // search the path to the player
+            searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
 
+            checkShoot(200, 30);
         } else {
-            // if the sage is not on the path, the sage will move randomly
-            actionLockCounter++;// increment the action lock counter
-            if (actionLockCounter == 120) {// if the action lock counter is 120
-                Random random = new Random();// create a new random object
-                int i = random.nextInt(100) + 1; // pick a random number between 1 and 100
-                if (i <= 25) {// if the number is less than or equal to 25
-                    direction = "up";// set the direction to up
-                }
-                if (i > 25 && i <= 50) {// if the number is greater than 25 and less than or equal to 50
-                    direction = "down";// set the direction to down
-                }
-                if (i > 50 && i <= 75) {// if the number is greater than 50 and less than or equal to 75
-                    direction = "left";// set the direction to left
-                }
-                if (i > 75 && i <= 100) {// if the number is greater than 75 and less than or equal to 100
-                    direction = "right";// set the direction to right
-                }
-                actionLockCounter = 0;// reset the action lock counter
-            }
+            checkStartChasing(gp.player, 5, 100);
+            getRandomDirection();
+
         }
     }
 
