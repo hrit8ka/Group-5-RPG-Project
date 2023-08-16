@@ -80,10 +80,10 @@ public class AssetSetter {
         i++;
 
         // set doors
-        gp.obj[mapNum][i] = new OBJ_Door(gp);
+        /*gp.obj[mapNum][i] = new OBJ_Door(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 12;
         gp.obj[mapNum][i].worldY = gp.tileSize * 12;
-        i++;
+        i++;*/
 
         // set chest
         gp.obj[mapNum][i] = new OBJ_Chest(gp, new OBJ_Key(gp));
@@ -156,6 +156,10 @@ public class AssetSetter {
         gp.monster[mapNum][i] = new Slime(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 38;
         gp.monster[mapNum][i].worldY = gp.tileSize * 42;
+        i++;
+        gp.monster[mapNum][i] = new Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 12;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 9;
         i++;
         gp.monster[mapNum][i] = new ForestMonster(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 12;

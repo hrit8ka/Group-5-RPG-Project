@@ -30,7 +30,6 @@ public class HiddenGem extends Character{
     public void interact(){
         //once player interacts with the hidden gem, the game will end.
         //a game winning dialogue will be displayed saying the player has saved the village of Minish Haven
-
         //the player will be able to restart the game or exit the game
         gp.gameState = gp.dialogueState;
         
@@ -41,6 +40,8 @@ public class HiddenGem extends Character{
         sb.append("You saved the village of Minish Haven!");
         sb.append("\n");
         gp.ui.currentDialogue = sb.toString();
+        //then return to the title screen
+        gp.gameState = gp.titleState;
         
         
     }

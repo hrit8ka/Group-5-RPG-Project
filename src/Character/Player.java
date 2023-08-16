@@ -315,7 +315,6 @@ public class Player extends Character {
         }
     }
 
-
     // method pickUpObject to pick up object on the map
     public void pickUpObject(int i) {
         if (i != 999) {// if the object is not null
@@ -395,7 +394,7 @@ public class Player extends Character {
     }
 
     // method to check the damage of the monster
-    public void damagedMonster(int monsterIndex,Character attacker, int attack, int knockBackPower) {
+    public void damagedMonster(int monsterIndex, Character attacker, int attack, int knockBackPower) {
         if (monsterIndex != 999) {// if the monster is not null
             if (gp.monster[gp.currentMap][monsterIndex].invincible == false) {// if the monster is not invincible
                 gp.playSE(5);// play the sound effect
@@ -427,6 +426,7 @@ public class Player extends Character {
             }
         }
     }
+
     public void damageInteractiveTile(int i) {
         // if the interactive tile is not null, damage the interactive tile
         if (i != 999 && gp.interactiveTile[gp.currentMap][i].destructible == true
