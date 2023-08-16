@@ -136,7 +136,7 @@ public class Player extends Character {
     }
 
     public void getSleepingImage(BufferedImage image) {
-        
+
         up1 = image;
         up2 = image;
         down1 = image;
@@ -151,14 +151,14 @@ public class Player extends Character {
     public void getPlayerAttackImage() {
 
         if (currentWeapon.type == swordType) {// if the current weapon is a sword, load the sword attack images
-            attackUp1 = setUp("./src/player/attack_up_1", gp.tileSize, gp.tileSize );
-            attackUp2 = setUp("./src/player/attack_up_2", gp.tileSize, gp.tileSize );
-            attackDown1 = setUp("./src/player/attack_down_1", gp.tileSize, gp.tileSize );
-            attackDown2 = setUp("./src/player/attack_down_2", gp.tileSize, gp.tileSize );
-            attackLeft1 = setUp("./src/player/attack_left_1", gp.tileSize, gp.tileSize );
-            attackLeft2 = setUp("./src/player/attack_left_2", gp.tileSize, gp.tileSize );
-            attackRight1 = setUp("./src/player/attack_right_1", gp.tileSize, gp.tileSize );
-            attackRight2 = setUp("./src/player/attack_right_2", gp.tileSize, gp.tileSize );
+            attackUp1 = setUp("./src/player/attack_up_1", gp.tileSize, gp.tileSize);
+            attackUp2 = setUp("./src/player/attack_up_2", gp.tileSize, gp.tileSize);
+            attackDown1 = setUp("./src/player/attack_down_1", gp.tileSize, gp.tileSize);
+            attackDown2 = setUp("./src/player/attack_down_2", gp.tileSize, gp.tileSize);
+            attackLeft1 = setUp("./src/player/attack_left_1", gp.tileSize, gp.tileSize);
+            attackLeft2 = setUp("./src/player/attack_left_2", gp.tileSize, gp.tileSize);
+            attackRight1 = setUp("./src/player/attack_right_1", gp.tileSize, gp.tileSize);
+            attackRight2 = setUp("./src/player/attack_right_2", gp.tileSize, gp.tileSize);
 
         }
         if (currentWeapon.type == axeType) {// if the current weapon is an axe, load the axe attack images
@@ -315,58 +315,6 @@ public class Player extends Character {
         }
     }
 
-    // method attack
-    public void attacking() {
-        spriteCounter++;// increment the sprite counter
-        if (spriteCounter <= 5) {// if the sprite counter is less than or equal to 5
-            spriteNumber = 1;// set the sprite number to 1
-        }
-        if (spriteCounter > 5 && spriteCounter <= 25) {// if the sprite counter is > 5 and <= equal to 25
-            spriteNumber = 2;// set the sprite number to 2
-            int currentWorldX = worldX;// save the current worldX
-            int currentWorldY = worldY;// save the current worldY
-            int solidAreaWidth = solidArea.width;// save the current solidAreaWidth
-            int solidAreaHeight = solidArea.height;// save the current solidAreaHeight
-            // adjust player's worldX and worldY for the attackArea
-            switch (direction) {
-                case "up":
-                    worldY -= attackArea.height;// if the player is attacking up, attack area is up
-                    break;
-                case "down":
-                    worldY += attackArea.height;// if the player is attacking down, attack area is down
-                    break;
-                case "left":
-                    worldX -= attackArea.width;// if the player is attacking left, attack area is left
-                    break;
-                case "right":
-                    worldX += attackArea.width;// if the player is attacking right, attack area is right
-                    break;
-            }
-            // attack area becomes solid area
-            solidArea.width = attackArea.width;// set the solid area width to the attack area width
-            solidArea.height = attackArea.height;// set the solid area height to the attack area height
-            // check collision with monster with the attack area
-            int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);// check collision with monster
-            damagedMonster(monsterIndex, attack, currentWeapon.knockBackPower);// call the method to damage the monster
-            // check collision with interactive tiles
-            int interactiveTileIndex = gp.collisionChecker.checkCharacter(this, gp.interactiveTile);
-            damageInteractiveTile(interactiveTileIndex);
-            int projectileIndex = gp.collisionChecker.checkCharacter(this, gp.projectile);
-            damageProjectile(projectileIndex);
-            // after checking, reset the worldX, worldY, solidAreaWidth and solidAreaHeight
-            worldX = currentWorldX;
-            worldY = currentWorldY;
-            solidArea.width = solidAreaWidth;
-            solidArea.height = solidAreaHeight;
-
-        }
-        if (spriteCounter > 25) {// if the sprite counter is greater than 25
-            spriteNumber = 1;// set the sprite number to 1
-            spriteCounter = 0;// reset the sprite counter
-            attacking = false;// set attacking to false
-        }
-
-    }
 
     // method pickUpObject to pick up object on the map
     public void pickUpObject(int i) {
@@ -447,16 +395,14 @@ public class Player extends Character {
     }
 
     // method to check the damage of the monster
-    public void damagedMonster(int monsterIndex, int attack, int knockBackPower) {
+    public void damagedMonster(int monsterIndex,Character attacker, int attack, int knockBackPower) {
         if (monsterIndex != 999) {// if the monster is not null
             if (gp.monster[gp.currentMap][monsterIndex].invincible == false) {// if the monster is not invincible
                 gp.playSE(5);// play the sound effect
                 if (knockBackPower > 0) {
-                    knockBack(gp.monster[gp.currentMap][monsterIndex], knockBackPower);// call the method to knock back
-                                                                                       // the monster
+                    knockBack(gp.monster[gp.currentMap][monsterIndex], attacker, knockBackPower);
                 }
-                knockBack(gp.monster[gp.currentMap][monsterIndex], knockBackPower);// call the method to knock back the
-                                                                                   // player
+                knockBack(gp.monster[gp.currentMap][monsterIndex], attacker, knockBackPower);
                 int damage = attack - gp.monster[gp.currentMap][monsterIndex].defense;// calculate the damage
                 if (damage < 0) {// if the damage is less than 0, set the damage to 0
                     damage = 0;
@@ -464,8 +410,7 @@ public class Player extends Character {
                 gp.monster[gp.currentMap][monsterIndex].life -= damage;// decrease the monster's life
                 gp.ui.addMessage("+" + damage + " damage!");// add the message to the message list
                 gp.monster[gp.currentMap][monsterIndex].invincible = true;// set the monster to invincible
-                gp.monster[gp.currentMap][monsterIndex].monsterDamageReaction();// call method to make monsterreact to
-                                                                                // damage
+                gp.monster[gp.currentMap][monsterIndex].monsterDamageReaction();
 
                 if (gp.monster[gp.currentMap][monsterIndex].life <= 0) {// if monster's life is <= to 0
                     gp.monster[gp.currentMap][monsterIndex].dying = true;// set the monster to dying
@@ -482,14 +427,6 @@ public class Player extends Character {
             }
         }
     }
-
-    public void knockBack(Character character, int knockBackPower) {
-        character.direction = direction;
-        character.speed += knockBackPower;
-        character.knockBack = true;
-
-    }
-
     public void damageInteractiveTile(int i) {
         // if the interactive tile is not null, damage the interactive tile
         if (i != 999 && gp.interactiveTile[gp.currentMap][i].destructible == true

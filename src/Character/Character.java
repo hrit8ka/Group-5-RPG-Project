@@ -30,6 +30,7 @@ public class Character {
     public int solidAreaDefaultX, solidAreaDefaultY;// the default position of the solidArea
     public boolean collision = false;// collision: whether the player can walk through the character
     String dialogues[] = new String[20];// dialogues: the dialogues that the character can say
+    public Character attacker;
     // states
     public int worldX, worldY; // worldX:x coordinate of player... worldY:y coordinate of player
     public String direction = "down";// direction: the direction that the player is facing
@@ -37,12 +38,13 @@ public class Character {
     int dialogueIndex = 0;// dialogueIndex: the index of the dialogue that the character is saying
     public boolean collisionOn = false;// collisionOn: whether the collision is on
     public boolean invincible = false;// invincible: whether the character is invincible
-    boolean attacking = false;// attacking: whether the character is attacking
+    public boolean attacking = false;// attacking: whether the character is attacking
     public boolean alive = true;// alive: whether the character is alive
     public boolean dying = false; // dying: whether the character is dying
     boolean hpBarOn = false;// hpBarOn: whether the hpBar is on
     public boolean onPath = false;// onPath: whether the character is on a path
     public boolean knockBack = false;// knockBack: whether the character is knocked back
+    public String knockBackDirection;
     // counters
     public int spriteCounter = 0;// the counter that controls the sprite animation of character
     public int actionLockCounter = 0;// the counter that controls the actionLock of the character
@@ -291,7 +293,7 @@ public class Character {
                 knockBack = false;
                 speed = defaultSpeed;
             } else if (collisionOn == false) {
-                switch (gp.player.direction) {
+                switch (knockBackDirection) {
                     case "up":
                         worldY += speed;
                         break;
@@ -313,6 +315,8 @@ public class Character {
                 speed = defaultSpeed;
             }
 
+        } else if (attacking == true) {
+            attacking();
         } else {
             setAction();// call setAction method
             checkCollision();
@@ -333,17 +337,17 @@ public class Character {
                         break;
                 }
             }
+            spriteCounter++;// increase spriteCounter
+            if (spriteCounter > 24) {// if spriteCounter is greater than 12, change sprite
+                if (spriteNumber == 1) {// if spriteNumber is 1
+                    spriteNumber = 2;// set spriteNumber to 2
+                } else if (spriteNumber == 2) {// if spriteNumber is 2, set spriteNumber to 1
+                    spriteNumber = 1;
+                }
+                spriteCounter = 0;// set spriteCounter to 0
+            }
         }
 
-        spriteCounter++;// increase spriteCounter
-        if (spriteCounter > 24) {// if spriteCounter is greater than 12, change sprite
-            if (spriteNumber == 1) {// if spriteNumber is 1
-                spriteNumber = 2;// set spriteNumber to 2
-            } else if (spriteNumber == 2) {// if spriteNumber is 2, set spriteNumber to 1
-                spriteNumber = 1;
-            }
-            spriteCounter = 0;// set spriteCounter to 0
-        }
         if (invincible == true) {// if the character is invincible
             invincibleCounter++;// increase invincibleCounter
             if (invincibleCounter > 40) {// if invincibleCounter is greater than 40
@@ -353,6 +357,55 @@ public class Character {
         }
         if (projectileCounter < 30) {// if projectileCounter is less than 30
             projectileCounter++;// increase projectileCounter
+        }
+
+    }
+
+    public void checkAttack(int rate, int straight, int horizontal) {
+        boolean targetInRange = false;
+        int xDistance = getXDistance(gp.player);
+        int yDistance = getYDistance(gp.player);
+
+        switch (direction) {
+            case "up":
+                if (gp.player.worldY < worldY && yDistance < straight && xDistance < horizontal) {
+                    targetInRange = true;
+                }
+                break;
+            case "down":
+                if (gp.player.worldY > worldY && yDistance < straight && xDistance < horizontal) {
+                    targetInRange = true;
+                }
+                break;
+            case "left":
+                if (gp.player.worldX < worldX && xDistance < straight && yDistance < horizontal) {
+                    targetInRange = true;
+                }
+                break;
+            case "right":
+                if (gp.player.worldX > worldX && xDistance < straight && yDistance < horizontal) {
+                    targetInRange = true;
+                }
+                break;
+        }
+        if (targetInRange == true) {
+            int i = new Random().nextInt(rate) + 1; // pick a random number between 1 and 100
+            if (i == 0) {
+                attacking = true;
+                //monster shoot projectile
+                if (type == monsterType) {
+                    projectile.set(worldX, worldY, direction, true, this);
+                    for (int j = 0; j < gp.projectile[1].length; j++) {
+                        if (gp.projectile[1][j] == null) {
+                            gp.projectile[1][j] = projectile;
+                            break;
+                        }
+                    }
+                }
+                spriteNumber = 1;
+                spriteCounter = 0;
+
+            }
         }
 
     }
@@ -412,6 +465,67 @@ public class Character {
         }
     }
 
+    // method attack
+    public void attacking() {
+        spriteCounter++;// increment the sprite counter
+        if (spriteCounter <= 5) {// if the sprite counter is less than or equal to 5
+            spriteNumber = 1;// set the sprite number to 1
+        }
+        if (spriteCounter > 5 && spriteCounter <= 25) {// if the sprite counter is > 5 and <= equal to 25
+            spriteNumber = 2;// set the sprite number to 2
+            int currentWorldX = worldX;// save the current worldX
+            int currentWorldY = worldY;// save the current worldY
+            int solidAreaWidth = solidArea.width;// save the current solidAreaWidth
+            int solidAreaHeight = solidArea.height;// save the current solidAreaHeight
+            // adjust player's worldX and worldY for the attackArea
+            switch (direction) {
+                case "up":
+                    worldY -= attackArea.height;// if the player is attacking up, attack area is up
+                    break;
+                case "down":
+                    worldY += attackArea.height;// if the player is attacking down, attack area is down
+                    break;
+                case "left":
+                    worldX -= attackArea.width;// if the player is attacking left, attack area is left
+                    break;
+                case "right":
+                    worldX += attackArea.width;// if the player is attacking right, attack area is right
+                    break;
+            }
+            // attack area becomes solid area
+            solidArea.width = attackArea.width;// set the solid area width to the attack area width
+            solidArea.height = attackArea.height;// set the solid area height to the attack area height
+            if (type == monsterType) {
+                if (gp.collisionChecker.checkPlayer(this) == true) {
+                    damagePlayer(attack);
+                }
+            } else {
+                // check collision with monster with the attack area
+                int monsterIndex = gp.collisionChecker.checkCharacter(this, gp.monster);// check collision with monster
+                gp.player.damagedMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);// call the method to
+                                                                                                   // damage the monster
+                // check collision with interactive tiles
+                int interactiveTileIndex = gp.collisionChecker.checkCharacter(this, gp.interactiveTile);
+                gp.player.damageInteractiveTile(interactiveTileIndex);
+                int projectileIndex = gp.collisionChecker.checkCharacter(this, gp.projectile);
+                gp.player.damageProjectile(projectileIndex);
+            }
+
+            // after checking, reset the worldX, worldY, solidAreaWidth and solidAreaHeight
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+
+        }
+        if (spriteCounter > 25) {// if the sprite counter is greater than 25
+            spriteNumber = 1;// set the sprite number to 1
+            spriteCounter = 0;// reset the sprite counter
+            attacking = false;// set attacking to false
+        }
+
+    }
+
     // method damagePlayer
     public void damagePlayer(int attack) {
         if (gp.player.invincible == false) {// if the player is not invincible
@@ -426,6 +540,14 @@ public class Character {
         }
     }
 
+    public void knockBack(Character target, Character attacker, int knockBackPower) {
+        this.attacker = attacker;
+        target.knockBackDirection = attacker.direction;
+        target.speed += knockBackPower;
+        target.knockBack = true;
+
+    }
+
     // method draw
     public void draw(Graphics2D g2) {
         BufferedImage image = null;// set image to null
@@ -436,40 +558,84 @@ public class Character {
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-            switch (direction) {
-                case "up": // if the direction is up
-                    if (spriteNumber == 1) {// if spriteNumber is 1, set image to up1
-                        image = up1;
+                    int tempScreenX = screenX;
+                    int tempScreenY = screenY;
+                    switch (direction) {
+                        case "up":
+                            if (attacking == false) {
+                                if (spriteNumber == 1) {
+                                    image = up1;
+                                }
+                                if (spriteNumber == 2) {
+                                    image = up2;
+                                }
+                            }
+                            if (attacking == true) {
+                                tempScreenY = screenY - gp.tileSize;
+                                if (spriteNumber == 1) {
+                                    image = attackUp1;
+                                }
+                                if (spriteNumber == 2) {
+                                    image = attackUp2;
+                                }
+                            }
+                            break;
+                        case "down":
+                            if (attacking == false) {
+                                if (spriteNumber == 1) {
+                                    image = down1;
+                                }
+                                if (spriteNumber == 2) {
+                                    image = down2;
+                                }
+                            }
+                            if (attacking == true) {
+                                if (spriteNumber == 1) {
+                                    image = attackDown1;
+                                }
+                                if (spriteNumber == 2) {
+                                    image = attackDown2;
+                                }
+                            }
+                            break;
+                        case "left":
+                            if (attacking == false) {
+                                if (spriteNumber == 1) {
+                                    image = left1;
+                                }
+                                if (spriteNumber == 2) {
+                                    image = left2;
+                                }
+                            }
+                            if (attacking == true) {
+                                tempScreenX = screenX - gp.tileSize;
+                                if (spriteNumber == 1) {
+                                    image = attackLeft1;
+                                }
+                                if (spriteNumber == 2) {
+                                    image = attackLeft2;
+                                }
+                            }
+                            break;
+                        case "right":
+                            if (attacking == false) {
+                                if (spriteNumber == 1) {
+                                    image = right1;
+                                }
+                                if (spriteNumber == 2) {
+                                    image = right2;
+                                }
+                            }
+                            if (attacking == true) {
+                                if (spriteNumber == 1) {
+                                    image = attackRight1;
+                                }
+                                if (spriteNumber == 2) {
+                                    image = attackRight2;
+                                }
+                            }
+                            break;
                     }
-                    if (spriteNumber == 2) {// if spriteNumber is 2, set image to up2
-                        image = up2;
-                    }
-                    break;
-                case "down":// if the direction is down
-                    if (spriteNumber == 1) {// if spriteNumber is 1, set image to down1
-                        image = down1;
-                    }
-                    if (spriteNumber == 2) {// if spriteNumber is 2, set image to down2
-                        image = down2;
-                    }
-                    break;
-                case "left":// if the direction is left
-                    if (spriteNumber == 1) {// if spriteNumber is 1, set image to left1
-                        image = left1;
-                    }
-                    if (spriteNumber == 2) {// if spriteNumber is 2, set image to left2
-                        image = left2;
-                    }
-                    break;
-                case "right":// if the direction is right
-                    if (spriteNumber == 1) {// if spriteNumber is 1, set image to right1
-                        image = right1;
-                    }
-                    if (spriteNumber == 2) {// if spriteNumber is 2, set image to right2
-                        image = right2;
-                    }
-                    break;
-            }
             // health bar for monster
             if (type == 2 && hpBarOn == true) {// if the character is a monster and hpBarOn is true
                 // updating monster health bar
@@ -499,7 +665,7 @@ public class Character {
                 dyingAnimation(g2);// call dyingAnimation method
             }
 
-            g2.drawImage(image, screenX, screenY, null);// draw the character
+            g2.drawImage(image, tempScreenX, tempScreenY, null);// draw the character
 
             // reset the composite
             updateAlpha(g2, 1.0f);

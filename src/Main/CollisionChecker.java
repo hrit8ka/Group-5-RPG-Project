@@ -22,10 +22,15 @@ public class CollisionChecker {
         int CharacterBottomRow = CharacterBottomWorldY / gp.tileSize;
 
         int tileNum1, tileNum2;
+        // use a temporary direction when it's being knocked back
+        String direction = Character.direction;
+        if (Character.knockBack == true) {
+            direction = Character.knockBackDirection;
+        }
 
         // checking if the character is colliding with a solid tile, if so, the
         // character will not move
-        switch (Character.direction) {
+        switch (direction) {
             case "up":
                 tileNum1 = gp.tileM.mapTileNum[gp.currentMap][CharacterTopRow][CharacterLeftCol];
                 tileNum2 = gp.tileM.mapTileNum[gp.currentMap][CharacterTopRow][CharacterRightCol];
@@ -65,8 +70,10 @@ public class CollisionChecker {
                 Character.solidArea.x = Character.worldX + Character.solidArea.x;
                 Character.solidArea.y = Character.worldY + Character.solidArea.y;
                 // get object's solid area position
-                gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].worldX + gp.obj[gp.currentMap][i].solidArea.x;
-                gp.obj[gp.currentMap][i].solidArea.y = gp.obj[gp.currentMap][i].worldY + gp.obj[gp.currentMap][i].solidArea.y;
+                gp.obj[gp.currentMap][i].solidArea.x = gp.obj[gp.currentMap][i].worldX
+                        + gp.obj[gp.currentMap][i].solidArea.x;
+                gp.obj[gp.currentMap][i].solidArea.y = gp.obj[gp.currentMap][i].worldY
+                        + gp.obj[gp.currentMap][i].solidArea.y;
 
                 // check if the character is colliding with an object
                 switch (Character.direction) {
@@ -104,6 +111,11 @@ public class CollisionChecker {
     // check NPC or monster collision
     public int checkCharacter(Character character, Character[][] target) {
         int index = 999;
+        // use a temporary direction when it's being knocked back
+        String direction = character.direction;
+        if (character.knockBack == true) {
+            direction = character.knockBackDirection;
+        }
         for (int i = 0; i < target[1].length; i++) {
             if (target[gp.currentMap][i] != null) {
                 // get character's solid area position
@@ -111,11 +123,13 @@ public class CollisionChecker {
                 character.solidArea.y = character.worldY + character.solidArea.y;
 
                 // get object's solid area position
-                target[gp.currentMap][i].solidArea.x = target[gp.currentMap][i].worldX + target[gp.currentMap][i].solidArea.x;
-                target[gp.currentMap][i].solidArea.y = target[gp.currentMap][i].worldY + target[gp.currentMap][i].solidArea.y;
+                target[gp.currentMap][i].solidArea.x = target[gp.currentMap][i].worldX
+                        + target[gp.currentMap][i].solidArea.x;
+                target[gp.currentMap][i].solidArea.y = target[gp.currentMap][i].worldY
+                        + target[gp.currentMap][i].solidArea.y;
 
                 // check if the character is colliding with an object
-                switch (character.direction) {
+                switch (direction) {
                     case "up":
                         character.solidArea.y -= character.speed;
                         break;
@@ -130,9 +144,9 @@ public class CollisionChecker {
                         break;
                 }
                 if (character.solidArea.intersects(target[gp.currentMap][i].solidArea)) {
-                    if(target[gp.currentMap][i] != character){
-                    character.collisionOn = true;
-                    index = i;
+                    if (target[gp.currentMap][i] != character) {
+                        character.collisionOn = true;
+                        index = i;
                     }
                 }
                 character.solidArea.x = character.solidAreaDefaultX;
@@ -172,9 +186,9 @@ public class CollisionChecker {
 
         }
         if (character.solidArea.intersects(gp.player.solidArea)) {
-                    character.collisionOn = true;
-                    contactPlayer = true;
-                }
+            character.collisionOn = true;
+            contactPlayer = true;
+        }
         character.solidArea.x = character.solidAreaDefaultX;
         character.solidArea.y = character.solidAreaDefaultY;
         gp.player.solidArea.x = gp.player.solidAreaDefaultX;

@@ -35,27 +35,35 @@ public class ForestMonster extends Character{
         attackArea.width = 48;
         attackArea.height = 48;
         getImage();
-        getAttackImage();
+        //getAttackImage();
         
     }
 
     public void getImage(){
-        up1 = setUp("src/monsters/walk_1",gp.tileSize, gp.tileSize);
+       /*  up1 = setUp("src/monsters/walk_1",gp.tileSize, gp.tileSize);
         up2 = setUp("src/monsters/walk_2",gp.tileSize, gp.tileSize);
         down1 = setUp("src/monsters/walk_3",gp.tileSize, gp.tileSize);
         down2 = setUp("src/monsters/walk_4",gp.tileSize, gp.tileSize);
         left1 = setUp("src/monsters/walk_5",gp.tileSize, gp.tileSize);
         left2 = setUp("src/monsters/walk_6",gp.tileSize, gp.tileSize);
         right1 = setUp("src/monsters/walk_1",gp.tileSize, gp.tileSize);
-        right2 = setUp("src/monsters/walk_2",gp.tileSize, gp.tileSize);
-        
+        right2 = setUp("src/monsters/walk_2",gp.tileSize, gp.tileSize); */
+
+        up1 = setUp("src/monsters/forestmonster_1", gp.tileSize, gp.tileSize);
+        up2 = setUp("src/monsters/forestmonster_2", gp.tileSize, gp.tileSize);
+        down1 = setUp("src/monsters/forestmonster_3", gp.tileSize, gp.tileSize);
+        down2 = setUp("src/monsters/forestmonster_4", gp.tileSize, gp.tileSize);
+        left1 = setUp("src/monsters/forestmonster_5", gp.tileSize, gp.tileSize);
+        left2 = setUp("src/monsters/forestmonster_6", gp.tileSize, gp.tileSize);
+        right1 = setUp("src/monsters/forestmonster_1", gp.tileSize, gp.tileSize);
+        right2 = setUp("src/monsters/forestmonster_2", gp.tileSize, gp.tileSize);
     }
 
       public void update() {
         super.update();
     }
 
-    public void getAttackImage(){
+    /*public void getAttackImage(){
         attackUp1 = setUp("src/monsters/forestmonster_1",gp.tileSize, gp.tileSize);
         attackUp2 = setUp("src/monsters/forestmonster_2",gp.tileSize, gp.tileSize);
         attackDown1 = setUp("src/monsters/forestmonster_3",gp.tileSize, gp.tileSize);
@@ -63,7 +71,7 @@ public class ForestMonster extends Character{
         attackLeft2 = setUp("src/monsters/forestmonster_6",gp.tileSize, gp.tileSize);
         attackRight1 = setUp("src/monsters/forestmonster_1",gp.tileSize, gp.tileSize);
         attackRight2 = setUp("src/monsters/forestmonster_2",gp.tileSize, gp.tileSize);
-    }
+    }*/
 
 
     // method to set the action of the slime monster
@@ -80,6 +88,10 @@ public class ForestMonster extends Character{
             checkStartChasing(gp.player, 5, 100);
             getRandomDirection();
 
+        }
+        //check if the monster is attacking
+        if(attacking == false){
+            checkAttack(30, gp.tileSize*4, gp.tileSize);
         }
     }
 
