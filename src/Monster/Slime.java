@@ -75,6 +75,19 @@ public class Slime extends Character {
 
     // method to set the action of the slime monster
     public void setAction() {
+         int xDistance = Math.abs(worldX - gp.player.worldX);
+        int yDistance = Math.abs(worldY - gp.player.worldY);
+        int tileDistance = (xDistance + yDistance) / gp.tileSize;
+
+        if (onPath == false && tileDistance < 5) {
+            int i = new Random().nextInt(100) + 1; // pick a random number between 1 and 100
+            if (i > 50) {
+                onPath = true;
+            }
+        }
+        if (onPath == true && tileDistance > 20) {
+            onPath = false;
+        }
         if (onPath == true) {
             // int goalCol=12;
             // int goalRow=9;

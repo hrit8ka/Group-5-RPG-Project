@@ -86,7 +86,7 @@ public class Light {
         // check the state of the day
         if (timeOfDay == day) {
             dayCounter++;
-            if (dayCounter > 300) {
+            if (dayCounter > 1200) {
                 timeOfDay = dusk;
                 dayCounter = 0;
             }
@@ -98,7 +98,7 @@ public class Light {
             }
         } else if (timeOfDay == night) {
             dayCounter++;
-            if (dayCounter > 300) {
+            if (dayCounter > 1200) {
                 timeOfDay = dawn;
                 dayCounter = 0;
             }

@@ -151,25 +151,25 @@ public class Player extends Character {
     public void getPlayerAttackImage() {
 
         if (currentWeapon.type == swordType) {// if the current weapon is a sword, load the sword attack images
-            attackUp1 = setUp("./src/player/up_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setUp("./src/player/up_2", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setUp("./src/player/attack_down_1", gp.tileSize, gp.tileSize * 2);
-            attackDown2 = setUp("./src/player/attack_down_2", gp.tileSize, gp.tileSize * 2);
-            attackLeft1 = setUp("./src/player/attack_left_1", gp.tileSize * 2, gp.tileSize);
-            attackLeft2 = setUp("./src/player/attack_left_2", gp.tileSize * 2, gp.tileSize);
-            attackRight1 = setUp("./src/player/atack_right_1", gp.tileSize * 2, gp.tileSize);
-            attackRight2 = setUp("./src/player/attack_right_2", gp.tileSize * 2, gp.tileSize);
+            attackUp1 = setUp("./src/player/attack_up_1", gp.tileSize, gp.tileSize );
+            attackUp2 = setUp("./src/player/attack_up_2", gp.tileSize, gp.tileSize );
+            attackDown1 = setUp("./src/player/attack_down_1", gp.tileSize, gp.tileSize );
+            attackDown2 = setUp("./src/player/attack_down_2", gp.tileSize, gp.tileSize );
+            attackLeft1 = setUp("./src/player/attack_left_1", gp.tileSize, gp.tileSize );
+            attackLeft2 = setUp("./src/player/attack_left_2", gp.tileSize, gp.tileSize );
+            attackRight1 = setUp("./src/player/attack_right_1", gp.tileSize, gp.tileSize );
+            attackRight2 = setUp("./src/player/attack_right_2", gp.tileSize, gp.tileSize );
 
         }
         if (currentWeapon.type == axeType) {// if the current weapon is an axe, load the axe attack images
-            attackUp1 = setUp("./src/player/axe_down_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setUp("./src/player/axe_down_1", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setUp("./src/player/axe_down_1", gp.tileSize, gp.tileSize * 2);
-            attackDown2 = setUp("./src/player/axe_down_1", gp.tileSize, gp.tileSize * 2);
-            attackLeft1 = setUp("./src/player/axe_down_1", gp.tileSize * 2, gp.tileSize);
-            attackLeft2 = setUp("./src/player/axe_down_1", gp.tileSize * 2, gp.tileSize);
-            attackRight1 = setUp("./src/player/axe_down_1", gp.tileSize * 2, gp.tileSize);
-            attackRight2 = setUp("./src/player/axe_down_1", gp.tileSize * 2, gp.tileSize);
+            attackUp1 = setUp("./src/player/axe_right_1", gp.tileSize, gp.tileSize * 2);
+            attackUp2 = setUp("./src/player/axe_right_2", gp.tileSize, gp.tileSize * 2);
+            attackDown1 = setUp("./src/player/axe_left_1", gp.tileSize, gp.tileSize * 2);
+            attackDown2 = setUp("./src/player/axe_left_2", gp.tileSize, gp.tileSize * 2);
+            attackLeft1 = setUp("./src/player/axe_left_1", gp.tileSize * 2, gp.tileSize);
+            attackLeft2 = setUp("./src/player/axe_left_2", gp.tileSize * 2, gp.tileSize);
+            attackRight1 = setUp("./src/player/axe_right_1", gp.tileSize * 2, gp.tileSize);
+            attackRight2 = setUp("./src/player/axe_right_2", gp.tileSize * 2, gp.tileSize);
         }
     }
 
