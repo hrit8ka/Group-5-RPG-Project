@@ -3,6 +3,7 @@ package Main;
 import Character.Healer;
 import Character.NPC_Merchant;
 import Character.NPC_Sage;
+import Monster.ForestMonster;
 import Monster.Slime;
 import Object.CampingTent;
 import Object.Candle;
@@ -150,9 +151,10 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldX = gp.tileSize * 38;
         gp.monster[mapNum][i].worldY = gp.tileSize * 42;
         i++;
-        // System.out.println("Monsters set up:");
-        // System.out.println(gp.monster[0]);
-        // System.out.println(gp.monster[1]);
+        gp.monster[mapNum][i] = new ForestMonster(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 12;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 33;
+        i++;
 
     }
 
