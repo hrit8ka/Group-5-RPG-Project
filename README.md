@@ -1,16 +1,16 @@
 <p align="center">
-#**Welcome to The Legend of Hyrule, Warrior!**
+Welcome to The Legend of Hyrule, Warrior!
 </p>
 
-**•	Introduction:**
+**•	Introduction:**<br>
 The “The Legend of Hyrule” is a Java-based 2D game application that brings players into an immersive world filled with characters, adventures, and challenges.  This README provides a brief overview of the story of the game, the rules of the game, how to play the game, and the expected outcomes of the game.
 
-**•	Story of the game:**
+**•	Story of the game:**<br>
 In the enchanting realm of The Legend of Hyrule, darkness looms over the picturesque village. Unveil your destiny as the valiant warrior chosen to embark on a legendary quest to save your beloved village from an ominous curse. The only hope lies in the mythical Diamond of Radiance, a gem of unparalleled power that can dispel the shadows and restore harmony. The sage Eldrith calls upon you, for only you possess the courage to rise against adversity and become the hero Minish Haven desperately needs.
 
 As the sun sets on Minish Haven, the sage Eldrith reveals that an ancient curse threatens the village's very essence. To save Minish Haven, you must find the legendary Diamond of Radiance hidden deep within the mysterious Forest of Whispers. Only this gem can break the curse and return life's vibrancy to the village.
 
-**•	Rules of the game:**
+**•	Rules of the game:**<br>
 The game follows a set of rules that govern the player’s interactions within the game world.
 
 1.	As the game starts, the player is greeted with the sight of three vibrant red hearts symbolizing their available lives as he plays the game.  These hearts serve as a representation of the player’s chances to navigate the challenges ahead.  While playing the game, if the player has not been able to defeat the monster then he will gradually lose his life.  After being defeated by the monster, the player will be prompted with a message **“GAME OVER”** and will be provided with 2 options; either to **Retry** or to **Quit** the game else if the player has been able to defeat the monster, he will be able to continue the game and level up.
@@ -24,23 +24,23 @@ The game follows a set of rules that govern the player’s interactions within t
 4.	Player is not allowed to walk or run into the trees to hide from monsters.
 
 
-**•	How to play the game?**
+**•	How to play the game?**<br>
 1.	In order to move the character in the North-South-East-West directions, you have to use the following keys:<br>
-	**A**: Move Left<br>
-	**S**: Move Down<br>
-	**D**: Move Right<br>
-	**W**: Move Up<br>
+  	**A**: Move Left<br>
+  	**S**: Move Down<br>
+  	**D**: Move Right<br>
+  	**W**: Move Up<br>
 
 2.	To select items or options, you have to use the **Enter** key.
 
 3.	Pressing the **Esc** button, will pause the game and a black and white board will be displayed on your screen having options; <br>
 
-	**Full Screen**<br>
-	**Music**<br>
-	**SE**<br>
-	**Control**<br>
-	**End Game**<br>
-	**Back** (Resume the game where it was paused)<br>
+  	**Full Screen**<br>
+  	**Music**<br>
+  	**SE**<br>
+  	**Control**<br>
+  	**End Game**<br>
+  	**Back** (Resume the game where it was paused)<br>
 
 4.	To attack the monsters, you have to use the Enter key.
 
@@ -52,7 +52,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 8.	To collect an item, simply walk over it.
 
-**•	Items:**
+**•	Items:**<br>
 
 1.	Gold coins: These coins are used to purchase items, equipment, upgrades, or services within the game.
 
@@ -66,7 +66,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 6.	Treasure: Collecting treasure can lead to various rewards, such as unlocking secret content.
 
-**•	How to run the project?**
+**•	How to run the project?**<br>
 1. Clone the repository or download the ZIP file.
 2. Navigate to the project directory using your terminal.
 3. Compile the code using: `javac character/*.java tile/*.java object/*.java monster/*.java main/*. java`.
