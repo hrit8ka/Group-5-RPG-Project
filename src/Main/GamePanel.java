@@ -26,6 +26,7 @@ import Tile_Interactive.interactiveTile;
 
 public class GamePanel extends JPanel implements Runnable {
 
+    
     // Screen Settings
     final int originalTileSize = 16; // original tile size
     final int scale = 3; // scale of the game
@@ -366,95 +367,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    /*
-     * public void paintComponent(Graphics g) {
-     * super.paintComponent(g);
-     * Graphics2D g2 = (Graphics2D) g;
-     * 
-     * // debug
-     * long drawStart = 0;
-     * if (keyH.checkDrawTime == true) {
-     * drawStart = System.nanoTime();
-     * }
-     * // drawStart = System.nanoTime();
-     * 
-     * // title screen
-     * if (gameState == titleState) {
-     * ui.draw(g2);
-     * 
-     * }
-     * // others
-     * else {
-     * // Tile
-     * tileM.draw(g2); // tile is drawn before player so as to be behind the player
-     * // interactiveTile
-     * for (int i = 0; i < interactiveTile.length; i++) {
-     * if (interactiveTile[i] != null) {
-     * interactiveTile[i].draw(g2);
-     * }
-     * }
-     * // Add character to characterList
-     * characterList.add(player);
-     * for (int i = 0; i < npc.length; i++) {
-     * if (npc[i] != null) {
-     * characterList.add(npc[i]);// add npc to characterList
-     * }
-     * }
-     * for (int i = 0; i < healer.length; i++) {
-     * if (healer[i] != null) {
-     * characterList.add(healer[i]);// add healer to characterList
-     * }
-     * }
-     * for (int i = 0; i < obj.length; i++) {
-     * if (obj[i] != null) {
-     * characterList.add(obj[i]);// add object to characterList
-     * }
-     * }
-     * for (int i = 0; i < monster.length; i++) {
-     * if (monster[i] != null) {
-     * characterList.add(monster[i]); // add monster to characterListS
-     * }
-     * }
-     * for (int i = 0; i < projectileList.size(); i++) {
-     * if (projectileList.get(i) != null) {
-     * characterList.add(projectileList.get(i));// add projectile to characterList
-     * }
-     * }
-     * for (int i = 0; i < particleList.size(); i++) {
-     * if (particleList.get(i) != null) {
-     * characterList.add(particleList.get(i));// add particle to characterList
-     * }
-     * }
-     * // sort
-     * Collections.sort(characterList, new Comparator<Character>() {
-     * 
-     * @Override
-     * public int compare(Character c1, Character c2) {
-     * int result = Integer.compare(c1.worldY, c2.worldY);
-     * return result;
-     * }
-     * });
-     * // draw characters
-     * for (int i = 0; i < characterList.size(); i++) {
-     * characterList.get(i).draw(g2);
-     * }
-     * // empty characterList
-     * characterList.clear();
-     * 
-     * // UI
-     * ui.draw(g2);
-     * }
-     * // debug
-     * if (keyH.checkDrawTime == true) {
-     * long drawEnd = System.nanoTime();
-     * long passed = drawEnd - drawStart;
-     * g2.drawString("Draw time: " + passed, 10, 400);
-     * System.out.println("Draw time: " + passed);
-     * }
-     * 
-     * g2.dispose();
-     * }
-     */
     public void drawToScreen() {
         Graphics g = getGraphics();
         g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);

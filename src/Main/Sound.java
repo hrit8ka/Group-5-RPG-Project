@@ -17,13 +17,6 @@ public class Sound {
     float volume; // volume is used to store the volume of the sound
 
     public Sound() {
-        /*
-         * soundURL[0] = getClass().getResource("src/sound/themesong.wav");
-         * soundURL[1] = getClass().getResource("src/sound/coin.wav");
-         * soundURL[2] = getClass().getResource("src/sound/powerup.wav");
-         * soundURL[3] = getClass().getResource("src/sound/unlock.wav");
-         * soundURL[4] = getClass().getResource("src/sound/fanfare.wav");
-         */
 
         try {
             soundURL[0] = new URL("file:src/sound/zelda_title.wav");// sound URL for theme song

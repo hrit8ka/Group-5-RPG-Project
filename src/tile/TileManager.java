@@ -33,42 +33,7 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        /*
-         * File file = new File("src/tiles/grass.png");
-         * FileInputStream fis = new FileInputStream(file);
-         * tile[0] = new Tile();
-         * tile[0].image = ImageIO.read(fis);
-         * setUp(0, "grass", false);
-         * 
-         * 
-         * file = new File("src/tiles/wall.png");
-         * fis = new FileInputStream(file);
-         * tile[1] = new Tile();
-         * tile[1].image = ImageIO.read(fis);
-         * tile[1].collision = true;
-         * 
-         * file = new File("src/tiles/water.png");
-         * fis = new FileInputStream(file);
-         * tile[2] = new Tile();
-         * tile[2].image = ImageIO.read(fis);
-         * tile[2].collision = true;
-         * 
-         * file = new File("src/tiles/earth.png");
-         * fis = new FileInputStream(file);
-         * tile[3] = new Tile();
-         * tile[3].image = ImageIO.read(fis);
-         * 
-         * file = new File("src/tiles/tree.png");
-         * fis = new FileInputStream(file);
-         * tile[4] = new Tile();
-         * tile[4].image = ImageIO.read(fis);
-         * tile[4].collision = true;
-         * 
-         * file = new File("src/tiles/sand.png");
-         * fis = new FileInputStream(file);
-         * tile[5] = new Tile();
-         * tile[5].image = ImageIO.read(fis);
-         */
+        
         // set up tile images
         setUp(0, "grass00", false);
         setUp(1, "grass00", false);
