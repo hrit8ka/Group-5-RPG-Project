@@ -2,7 +2,7 @@
 Welcome to The Legend of Hyrule, Warrior!
 </p>
 
-**•	Introduction:**<br>
+**##•	Introduction:**<br>
 The “The Legend of Hyrule” is a Java-based 2D game application that brings players into an immersive world filled with characters, adventures, and challenges.  This README provides a brief overview of the story of the game, the rules of the game, how to play the game, and the expected outcomes of the game.
 
 **•	Story of the game:**<br>
@@ -35,12 +35,12 @@ The game follows a set of rules that govern the player’s interactions within t
 
 3.	Pressing the **Esc** button, will pause the game and a black and white board will be displayed on your screen having options; <br>
 
-  	**Full Screen**<br>
-  	**Music**<br>
-  	**SE**<br>
-  	**Control**<br>
-  	**End Game**<br>
-  	**Back** (Resume the game where it was paused)<br>
+    	**Full Screen**<br>
+    	**Music**<br>
+    	**SE**<br>
+    	**Control**<br>
+    	**End Game**<br>
+    	**Back** (Resume the game where it was paused)<br>
 
 4.	To attack the monsters, you have to use the Enter key.
 
