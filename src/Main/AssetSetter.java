@@ -11,7 +11,6 @@ import Object.Coin;
 import Object.HiddenGem;
 import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
-import Object.OBJ_BlueShield;
 import Object.OBJ_Chest;
 import Object.OBJ_Door;
 import Object.OBJ_Heart;
@@ -48,10 +47,6 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = gp.tileSize * 33;
         gp.obj[mapNum][i].worldY = gp.tileSize * 21;
         i++;
-        // add blue shield
-        gp.obj[mapNum][i] = new OBJ_BlueShield(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize * 35;
-        gp.obj[mapNum][i].worldY = gp.tileSize * 21;
 
         // add gold coins
         i++;
