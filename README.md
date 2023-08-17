@@ -85,7 +85,7 @@ The Legend of Hyrule Game awaits your courage and wit. Face off against the Fore
 # Contributors:<br>
    - KOWLESSUR Hritika Chooshini (2111897)<br>
    - VENKATASAMI Jaanavi (2115998)<br>
-   - YENKETERAMDOO Gitanjali (2115982)<br><br>
+   - YENKETERAMDOO Gitanjali (2115982)<br>
 
-#### A 2D RPG created for an OOP Project in a BSc(Hons) Data Science course by Univesity of Mauritius run jointly with CY Cergy Paris Université.
+_A 2D RPG created for an OOP Project in a BSc(Hons) Data Science course by Univesity of Mauritius run jointly with CY Cergy Paris Université._
 
