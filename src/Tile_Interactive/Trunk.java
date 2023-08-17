@@ -25,7 +25,5 @@ public class Trunk extends interactiveTile {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
     }
-   
 
-    
 }
