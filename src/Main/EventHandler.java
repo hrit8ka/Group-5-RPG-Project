@@ -128,11 +128,12 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.player.noAttack = true;
             gp.playSE(2);
-            gp.ui.currentDialogue = "You found a healing pool! You are healed!";
+            gp.ui.currentDialogue = "You found a healing pool! You are healed!\n"+"The progress has been saved!";
             gp.player.life = gp.player.maxLife; // player recovers all HP
             // player recovers all mana
             gp.player.mana = gp.player.maxMana;
             gp.assetSetter.setMonster();
+            gp.saveLoad.save();
         }
         // gp.keyH.enterPressed = false;
     }

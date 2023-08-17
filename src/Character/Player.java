@@ -127,6 +127,26 @@ public class Player extends Character {
         return defense = agility * currentArmor.defenseValue;// return the defense of the player
     }
 
+    public int getCurrentWeaponSlot(){
+        int currentWeaponSlot = 0;
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i) == currentWeapon){
+                currentWeaponSlot = i;
+            }
+        }
+        return currentWeaponSlot;
+    }
+
+    public int getCurrentArmorSlot(){
+        int currentArmorSlot = 0;
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i) == currentArmor){
+                currentArmorSlot = i;
+            }
+        }
+        return currentArmorSlot;
+    }
+
     // method to get the images of the player
     public void getImage() {
         // get image for idle

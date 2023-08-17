@@ -17,6 +17,7 @@ import AI.Map;
 import AI.PathFinder;
 import Character.NPC_Sage;
 import Character.Player;
+import Data.SaveLoad;
 import Environment.envManager;
 import Character.Character;
 import Character.Healer;
@@ -66,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     public PathFinder pathFinder = new PathFinder(this);
     envManager environmentManager = new envManager(this);
     Map map = new Map(this);
+    SaveLoad saveLoad = new SaveLoad(this);
     Thread gameThread;
 
     // Character and Object
