@@ -3,15 +3,15 @@ Welcome to The Legend of Hyrule, Warrior!
 </p>
 
 
-**•	Introduction:**<br>
+## •	Introduction:<br>
 The “The Legend of Hyrule” is a Java-based 2D game application that brings players into an immersive world filled with characters, adventures, and challenges.  This README provides a brief overview of the story of the game, the rules of the game, how to play the game, and the expected outcomes of the game.
 
-**•	Story of the game:**<br>
+## •	Story of the game:<br>
 In the enchanting realm of The Legend of Hyrule, darkness looms over the picturesque village. Unveil your destiny as the valiant warrior chosen to embark on a legendary quest to save your beloved village from an ominous curse. The only hope lies in the mythical Diamond of Radiance, a gem of unparalleled power that can dispel the shadows and restore harmony. The sage Eldrith calls upon you, for only you possess the courage to rise against adversity and become the hero Minish Haven desperately needs.
 
 As the sun sets on Minish Haven, the sage Eldrith reveals that an ancient curse threatens the village's very essence. To save Minish Haven, you must find the legendary Diamond of Radiance hidden deep within the mysterious Forest of Whispers. Only this gem can break the curse and return life's vibrancy to the village.
 
-**•	Rules of the game:**<br>
+## •	Rules of the game:<br>
 The game follows a set of rules that govern the player’s interactions within the game world.
 
 1.	As the game starts, the player is greeted with the sight of three vibrant red hearts symbolizing their available lives as he plays the game.  These hearts serve as a representation of the player’s chances to navigate the challenges ahead.  While playing the game, if the player has not been able to defeat the monster then he will gradually lose his life.  After being defeated by the monster, the player will be prompted with a message **“GAME OVER”** and will be provided with 2 options; either to **Retry** or to **Quit** the game else if the player has been able to defeat the monster, he will be able to continue the game and level up.
@@ -19,13 +19,13 @@ The game follows a set of rules that govern the player’s interactions within t
 2.	If the player chooses to continue the game after clicking the **Retry** button, the previous items, coins, and treasures that he collected previously will remain the same and he will be able to increase the counts while continuing to play the game.
 
 
-3.	If the player selects the option to **Quit** the game, he will return to the main screen where he will be provided with the options to either play a “NEW GAME”, “LOAD GAME”, or “EXIT”.
+3.	If the player selects the option to **Quit** the game, he will return to the main screen where he will be provided with the options to either play a **“NEW GAME”**, **“LOAD GAME”**, or **“EXIT”**.
 
 
 4.	Player is not allowed to walk or run into the trees to hide from monsters.
 
 
-**•	How to play the game?**<br>
+## •	How to play the game?<br>
 1.	In order to move the character in the North-South-East-West directions, you have to use the following keys:<br>
   	**A**: Move Left<br>
   	**S**: Move Down<br>
@@ -53,7 +53,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 8.	To collect an item, simply walk over it.
 
-**•	Items:**<br>
+## •	Items:<br>
 
 1.	Gold coins: These coins are used to purchase items, equipment, upgrades, or services within the game.
 
@@ -67,17 +67,17 @@ The game follows a set of rules that govern the player’s interactions within t
 
 6.	Treasure: Collecting treasure can lead to various rewards, such as unlocking secret content.
 
-**•	How to run the project?**<br>
+## •	How to run the project?<br>
 1. Clone the repository or download the ZIP file.
 2. Navigate to the project directory using your terminal.
 3. Compile the code using: `javac character/*.java tile/*.java object/*.java monster/*.java main/*. java`.
 4. Run the game: `java main. Main`.
 
-**Embark on the Legend of Hyrule Game!**
+# Embark on the Legend of Hyrule Game!
 
 The Legend of Hyrule Game awaits your courage and wit. Face off against the Forest Guardian, collect hidden loot, and unravel the secret of the Diamond of Radiance. Become the hero The Legend of Hyrule yearns for and bask in the glory of your valiant deeds!
 
-**Contributors**<br>
+## Contributors<br>
 KOWLESSUR Hritika Chooshini	2111897<br>
 VENKATASAMI Jaanavi		    2115998<br>
 YENKETERAMDOO Gitanjali	    2115982<br>
