@@ -13,27 +13,26 @@ As the sun sets on Minish Haven, the sage Eldrith reveals that an ancient curse 
 ## Rules of the game:<br>
 The game follows a set of rules that govern the player’s interactions within the game world.
 
-1.	As the game starts, the player is greeted with the sight of three vibrant red hearts symbolizing their available lives as he plays the game. These hearts serve as a representation of the player’s chances to navigate the challenges ahead.  While playing the game, if the player has not been able to defeat the monster then he will gradually lose his life.  After being defeated by the monster, the player will be prompted with a message `GAME OVER` and will be provided with 2 options; either to `Start Over` or to `Quit` the game else if the player has been able to defeat the monster, he will be able to continue the game and level up.
+1. As the game starts, the player is greeted with the sight of three vibrant red hearts symbolizing their available lives as he plays the game. These hearts serve as a representation of the player’s chances to navigate the challenges ahead.  While playing the game, if the player has not been able to defeat the monster then he will gradually lose his life.  After being defeated by the monster, the player will be prompted with a message `GAME OVER` and will be provided with 2 options; either to `Start Over` or to `Quit` the game else if the player has been able to defeat the monster, he will be able to continue the game and level up.
 
-2.	If the player chooses to continue the game after clicking the `Start Over` button, the previous items, coins, and treasures that he collected previously will remain the same and he will be able to increase the counts while continuing to play the game.
+2. If the player chooses to continue the game after clicking the `Start Over` button, the previous items, coins, and treasures that he collected previously will remain the same and he will be able to increase the counts while continuing to play the game.
 
-3.	If the player selects the option to `Quit` the game, he will return to the main screen where he will be provided with the options to either play a `NEW GAME`, `LOAD GAME`, or `EXIT`.
+3. If the player selects the option to `Quit` the game, he will return to the main screen where he will be provided with the options to either play a `NEW GAME`, `LOAD GAME`, or `EXIT`.
 
-4.  In order for the player to collect the diamond, he will have to open the door with a key first.
+4. In order for the player to win the game, he must collect the diamond.
 
-5.	Player is not allowed to walk or run into the trees to hide from monsters.
+5. Player cannot walk or run into the trees to hide from monsters.
 
 
 ## How to play the game:<br>
 1.	In order to move the character in the North-South-East-West directions, you have to use the following keys:<br>
-  -	`A`: Move Left<br>
-  -	`S`: Move Down<br>
-  -	`D`: Move Right<br>
-  -	`W`: Move Up<br>
 
-2.	To select items or options, you have to use the `Enter` key.
+      - `A`: Move Left<br>
+      - `S`: Move Down<br>
+      - `D`: Move Right<br>
+      - `W`: Move Up<br>
 
-3.	Pressing the `Esc` button, will pause the game and a black and white board will be displayed on your screen having options; <br>
+2.	Press `Esc` to view the following options:<br>
 
     -	`Full Screen`<br>
     -	`Music`<br>
@@ -42,7 +41,9 @@ The game follows a set of rules that govern the player’s interactions within t
     -	`End Game`<br>
     -	`Back`<br>
 
-4.	To attack the monsters, you have to use the Enter key.
+3.	To select items or options, press `Enter`.
+
+4.	To attack the monsters, press `Enter` for sword and press `f` to cast a fireball.
 
 5.	Pressing the `p` button will pause the game with the message `PAUSED` on the screen.  To resume the game you can simply press the `p` button again.
 
@@ -54,28 +55,28 @@ The game follows a set of rules that govern the player’s interactions within t
 
 9.  Use the `Spacebar` key to guard (This helps in reducing the damage by 2).
 
-10.  In order to save the progress of the game, the player needs to go near the lake and press the `Enter` to acknowledge that he has been healed and the progress has been saved.  The player can then close the game and reload it.
+10. The player can go to the lake or to the healer which is the cat and press the `Enter` to heal.
 
 11.	To collect an item, simply walk over it.
 
 ## Items:<br>
 
-1.	Gold coins: These coins are used to purchase items, equipment, upgrades, or services within the game.
+1.	💰 Gold coins: These coins are used to purchase items, equipment, upgrades, or services within the game.
 
-2.	Candles: Help to ward off the shadows of the unknown.
+2.	🕯️ Candles: Help to ward off the shadows of the unknown.
 
-3.	Mana: Mana is a magical resource used to cast spells, use special abilities, or perform powerful attacks.
+3.	🔮 Mana: Mana is a magical resource used to cast spells, use special abilities, or perform powerful attacks.
 
-4.	Red Hearts: Increase player’s lives.
+4.	❤️ Red Hearts: Increase player’s lives.
 
-5.	Weapons: To fight against monsters.
+5.	⚔️ Weapons: To fight against monsters.
 
-6.	Treasure: Collecting treasure can lead to various rewards, such as unlocking secret content.
+6.	💎 Treasure: Collecting treasure can lead to various rewards, such as unlocking secret content.
 
 ## How to run the project:<br>
 
-1. Clone the repository or download the ZIP file.
-2. Navigate to the project directory using your terminal.
+1. Clone the repository.
+2. Navigate to the project directory where src folder is saved using your terminal.
 3. Compile the code using: `javac character/*.java tile/*.java object/*.java monster/*.java main/*. java`.
 4. Run the game: `java main. Main`.
 
