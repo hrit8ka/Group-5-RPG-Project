@@ -567,7 +567,7 @@ public class UI {
         }
         // SE
         textY += gp.tileSize;
-        g2.drawString("SE", textX, textY);
+        g2.drawString("Sound Effects", textX, textY);
         if (commandNumber == 2) {
             g2.drawString(">", textX - 25, textY);
         }
