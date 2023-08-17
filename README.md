@@ -60,17 +60,17 @@ The game follows a set of rules that govern the player’s interactions within t
 
 ## Items:<br>
 
-1.	Gold coins: These coins are used to purchase items, equipment, upgrades, or services within the game.
+1.	💰 Gold coins: These coins are used to purchase items, equipment, upgrades, or services within the game.
 
-2.	Candles: Help to ward off the shadows of the unknown.
+2.	🕯️ Candles: Help to ward off the shadows of the unknown.
 
-3.	Mana: Mana is a magical resource used to cast spells, use special abilities, or perform powerful attacks.
+3.	🔮 Mana: Mana is a magical resource used to cast spells, use special abilities, or perform powerful attacks.
 
-4.	Red Hearts: Increase player’s lives.
+4.	❤️ Red Hearts: Increase player’s lives.
 
-5.	Weapons: To fight against monsters.
+5.	⚔️ Weapons: To fight against monsters.
 
-6.	Treasure: Collecting treasure can lead to various rewards, such as unlocking secret content.
+6.	💎 Treasure: Collecting treasure can lead to various rewards, such as unlocking secret content.
 
 ## How to run the project:<br>
 
