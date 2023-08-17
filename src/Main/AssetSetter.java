@@ -75,10 +75,10 @@ public class AssetSetter {
         i++;
 
         // set doors
-        /*gp.obj[mapNum][i] = new OBJ_Door(gp);
+        gp.obj[mapNum][i] = new OBJ_Door(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 12;
         gp.obj[mapNum][i].worldY = gp.tileSize * 12;
-        i++;*/
+        i++;
 
         // set chest
         gp.obj[mapNum][i] = new OBJ_Chest(gp, new OBJ_Key(gp));
@@ -86,13 +86,13 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = gp.tileSize * 29;
         i++;
 
-        //place the tent
+        // place the tent
         gp.obj[mapNum][i] = new CampingTent(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 27;
         gp.obj[mapNum][i].worldY = gp.tileSize * 16;
         i++;
 
-        //place the diamond
+        // place the diamond
         gp.obj[mapNum][i] = new HiddenGem(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 12;
         gp.obj[mapNum][i].worldY = gp.tileSize * 10;

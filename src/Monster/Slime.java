@@ -64,11 +64,9 @@ public class Slime extends Character {
 
         if (onPath == true) {
             checkStopChasing(gp.player, 15, 100);
-
             // search the path to the player
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
-
-            checkShoot(200, 30);
+            checkShoot(200, 30); 
         } else {
             checkStartChasing(gp.player, 5, 100);
             getRandomDirection();

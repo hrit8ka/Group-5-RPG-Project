@@ -50,9 +50,10 @@ public class Player extends Character {
         solidArea.height = 32;// set the height of the solid area
 
         setDefaultValues();// set the default values of the player
-        getPlayerImages(); // get the images of the player
-        getPlayerAttackImage();// get the attack image of the player
+        getImage(); // get the images of the player
+        getAttackImage();// get the attack image of the player
         setItems();// set the items of the player
+        getGuardImage();// get the guard image of the player
     }
 
     // method to set the default values of the player
@@ -121,7 +122,7 @@ public class Player extends Character {
     }
 
     // method to get the images of the player
-    public void getPlayerImages() {
+    public void getImage() {
         // get image for idle
         idle = setUp("./src/player/idle", gp.tileSize, gp.tileSize);
         // get image for walking
@@ -148,7 +149,7 @@ public class Player extends Character {
     }
 
     // method to get the attack image of the player
-    public void getPlayerAttackImage() {
+    public void getAttackImage() {
 
         if (currentWeapon.type == swordType) {// if the current weapon is a sword, load the sword attack images
             attackUp1 = setUp("./src/player/attack_up_1", gp.tileSize, gp.tileSize);
@@ -162,15 +163,23 @@ public class Player extends Character {
 
         }
         if (currentWeapon.type == axeType) {// if the current weapon is an axe, load the axe attack images
-            attackUp1 = setUp("./src/player/axe_right_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setUp("./src/player/axe_right_2", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setUp("./src/player/axe_left_1", gp.tileSize, gp.tileSize * 2);
-            attackDown2 = setUp("./src/player/axe_left_2", gp.tileSize, gp.tileSize * 2);
-            attackLeft1 = setUp("./src/player/axe_left_1", gp.tileSize * 2, gp.tileSize);
-            attackLeft2 = setUp("./src/player/axe_left_2", gp.tileSize * 2, gp.tileSize);
-            attackRight1 = setUp("./src/player/axe_right_1", gp.tileSize * 2, gp.tileSize);
-            attackRight2 = setUp("./src/player/axe_right_2", gp.tileSize * 2, gp.tileSize);
+            attackUp1 = setUp("./src/player/axe_right_1", gp.tileSize, gp.tileSize);
+            attackUp2 = setUp("./src/player/axe_right_2", gp.tileSize, gp.tileSize);
+            attackDown1 = setUp("./src/player/axe_left_1", gp.tileSize, gp.tileSize);
+            attackDown2 = setUp("./src/player/axe_left_2", gp.tileSize, gp.tileSize);
+            attackLeft1 = setUp("./src/player/axe_left_1", gp.tileSize, gp.tileSize);
+            attackLeft2 = setUp("./src/player/axe_left_2", gp.tileSize, gp.tileSize);
+            attackRight1 = setUp("./src/player/axe_right_1", gp.tileSize, gp.tileSize);
+            attackRight2 = setUp("./src/player/axe_right_2", gp.tileSize, gp.tileSize);
         }
+    }
+
+    public void getGuardImage() {
+        guardUp = setUp("./src/player/guard_up", gp.tileSize, gp.tileSize);
+        guardDown = setUp("./src/player/guard_down", gp.tileSize, gp.tileSize);
+        guardLeft = setUp("./src/player/guard_left", gp.tileSize, gp.tileSize);
+        guardRight = setUp("./src/player/guard_right", gp.tileSize, gp.tileSize);
+
     }
 
     // method to get the images of the player's weapons
@@ -178,8 +187,9 @@ public class Player extends Character {
 
         if (attacking == true) {// if the player is attacking
             attacking();// call the method to attack
-        }
-        if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
+        } else if (keyH.spacePressed == true) {
+            guarding = true;
+        } else if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
                 || keyH.rightPressed == true || keyH.enterPressed == true) {// if the player is moving
 
             if (keyH.upPressed == true) {// if the player is moving up
@@ -250,6 +260,7 @@ public class Player extends Character {
             }
             noAttack = false;// set no attack to false
             gp.keyH.enterPressed = false;// set enter pressed to false
+            guarding = false;
             spriteCounter++;// increment the sprite counter
             if (spriteCounter > 12) {// if the sprite counter is greater than 12
                 if (spriteNumber == 1) {// if the sprite number is 1, set it to 2
@@ -259,6 +270,7 @@ public class Player extends Character {
                 }
                 spriteCounter = 0;// reset the sprite counter
             }
+            guarding = false;
         }
         // if F key is pressed and previous projectile is inactive, shoot projectile
         if (gp.keyH.shotKeyPressed == true && projectile.alive == false && projectileCounter == 30
@@ -470,7 +482,7 @@ public class Player extends Character {
             if (selectedItem.type == swordType || selectedItem.type == axeType) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
-                getPlayerAttackImage();
+                getAttackImage();
             }
             if (selectedItem.type == armorType) {
                 currentArmor = selectedItem;
@@ -560,6 +572,9 @@ public class Player extends Character {
                         image = attackUp2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardUp;
+                }
                 break;
             case "down":
                 if (attacking == false) {
@@ -577,6 +592,9 @@ public class Player extends Character {
                     if (spriteNumber == 2) {
                         image = attackDown2;
                     }
+                }
+                if (guarding == true) {
+                    image = guardDown;
                 }
                 break;
             case "left":
@@ -597,6 +615,9 @@ public class Player extends Character {
                         image = attackLeft2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardLeft;
+                }
                 break;
             case "right":
                 if (attacking == false) {
@@ -614,6 +635,9 @@ public class Player extends Character {
                     if (spriteNumber == 2) {
                         image = attackRight2;
                     }
+                }
+                if (guarding == true) {
+                    image = guardRight;
                 }
                 break;
         }

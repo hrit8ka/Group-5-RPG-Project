@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 public class KeyHandler implements KeyListener {
 
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed, spacePressed;
 
     // debug
     boolean checkDrawTime = false;
@@ -121,12 +121,15 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.optionState;
         } else if (code == KeyEvent.VK_M) {
             gp.gameState = gp.mapState;
+
         } else if (code == KeyEvent.VK_N) {
             if (gp.map.miniMapOn == false) {
                 gp.map.miniMapOn = true;
             } else {
                 gp.map.miniMapOn = false;
             }
+        } else if (code == KeyEvent.VK_SPACE) {
+            spacePressed = true;
         }
 
         // debug
@@ -376,19 +379,24 @@ public class KeyHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_UP ||code==KeyEvent.VK_W) {
+        if (code == KeyEvent.VK_UP || code == KeyEvent.VK_W) {
             upPressed = false;
-        } else if (code == KeyEvent.VK_DOWN ||code==KeyEvent.VK_S) {
+        } else if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_S) {
             downPressed = false;
-        } else if (code == KeyEvent.VK_LEFT ||code==KeyEvent.VK_A) {
+        } else if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_A) {
             leftPressed = false;
-        } else if (code == KeyEvent.VK_RIGHT ||code==KeyEvent.VK_D) {
+        } else if (code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) {
             rightPressed = false;
         }
         if (code == KeyEvent.VK_F) {
             enterPressed = false;
         }
-        
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = false;
+        }
+        if (code == KeyEvent.VK_SPACE) {
+            spacePressed = false;
+        }
 
     }
 }
