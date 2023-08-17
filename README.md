@@ -18,8 +18,10 @@ The game follows a set of rules that govern the player’s interactions within t
 
 3.	If the player selects the option to **Quit** the game, he will return to the main screen where he will be provided with the options to either play a **“NEW GAME”**, **“LOAD GAME”**, or **“EXIT”**.
 
+4.  In order for the player to collect the diamond, he will have to open the door with a key first.
 
-4.	Player is not allowed to walk or run into the trees to hide from monsters.
+
+5.	Player is not allowed to walk or run into the trees to hide from monsters.
 
 
 ## •	How to play the game?<br>
@@ -48,7 +50,13 @@ The game follows a set of rules that govern the player’s interactions within t
 
 7.	To interact with an NPC (non-player character), approach them and press the **Enter** key.
 
-8.	To collect an item, simply walk over it.
+8.  Pressing the **Enter** key also enabales the player to open the chest.
+
+9.  Use the **Spacebar** key to guard (This helps in reducing the damage by 2).
+
+10.  In order to save the progress of the game, the player needs to go near the lake and press the **Enter** to acknowledge that he has been healed and the progress has been saved.  The player can then close the game and reload it.
+
+11.	To collect an item, simply walk over it.
 
 ## •	Items:<br>
 
