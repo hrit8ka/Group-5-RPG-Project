@@ -15,13 +15,11 @@ The game follows a set of rules that govern the player’s interactions within t
 
 1. As the game starts, the player will be prompted with the main screen having the options to choose between  `NEW GAME`, `LOAD GAME`, or `EXIT`.
 
-2. If the player chooses to continue the game after clicking the `Start Over` button, the previous items, coins, and treasures that he collected previously will remain the same and he will be able to increase the counts while continuing to play the game.
+2. If the player selects the option to `Quit` the game, he will return to the main screen where he will be provided with the options to either play a `NEW GAME`, `LOAD GAME`, or `EXIT`.
 
-3. If the player selects the option to `Quit` the game, he will return to the main screen where he will be provided with the options to either play a `NEW GAME`, `LOAD GAME`, or `EXIT`.
+3. In order for the player to win the game, he must collect the diamond.
 
-4. In order for the player to win the game, he must collect the diamond.
-
-5. Player cannot walk or run into the trees to hide from monsters.
+4. Player cannot walk or run into the trees to hide from monsters.
 
 
 ## How to play the game:<br>
