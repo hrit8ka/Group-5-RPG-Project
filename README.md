@@ -44,7 +44,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 4.	To attack the monsters, you have to use the Enter key.
 
-5.	Pressing the `P` button will pause the game with the message `PAUSED` on the screen.  To resume the game you can simply press the `P` button again.
+5.	Pressing the `p` button will pause the game with the message `PAUSED` on the screen.  To resume the game you can simply press the `p` button again.
 
 6.	Pressing the `c` button will display a board how the Player Stats which includes vel, HP, Mana, Strength, Agility, Attack, Defense, XP, Next Level, Gold, Weapon, and Armor.  The player will also be able to choose from his collected items.
 
