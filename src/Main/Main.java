@@ -17,7 +17,7 @@ public class Main {
         GamePanel gamePanel = new GamePanel();// create game panel
         window.add(gamePanel);// add game panel to window
 
-        gamePanel.config.loadConfig();// load config
+        gamePanel.config.loadConfig();// load config 
         if (gamePanel.fullScreenOn == true) {
             window.setExtendedState(JFrame.MAXIMIZED_BOTH);// set window to full screen
         }
@@ -29,6 +29,7 @@ public class Main {
         gamePanel.setUpGame();// set up game panel
         gamePanel.startGameThread();// start game thread to start game
     }
-}
 
-// video 48 (2:19), 49, 50
+    public interface Character {
+    }
+}

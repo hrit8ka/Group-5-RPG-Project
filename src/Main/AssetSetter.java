@@ -12,7 +12,6 @@ import Object.HiddenGem;
 import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
 import Object.OBJ_Chest;
-import Object.OBJ_Door;
 import Object.OBJ_Heart;
 import Object.OBJ_Key;
 import Object.OBJ_Mana;

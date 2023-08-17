@@ -41,7 +41,7 @@ public class Config {
     }
 
     public void loadConfig() {
-        try{
+        try {
             BufferedReader br = new BufferedReader(new FileReader("config.txt"));
             String s = br.readLine();
 

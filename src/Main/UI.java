@@ -486,7 +486,7 @@ public class UI {
 
         // retry
         g2.setFont(g2.getFont().deriveFont(50f));
-        text = "Retry";
+        text = "Start Over";
         x = getXforCenteredText(text);
         y += gp.tileSize * 4;
         g2.drawString(text, x, y);

@@ -11,9 +11,9 @@ As the sun sets on Minish Haven, the sage Eldrith reveals that an ancient curse 
 ## •	Rules of the game:<br>
 The game follows a set of rules that govern the player’s interactions within the game world.
 
-1.	As the game starts, the player is greeted with the sight of three vibrant red hearts symbolizing their available lives as he plays the game.  These hearts serve as a representation of the player’s chances to navigate the challenges ahead.  While playing the game, if the player has not been able to defeat the monster then he will gradually lose his life.  After being defeated by the monster, the player will be prompted with a message **“GAME OVER”** and will be provided with 2 options; either to **Retry** or to **Quit** the game else if the player has been able to defeat the monster, he will be able to continue the game and level up.
+1.	As the game starts, the player is greeted with the sight of three vibrant red hearts symbolizing their available lives as he plays the game.  These hearts serve as a representation of the player’s chances to navigate the challenges ahead.  While playing the game, if the player has not been able to defeat the monster then he will gradually lose his life.  After being defeated by the monster, the player will be prompted with a message **“GAME OVER”** and will be provided with 2 options; either to **Start Over** or to **Quit** the game else if the player has been able to defeat the monster, he will be able to continue the game and level up.
 
-2.	If the player chooses to continue the game after clicking the **Retry** button, the previous items, coins, and treasures that he collected previously will remain the same and he will be able to increase the counts while continuing to play the game.
+2.	If the player chooses to continue the game after clicking the **Start Over** button, the previous items, coins, and treasures that he collected previously will remain the same and he will be able to increase the counts while continuing to play the game.
 
 
 3.	If the player selects the option to **Quit** the game, he will return to the main screen where he will be provided with the options to either play a **“NEW GAME”**, **“LOAD GAME”**, or **“EXIT”**.
@@ -50,7 +50,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 7.	To interact with an NPC (non-player character), approach them and press the **Enter** key.
 
-8.  Pressing the **Enter** key also enabales the player to open the chest.
+8.  Pressing the **Enter** key also enables the player to open the chest.
 
 9.  Use the **Spacebar** key to guard (This helps in reducing the damage by 2).
 
