@@ -27,10 +27,10 @@ The game follows a set of rules that govern the player’s interactions within t
 ## How to play the game:<br>
 1.	In order to move the character in the North-South-East-West directions, you have to use the following keys:<br>
 
-      -`A`: Move Left<br>
-      -`S`: Move Down<br>
-      -`D`: Move Right<br>
-      -`W`: Move Up<br>
+      - `A`: Move Left<br>
+      - `S`: Move Down<br>
+      - `D`: Move Right<br>
+      - `W`: Move Up<br>
 
 2.	Press `Esc` to view the following options:<br>
 
