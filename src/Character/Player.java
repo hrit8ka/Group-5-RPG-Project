@@ -35,29 +35,26 @@ public class Player extends Character {
     public Player(GamePanel gp, KeyHandler keyH) {
 
         super(gp);// call the super constructor
-        // this.gp = gp;
+
         this.keyH = keyH;// set the key handler
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);// set screenX
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);// set screenY
 
         solidArea = new Rectangle();// set the solid area
-        solidArea.x = 8;// set the x coordinate of the solid area
-        solidArea.y = 16;// set the y coordinate of the solid area
-        solidAreaDefaultX = solidArea.x;// set the default x coordinate of the solid area
-        solidAreaDefaultY = solidArea.y;// set the default y coordinate of the solid area
-        solidArea.width = 32;// set the width of the solid area
-        solidArea.height = 32;// set the height of the solid area
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
 
-        setDefaultValues();// set the default values of the player
-        getImage(); // get the images of the player
-        getAttackImage();// get the attack image of the player
-        setItems();// set the items of the player
-        getGuardImage();// get the guard image of the player
+        setDefaultValues();
     }
 
     // method to set the default values of the player
     public void setDefaultValues() {
+
         worldX = gp.tileSize * 23;// set the worldX coordinate
         worldY = gp.tileSize * 21;// set the worldY coordinate
         // worldX = gp.tileSize * 12;
@@ -66,24 +63,29 @@ public class Player extends Character {
         defaultSpeed = 4;
 
         speed = defaultSpeed;// set the speed of the player
-        direction = "down";// set the direction of the player
+        direction = "down";
 
         // Player status
-        level = 1;// set the level of the player
-        maxLife = 6;// set the max life of the player
-        life = maxLife;// set the life of the player
-        maxMana = 4;// set the max mana of the player
-        mana = maxMana;// set the mana of the player
-        strength = 1; // more strength, more damage given by the player
-        agility = 1; // more agility, less damage received by the player
-        xp = 0;// xp is the experience of the player
-        nextLevelXP = 5;// set the next level xp of the player
-        gold = 500;// set the number of gold coins the player has
-        currentWeapon = new OBJ_Sword(gp);// set the current weapon of the player
-        currentArmor = new OBJ_Armor(gp);// set the current armor of the player
-        projectile = new Fireball(gp);// set the projectile of the player
-        attack = getAttack(); // total attack value depends on strength and weapon
-        defense = getDefense(); // total defense value depends on agility and armor
+        level = 1;
+        maxLife = 6;
+        life = maxLife;
+        maxMana = 4;
+        mana = maxMana;
+        strength = 1;
+        agility = 1;
+        xp = 0;
+        nextLevelXP = 5;
+        gold = 500;
+        currentWeapon = new OBJ_Sword(gp);
+        currentArmor = new OBJ_Armor(gp);
+        currentLight = null;
+        projectile = new Fireball(gp);
+        attack = getAttack();
+        defense = getDefense();
+        getImage();
+        getAttackImage();
+        setItems();
+        getGuardImage();
 
     }
 
@@ -95,10 +97,14 @@ public class Player extends Character {
 
     }
 
-    public void restoreLifeandMana() {
+    public void restoreStatus() {
         life = maxLife;// set the life of the player
         mana = maxMana;// set the mana of the player
         invincible = false; // reset invincible
+        attacking = false; // reset attacking
+        guarding = false; // reset guarding
+        knockBack = false; // reset knockBack
+        lightUpdated = true; // reset lightUpdated
     }
 
     // method to set the items of the player

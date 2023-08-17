@@ -26,7 +26,6 @@ import Tile_Interactive.interactiveTile;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    
     // Screen Settings
     final int originalTileSize = 16; // original tile size
     final int scale = 3; // scale of the game
@@ -125,27 +124,27 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void retry() {
+    public void restartGame(boolean restart) {
         player.setDefaultPosition();
-        player.restoreLifeandMana();
+        player.restoreStatus();
         assetSetter.setMonster();
         assetSetter.setNPC();
         assetSetter.setHealer();
+        if (restart == true) {
 
+            player.setDefaultValues();
+            assetSetter.setObject();
+            assetSetter.setInteractiveTile();
+        }
     }
 
-    public void restart() {
+    public void retry() {
         player.setDefaultPosition();
-        player.restoreLifeandMana();
-        player.setItems();
+        player.restoreStatus();
         assetSetter.setMonster();
         assetSetter.setNPC();
         assetSetter.setHealer();
-        assetSetter.setObject();
-        assetSetter.setInteractiveTile();
-        playMusic(0);
-        stopMusic();
-        gameState = titleState;
+
     }
 
     public void setFullScreen() {
@@ -352,7 +351,7 @@ public class GamePanel extends JPanel implements Runnable {
             // environment
             environmentManager.draw(g2);
 
-            //miniMap
+            // miniMap
             map.drawMiniMap(g2);
 
             // UI
