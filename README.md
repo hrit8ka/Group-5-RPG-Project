@@ -1,4 +1,4 @@
-<p align="center"><b><big>Welcome to The Legend of Hyrule, Warrior!</big></b></p>
+<p align="center"><b><big><font color="blue">Welcome to The Legend of Hyrule, Warrior!</font></big></b></p>
 
 ## •	Introduction:<br>
 The “The Legend of Hyrule” is a Java-based 2D game application that brings players into an immersive world filled with characters, adventures, and challenges.  This README provides a brief overview of the story of the game, the rules of the game, how to play the game, and the expected outcomes of the game.
