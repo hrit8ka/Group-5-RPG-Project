@@ -1,6 +1,6 @@
-<p align="center">
+<p align="center"># **
 Welcome to The Legend of Hyrule, Warrior!
-</p>
+**</p>
 
 
 ## •	Introduction:<br>
@@ -77,7 +77,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 The Legend of Hyrule Game awaits your courage and wit. Face off against the Forest Guardian, collect hidden loot, and unravel the secret of the Diamond of Radiance. Become the hero The Legend of Hyrule yearns for and bask in the glory of your valiant deeds!
 
-## Contributors<br>
+## Contributors:<br>
 KOWLESSUR Hritika Chooshini	2111897<br>
 VENKATASAMI Jaanavi		    2115998<br>
 YENKETERAMDOO Gitanjali	    2115982<br>
