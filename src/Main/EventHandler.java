@@ -1,11 +1,13 @@
+/**
+ * The EventHandler class handles various events in the game, such as checking for collisions,
+ * teleporting the player, triggering dialogue with NPCs, and healing the player.
+ */
 package Main;
 
 import Character.NPC_Merchant;
 
 public class EventHandler {
     GamePanel gp;
-    // Rectangle eventRect;
-    // int eventRectDefaultX, eventRectDefaultY;
 
     EventRectangle eventRect[][][];
     int previousEventX, previousEventY;
@@ -104,11 +106,6 @@ public class EventHandler {
         tempMap = map;
         tempCol = col;
         tempRow = row;
-        // gp.currentMap = map;
-        // gp.player.worldX = gp.tileSize * col;
-        // gp.player.worldY = gp.tileSize * row;
-        // previousEventX = gp.player.worldX;
-        // previousEventY = gp.player.worldY;
         canTouchEvent = false;
         gp.playSE(14);
 
@@ -128,7 +125,7 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.player.noAttack = true;
             gp.playSE(2);
-            gp.ui.currentDialogue = "You found a healing pool! You are healed!\n"+"The progress has been saved!";
+            gp.ui.currentDialogue = "You found a healing pool! You are healed!\n" + "The progress has been saved!";
             gp.player.life = gp.player.maxLife; // player recovers all HP
             // player recovers all mana
             gp.player.mana = gp.player.maxMana;

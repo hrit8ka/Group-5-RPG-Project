@@ -1,3 +1,7 @@
+/**
+ * The CampingTent class is a subclass of the Character class and represents a tent object that can be
+ * used to rest in a game.
+ */
 package Object;
 
 import Main.GamePanel;
@@ -22,8 +26,7 @@ public class CampingTent extends Character {
         gp.player.life = gp.player.maxLife;
         gp.player.mana = gp.player.maxMana;
         gp.player.getSleepingImage(down1);
-        return false;
-        // return false; if you want to keep the item after use
+        return false;// if you use it, it will be removed
     }
 
 }

@@ -1,3 +1,7 @@
+/**
+ * The `envManager` class is responsible for managing the environment in a game, including setting up
+ * and updating lighting.
+ */
 package Environment;
 
 import java.awt.Graphics2D;

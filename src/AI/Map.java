@@ -8,17 +8,21 @@ import java.awt.image.BufferedImage;
 import Main.GamePanel;
 import Tile.TileManager;
 
+//Map class is used to create the world map and the mini map and display them on the screen.
+//It uses inheritance from TileManager class.
 public class Map extends TileManager {
     GamePanel gp;
     BufferedImage worldMap[];
     public boolean miniMapOn = false;
 
+    // Constructor
     public Map(GamePanel gp) {
         super(gp);
         this.gp = gp;
         createWorldMap();
     }
 
+    // create world map
     public void createWorldMap() {
         worldMap = new BufferedImage[gp.maxMap];
         int worldMapWidth = gp.tileSize * gp.maxWorldCol;
@@ -47,6 +51,7 @@ public class Map extends TileManager {
         }
     }
 
+    // draw world map screen
     public void drawWorldMapScreen(Graphics2D g2) {
         // background
         g2.setColor(Color.black);
@@ -63,7 +68,7 @@ public class Map extends TileManager {
         int playerX = (int) (x + gp.player.worldX / scale);
         int playerY = (int) (y + gp.player.worldY / scale);
 
-        int playerSize = (int)(gp.tileSize/3);
+        int playerSize = (int) (gp.tileSize / 3);
         g2.drawImage(gp.player.down1, playerX, playerY, playerSize, playerSize, null);
 
         g2.setFont(gp.ui.maruMonica.deriveFont(32f));
@@ -71,11 +76,12 @@ public class Map extends TileManager {
         g2.drawString("Press M to close", 750, 550);
     }
 
-    public void drawMiniMap(Graphics2D g2){
-        if(miniMapOn == false){
+    // draw mini map
+    public void drawMiniMap(Graphics2D g2) {
+        if (miniMapOn == false) {
             int width = 200;
             int height = 200;
-            int x = gp.screenWidth - width-50;
+            int x = gp.screenWidth - width - 50;
             int y = 50;
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f));
             g2.drawImage(worldMap[gp.currentMap], x, y, width, height, null);

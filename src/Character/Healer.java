@@ -1,3 +1,7 @@
+/**
+ * The Healer class is a subclass of the Character class and represents a cat character that can heal
+ * other characters in a game.
+ */
 package Character;
 
 import java.awt.image.BufferedImage;
@@ -5,8 +9,7 @@ import java.util.Random;
 
 import Main.GamePanel;
 
-//the healer class is a character that can heal other characters, this healer is a cat
-//the healer class extends the character class
+//the healer class extends the character class using inheritance
 public class Healer extends Character {
 
     BufferedImage up3, up4, down3, down4, left3, left4, right3, right4;// the healer has 4 images for each direction

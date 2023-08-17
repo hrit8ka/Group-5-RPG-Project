@@ -1,3 +1,6 @@
+/**
+ * The Slime class is a subclass of the Character class and represents a slime monster in a game.
+ */
 package Monster;
 
 import Main.GamePanel;
@@ -78,7 +81,7 @@ public class Slime extends Character {
     public void monsterDamageReaction() {
         // when attacking, monster moves away from player
         actionLockCounter = 0;// set action lock counter to 0
-        // direction = gp.player.direction;// set direction to player direction
+       
         onPath = true;// set on path to true
 
     }

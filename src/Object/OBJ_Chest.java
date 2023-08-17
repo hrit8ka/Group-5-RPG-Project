@@ -1,3 +1,7 @@
+/**
+ * The OBJ_Chest class represents a chest object in a game, which can be interacted with to obtain
+ * loot.
+ */
 package Object;
 
 import Character.Character;

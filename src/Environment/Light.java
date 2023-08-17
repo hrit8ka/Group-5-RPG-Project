@@ -1,3 +1,7 @@
+/**
+ * The Light class is responsible for creating and updating a dark effect on the game screen based on
+ * the time of day.
+ */
 package Environment;
 
 import java.awt.AlphaComposite;

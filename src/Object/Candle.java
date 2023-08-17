@@ -1,3 +1,6 @@
+/**
+ * The Candle class extends the Character class and represents a candle object in a game.
+ */
 package Object;
 
 import Main.GamePanel;

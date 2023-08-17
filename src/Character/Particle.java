@@ -1,3 +1,7 @@
+/**
+ * The Particle class is used to create particles for effects such as explosions, inheriting from the
+ * Character class.
+ */
 package Character;
 
 import java.awt.Color;

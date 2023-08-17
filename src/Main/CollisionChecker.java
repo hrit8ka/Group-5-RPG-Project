@@ -1,3 +1,7 @@
+/**
+ * The CollisionChecker class is responsible for checking collisions between characters, objects, and
+ * tiles in a game.
+ */
 package Main;
 
 import Character.Character;

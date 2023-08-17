@@ -25,27 +25,27 @@ public class Character {
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1,
             attackRight2, guardUp, guardDown, guardLeft, guardRight;
     public BufferedImage image, image2, image3;
-    public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // solidArea: the area that the player cannot walk through
-    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);// attackArea: the area that the player can attack
-    public int solidAreaDefaultX, solidAreaDefaultY;// the default position of the solidArea
-    public boolean collision = false;// collision: whether the player can walk through the character
-    String dialogues[] = new String[20];// dialogues: the dialogues that the character can say
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
+    public int solidAreaDefaultX, solidAreaDefaultY;
+    public boolean collision = false;
+    String dialogues[] = new String[20];
     public Character attacker;
     // states
-    public int worldX, worldY; // worldX:x coordinate of player... worldY:y coordinate of player
-    public String direction = "down";// direction: the direction that the player is facing
-    public int spriteNumber = 1;// spriteNumber: the number of sprites that the character has
-    int dialogueIndex = 0;// dialogueIndex: the index of the dialogue that the character is saying
-    public boolean collisionOn = false;// collisionOn: whether the collision is on
-    public boolean invincible = false;// invincible: whether the character is invincible
-    public boolean attacking = false;// attacking: whether the character is attacking
-    public boolean alive = true;// alive: whether the character is alive
-    public boolean dying = false; // dying: whether the character is dying
-    boolean hpBarOn = false;// hpBarOn: whether the hpBar is on
-    public boolean onPath = false;// onPath: whether the character is on a path
-    public boolean knockBack = false;// knockBack: whether the character is knocked back
+    public int worldX, worldY;
+    public String direction = "down";
+    public int spriteNumber = 1;
+    int dialogueIndex = 0;
+    public boolean collisionOn = false;
+    public boolean invincible = false;
+    public boolean attacking = false;
+    public boolean alive = true;
+    public boolean dying = false;
+    boolean hpBarOn = false;
+    public boolean onPath = false;
+    public boolean knockBack = false;
     public String knockBackDirection;
-    public boolean guarding = false;// guardState: whether the character is guarding
+    public boolean guarding = false;
     public Character loot;
     public boolean opened = false;
     // counters
@@ -58,26 +58,26 @@ public class Character {
     int knockBackCounter = 0;// the counter that controls the knockBack
     // attributes
     public String name;// name: the name of the character or object
-    public int defaultSpeed;// defaultSpeed: the default speed of the character
+    public int defaultSpeed;// the default speed of the character
     public int speed; // speed of the player
 
     // Character attributes
-    public int maxLife;// maxLife: the maximum life of the character
-    public int life;// life: the current life of the character
-    public int level;// level: the level of the character
-    public int maxMana;// maxMana: the maximum mana of the character
-    public int mana;// mana: the current mana of the character
-    public int strength;// strength: the strength of the character
-    public int agility;// agility: the agility of the character
-    public int attack;// attack: the attacking power of weapon or the character
-    public int defense; // defense: the defending power of armor or the character
-    public int xp;// xp: the current xp of the character
-    public int nextLevelXP; // nextLevelXP: the xp that the character needs to level up
-    public int gold;// gold: the number of gold coins that the character has
-    public Character currentWeapon; // currentWeapon: the current weapon that the character is using
-    public Character currentArmor;// currentArmor: the current armor that the character is using
-    public Character currentLight; // currentLight: the candle that the character is using
-    public Projectile projectile;// projectile: the projectile that the character is using
+    public int maxLife;
+    public int life;
+    public int level;
+    public int maxMana;
+    public int mana;
+    public int strength;
+    public int agility;
+    public int attack;
+    public int defense;
+    public int xp;
+    public int nextLevelXP;
+    public int gold;
+    public Character currentWeapon;
+    public Character currentArmor;
+    public Character currentLight;
+    public Projectile projectile;
 
     // item attributes
     public ArrayList<Character> inventory = new ArrayList<>();// inventory of the player
@@ -162,9 +162,10 @@ public class Character {
         return goalRow;
     }
 
-    public void setLoot(Character loot){
+    public void setLoot(Character loot) {
 
     }
+
     // set action method
     public void setAction() {
     }

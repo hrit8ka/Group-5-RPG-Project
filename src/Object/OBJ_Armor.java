@@ -1,3 +1,6 @@
+/**
+ * The OBJ_Armor class is a subclass of the Character class and represents a type of armor in a game.
+ */
 package Object;
 
 import Character.Character;

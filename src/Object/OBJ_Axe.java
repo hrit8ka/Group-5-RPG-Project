@@ -1,3 +1,7 @@
+/**
+ * The OBJ_Axe class is a subclass of the Character class and represents an ancient axe object in a
+ * game.
+ */
 package Object;
 
 import Character.Character;

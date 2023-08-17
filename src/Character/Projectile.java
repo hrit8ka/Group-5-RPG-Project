@@ -1,3 +1,7 @@
+/**
+ * The Projectile class is a subclass of the Character class and represents a projectile in a game,
+ * with methods for updating its position, checking for collisions, and managing mana usage.
+ */
 package Character;
 
 import Main.GamePanel;

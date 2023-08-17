@@ -1,3 +1,7 @@
+/**
+ * The UtilityTool class in Java is used to scale images by creating a new BufferedImage with the
+ * specified width and height and drawing the original image onto it.
+ */
 package Main;
 
 import java.awt.Graphics2D;

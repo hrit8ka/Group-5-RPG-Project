@@ -1,10 +1,13 @@
+/**
+ * The NPC_Sage class is a character in a game that provides information and guidance to the player.
+ */
 package Character;
 
 import java.util.Random;
 
 import Main.GamePanel;
 
-//the sage class is a character that gives the player information about its quest
+
 public class NPC_Sage extends Character {
 
     // constructor for the sage class
@@ -45,13 +48,13 @@ public class NPC_Sage extends Character {
     // set the action for the sage
     public void setAction() {
         if (onPath == true) {
-            //int goalCol=12;
-            //int goalRow=9;
-            int goalCol=(gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
-            int goalRow=(gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+            // int goalCol=12;
+            // int goalRow=9;
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
 
             searchPath(goalCol, goalRow);
-           
+
         } else {
             // if the sage is not on the path, the sage will move randomly
             actionLockCounter++;// increment the action lock counter

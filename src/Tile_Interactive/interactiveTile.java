@@ -1,3 +1,7 @@
+/**
+ * The interactiveTile class is a subclass of Character that represents a tile in a game that can be
+ * interacted with and potentially destroyed.
+ */
 package Tile_Interactive;
 
 import Character.Character;

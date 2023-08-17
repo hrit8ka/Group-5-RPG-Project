@@ -1,3 +1,6 @@
+/**
+ * The Sound class in Java is used to play various sound effects and music in a game or application.
+ */
 package Main;
 
 import java.net.MalformedURLException;

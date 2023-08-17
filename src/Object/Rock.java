@@ -1,3 +1,6 @@
+/**
+ * The Rock class is a subclass of the Projectile class and represents a rock projectile in a game.
+ */
 package Object;
 
 import java.awt.Color;

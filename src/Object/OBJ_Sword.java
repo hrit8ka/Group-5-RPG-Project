@@ -1,3 +1,6 @@
+/**
+ * The OBJ_Sword class is a subclass of the Character class and represents a sword object in a game.
+ */
 package Object;
 
 import Character.Character;

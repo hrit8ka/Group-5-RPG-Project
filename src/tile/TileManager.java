@@ -1,3 +1,6 @@
+/**
+ * The TileManager class is responsible for creating and managing the tiles for the game map.
+ */
 package Tile;
 
 import Main.GamePanel;

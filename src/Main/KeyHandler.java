@@ -1,3 +1,7 @@
+/**
+ * The KeyHandler class is responsible for handling keyboard input in a game, determining the
+ * appropriate action based on the current game state.
+ */
 package Main;
 
 import java.awt.event.KeyListener;

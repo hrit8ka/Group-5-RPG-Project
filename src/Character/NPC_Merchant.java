@@ -1,3 +1,7 @@
+/**
+ * The NPC_Merchant class is used to create a merchant character in a game, with properties such as
+ * dialogue and inventory items.
+ */
 package Character;
 
 import Main.GamePanel;
@@ -5,6 +9,8 @@ import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
 import Object.OBJ_Sword;
 
+//NPC_Merchant class is used to create the merchant character and set its properties. 
+//This class extends the Character class using inheritance.
 public class NPC_Merchant extends Character {
 
     GamePanel gp;

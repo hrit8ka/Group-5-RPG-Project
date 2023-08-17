@@ -1,3 +1,9 @@
+/**
+ * The `dryTree` class is a subclass of `interactiveTile` that represents a dry tree in a game, and it
+ * has methods for checking if the correct item is used to interact with it, playing sound effects,
+ * getting the color, size, speed, and max life of particles, and getting the destroyed tile when the
+ * tree is destroyed.
+ */
 package Tile_Interactive;
 
 import Main.GamePanel;

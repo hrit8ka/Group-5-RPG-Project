@@ -1,3 +1,7 @@
+/**
+ * The AssetSetter class is responsible for setting up the objects, NPCs, healers, monsters, and
+ * interactive tiles in the game.
+ */
 package Main;
 
 import Character.Healer;

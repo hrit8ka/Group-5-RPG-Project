@@ -1,3 +1,7 @@
+/**
+ * The Coin class extends the Character class and represents a gold coin object in a game, which can be
+ * picked up by the player character to increase their gold count.
+ */
 package Object;
 
 import Character.Character;

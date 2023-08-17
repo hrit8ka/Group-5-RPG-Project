@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Main.GamePanel;
 
+//PathFinder class is used to find the path from the start node to the end node using the A* pathfinding algorithm.
 public class PathFinder {
     GamePanel gp;
     Node[][] node;
@@ -119,77 +120,77 @@ public class PathFinder {
 
     }
 
-    public boolean search(){
-        while(endReached == false && step < 500){
+    public boolean search() {
+        while (endReached == false && step < 500) {
             int col = currentNode.col;
             int row = currentNode.row;
 
-            //check the current node
+            // check the current node
             currentNode.checked = true;
             openList.remove(currentNode);
-            //open the up node
-            if(row -1 >= 0){
-                openNode(node[col][row-1]);
+            // open the up node
+            if (row - 1 >= 0) {
+                openNode(node[col][row - 1]);
             }
-            //open the left node
-            if(col -1 >= 0){
-                openNode(node[col-1][row]);
+            // open the left node
+            if (col - 1 >= 0) {
+                openNode(node[col - 1][row]);
             }
-            //open the down node
-            if(row +1 < gp.maxWorldRow){
-                openNode(node[col][row+1]);
+            // open the down node
+            if (row + 1 < gp.maxWorldRow) {
+                openNode(node[col][row + 1]);
             }
-            //open the right node
-            if(col +1 < gp.maxWorldCol){
-                openNode(node[col+1][row]);
+            // open the right node
+            if (col + 1 < gp.maxWorldCol) {
+                openNode(node[col + 1][row]);
             }
-            //Find the best node (lowest fCost)
+            // Find the best node (lowest fCost)
             int bestNodeIndex = 0;
             int bestNodefCost = 999;
-            for(int i = 0; i < openList.size(); i++){
-                //check if this node's fCost is better than the current best
-                if(openList.get(i).fCost < bestNodefCost){
+            for (int i = 0; i < openList.size(); i++) {
+                // check if this node's fCost is better than the current best
+                if (openList.get(i).fCost < bestNodefCost) {
                     bestNodeIndex = i;
                     bestNodefCost = openList.get(i).fCost;
                 }
-                //if two nodes have the same fCost, check which one has the lowest gCost
-                else if(openList.get(i).fCost == bestNodefCost){
-                    if(openList.get(i).gCost < openList.get(bestNodeIndex).gCost){
+                // if two nodes have the same fCost, check which one has the lowest gCost
+                else if (openList.get(i).fCost == bestNodefCost) {
+                    if (openList.get(i).gCost < openList.get(bestNodeIndex).gCost) {
                         bestNodeIndex = i;
                         bestNodefCost = openList.get(i).fCost;
                     }
                 }
             }
-            //if there is no node in the openList, end loop
-            if(openList.size() == 0){
+            // if there is no node in the openList, end loop
+            if (openList.size() == 0) {
                 break;
             }
 
-            //after the loop, openList[bestNodeIndex] is the best step (=currentNode)
-            currentNode = openList.get(bestNodeIndex); 
-            
-            if(currentNode == endNode){
+            // after the loop, openList[bestNodeIndex] is the best step (=currentNode)
+            currentNode = openList.get(bestNodeIndex);
+
+            if (currentNode == endNode) {
                 endReached = true;
                 trackPath();
             }
             step++;
         }
         return endReached;
-       
+
     }
 
-    public void openNode(Node node){
-        if(node.solid == false && node.checked == false && node.solid == false){
+    public void openNode(Node node) {
+        if (node.solid == false && node.checked == false && node.solid == false) {
             node.open = true;
             node.parent = currentNode;
             openList.add(node);
         }
     }
 
-    public void trackPath(){
+    public void trackPath() {
         Node current = endNode;
 
-        while(current != startNode){
+        while (current != startNode) {
             pathList.add(0, current);
             current = current.parent;
         }

@@ -1,3 +1,6 @@
+/**
+ * The ForestMonster class is a subclass of the Character class and represents a monster in a game.
+ */
 package Monster;
 
 import Main.GamePanel;
@@ -62,17 +65,6 @@ public class ForestMonster extends Character{
       public void update() {
         super.update();
     }
-
-    /*public void getAttackImage(){
-        attackUp1 = setUp("src/monsters/forestmonster_1",gp.tileSize, gp.tileSize);
-        attackUp2 = setUp("src/monsters/forestmonster_2",gp.tileSize, gp.tileSize);
-        attackDown1 = setUp("src/monsters/forestmonster_3",gp.tileSize, gp.tileSize);
-        attackDown2 = setUp("src/monsters/forestmonster_4",gp.tileSize, gp.tileSize);
-        attackLeft2 = setUp("src/monsters/forestmonster_6",gp.tileSize, gp.tileSize);
-        attackRight1 = setUp("src/monsters/forestmonster_1",gp.tileSize, gp.tileSize);
-        attackRight2 = setUp("src/monsters/forestmonster_2",gp.tileSize, gp.tileSize);
-    }*/
-
 
     // method to set the action of the slime monster
     public void setAction() {

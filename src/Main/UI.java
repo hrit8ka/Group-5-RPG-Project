@@ -1,3 +1,6 @@
+/*
+ * This class is used to create the user interface for the game.
+ */
 package Main;
 
 import java.awt.Color;
@@ -25,10 +28,7 @@ public class UI {
     Graphics2D g2;
     public Font maruMonica;
     BufferedImage heart_full, heart_half, heart_blank, mana_full, mana_blank, gold;
-    // BufferedImage keyImage;
     public boolean messageOn = false;
-    // public String message = "";
-    // int messageCounter = 0;
     ArrayList<String> messages = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
     public boolean gameFinished = false;
@@ -47,9 +47,6 @@ public class UI {
         this.gp = gp;
 
         try {
-            // InputStream is =
-            // this.getClass().getResourceAsStream("src/font/x12y16pxMaruMonica.ttf");
-            // importing font
             File fontFile = new File("src/font/x12y16pxMaruMonica.ttf");
             InputStream is = new FileInputStream(fontFile);
 
@@ -137,7 +134,6 @@ public class UI {
             drawSleepScreen();
         }
 
-        
     }
 
     public void drawPlayerLife() {

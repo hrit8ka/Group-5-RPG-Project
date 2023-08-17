@@ -1,3 +1,7 @@
+/**
+ * The HiddenGem class represents a hidden gem object in a game, where the player must find it to save
+ * the village of Minish Haven.
+ */
 package Object;
 
 import Main.GamePanel;

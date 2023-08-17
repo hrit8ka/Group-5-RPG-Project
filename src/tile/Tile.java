@@ -1,3 +1,6 @@
+/**
+ * The Tile class is used to create tiles for a map, with an image and a collision property.
+ */
 package Tile;
 
 import java.awt.image.BufferedImage;

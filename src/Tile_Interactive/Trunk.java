@@ -1,3 +1,7 @@
+/**
+ * The Trunk class is a subclass of interactiveTile that represents a trunk object in a game, with
+ * specific properties and behaviors.
+ */
 package Tile_Interactive;
 
 import Main.GamePanel;

@@ -1,3 +1,6 @@
+/**
+ * The OBJ_Mana class is a subclass of the Character class and represents a mana object in a game.
+ */
 package Object;
 
 import Character.Character;

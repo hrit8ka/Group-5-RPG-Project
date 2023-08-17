@@ -1,3 +1,7 @@
+/**
+ * The GamePanel class is responsible for managing the game screen, including drawing the game elements
+ * and updating the game state.
+ */
 package Main;
 
 import java.awt.Color;

@@ -1,3 +1,6 @@
+/**
+ * The Config class is responsible for saving and loading game configuration settings from a file.
+ */
 package Main;
 
 import java.io.BufferedReader;

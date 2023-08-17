@@ -1,3 +1,7 @@
+/**
+ * The Fireball class is a subclass of the Projectile class and represents a fireball projectile in a
+ * game.
+ */
 package Object;
 
 import Character.Projectile;

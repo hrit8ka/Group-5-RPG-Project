@@ -1,3 +1,7 @@
+/**
+ * The OBJ_BlackCrystal class is a subclass of the Character class that represents a black crystal
+ * object in a game, which can be used to heal the player character.
+ */
 package Object;
 
 import Character.Character;

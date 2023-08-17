@@ -1,3 +1,7 @@
+/**
+ * The SaveLoad class is used to save and load game data, including player stats, inventory, and
+ * objects on the map.
+ */
 package Data;
 
 import java.io.File;
@@ -7,7 +11,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import Main.GamePanel;
 
-//this class is used to store data that will be saved and loaded, data for player stats, inventory, and objects on the map
 
 public class SaveLoad {
     private GamePanel gp;

@@ -1,3 +1,6 @@
+/**
+ * The OBJ_Heart class is a subclass of the Character class and represents a heart object in a game.
+ */
 package Object;
 
 import Character.Character;

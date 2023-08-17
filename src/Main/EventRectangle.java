@@ -1,3 +1,7 @@
+/**
+ * The EventRectangle class extends the Rectangle class and is used to create event rectangles with
+ * default coordinates and a boolean flag to indicate if the event is done.
+ */
 package Main;
 
 import java.awt.Rectangle;

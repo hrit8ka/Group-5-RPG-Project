@@ -1,25 +1,11 @@
+/**
+ * The OBJ_Key class is a subclass of the Character class and represents a key object in a game, which
+ * can be used to open doors.
+ */
 package Object;
 
 import Character.Character;
 import Main.GamePanel;
-
-/*public class OBJ_Key extends SuperObject {
-    GamePanel gp;
-
-    public OBJ_Key(GamePanel gp) {
-        this.gp = gp;
-        name = "key";
-        try {
-            File file = new File("src/objects/key.png");
-            FileInputStream fis = new FileInputStream(file);
-            image = ImageIO.read(fis);
-            ut.scaleImage(image, gp.tileSize, gp.tileSize);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-}*/
 
 public class OBJ_Key extends Character {
     GamePanel gp;

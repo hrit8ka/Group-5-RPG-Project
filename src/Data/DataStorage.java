@@ -1,3 +1,7 @@
+/**
+ * The DataStorage class is a serializable class that stores player stats, inventory, and map object
+ * information.
+ */
 package Data;
 
 import java.io.Serializable;
