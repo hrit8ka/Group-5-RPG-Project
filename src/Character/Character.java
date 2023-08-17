@@ -46,6 +46,8 @@ public class Character {
     public boolean knockBack = false;// knockBack: whether the character is knocked back
     public String knockBackDirection;
     public boolean guarding = false;// guardState: whether the character is guarding
+    public Character loot;
+    public boolean opened = false;
     // counters
     public int spriteCounter = 0;// the counter that controls the sprite animation of character
     public int actionLockCounter = 0;// the counter that controls the actionLock of the character
@@ -160,6 +162,9 @@ public class Character {
         return goalRow;
     }
 
+    public void setLoot(Character loot){
+
+    }
     // set action method
     public void setAction() {
     }
