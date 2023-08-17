@@ -1,6 +1,6 @@
-<p align="center"># **
+<p align=# "center">
 Welcome to The Legend of Hyrule, Warrior!
-**</p>
+</p>
 
 
 ## •	Introduction:<br>
