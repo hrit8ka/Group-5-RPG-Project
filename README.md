@@ -50,7 +50,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 7.	To interact with an NPC (non-player character), approach them and press the **Enter** key.
 
-8.  Pressing the **Enter** key also enabales the player to open the chest.
+8.  Pressing the **Enter** key also enables the player to open the chest.
 
 9.  Use the **Spacebar** key to guard (This helps in reducing the damage by 2).
 
