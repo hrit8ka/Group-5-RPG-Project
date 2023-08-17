@@ -19,21 +19,20 @@ The game follows a set of rules that govern the player’s interactions within t
 
 3.	If the player selects the option to `Quit` the game, he will return to the main screen where he will be provided with the options to either play a `NEW GAME`, `LOAD GAME`, or `EXIT`.
 
-4.  In order for the player to collect the diamond, he will have to open the door with a key first.
+4.  In order for the player to win the game, he must collect the diamond.
 
-5.	Player is not allowed to walk or run into the trees to hide from monsters.
+5.	Player cannot walk or run into the trees to hide from monsters.
 
 
 ## How to play the game:<br>
 1.	In order to move the character in the North-South-East-West directions, you have to use the following keys:<br>
-  -	`A`: Move Left<br>
-  -	`S`: Move Down<br>
-  -	`D`: Move Right<br>
-  -	`W`: Move Up<br>
 
-2.	To select items or options, you have to use the `Enter` key.
+      -	`A`: Move Left<br>
+      -	`S`: Move Down<br>
+      -	`D`: Move Right<br>
+      -	`W`: Move Up<br>
 
-3.	Pressing the `Esc` button, will pause the game and a black and white board will be displayed on your screen having options; <br>
+2.	Press `Esc` to view the following options:<br>
 
     -	`Full Screen`<br>
     -	`Music`<br>
@@ -42,7 +41,9 @@ The game follows a set of rules that govern the player’s interactions within t
     -	`End Game`<br>
     -	`Back`<br>
 
-4.	To attack the monsters, you have to use the Enter key.
+3.	To select items or options, press `Enter`.
+
+4.	To attack the monsters, you have to use the `Enter` key.
 
 5.	Pressing the `p` button will pause the game with the message `PAUSED` on the screen.  To resume the game you can simply press the `p` button again.
 
@@ -54,7 +55,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 9.  Use the `Spacebar` key to guard (This helps in reducing the damage by 2).
 
-10.  In order to save the progress of the game, the player needs to go near the lake and press the `Enter` to acknowledge that he has been healed and the progress has been saved.  The player can then close the game and reload it.
+10. The player can go to the lake or to the healer which is the cat and press the `Enter` to heal.
 
 11.	To collect an item, simply walk over it.
 
@@ -74,8 +75,8 @@ The game follows a set of rules that govern the player’s interactions within t
 
 ## How to run the project:<br>
 
-1. Clone the repository or download the ZIP file.
-2. Navigate to the project directory using your terminal.
+1. Clone the repository.
+2. Navigate to the project directory where src folder is saved using your terminal.
 3. Compile the code using: `javac character/*.java tile/*.java object/*.java monster/*.java main/*. java`.
 4. Run the game: `java main. Main`.
 
