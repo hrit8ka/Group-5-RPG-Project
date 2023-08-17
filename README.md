@@ -64,7 +64,7 @@ The game follows a set of rules that govern the player’s interactions within t
 1.	💰 Gold coins: These coins are used to purchase items, equipment, upgrades, or services within the game.
 2.	🕯️ Candles: Help to ward off the shadows of the unknown.
 3.	⛺ Camping Tent: To sleep and hide from the monsters.
-4.	🔮 Mana: Mana is used to cast fireballs.
+4.	🔮 Mana: To cast fireballs.
 5.	❤️ Red Hearts: Increase player’s lives.
 6.	⚔️ Weapons: To fight against monsters.
 7.	🛡️ Armor: To guard from monsters.
