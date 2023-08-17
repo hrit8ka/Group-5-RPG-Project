@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
 
+import AI.Map;
 import Main.GamePanel;
 import Object.CampingTent;
 import Object.Candle;
@@ -16,31 +18,26 @@ import Object.OBJ_Key;
 import Object.OBJ_Sword;
 
 public class SaveLoad {
-    GamePanel gp;
+    private GamePanel gp;
+    private Map<String, Character> itemCreators = new HashMap<String, Character>();
 
     public SaveLoad(GamePanel gp) {
         this.gp = gp;
+        initItemCreators();
+    }
+
+    private void initItemCreators() {
+        itemCreators.put("Camping Tent", new CampingTent(gp));
+        itemCreators.put("candle", new Candle(gp));
+        itemCreators.put("key", new OBJ_Key(gp));
+        itemCreators.put("axe", new OBJ_Axe(gp));
+        itemCreators.put("sword", new OBJ_Sword(gp));
+        itemCreators.put("armor", new OBJ_Armor(gp));
+        itemCreators.put("chest", new OBJ_Chest(gp));
     }
 
     public Character getObject(String itemName) {
-        Character item = null;
-        // based on the item name, return the correct object
-        if (itemName.equals("Camping Tent")) {
-            item = new CampingTent(gp);
-        } else if (itemName.equals("candle")) {
-            item = new Candle(gp);
-        } else if (itemName.equals("key")) {
-            item = new OBJ_Key(gp);
-        } else if (itemName.equals("axe")) {
-            item = new OBJ_Axe(gp);
-        } else if (itemName.equals("sword")) {
-            item = new OBJ_Sword(gp);
-        } else if (itemName.equals("armor")) {
-            item = new OBJ_Armor(gp);
-        } else if (itemName.equals("chest")) {
-            item = new OBJ_Chest(gp);
-        }
-
+        return itemCreators.get(itemName);
     }
 
     public void save() {
@@ -145,7 +142,7 @@ public class SaveLoad {
                             gp.obj[mapNum][i].loot = getObject(ds.mapObjectLootNames[mapNum][i]);
                         }
                         gp.obj[mapNum][i].opened = ds.mapObjectOpened[mapNum][i];
-                        if(gp.obj[mapNum][i].opened == true){
+                        if (gp.obj[mapNum][i].opened == true) {
                             gp.obj[mapNum][i].down1 = gp.obj[mapNum][i].down2;
                         }
                     }
