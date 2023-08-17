@@ -15,7 +15,7 @@ The game follows a set of rules that govern the player’s interactions within t
 
 1. As the game starts, the player will be prompted with the main screen having the options to choose between  `NEW GAME`, `LOAD GAME`, or `EXIT`.
 
-2. If the player selects the option to `Quit` the game, he will return to the main screen where he will be provided with the options to either play a `NEW GAME`, `LOAD GAME`, or `EXIT`.
+2. If the player loses the game, he can either `Start Over`, or `Quit` the game.
 
 3. In order for the player to win the game, he must collect the diamond.
 
