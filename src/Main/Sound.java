@@ -93,13 +93,18 @@ public class Sound {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        try{
+        try {
             soundURL[15] = new URL("file:src/sound/sleep.wav");// sound URL for sleep
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        try{
-            soundURL[16] = new URL("file:src/sound/win.wav");// sound URL for picking diamond 
+        try {
+            soundURL[16] = new URL("file:src/sound/win.wav");// sound URL for picking diamond
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            soundURL[17] = new URL("file:src/sound/guard.wav");// sound URL for guard
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -138,8 +143,8 @@ public class Sound {
 
     // checkVolume method is used to check the volume of the sound
     public void checkVolume() {
-        switch(volumeScale){
-            case 0: 
+        switch (volumeScale) {
+            case 0:
                 volume = -80.0f;
                 break;
             case 1:
@@ -160,6 +165,5 @@ public class Sound {
         }
         fc.setValue(volume);// set value of float control
     }
-
 
 }

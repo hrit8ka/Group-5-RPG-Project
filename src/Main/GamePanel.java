@@ -17,6 +17,7 @@ import AI.Map;
 import AI.PathFinder;
 import Character.NPC_Sage;
 import Character.Player;
+import Data.SaveLoad;
 import Environment.envManager;
 import Character.Character;
 import Character.Healer;
@@ -26,7 +27,6 @@ import Tile_Interactive.interactiveTile;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    
     // Screen Settings
     final int originalTileSize = 16; // original tile size
     final int scale = 3; // scale of the game
@@ -67,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     public PathFinder pathFinder = new PathFinder(this);
     envManager environmentManager = new envManager(this);
     Map map = new Map(this);
+    SaveLoad saveLoad = new SaveLoad(this);
     Thread gameThread;
 
     // Character and Object
@@ -125,27 +126,27 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void retry() {
+    public void restartGame(boolean restart) {
         player.setDefaultPosition();
-        player.restoreLifeandMana();
+        player.restoreStatus();
         assetSetter.setMonster();
         assetSetter.setNPC();
         assetSetter.setHealer();
+        if (restart == true) {
 
+            player.setDefaultValues();
+            assetSetter.setObject();
+            assetSetter.setInteractiveTile();
+        }
     }
 
-    public void restart() {
+    public void retry() {
         player.setDefaultPosition();
-        player.restoreLifeandMana();
-        player.setItems();
+        player.restoreStatus();
         assetSetter.setMonster();
         assetSetter.setNPC();
         assetSetter.setHealer();
-        assetSetter.setObject();
-        assetSetter.setInteractiveTile();
-        playMusic(0);
-        stopMusic();
-        gameState = titleState;
+
     }
 
     public void setFullScreen() {
@@ -352,7 +353,7 @@ public class GamePanel extends JPanel implements Runnable {
             // environment
             environmentManager.draw(g2);
 
-            //miniMap
+            // miniMap
             map.drawMiniMap(g2);
 
             // UI

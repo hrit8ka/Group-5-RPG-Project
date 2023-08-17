@@ -3,7 +3,6 @@ package Character;
 import Main.GamePanel;
 import Object.OBJ_Axe;
 import Object.OBJ_BlackCrystal;
-import Object.OBJ_BlueShield;
 import Object.OBJ_Sword;
 
 public class NPC_Merchant extends Character {
@@ -46,7 +45,6 @@ public class NPC_Merchant extends Character {
     public void setItems() {
         inventory.add(new OBJ_BlackCrystal(gp));
         inventory.add(new OBJ_Axe(gp));
-        inventory.add(new OBJ_BlueShield(gp));
         inventory.add(new OBJ_Sword(gp));
     }
 

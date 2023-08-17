@@ -6,13 +6,10 @@ import Main.GamePanel;
 
 public class OBJ_Chest extends Character {
     GamePanel gp;
-    Character loot;
-    boolean opened = false;
 
-    public OBJ_Chest(GamePanel gp, Character loot) {
+    public OBJ_Chest(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        this.loot = loot;
         type = obstacleType;
         name = "chest";
         image = setUp("src/objects/chest", gp.tileSize, gp.tileSize);
@@ -26,6 +23,10 @@ public class OBJ_Chest extends Character {
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+    }
+
+    public void setLoot(Character loot) {
+        this.loot = loot;
     }
 
     public void interact() {

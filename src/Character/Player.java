@@ -35,28 +35,26 @@ public class Player extends Character {
     public Player(GamePanel gp, KeyHandler keyH) {
 
         super(gp);// call the super constructor
-        // this.gp = gp;
+
         this.keyH = keyH;// set the key handler
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);// set screenX
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);// set screenY
 
         solidArea = new Rectangle();// set the solid area
-        solidArea.x = 8;// set the x coordinate of the solid area
-        solidArea.y = 16;// set the y coordinate of the solid area
-        solidAreaDefaultX = solidArea.x;// set the default x coordinate of the solid area
-        solidAreaDefaultY = solidArea.y;// set the default y coordinate of the solid area
-        solidArea.width = 32;// set the width of the solid area
-        solidArea.height = 32;// set the height of the solid area
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
 
-        setDefaultValues();// set the default values of the player
-        getPlayerImages(); // get the images of the player
-        getPlayerAttackImage();// get the attack image of the player
-        setItems();// set the items of the player
+        setDefaultValues();
     }
 
     // method to set the default values of the player
     public void setDefaultValues() {
+
         worldX = gp.tileSize * 23;// set the worldX coordinate
         worldY = gp.tileSize * 21;// set the worldY coordinate
         // worldX = gp.tileSize * 12;
@@ -65,24 +63,29 @@ public class Player extends Character {
         defaultSpeed = 4;
 
         speed = defaultSpeed;// set the speed of the player
-        direction = "down";// set the direction of the player
+        direction = "down";
 
         // Player status
-        level = 1;// set the level of the player
-        maxLife = 6;// set the max life of the player
-        life = maxLife;// set the life of the player
-        maxMana = 4;// set the max mana of the player
-        mana = maxMana;// set the mana of the player
-        strength = 1; // more strength, more damage given by the player
-        agility = 1; // more agility, less damage received by the player
-        xp = 0;// xp is the experience of the player
-        nextLevelXP = 5;// set the next level xp of the player
-        gold = 500;// set the number of gold coins the player has
-        currentWeapon = new OBJ_Sword(gp);// set the current weapon of the player
-        currentArmor = new OBJ_Armor(gp);// set the current armor of the player
-        projectile = new Fireball(gp);// set the projectile of the player
-        attack = getAttack(); // total attack value depends on strength and weapon
-        defense = getDefense(); // total defense value depends on agility and armor
+        level = 1;
+        maxLife = 6;
+        life = maxLife;
+        maxMana = 4;
+        mana = maxMana;
+        strength = 1;
+        agility = 1;
+        xp = 0;
+        nextLevelXP = 5;
+        gold = 500;
+        currentWeapon = new OBJ_Sword(gp);
+        currentArmor = new OBJ_Armor(gp);
+        currentLight = null;
+        projectile = new Fireball(gp);
+        attack = getAttack();
+        defense = getDefense();
+        getImage();
+        getAttackImage();
+        setItems();
+        getGuardImage();
 
     }
 
@@ -94,10 +97,14 @@ public class Player extends Character {
 
     }
 
-    public void restoreLifeandMana() {
+    public void restoreStatus() {
         life = maxLife;// set the life of the player
         mana = maxMana;// set the mana of the player
         invincible = false; // reset invincible
+        attacking = false; // reset attacking
+        guarding = false; // reset guarding
+        knockBack = false; // reset knockBack
+        lightUpdated = true; // reset lightUpdated
     }
 
     // method to set the items of the player
@@ -120,8 +127,28 @@ public class Player extends Character {
         return defense = agility * currentArmor.defenseValue;// return the defense of the player
     }
 
+    public int getCurrentWeaponSlot(){
+        int currentWeaponSlot = 0;
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i) == currentWeapon){
+                currentWeaponSlot = i;
+            }
+        }
+        return currentWeaponSlot;
+    }
+
+    public int getCurrentArmorSlot(){
+        int currentArmorSlot = 0;
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i) == currentArmor){
+                currentArmorSlot = i;
+            }
+        }
+        return currentArmorSlot;
+    }
+
     // method to get the images of the player
-    public void getPlayerImages() {
+    public void getImage() {
         // get image for idle
         idle = setUp("./src/player/idle", gp.tileSize, gp.tileSize);
         // get image for walking
@@ -148,7 +175,7 @@ public class Player extends Character {
     }
 
     // method to get the attack image of the player
-    public void getPlayerAttackImage() {
+    public void getAttackImage() {
 
         if (currentWeapon.type == swordType) {// if the current weapon is a sword, load the sword attack images
             attackUp1 = setUp("./src/player/attack_up_1", gp.tileSize, gp.tileSize);
@@ -162,15 +189,23 @@ public class Player extends Character {
 
         }
         if (currentWeapon.type == axeType) {// if the current weapon is an axe, load the axe attack images
-            attackUp1 = setUp("./src/player/axe_right_1", gp.tileSize, gp.tileSize * 2);
-            attackUp2 = setUp("./src/player/axe_right_2", gp.tileSize, gp.tileSize * 2);
-            attackDown1 = setUp("./src/player/axe_left_1", gp.tileSize, gp.tileSize * 2);
-            attackDown2 = setUp("./src/player/axe_left_2", gp.tileSize, gp.tileSize * 2);
-            attackLeft1 = setUp("./src/player/axe_left_1", gp.tileSize * 2, gp.tileSize);
-            attackLeft2 = setUp("./src/player/axe_left_2", gp.tileSize * 2, gp.tileSize);
-            attackRight1 = setUp("./src/player/axe_right_1", gp.tileSize * 2, gp.tileSize);
-            attackRight2 = setUp("./src/player/axe_right_2", gp.tileSize * 2, gp.tileSize);
+            attackUp1 = setUp("./src/player/axe_right_1", gp.tileSize, gp.tileSize);
+            attackUp2 = setUp("./src/player/axe_right_2", gp.tileSize, gp.tileSize);
+            attackDown1 = setUp("./src/player/axe_left_1", gp.tileSize, gp.tileSize);
+            attackDown2 = setUp("./src/player/axe_left_2", gp.tileSize, gp.tileSize);
+            attackLeft1 = setUp("./src/player/axe_left_1", gp.tileSize, gp.tileSize);
+            attackLeft2 = setUp("./src/player/axe_left_2", gp.tileSize, gp.tileSize);
+            attackRight1 = setUp("./src/player/axe_right_1", gp.tileSize, gp.tileSize);
+            attackRight2 = setUp("./src/player/axe_right_2", gp.tileSize, gp.tileSize);
         }
+    }
+
+    public void getGuardImage() {
+        guardUp = setUp("./src/player/guard_up", gp.tileSize, gp.tileSize);
+        guardDown = setUp("./src/player/guard_down", gp.tileSize, gp.tileSize);
+        guardLeft = setUp("./src/player/guard_left", gp.tileSize, gp.tileSize);
+        guardRight = setUp("./src/player/guard_right", gp.tileSize, gp.tileSize);
+
     }
 
     // method to get the images of the player's weapons
@@ -178,8 +213,9 @@ public class Player extends Character {
 
         if (attacking == true) {// if the player is attacking
             attacking();// call the method to attack
-        }
-        if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
+        } else if (keyH.spacePressed == true) {
+            guarding = true;
+        } else if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true
                 || keyH.rightPressed == true || keyH.enterPressed == true) {// if the player is moving
 
             if (keyH.upPressed == true) {// if the player is moving up
@@ -250,6 +286,7 @@ public class Player extends Character {
             }
             noAttack = false;// set no attack to false
             gp.keyH.enterPressed = false;// set enter pressed to false
+            guarding = false;
             spriteCounter++;// increment the sprite counter
             if (spriteCounter > 12) {// if the sprite counter is greater than 12
                 if (spriteNumber == 1) {// if the sprite number is 1, set it to 2
@@ -259,6 +296,7 @@ public class Player extends Character {
                 }
                 spriteCounter = 0;// reset the sprite counter
             }
+            guarding = false;
         }
         // if F key is pressed and previous projectile is inactive, shoot projectile
         if (gp.keyH.shotKeyPressed == true && projectile.alive == false && projectileCounter == 30
@@ -470,7 +508,7 @@ public class Player extends Character {
             if (selectedItem.type == swordType || selectedItem.type == axeType) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
-                getPlayerAttackImage();
+                getAttackImage();
             }
             if (selectedItem.type == armorType) {
                 currentArmor = selectedItem;
@@ -560,6 +598,9 @@ public class Player extends Character {
                         image = attackUp2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardUp;
+                }
                 break;
             case "down":
                 if (attacking == false) {
@@ -577,6 +618,9 @@ public class Player extends Character {
                     if (spriteNumber == 2) {
                         image = attackDown2;
                     }
+                }
+                if (guarding == true) {
+                    image = guardDown;
                 }
                 break;
             case "left":
@@ -597,6 +641,9 @@ public class Player extends Character {
                         image = attackLeft2;
                     }
                 }
+                if (guarding == true) {
+                    image = guardLeft;
+                }
                 break;
             case "right":
                 if (attacking == false) {
@@ -614,6 +661,9 @@ public class Player extends Character {
                     if (spriteNumber == 2) {
                         image = attackRight2;
                     }
+                }
+                if (guarding == true) {
+                    image = guardRight;
                 }
                 break;
         }

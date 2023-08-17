@@ -41,7 +41,7 @@ public class Projectile extends Character {
                                                                              // contact with player
                 if (contactWithPlayer) {// if contact with player
                     gp.player.damagePlayer(attack); // damage player
-                    generateParticles(user.projectile, gp.player);// generate particles
+                    generateParticles(user.projectile, user.projectile);// generate particles
                     alive = false;// set alive to false
                 }
             }

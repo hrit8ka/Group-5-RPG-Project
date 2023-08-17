@@ -23,7 +23,7 @@ public class Character {
     // declaring all the methods and attributes that are common to all characters
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1,
-            attackRight2;
+            attackRight2, guardUp, guardDown, guardLeft, guardRight;
     public BufferedImage image, image2, image3;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48); // solidArea: the area that the player cannot walk through
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);// attackArea: the area that the player can attack
@@ -45,6 +45,9 @@ public class Character {
     public boolean onPath = false;// onPath: whether the character is on a path
     public boolean knockBack = false;// knockBack: whether the character is knocked back
     public String knockBackDirection;
+    public boolean guarding = false;// guardState: whether the character is guarding
+    public Character loot;
+    public boolean opened = false;
     // counters
     public int spriteCounter = 0;// the counter that controls the sprite animation of character
     public int actionLockCounter = 0;// the counter that controls the actionLock of the character
@@ -159,6 +162,9 @@ public class Character {
         return goalRow;
     }
 
+    public void setLoot(Character loot){
+
+    }
     // set action method
     public void setAction() {
     }
@@ -392,7 +398,7 @@ public class Character {
             int i = new Random().nextInt(rate) + 1; // pick a random number between 1 and 100
             if (i == 0) {
                 attacking = true;
-                //monster shoot projectile
+                // monster shoot projectile
                 if (type == monsterType) {
                     projectile.set(worldX, worldY, direction, true, this);
                     for (int j = 0; j < gp.projectile[1].length; j++) {
@@ -465,6 +471,25 @@ public class Character {
         }
     }
 
+    public String getOppositeDirection(String direction) {
+        String oppositeDirection = "";
+        switch (direction) {
+            case "up":
+                oppositeDirection = "down";
+                break;
+            case "down":
+                oppositeDirection = "up";
+                break;
+            case "left":
+                oppositeDirection = "right";
+                break;
+            case "right":
+                oppositeDirection = "left";
+                break;
+        }
+        return oppositeDirection;
+    }
+
     // method attack
     public void attacking() {
         spriteCounter++;// increment the sprite counter
@@ -529,9 +554,23 @@ public class Character {
     // method damagePlayer
     public void damagePlayer(int attack) {
         if (gp.player.invincible == false) {// if the player is not invincible
+            int damage = attack - gp.player.defense;// calculate damage
             // give damage to player
             gp.playSE(6);// play sound effect
-            int damage = this.attack - gp.player.defense;// calculate damage
+            // get opposite direction of the monster
+            String canGuardDirection = getOppositeDirection(direction);
+
+            if (gp.player.guarding == true && gp.player.direction.equals(canGuardDirection)) {
+                damage = damage / 3;
+                gp.playSE(16);
+            } else {
+                // not guarding
+                gp.playSE(6);
+                if (damage < 1) {
+                    damage = 1;
+                }
+            }
+
             if (damage < 0) {// if damage is less than 0, set damage to 0
                 damage = 0;// set damage to 0
             }
@@ -558,84 +597,84 @@ public class Character {
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-                    int tempScreenX = screenX;
-                    int tempScreenY = screenY;
-                    switch (direction) {
-                        case "up":
-                            if (attacking == false) {
-                                if (spriteNumber == 1) {
-                                    image = up1;
-                                }
-                                if (spriteNumber == 2) {
-                                    image = up2;
-                                }
-                            }
-                            if (attacking == true) {
-                                tempScreenY = screenY - gp.tileSize;
-                                if (spriteNumber == 1) {
-                                    image = attackUp1;
-                                }
-                                if (spriteNumber == 2) {
-                                    image = attackUp2;
-                                }
-                            }
-                            break;
-                        case "down":
-                            if (attacking == false) {
-                                if (spriteNumber == 1) {
-                                    image = down1;
-                                }
-                                if (spriteNumber == 2) {
-                                    image = down2;
-                                }
-                            }
-                            if (attacking == true) {
-                                if (spriteNumber == 1) {
-                                    image = attackDown1;
-                                }
-                                if (spriteNumber == 2) {
-                                    image = attackDown2;
-                                }
-                            }
-                            break;
-                        case "left":
-                            if (attacking == false) {
-                                if (spriteNumber == 1) {
-                                    image = left1;
-                                }
-                                if (spriteNumber == 2) {
-                                    image = left2;
-                                }
-                            }
-                            if (attacking == true) {
-                                tempScreenX = screenX - gp.tileSize;
-                                if (spriteNumber == 1) {
-                                    image = attackLeft1;
-                                }
-                                if (spriteNumber == 2) {
-                                    image = attackLeft2;
-                                }
-                            }
-                            break;
-                        case "right":
-                            if (attacking == false) {
-                                if (spriteNumber == 1) {
-                                    image = right1;
-                                }
-                                if (spriteNumber == 2) {
-                                    image = right2;
-                                }
-                            }
-                            if (attacking == true) {
-                                if (spriteNumber == 1) {
-                                    image = attackRight1;
-                                }
-                                if (spriteNumber == 2) {
-                                    image = attackRight2;
-                                }
-                            }
-                            break;
+            int tempScreenX = screenX;
+            int tempScreenY = screenY;
+            switch (direction) {
+                case "up":
+                    if (attacking == false) {
+                        if (spriteNumber == 1) {
+                            image = up1;
+                        }
+                        if (spriteNumber == 2) {
+                            image = up2;
+                        }
                     }
+                    if (attacking == true) {
+                        tempScreenY = screenY - gp.tileSize;
+                        if (spriteNumber == 1) {
+                            image = attackUp1;
+                        }
+                        if (spriteNumber == 2) {
+                            image = attackUp2;
+                        }
+                    }
+                    break;
+                case "down":
+                    if (attacking == false) {
+                        if (spriteNumber == 1) {
+                            image = down1;
+                        }
+                        if (spriteNumber == 2) {
+                            image = down2;
+                        }
+                    }
+                    if (attacking == true) {
+                        if (spriteNumber == 1) {
+                            image = attackDown1;
+                        }
+                        if (spriteNumber == 2) {
+                            image = attackDown2;
+                        }
+                    }
+                    break;
+                case "left":
+                    if (attacking == false) {
+                        if (spriteNumber == 1) {
+                            image = left1;
+                        }
+                        if (spriteNumber == 2) {
+                            image = left2;
+                        }
+                    }
+                    if (attacking == true) {
+                        tempScreenX = screenX - gp.tileSize;
+                        if (spriteNumber == 1) {
+                            image = attackLeft1;
+                        }
+                        if (spriteNumber == 2) {
+                            image = attackLeft2;
+                        }
+                    }
+                    break;
+                case "right":
+                    if (attacking == false) {
+                        if (spriteNumber == 1) {
+                            image = right1;
+                        }
+                        if (spriteNumber == 2) {
+                            image = right2;
+                        }
+                    }
+                    if (attacking == true) {
+                        if (spriteNumber == 1) {
+                            image = attackRight1;
+                        }
+                        if (spriteNumber == 2) {
+                            image = attackRight2;
+                        }
+                    }
+                    break;
+            }
             // health bar for monster
             if (type == 2 && hpBarOn == true) {// if the character is a monster and hpBarOn is true
                 // updating monster health bar
@@ -820,22 +859,23 @@ public class Character {
 
     public int getDetected(Character user, Character target[][], String targetName) {
         int index = 999;
+
         // check the surrounding area
         int nextWorldX = user.getLeftX();
         int nextWorldY = user.getTopY();
 
         switch (user.direction) {
             case "up":
-                nextWorldY -= user.getTopY() - 1;
+                nextWorldY -= user.getTopY() - gp.player.speed;
                 break;
             case "down":
-                nextWorldY += user.getBottomY() + 1;
+                nextWorldY += user.getBottomY() + gp.player.speed;
                 break;
             case "left":
-                nextWorldX -= user.getLeftX() - 1;
+                nextWorldX -= user.getLeftX() - gp.player.speed;
                 break;
             case "right":
-                nextWorldX += user.getRightX() + 1;
+                nextWorldX += user.getRightX() + gp.player.speed;
                 break;
         }
         int col = nextWorldX / gp.tileSize;
@@ -845,7 +885,7 @@ public class Character {
             if (target[gp.currentMap][i] != null) {
                 if (target[gp.currentMap][i].getCol() == col && target[gp.currentMap][i].getRow() == row
                         && target[gp.currentMap][i].name.equals(targetName)) {
-                            System.out.println(targetName + " detected");
+                    System.out.println(targetName + " detected");
                     index = i;
                     break;
                 }
