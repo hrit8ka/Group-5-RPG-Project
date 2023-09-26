@@ -91,7 +91,7 @@ public class Character {
     public int knockBackPower = 0;// knockBackPower: the knockBack power of the item
     public boolean stackable = false;// stackable: whether the item is stackable
     public int amount = 1;
-    public int lightRadius = 0;// lightRadius: the light radius of the item
+    public int lightRadius = 0;// lightRadius: the light radius of the candle
 
     // Type
     public int type;// type: the type of the character
